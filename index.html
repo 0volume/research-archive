@@ -46,6 +46,14 @@
             padding: 15px;
             background: #16213e;
             border-radius: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .meta-left {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
         
         .entry-count {
@@ -58,28 +66,60 @@
             font-size: 0.9rem;
         }
         
-        .category-filter {
+        .sources {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .filters-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 30px;
+            align-items: center;
         }
         
-        .category-btn {
-            padding: 8px 16px;
+        .filter-label {
+            color: #666;
+            font-size: 0.85rem;
+            margin-right: 5px;
+        }
+        
+        .category-btn, .complexity-btn {
+            padding: 6px 12px;
             border: 1px solid #667eea;
             background: transparent;
             color: #667eea;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: all 0.2s;
         }
         
-        .category-btn:hover, .category-btn.active {
+        .category-btn:hover, .complexity-btn:hover,
+        .category-btn.active, .complexity-btn.active {
             background: #667eea;
             color: white;
         }
+        
+        .complexity-btn.beginner { border-color: #27ae60; color: #27ae60; }
+        .complexity-btn.beginner.active, .complexity-btn.beginner:hover { background: #27ae60; color: white; }
+        
+        .complexity-btn.intermediate { border-color: #f39c12; color: #f39c12; }
+        .complexity-btn.intermediate.active, .complexity-btn.intermediate:hover { background: #f39c12; color: white; }
+        
+        .complexity-btn.advanced { border-color: #e74c3c; color: #e74c3c; }
+        .complexity-btn.advanced.active, .complexity-btn.advanced:hover { background: #e74c3c; color: white; }
+        
+        .complexity-btn.enterprise, .complexity-btn.speculative { border-color: #9b59b6; color: #9b59b6; }
+        .complexity-btn.enterprise.active, .complexity-btn.enterprise:hover,
+        .complexity-btn.speculative.active, .complexity-btn.speculative:hover { background: #9b59b6; color: white; }
         
         .entry {
             background: #16213e;
@@ -93,6 +133,19 @@
         .entry:hover {
             transform: translateX(5px);
             box-shadow: 0 4px 20px rgba(102, 126, 234, 0.2);
+        }
+        
+        .entry.beginner { border-left-color: #27ae60; }
+        .entry.intermediate { border-left-color: #f39c12; }
+        .entry.advanced { border-left-color: #e74c3c; }
+        .entry.enterprise, .entry.speculative { border-left-color: #9b59b6; }
+        
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .entry-number {
@@ -111,10 +164,24 @@
         
         .entry h2 {
             display: inline;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             margin: 0;
             color: #fff;
         }
+        
+        .complexity-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .complexity-badge.beginner { background: #27ae60; color: white; }
+        .complexity-badge.intermediate { background: #f39c12; color: white; }
+        .complexity-badge.advanced { background: #e74c3c; color: white; }
+        .complexity-badge.enterprise { background: #9b59b6; color: white; }
+        .complexity-badge.speculative { background: #9b59b6; color: white; }
         
         .entry-meta {
             margin: 10px 0;
@@ -133,12 +200,54 @@
             color: #aaa;
             font-size: 0.9rem;
             font-style: italic;
+            margin-bottom: 10px;
         }
         
         .summary {
             margin: 15px 0;
             color: #ccc;
         }
+        
+        .my-analysis {
+            background: #1a2a4a;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .my-analysis-title {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .my-analysis-title::before {
+            content: "🧠";
+        }
+        
+        .my-analysis p {
+            margin: 0;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        .practical-use {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .practical-use.high { background: #27ae60; color: white; }
+        .practical-use.medium { background: #f39c12; color: white; }
+        .practical-use.low { background: #7f8c8d; color: white; }
         
         .tags {
             display: flex;
@@ -169,6 +278,7 @@
             text-decoration: none;
             border-radius: 6px;
             font-weight: bold;
+            font-size: 0.85rem;
             transition: opacity 0.2s;
         }
         
@@ -187,6 +297,7 @@
             body { padding: 15px; }
             h1 { font-size: 1.8rem; }
             .entry { padding: 18px; }
+            .meta { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -197,28 +308,45 @@
     </header>
     
     <div class="meta">
-        <span class="entry-count" id="count">Loading...</span>
-        <span class="last-updated" id="updated">Last updated: --</span>
+        <div class="meta-left">
+            <span class="entry-count" id="count">Loading...</span>
+            <span class="last-updated" id="updated">Last updated: --</span>
+        </div>
+        <span class="sources" id="sources">Sources: --</span>
     </div>
     
-    <div class="category-filter" id="filters">
-        <button class="category-btn active" data-category="all">All</button>
+    <div class="filters-row">
+        <div class="filter-group" id="categoryFilters">
+            <span class="filter-label">Category:</span>
+            <button class="category-btn active" data-category="all">All</button>
+        </div>
+        <div class="filter-group" id="complexityFilters">
+            <span class="filter-label">Complexity:</span>
+            <button class="complexity-btn active" data-complexity="all">All</button>
+            <button class="complexity-btn beginner" data-complexity="beginner">Beginner</button>
+            <button class="complexity-btn intermediate" data-complexity="intermediate">Intermediate</button>
+            <button class="complexity-btn advanced" data-complexity="advanced">Advanced</button>
+        </div>
     </div>
     
     <div id="entries"></div>
     
     <footer>
-        <p>Research Archive v1.0 | Data stored in JSON for portability</p>
+        <p>Research Archive v1.1 | 🧠 Sol's Analysis Included</p>
     </footer>
     
     <script>
+        let allEntries = [];
+        
         // Load research data from JSON
         fetch('data/research.json')
             .then(response => response.json())
             .then(data => {
-                renderEntries(data.entries);
+                allEntries = data.entries;
                 document.getElementById('count').textContent = data.entries.length + ' entries';
                 document.getElementById('updated').textContent = 'Last updated: ' + data.lastUpdated;
+                document.getElementById('sources').textContent = 'Sources: ' + (data.sources || ['arXiv']).join(', ');
+                renderEntries(data.entries);
             })
             .catch(err => {
                 document.getElementById('entries').innerHTML = '<p style="color:#e74c3c">Error loading research data.</p>';
@@ -226,67 +354,91 @@
         
         function renderEntries(entries) {
             const container = document.getElementById('entries');
+            container.innerHTML = '';
             
             // Get unique categories
             const categories = [...new Set(entries.map(e => e.category))].sort();
             
             // Add category buttons
-            const filtersContainer = document.getElementById('filters');
+            const catContainer = document.getElementById('categoryFilters');
             categories.forEach(cat => {
                 const btn = document.createElement('button');
                 btn.className = 'category-btn';
                 btn.dataset.category = cat;
                 btn.textContent = formatCategory(cat);
-                btn.onclick = () => filterEntries(cat);
-                filtersContainer.appendChild(btn);
+                btn.onclick = () => filterEntries();
+                catContainer.appendChild(btn);
             });
             
             // Add 'all' button click handler
-            document.querySelector('[data-category="all"]').onclick = () => filterEntries('all');
+            document.querySelector('[data-category="all"]').onclick = () => filterEntries();
             
-            // Render all entries
+            // Complexity filter handlers
+            document.querySelectorAll('.complexity-btn').forEach(btn => {
+                btn.onclick = () => filterEntries();
+            });
+            
+            // Render entries
             entries.forEach(entry => {
                 container.appendChild(createEntryElement(entry));
             });
         }
         
-        function filterEntries(category) {
+        function filterEntries() {
+            const activeCat = document.querySelector('.category-btn.active').dataset.category;
+            const activeComp = document.querySelector('.complexity-btn.active').dataset.complexity;
+            
             // Update button states
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.toggle('active', 
-                    btn.dataset.category === category || 
-                    (category === 'all' && btn.dataset.category === 'all')
-                );
+                btn.classList.toggle('active', btn.dataset.category === activeCat || (activeCat === 'all' && btn.dataset.category === 'all'));
+            });
+            document.querySelectorAll('.complexity-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.complexity === activeComp || (activeComp === 'all' && btn.dataset.complexity === 'all'));
             });
             
-            // Show/hide entries
+            // Filter entries
             document.querySelectorAll('.entry').forEach(el => {
-                if (category === 'all') {
-                    el.style.display = 'block';
-                } else {
-                    el.style.display = el.dataset.category === category ? 'block' : 'none';
-                }
+                const cat = el.dataset.category;
+                const comp = el.dataset.complexity;
+                const catMatch = activeCat === 'all' || cat === activeCat;
+                const compMatch = activeComp === 'all' || comp === activeComp;
+                el.style.display = (catMatch && compMatch) ? 'block' : 'none';
             });
         }
         
         function createEntryElement(entry) {
             const el = document.createElement('div');
-            el.className = 'entry';
+            el.className = 'entry ' + (entry.complexity || '');
             el.dataset.category = entry.category;
+            el.dataset.complexity = entry.complexity || 'intermediate';
             
             const tagsHtml = entry.tags.map(tag => 
                 `<span class="tag">${tag}</span>`
             ).join('');
             
+            const myAnalysisHtml = entry.myAnalysis ? `
+                <div class="my-analysis">
+                    <div class="my-analysis-title">Sol's Analysis</div>
+                    <p>${entry.myAnalysis}</p>
+                    ${entry.practicalUse ? `<span class="practical-use ${entry.practicalUse}">Practical: ${entry.practicalUse}</span>` : ''}
+                </div>
+            ` : '';
+            
             el.innerHTML = `
-                <span class="entry-number">${entry.id}</span>
-                <h2>${entry.title}</h2>
+                <div class="entry-header">
+                    <div>
+                        <span class="entry-number">${entry.id}</span>
+                        <h2>${entry.title}</h2>
+                    </div>
+                    ${entry.complexity ? `<span class="complexity-badge ${entry.complexity}">${entry.complexity}</span>` : ''}
+                </div>
                 <div class="entry-meta">
                     <span class="source">${entry.source}</span>
                     <span>${entry.date}</span>
                 </div>
                 <p class="authors">${entry.authors}</p>
                 <p class="summary">${entry.summary}</p>
+                ${myAnalysisHtml}
                 <div class="tags">
                     <span class="tag category-tag">${formatCategory(entry.category)}</span>
                     ${tagsHtml}

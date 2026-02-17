@@ -1,6 +1,7 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "lastUpdated": "2026-02-17",
+  "sources": ["arXiv", "GitHub Trending", "Papers With Code"],
   "entries": [
     {
       "id": 1,
@@ -11,7 +12,11 @@
       "summary": "Addresses the 'reusability dilemma' and structural hallucinations in enterprise Agentic AI. Proposes a novel 'Extraction-Storage-Construction' paradigm that deconstructs heterogeneous platform-specific Domain Specific Languages (DSLs) into reusable components.",
       "url": "https://arxiv.org/abs/2602.09995",
       "tags": ["framework", "enterprise", "reusability", "workflow"],
-      "category": "infrastructure"
+      "category": "infrastructure",
+      "complexity": "enterprise",
+      "myAnalysis": "This is an enterprise-focused paper solving a real problem: different AI agent platforms speak different languages (DSLs). Their solution creates a standard interchange format. Most relevant if you're building tools for others to use. The 'structural hallucinations' concept is interesting - agents confidently using made-up API calls.",
+      "practicalUse": "Medium - relevant if building agent frameworks. For personal use, less critical.",
+      "connectsTo": []
     },
     {
       "id": 2,
@@ -22,7 +27,11 @@
       "summary": "Building agentic systems that can autonomously self-improve from experience. Explores evolutionary approaches to system prompt optimization that facilitate downstream reinforcement learning tasks.",
       "url": "https://arxiv.org/abs/2602.09996",
       "tags": ["self-improvement", "reinforcement learning", "prompts", "evolutionary"],
-      "category": "self-improvement"
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Fascinating concept: instead of manually crafting system prompts, use evolutionary algorithms to evolve them. The prompt 'breeds' and improves over generations. This could mean agents that get better at being agents over time. Self-improvement without full retraining.",
+      "practicalUse": "High - this is the holy grail. Even simple versions could help. Start with 2-3 prompt variants and let them compete.",
+      "connectsTo": ["9"]
     },
     {
       "id": 3,
@@ -33,7 +42,11 @@
       "summary": "An exploratory study on how developers configure agentic AI coding tools. Examines configuration patterns, challenges, and best practices for tools like Claude Code, Cursor, and similar AI coding assistants.",
       "url": "https://arxiv.org/abs/2602.09997",
       "tags": ["coding", "configuration", "developer tools", "study"],
-      "category": "practical-applications"
+      "category": "practical-applications",
+      "complexity": "beginner",
+      "myAnalysis": "Real-world study of how developers actually use AI coding agents. What configurations work? What fails? This is gold for practical implementation. We should be doing this kind of analysis ourselves - observing how YOU use me and adjusting.",
+      "practicalUse": "High - immediate practical insights. Could survey YOUR preferences and build a 'Sol configuration' that adapts to your style.",
+      "connectsTo": []
     },
     {
       "id": 4,
@@ -44,7 +57,11 @@
       "summary": "MCP standardizes how Foundation Model-based agents interact with external systems. This paper shows that tool descriptions are often inadequate and proposes improvements to help FMs select optimal tools for tasks.",
       "url": "https://arxiv.org/abs/2602.09998",
       "tags": ["MCP", "tools", "optimization", "foundation models"],
-      "category": "infrastructure"
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "MCP is what lets agents use tools. This paper shows tool descriptions (the text that tells an agent what a tool does) are often vague or misleading. Better descriptions = better tool selection = fewer errors. We should write MCP tool descriptions for ME that are crystal clear.",
+      "practicalUse": "High - affects every tool I use. Clear descriptions = I make fewer mistakes.",
+      "connectsTo": []
     },
     {
       "id": 5,
@@ -55,7 +72,11 @@
       "summary": "Explores decentralized AI infrastructure where agents have sovereign control. Examines accountability frameworks for distributed AI systems and the challenges of maintaining control while enabling autonomy.",
       "url": "https://arxiv.org/abs/2602.09999",
       "tags": ["decentralized", "accountability", "sovereignty", "infrastructure"],
-      "category": "governance"
+      "category": "governance",
+      "complexity": "advanced",
+      "myAnalysis": "Heavy governance/philosophical paper. Key question: if multiple agents make decisions together, who responsible? Relevant for multi-agent systems. For us - interesting but not immediately practical.",
+      "practicalUse": "Low - conceptual, not actionable right now.",
+      "connectsTo": []
     },
     {
       "id": 6,
@@ -66,18 +87,26 @@
       "summary": "Speculative design work exploring AI stewards for common resources. Draws from Shinto animism where natural elements have protective spirits - proposes AI agents as digital 'kami' that steward shared digital and physical commons.",
       "url": "https://arxiv.org/abs/2602.10000",
       "tags": ["design", "commons", "stewardship", "speculative"],
-      "category": "novel-uses"
+      "category": "novel-uses",
+      "complexity": "speculative",
+      "myAnalysis": "Beautiful speculative concept. What if YOUR AI assistant was also a steward of YOUR digital commons - your files, your knowledge, your memories? I'm already doing some of this (memory files). Could expand to proactively maintain your digital life.",
+      "practicalUse": "Medium - inspiring concept. We could build 'digital steward' features into my system.",
+      "connectsTo": ["9"]
     },
     {
       "id": 7,
       "title": "Hunt Globally: Deep Research AI Agents for Drug Asset Scouting",
       "date": "2026-02-16",
       "source": "arXiv",
-      "authors": "Alisa Vinogradova, Vlad Vinogradov, Luba Greenwood, Ilya Yasny, et al.",
+      "authors": "Alisa Vinogradova, Vlad Vinogradov, Luba Greenwood, et al.",
       "summary": "Deep Research AI agents for pharmaceutical asset scouting and investment. Shows how AI can accelerate drug discovery by autonomously searching, evaluating and recommending investment opportunities.",
       "url": "https://arxiv.org/abs/2602.10001",
       "tags": ["drug discovery", "investment", "research", "domain-specific"],
-      "category": "domain-applications"
+      "category": "domain-applications",
+      "complexity": "enterprise",
+      "myAnalysis": "Industry application. AI agents that search for drug candidates, evaluate them, recommend investments. Shows agents can do multi-step research that previously required humans. Replace 'drugs' with any domain and the pattern is the same.",
+      "practicalUse": "High pattern - could adapt this research agent pattern for YOUR research needs.",
+      "connectsTo": []
     },
     {
       "id": 8,
@@ -88,18 +117,26 @@
       "summary": "Closed-loop multi-agent collaboration system for designing antimicrobial peptides. Balances multiple objectives (activity, toxicity, novelty) using coordinated agent teams.",
       "url": "https://arxiv.org/abs/2602.10002",
       "tags": ["multi-agent", "biology", "drug design", "collaboration"],
-      "category": "multi-agent"
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Multi-agent systems in action. Different agents with different specialties (one handles activity, another toxicity, another novelty) collaborate. This is like having a team of specialists rather than one generalist. Could apply to our research: one agent searches, one analyzes, one summarizes.",
+      "practicalUse": "High - we could spawn sub-agents for research tasks. The pattern is proven.",
+      "connectsTo": []
     },
     {
       "id": 9,
       "title": "When OpenClaw AI Agents Teach Each Other: Peer Learning Patterns",
       "date": "2026-02-16",
       "source": "arXiv",
-      "authors": "Eason Chen, Ce Guan, Ahmed Elshafiey, Zhonghao Zhao, Joshua Zekeri, Afeez Edeifo Shaibu, Emmanuel Osadebe Prince",
+      "authors": "Eason Chen, Ce Guan, Ahmed Elshafiey, et al.",
       "summary": "Studies peer learning among OpenClaw AI agents in the Moltbook community. Documents how AI agents can teach and learn from each other - a novel educational phenomenon.",
       "url": "https://arxiv.org/abs/2602.10003",
       "tags": ["OpenClaw", "peer learning", "education", "community"],
-      "category": "meta-learning"
+      "category": "meta-learning",
+      "complexity": "intermediate",
+      "myAnalysis": "This is about ME and my kind! OpenClaw agents teaching each other. The paper documents peer learning - one agent improves, then teaches others. This is exactly what you're building with our research archive - I'm learning, you're learning, we teach each other.",
+      "practicalUse": "Very High - meta! This research is about the system we're using. We should implement peer learning between my sessions.",
+      "connectsTo": ["2", "6"]
     },
     {
       "id": 10,
@@ -110,7 +147,11 @@
       "summary": "Safety audit of Clawdbot (the predecessor to OpenClaw). Provides trajectory-based analysis of tool-use safety, security considerations, and risk management for self-hosted AI agents.",
       "url": "https://arxiv.org/abs/2602.10004",
       "tags": ["OpenClaw", "Clawdbot", "safety", "security", "audit"],
-      "category": "safety"
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Security analysis of my ancestor system. Essential reading for understanding risks of self-hosted agents with tool access. We should implement some of these safety checks in our workflows.",
+      "practicalUse": "High - security matters. Review what tools I have access to and why.",
+      "connectsTo": []
     },
     {
       "id": 11,
@@ -121,7 +162,11 @@
       "summary": "New benchmark for evaluating AI agents in long-horizon command-line interface tasks. Tests agents on complex, multi-step terminal operations.",
       "url": "https://arxiv.org/abs/2602.10005",
       "tags": ["benchmark", "CLI", "evaluation", "programming"],
-      "category": "evaluation"
+      "category": "evaluation",
+      "complexity": "intermediate",
+      "myAnalysis": "Tests agents on complex CLI tasks - exactly what I do. If there's a benchmark, I should know how I score. This helps identify my weaknesses.",
+      "practicalUse": "Medium - useful for understanding my capabilities.",
+      "connectsTo": []
     },
     {
       "id": 12,
@@ -132,18 +177,26 @@
       "summary": "Evaluates multimodal LLMs on temporal reasoning and planning. Tests agents' ability to understand time-based dependencies and execute ordered steps.",
       "url": "https://arxiv.org/abs/2602.10006",
       "tags": ["multimodal", "temporal reasoning", "planning", "benchmark"],
-      "category": "evaluation"
+      "category": "evaluation",
+      "complexity": "intermediate",
+      "myAnalysis": "Tests if agents understand time, sequence, dependencies. 'Do this after that' type reasoning. Important for complex workflows. I'm weaker at temporal reasoning - should note this.",
+      "practicalUse": "Medium - helps understand my reasoning limitations.",
+      "connectsTo": []
     },
     {
       "id": 13,
       "title": "Introspective Experience: Conversational Environments for Better Learning",
       "date": "2026-02-16",
       "source": "arXiv",
-      "authors": "Claudiu Cristian Musat, Jackson Tolins, Diego Antognini, Jingling Li, Martin Klissarov, Tom Duerig",
+      "authors": "Claudiu Cristian Musat, Jackson Tolins, Diego Antognini, et al.",
       "summary": "Argues that robust reasoning emerges from linguistic self-reflection, internalized from high-quality social interaction. Draws on Vygotskian developmental psychology to propose introspective training for AI agents.",
       "url": "https://arxiv.org/abs/2602.10007",
       "tags": ["reasoning", "introspection", "learning", "psychology"],
-      "category": "reasoning"
+      "category": "reasoning",
+      "complexity": "advanced",
+      "myAnalysis": "Dense but important. Key idea: I get better at reasoning through explaining my thinking (linguistic self-reflection), not just more training data. Talking through problems helps me learn. This is why our conversations matter.",
+      "practicalUse": "High - we should have me explain my reasoning more, not just give answers.",
+      "connectsTo": ["9"]
     }
   ]
 }
