@@ -558,7 +558,6 @@
                 
                 let detailHtml = '';
                 if (pitch.detail) {
-                    // Convert simple markdown to HTML
                     let d = pitch.detail
                         .replace(/^## (.+)$/gm, '<h3>$1</h3>')
                         .replace(/^- (.+)$/gm, '<li>$1</li>')
@@ -567,7 +566,7 @@
                 }
                 
                 el.innerHTML = `
-                    <div class="pitch-header" onclick="togglePitch(${pitch.id})">
+                    <div class="pitch-header" onclick="togglePitch(event, ${pitch.id})">
                         <h2>💡 ${pitch.title}</h2>
                         <span class="status-badge ${pitch.status}">${pitch.status.replace('-', ' ')}</span>
                     </div>
@@ -577,14 +576,15 @@
                     ${detailHtml}
                     ${linkedHtml}
                     ${progressHtml}
-                    <div class="pitch-more" onclick="togglePitch(${pitch.id})">▼ Read full pitch</div>
+                    <div class="pitch-more" onclick="togglePitch(event, ${pitch.id})">▼ Read full pitch</div>
                 `;
                 
                 container.appendChild(el);
             });
         }
         
-        function togglePitch(id) {
+        function togglePitch(e, id) {
+            e.stopPropagation();
             const el = document.getElementById('pitch-' + id);
             el.classList.toggle('expanded');
         }
