@@ -232,9 +232,19 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 8px;
+            cursor: pointer;
         }
         
         .pitch h2 { margin: 0; font-size: 1rem; color: #fff; }
+        
+        .pitch-expand { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
+        .pitch.expanded .pitch-expand { display: block; }
+        .pitch-expand p { color: #bbb; font-size: 0.85rem; margin-bottom: 10px; line-height: 1.7; }
+        .pitch-expand h3 { color: #667eea; font-size: 0.9rem; margin: 15px 0 8px 0; }
+        .pitch-expand ul { color: #bbb; font-size: 0.8rem; margin: 5px 0; padding-left: 20px; }
+        .pitch-expand li { margin: 4px 0; }
+        .pitch-more { display: block; margin-top: 10px; color: #667eea; font-size: 0.8rem; }
+        .pitch.expanded .pitch-more { display: none; }
         
         .status-badge {
             font-size: 0.7rem;
@@ -534,6 +544,7 @@
             filtered.forEach(pitch => {
                 const el = document.createElement('div');
                 el.className = 'pitch ' + pitch.status;
+                el.id = 'pitch-' + pitch.id;
                 
                 let progressHtml = '';
                 if (pitch.progress && pitch.progress.length > 0) {
@@ -545,19 +556,37 @@
                     linkedHtml = `<div class="linked-research"><div class="linked-research-title">📚 Linked Papers</div>${pitch.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
                 }
                 
+                let detailHtml = '';
+                if (pitch.detail) {
+                    // Convert simple markdown to HTML
+                    let d = pitch.detail
+                        .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+                        .replace(/^- (.+)$/gm, '<li>$1</li>')
+                        .replace(/\n\n/g, '</p><p>');
+                    detailHtml = `<div class="pitch-expand"><p>${d}</p></div>`;
+                }
+                
                 el.innerHTML = `
-                    <div class="pitch-header">
+                    <div class="pitch-header" onclick="togglePitch(${pitch.id})">
                         <h2>💡 ${pitch.title}</h2>
                         <span class="status-badge ${pitch.status}">${pitch.status.replace('-', ' ')}</span>
                     </div>
                     <p class="pitch-date">${pitch.date}</p>
                     <p class="pitch-summary">${pitch.summary}</p>
                     <div class="pitch-why"><div class="pitch-why-title">Why This Matters</div><p>${pitch.why}</p></div>
+                    ${detailHtml}
                     ${linkedHtml}
                     ${progressHtml}
+                    <div class="pitch-more" onclick="togglePitch(${pitch.id})">▼ Read full pitch</div>
                 `;
+                
                 container.appendChild(el);
             });
+        }
+        
+        function togglePitch(id) {
+            const el = document.getElementById('pitch-' + id);
+            el.classList.toggle('expanded');
         }
         
         function renderThoughts() {
