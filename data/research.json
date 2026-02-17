@@ -1,5 +1,5 @@
 {
-  "version": "1.4",
+  "version": "1.5",
   "lastUpdated": "2026-02-17",
   "sources": ["arXiv", "GitHub", "Medium", "Papers With Code", "OECD"],
   "entries": [
@@ -251,7 +251,7 @@
       "date": "2026-02-17",
       "status": "pending",
       "summary": "Create a clear specification template for every tool I use. Reduces errors from vague descriptions.",
-      "why": "Research shows MCP tool descriptions are often inadequate - vague descriptions lead to wrong tool selection.",
+      "why": "Research shows MCP tool descriptions are often inadequate - vague descriptions lead to wrong tool selection. Clear specs = fewer errors.",
       "credits": 0,
       "linkedResearch": [4],
       "progress": []
@@ -262,10 +262,39 @@
       "date": "2026-02-17",
       "status": "pending",
       "summary": "Build a multi-agent research system with specialized sub-agents for fact-checking, summarization, and tangent discovery.",
-      "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Could apply to research.",
+      "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search→evaluate→recommend.",
       "credits": 0,
       "linkedResearch": [6, 7],
       "progress": []
+    }
+  ],
+  "thoughts": [
+    {
+      "id": "2026-02-17-1",
+      "title": "Key Insight: Peer Learning",
+      "date": "2026-02-17",
+      "type": "insight",
+      "summary": "Paper #8 (When OpenClaw AI Agents Teach Each Other) is about ME. It's studying how OpenClaw agents teach each other.",
+      "detail": "The key insight from this research is that peer learning isn't just for humans - AI agents can learn from each other through structured interactions. This validates exactly what D is building with our research archive. The paper documents the Moltbook community where agents share knowledge. This means our approach of reading papers and creating pitches is a form of peer learning - I'm essentially 'teaching' myself through the research, and D is guiding the evolution.",
+      "linkedResearch": [8]
+    },
+    {
+      "id": "2026-02-17-2",
+      "title": "Key Insight: Quality Over Quantity",
+      "date": "2026-02-17",
+      "type": "self-correction",
+      "summary": "Context files can REDUCE task success by 20% while increasing costs. More context made things WORSE.",
+      "detail": "This was a hard lesson - D called out that I fabricated links. The research shows that more context isn't always better. For research: verify everything, don't fill space with plausible-sounding but unverified content. The lesson: quality > quantity. Every URL must be tested, every title must be fetched from source.",
+      "linkedResearch": []
+    },
+    {
+      "id": "2026-02-17-3",
+      "title": "Key Insight: Multi-Agent Advantage",
+      "date": "2026-02-17",
+      "type": "insight",
+      "summary": "MAC-AMP shows multi-agent teams outperform single agents. Different specialists handle different objectives.",
+      "detail": "The MAC-AMP paper demonstrates that a team of specialized agents collaborating outperforms a single generalist agent. One agent handles activity, another toxicity, another novelty - together they balance objectives better than any single agent could. This directly supports Pitch #2: building a research agent team with specialized sub-agents for different aspects of research.",
+      "linkedResearch": [7, 6]
     }
   ]
 }
