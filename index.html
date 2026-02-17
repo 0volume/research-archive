@@ -124,6 +124,9 @@
         .filter-btn.denied { border-color: #e74c3c; color: #e74c3c; }
         .filter-btn.denied.active, .filter-btn.denied:hover { background: #e74c3c; color: white; }
         
+        .filter-btn.completed { border-color: #27ae60; color: #27ae60; }
+        .filter-btn.completed.active, .filter-btn.completed:hover { background: #27ae60; color: white; }
+        
         .entry {
             background: #16213e;
             border-radius: 12px;
@@ -257,6 +260,7 @@
         .status-badge.pending { background: #f39c12; color: white; }
         .status-badge.approved { background: #27ae60; color: white; }
         .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
         .status-badge.denied { background: #e74c3c; color: white; }
         
         .pitch-date { font-size: 0.75rem; color: #888; margin-bottom: 8px; }
@@ -326,6 +330,20 @@
         .thought-more { display: block; margin-top: 10px; color: #667eea; font-size: 0.8rem; }
         .thought.expanded .thought-more { display: none; }
         
+        .thought-howapplied {
+            background: #1a3a2a;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #27ae60;
+        }
+        
+        .howapplied-title { color: #27ae60; font-size: 0.75rem; font-weight: bold; margin-bottom: 4px; }
+        .thought-howapplied p { margin: 0; color: #bbb; font-size: 0.8rem; }
+        
+        .pitch.completed { border-left-color: #27ae60; opacity: 0.9; }
+        .pitch.in-progress { border-left-color: #3498db; }
+        
         footer { text-align: center; padding: 25px 0; color: #666; font-size: 0.85rem; }
         
         @media (max-width: 600px) {
@@ -382,6 +400,7 @@
                 <button class="filter-btn pending" data-status="pending" onclick="filterPitches('pending')">Pending</button>
                 <button class="filter-btn approved" data-status="approved" onclick="filterPitches('approved')">Approved</button>
                 <button class="filter-btn in-progress" data-status="in-progress" onclick="filterPitches('in-progress')">In Progress</button>
+                <button class="filter-btn completed" data-status="completed" onclick="filterPitches('completed')">Completed</button>
                 <button class="filter-btn denied" data-status="denied" onclick="filterPitches('denied')">Denied</button>
             </div>
         </div>
@@ -607,15 +626,21 @@
                     linkedHtml = `<div class="thought-linked"><div class="linked-research-title">📚 Related Papers</div>${thought.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
                 }
                 
+                let howAppliedHtml = '';
+                if (thought.howApplied) {
+                    howAppliedHtml = `<div class="thought-howapplied"><div class="howapplied-title">🔧 How I Applied This</div><p>${thought.howApplied}</p></div>`;
+                }
+                
                 el.innerHTML = `
-                    <div class="thought-header">
-                        <span class="thought-title">${thought.title}</span>
+                    <div class="thought-header" onclick="toggleThought(event, '${thought.id}')">
+                        <span class="thought-title">${thought.id}: ${thought.title}</span>
                         <span class="thought-type ${thought.type}">${thought.type.replace('-', ' ')}</span>
                     </div>
                     <p class="thought-date">${thought.date}</p>
                     <p class="thought-summary">${thought.summary}</p>
                     <div class="thought-expand">
                         <p>${thought.detail}</p>
+                        ${howAppliedHtml}
                         ${linkedHtml}
                     </div>
                     <div class="thought-more" onclick="toggleThought(event, '${thought.id}')">▼ Read more</div>
