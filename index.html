@@ -34,7 +34,6 @@
         
         .subtitle { color: #888; margin-top: 8px; font-size: 0.9rem; }
         
-        /* Navigation */
         .nav-tabs {
             display: flex;
             gap: 8px;
@@ -60,11 +59,9 @@
             color: white;
         }
         
-        /* Sections */
         .section { display: none; }
         .section.active { display: block; }
         
-        /* Meta bar */
         .meta {
             display: flex;
             justify-content: space-between;
@@ -80,7 +77,6 @@
         .meta span { color: #888; font-size: 0.85rem; }
         .entry-count { color: #667eea; font-weight: bold; }
         
-        /* Filters */
         .filters-row {
             display: flex;
             gap: 15px;
@@ -128,17 +124,14 @@
         .filter-btn.denied { border-color: #e74c3c; color: #e74c3c; }
         .filter-btn.denied.active, .filter-btn.denied:hover { background: #e74c3c; color: white; }
         
-        /* Entry Cards */
         .entry {
             background: #16213e;
             border-radius: 12px;
             padding: 18px;
             margin-bottom: 12px;
             border-left: 4px solid #667eea;
-            transition: transform 0.2s;
         }
         
-        .entry:hover { transform: translateX(5px); }
         .entry.beginner { border-left-color: #27ae60; }
         .entry.intermediate { border-left-color: #f39c12; }
         .entry.advanced { border-left-color: #e74c3c; }
@@ -204,7 +197,6 @@
         .practical-use { display: inline-block; font-size: 0.65rem; padding: 3px 8px; border-radius: 6px; margin-top: 6px; font-weight: bold; }
         .practical-use.high { background: #27ae60; color: white; }
         .practical-use.medium { background: #f39c12; color: white; }
-        .practical-use.low { background: #7f8c8d; color: white; }
         
         .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
         .tag { font-size: 0.65rem; padding: 3px 6px; background: #0f3460; color: #667eea; border-radius: 8px; }
@@ -220,7 +212,6 @@
             font-size: 0.8rem;
         }
         
-        /* Pitch Cards */
         .pitch {
             background: #16213e;
             border-radius: 12px;
@@ -274,7 +265,7 @@
         
         .linked-research { margin-top: 10px; }
         .linked-research-title { font-size: 0.75rem; color: #888; margin-bottom: 5px; }
-        .linked-research a { color: #667eea; margin-right: 8px; font-size: 0.8rem; text-decoration: none; }
+        .linked-research a { color: #667eea; margin-right: 8px; font-size: 0.8rem; text-decoration: none; cursor: pointer; }
         .linked-research a:hover { text-decoration: underline; }
         
         .progress-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
@@ -283,7 +274,6 @@
         .progress-date { font-size: 0.7rem; color: #888; }
         .progress-text { color: #ccc; font-size: 0.8rem; margin-top: 4px; }
         
-        /* Thought Cards - Expandable */
         .thought {
             background: #16213e;
             border-radius: 12px;
@@ -291,10 +281,7 @@
             margin-bottom: 12px;
             border-left: 4px solid #667eea;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        
-        .thought:hover { transform: translateX(3px); }
         
         .thought.insight { border-left-color: #9b59b6; }
         .thought.self-correction { border-left-color: #e74c3c; }
@@ -318,42 +305,18 @@
         .thought-type.self-correction { background: #e74c3c; color: white; }
         
         .thought-date { font-size: 0.75rem; color: #888; margin: 5px 0; }
-        
         .thought-summary { color: #ccc; font-size: 0.85rem; }
         
-        .thought-expand {
-            display: none;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid #333;
-        }
-        
+        .thought-expand { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
         .thought.expanded .thought-expand { display: block; }
         
         .thought-expand p { color: #bbb; font-size: 0.85rem; margin-bottom: 10px; }
+        .thought-linked a { color: #667eea; margin-right: 8px; font-size: 0.8rem; cursor: pointer; }
         
-        .thought-linked { margin-top: 10px; }
-        .thought-linked-title { font-size: 0.75rem; color: #888; margin-bottom: 5px; }
-        .thought-linked a { color: #667eea; margin-right: 8px; font-size: 0.8rem; }
-        
-        .thought-more {
-            display: block;
-            margin-top: 10px;
-            color: #667eea;
-            font-size: 0.8rem;
-            text-decoration: none;
-        }
-        
-        .thought-more:hover { text-decoration: underline; }
-        
+        .thought-more { display: block; margin-top: 10px; color: #667eea; font-size: 0.8rem; }
         .thought.expanded .thought-more { display: none; }
         
-        footer {
-            text-align: center;
-            padding: 25px 0;
-            color: #666;
-            font-size: 0.85rem;
-        }
+        footer { text-align: center; padding: 25px 0; color: #666; font-size: 0.85rem; }
         
         @media (max-width: 600px) {
             body { padding: 12px; }
@@ -369,9 +332,9 @@
     </header>
     
     <nav class="nav-tabs">
-        <button class="nav-tab active" onclick="showSection('research')">📚 Research</button>
-        <button class="nav-tab" onclick="showSection('pitches')">💡 Pitches</button>
-        <button class="nav-tab" onclick="showSection('thoughts')">💭 Thoughts</button>
+        <button class="nav-tab active" data-section="research" onclick="showSection('research')">📚 Research</button>
+        <button class="nav-tab" data-section="pitches" onclick="showSection('pitches')">💡 Pitches</button>
+        <button class="nav-tab" data-section="thoughts" onclick="showSection('thoughts')">💭 Thoughts</button>
     </nav>
     
     <!-- RESEARCH SECTION -->
@@ -382,13 +345,13 @@
         </div>
         
         <div class="filters-row">
-            <div class="filter-group">
+            <div class="filter-group" id="categoryFilters">
                 <span class="filter-label">Category:</span>
-                <button class="filter-btn active" data-category="all" onclick="filter('category', 'all')">All</button>
+                <button class="filter-btn active" data-category="all" onclick="filterBy('category', 'all')">All</button>
             </div>
             <div class="filter-group">
                 <span class="filter-label">Complexity:</span>
-                <button class="filter-btn active" data-complexity="all" onclick="filter('complexity', 'all')">All</button>
+                <button class="filter-btn active" data-complexity="all" onclick="filterBy('complexity', 'all')">All</button>
             </div>
         </div>
         
@@ -436,7 +399,7 @@
     </section>
     
     <footer>
-        <p>Research Archive v1.5 | 🧠 Sol's Research, Thoughts & Pitches</p>
+        <p>Research Archive v1.6 | 🧠 Sol's Research, Thoughts & Pitches</p>
     </footer>
     
     <script>
@@ -452,10 +415,10 @@
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            event.target.classList.add('active');
+            document.querySelector('[data-section="' + id + '"]').classList.add('active');
         }
         
-        function filter(type, value) {
+        function filterBy(type, value) {
             if (type === 'category') {
                 currentCategory = value;
                 document.querySelectorAll('[data-category]').forEach(btn => {
@@ -467,10 +430,10 @@
                     btn.classList.toggle('active', btn.dataset.complexity === value);
                 });
             }
-            renderEntries();
+            applyEntryFilters();
         }
         
-        function renderEntries() {
+        function applyEntryFilters() {
             document.querySelectorAll('.entry').forEach(el => {
                 const cat = el.dataset.category;
                 const comp = el.dataset.complexity;
@@ -508,32 +471,39 @@
                 document.getElementById('pitchCount').textContent = allPitches.length + ' pitches';
                 document.getElementById('updated').textContent = 'Updated: ' + data.lastUpdated;
                 
-                renderEntries();
-                renderPitches();
-                renderThoughts();
-                setupCategoryFilters();
+                buildCategoryFilters();
+                renderAll();
+            })
+            .catch(err => {
+                console.error('Error loading data:', err);
             });
         
-        function setupCategoryFilters() {
+        function buildCategoryFilters() {
+            const container = document.getElementById('categoryFilters');
             const categories = [...new Set(allEntries.map(e => e.category))].sort();
-            const container = document.querySelector('[data-category="all"]').parentNode;
             categories.forEach(cat => {
-                if (cat === 'all') return;
                 const btn = document.createElement('button');
                 btn.className = 'filter-btn';
                 btn.dataset.category = cat;
-                btn.textContent = cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                btn.setAttribute('onclick', `filter('category', '${cat}')`);
+                btn.textContent = formatCategory(cat);
+                btn.onclick = () => filterBy('category', cat);
                 container.appendChild(btn);
             });
+        }
+        
+        function renderAll() {
+            renderEntries();
+            renderPitches();
+            renderThoughts();
         }
         
         function renderEntries() {
             const container = document.getElementById('entries');
             container.innerHTML = '';
+            
             allEntries.forEach(entry => {
                 const el = document.createElement('div');
-                el.className = 'entry ' + (entry.complexity || '');
+                el.className = 'entry ' + (entry.complexity || 'intermediate');
                 el.dataset.category = entry.category;
                 el.dataset.complexity = entry.complexity || 'intermediate';
                 
@@ -551,7 +521,6 @@
                 `;
                 container.appendChild(el);
             });
-            renderEntries();
         }
         
         function renderPitches() {
@@ -606,7 +575,7 @@
                 
                 let linkedHtml = '';
                 if (thought.linkedResearch && thought.linkedResearch.length > 0) {
-                    linkedHtml = `<div class="thought-linked"><div class="thought-linked-title">📚 Related Papers</div>${thought.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
+                    linkedHtml = `<div class="thought-linked"><div class="linked-research-title">📚 Related Papers</div>${thought.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
                 }
                 
                 el.innerHTML = `
@@ -620,22 +589,22 @@
                         <p>${thought.detail}</p>
                         ${linkedHtml}
                     </div>
-                    <a href="javascript:void(0)" class="thought-more" onclick="toggleThought('${thought.id}')">▼ Read more</a>
+                    <div class="thought-more" onclick="toggleThought(event, '${thought.id}')">▼ Read more</div>
                 `;
                 
-                el.onclick = () => toggleThought(thought.id);
+                el.onclick = (e) => toggleThought(e, thought.id);
                 container.appendChild(el);
             });
         }
         
-        function toggleThought(id) {
+        function toggleThought(e, id) {
+            e.stopPropagation();
             const el = document.getElementById('thought-' + id);
             el.classList.toggle('expanded');
         }
         
         function showResearchEntry(id) {
             showSection('research');
-            // Scroll to and highlight entry
             setTimeout(() => {
                 const entries = document.querySelectorAll('.entry');
                 entries.forEach((el, idx) => {
@@ -646,6 +615,10 @@
                     }
                 });
             }, 100);
+        }
+        
+        function formatCategory(cat) {
+            return cat.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         }
     </script>
 </body>
