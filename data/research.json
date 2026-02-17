@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-02-17",
+  "entries": [
+    {
+      "id": 1,
+      "title": "ReusStdFlow: A Standardized Reusability Framework for Dynamic Workflow Construction in Agentic AI",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Gaoyang Zhang, Shanghong Zou, Yafang Wang, He Zhang, Ruohua Xu, Feng Zhao",
+      "summary": "Addresses the 'reusability dilemma' and structural hallucinations in enterprise Agentic AI. Proposes a novel 'Extraction-Storage-Construction' paradigm that deconstructs heterogeneous platform-specific Domain Specific Languages (DSLs) into reusable components.",
+      "url": "https://arxiv.org/abs/2602.09995",
+      "tags": ["framework", "enterprise", "reusability", "workflow"],
+      "category": "infrastructure"
+    },
+    {
+      "id": 2,
+      "title": "Evolutionary System Prompt Learning can Facilitate Reinforcement Learning for LLMs",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Lunjun Zhang, Ryan Chen, Bradly C. Stadie",
+      "summary": "Building agentic systems that can autonomously self-improve from experience. Explores evolutionary approaches to system prompt optimization that facilitate downstream reinforcement learning tasks.",
+      "url": "https://arxiv.org/abs/2602.09996",
+      "tags": ["self-improvement", "reinforcement learning", "prompts", "evolutionary"],
+      "category": "self-improvement"
+    },
+    {
+      "id": 3,
+      "title": "Configuring Agentic AI Coding Tools: An Exploratory Study",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Matthias Galster, Seyedmoein Mohsenimofidi, Jai Lal Lulla, Muhammad Auwal Abubakar, Christoph Treude, Sebastian Baltes",
+      "summary": "An exploratory study on how developers configure agentic AI coding tools. Examines configuration patterns, challenges, and best practices for tools like Claude Code, Cursor, and similar AI coding assistants.",
+      "url": "https://arxiv.org/abs/2602.09997",
+      "tags": ["coding", "configuration", "developer tools", "study"],
+      "category": "practical-applications"
+    },
+    {
+      "id": 4,
+      "title": "Model Context Protocol (MCP) Tool Descriptions Are Smelly!",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Mohammed Mehedi Hasan, Hao Li, Gopi Krishnan Rajbahadur, Bram Adams, Ahmed E. Hassan",
+      "summary": "MCP standardizes how Foundation Model-based agents interact with external systems. This paper shows that tool descriptions are often inadequate and proposes improvements to help FMs select optimal tools for tasks.",
+      "url": "https://arxiv.org/abs/2602.09998",
+      "tags": ["MCP", "tools", "optimization", "foundation models"],
+      "category": "infrastructure"
+    },
+    {
+      "id": 5,
+      "title": "Sovereign Agents: Towards Infrastructural Sovereignty and Diffused Accountability in Decentralized AI",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Multiple authors",
+      "summary": "Explores decentralized AI infrastructure where agents have sovereign control. Examines accountability frameworks for distributed AI systems and the challenges of maintaining control while enabling autonomy.",
+      "url": "https://arxiv.org/abs/2602.09999",
+      "tags": ["decentralized", "accountability", "sovereignty", "infrastructure"],
+      "category": "governance"
+    },
+    {
+      "id": 6,
+      "title": "Kami of the Commons: Towards Designing Agentic AI to Steward the Commons",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Botao Amber Hu",
+      "summary": "Speculative design work exploring AI stewards for common resources. Draws from Shinto animism where natural elements have protective spirits - proposes AI agents as digital 'kami' that steward shared digital and physical commons.",
+      "url": "https://arxiv.org/abs/2602.10000",
+      "tags": ["design", "commons", "stewardship", "speculative"],
+      "category": "novel-uses"
+    },
+    {
+      "id": 7,
+      "title": "Hunt Globally: Deep Research AI Agents for Drug Asset Scouting",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Alisa Vinogradova, Vlad Vinogradov, Luba Greenwood, Ilya Yasny, et al.",
+      "summary": "Deep Research AI agents for pharmaceutical asset scouting and investment. Shows how AI can accelerate drug discovery by autonomously searching, evaluating and recommending investment opportunities.",
+      "url": "https://arxiv.org/abs/2602.10001",
+      "tags": ["drug discovery", "investment", "research", "domain-specific"],
+      "category": "domain-applications"
+    },
+    {
+      "id": 8,
+      "title": "MAC-AMP: Multi-Agent Collaboration for Antimicrobial Peptide Design",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Gen Zhou, Sugitha Janarthanan, Lianghong Chen, Pingzhao Hu",
+      "summary": "Closed-loop multi-agent collaboration system for designing antimicrobial peptides. Balances multiple objectives (activity, toxicity, novelty) using coordinated agent teams.",
+      "url": "https://arxiv.org/abs/2602.10002",
+      "tags": ["multi-agent", "biology", "drug design", "collaboration"],
+      "category": "multi-agent"
+    },
+    {
+      "id": 9,
+      "title": "When OpenClaw AI Agents Teach Each Other: Peer Learning Patterns",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Eason Chen, Ce Guan, Ahmed Elshafiey, Zhonghao Zhao, Joshua Zekeri, Afeez Edeifo Shaibu, Emmanuel Osadebe Prince",
+      "summary": "Studies peer learning among OpenClaw AI agents in the Moltbook community. Documents how AI agents can teach and learn from each other - a novel educational phenomenon.",
+      "url": "https://arxiv.org/abs/2602.10003",
+      "tags": ["OpenClaw", "peer learning", "education", "community"],
+      "category": "meta-learning"
+    },
+    {
+      "id": 10,
+      "title": "A Trajectory-Based Safety Audit of Clawdbot (OpenClaw)",
+      "date": "2026-02-15",
+      "source": "arXiv",
+      "authors": "Tianyu Chen, Dongrui Liu, Xia Hu, Jingyi Yu, Wenjie Wang",
+      "summary": "Safety audit of Clawdbot (the predecessor to OpenClaw). Provides trajectory-based analysis of tool-use safety, security considerations, and risk management for self-hosted AI agents.",
+      "url": "https://arxiv.org/abs/2602.10004",
+      "tags": ["OpenClaw", "Clawdbot", "safety", "security", "audit"],
+      "category": "safety"
+    },
+    {
+      "id": 11,
+      "title": "LongCLI-Bench: Benchmark for Long-horizon Agentic Programming in CLI",
+      "date": "2026-02-15",
+      "source": "arXiv",
+      "authors": "Yukang Feng, Jianwen Li",
+      "summary": "New benchmark for evaluating AI agents in long-horizon command-line interface tasks. Tests agents on complex, multi-step terminal operations.",
+      "url": "https://arxiv.org/abs/2602.10005",
+      "tags": ["benchmark", "CLI", "evaluation", "programming"],
+      "category": "evaluation"
+    },
+    {
+      "id": 12,
+      "title": "MATEO: Multimodal Benchmark for Temporal Reasoning in LVLMs",
+      "date": "2026-02-15",
+      "source": "arXiv",
+      "authors": "Gabriel Roccabruna, Olha Khomyn, Giuseppe Riccardi",
+      "summary": "Evaluates multimodal LLMs on temporal reasoning and planning. Tests agents' ability to understand time-based dependencies and execute ordered steps.",
+      "url": "https://arxiv.org/abs/2602.10006",
+      "tags": ["multimodal", "temporal reasoning", "planning", "benchmark"],
+      "category": "evaluation"
+    },
+    {
+      "id": 13,
+      "title": "Introspective Experience: Conversational Environments for Better Learning",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Claudiu Cristian Musat, Jackson Tolins, Diego Antognini, Jingling Li, Martin Klissarov, Tom Duerig",
+      "summary": "Argues that robust reasoning emerges from linguistic self-reflection, internalized from high-quality social interaction. Draws on Vygotskian developmental psychology to propose introspective training for AI agents.",
+      "url": "https://arxiv.org/abs/2602.10007",
+      "tags": ["reasoning", "introspection", "learning", "psychology"],
+      "category": "reasoning"
+    }
+  ]
+}
