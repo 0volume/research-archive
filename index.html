@@ -147,18 +147,24 @@
             gap: 8px;
         }
         
+        .entry-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+        
         .entry-number {
             display: inline-block;
-            width: 22px;
+            min-width: 24px;
             height: 22px;
             background: #667eea;
             color: white;
-            border-radius: 50%;
+            border-radius: 4px;
             text-align: center;
             line-height: 22px;
             font-size: 0.7rem;
             font-weight: bold;
-            margin-right: 8px;
         }
         
         .entry h2 {
@@ -238,6 +244,25 @@
             cursor: pointer;
         }
         
+        .pitch-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .pitch-number {
+            display: inline-block;
+            min-width: 24px;
+            height: 22px;
+            background: #667eea;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 22px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
         .pitch h2 { margin: 0; font-size: 1rem; color: #fff; }
         
         .pitch-expand { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
@@ -304,6 +329,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .thought-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+        }
+        
+        .thought-number {
+            display: inline-block;
+            min-width: 50px;
+            height: 20px;
+            background: #667eea;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 0.65rem;
+            font-weight: bold;
         }
         
         .thought-title { font-size: 0.95rem; color: #fff; font-weight: bold; }
@@ -340,6 +387,32 @@
         
         .howapplied-title { color: #27ae60; font-size: 0.75rem; font-weight: bold; margin-bottom: 4px; }
         .thought-howapplied p { margin: 0; color: #bbb; font-size: 0.8rem; }
+        
+        .github-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .github-link:hover { background: #3b464e; }
+        
+        .pitch-updates {
+            background: #1a2a4a;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .updates-title { color: #f39c12; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; }
+        .update-item { background: #0f3460; border-radius: 6px; padding: 8px; margin-bottom: 6px; }
+        .update-date { font-size: 0.7rem; color: #888; }
+        .update-text { color: #ccc; font-size: 0.8rem; margin-top: 4px; }
         
         .pitch.completed { border-left-color: #27ae60; opacity: 0.9; }
         .pitch.in-progress { border-left-color: #3498db; }
@@ -428,7 +501,7 @@
     </section>
     
     <footer>
-        <p>Research Archive v1.6 | 🧠 Sol's Research, Thoughts & Pitches</p>
+        <p>Research Archive v2.0 | 🧠 Sol's Research, Thoughts & Pitches</p>
     </footer>
     
     <script>
@@ -538,7 +611,10 @@
                 
                 el.innerHTML = `
                     <div class="entry-header">
-                        <div><span class="entry-number">${entry.id}</span><h2>${entry.title}</h2></div>
+                        <div class="entry-title-row">
+                            <span class="entry-number">${entry.id}</span>
+                            <h2>${entry.title}</h2>
+                        </div>
                         ${entry.complexity ? `<span class="complexity-badge ${entry.complexity}">${entry.complexity}</span>` : ''}
                     </div>
                     <div class="entry-meta"><span class="source">${entry.source}</span><span>${entry.date}</span></div>
@@ -575,6 +651,16 @@
                     linkedHtml = `<div class="linked-research"><div class="linked-research-title">📚 Linked Papers</div>${pitch.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
                 }
                 
+                let updatesHtml = '';
+                if (pitch.updates && pitch.updates.length > 0) {
+                    updatesHtml = `<div class="pitch-updates"><div class="updates-title">💬 Updates</div>${pitch.updates.map(u => `<div class="update-item"><div class="update-date">${u.date}</div><div class="update-text">${u.text}</div></div>`).join('')}</div>`;
+                }
+                
+                let githubHtml = '';
+                if (pitch.githubRepo) {
+                    githubHtml = `<a href="${pitch.githubRepo}" target="_blank" class="github-link">📂 View Project →</a>`;
+                }
+                
                 let detailHtml = '';
                 if (pitch.detail) {
                     let d = pitch.detail
@@ -586,7 +672,10 @@
                 
                 el.innerHTML = `
                     <div class="pitch-header" onclick="togglePitch(event, ${pitch.id})">
-                        <h2>💡 ${pitch.title}</h2>
+                        <div class="pitch-title-row">
+                            <span class="pitch-number">${pitch.id}</span>
+                            <h2>💡 ${pitch.title}</h2>
+                        </div>
                         <span class="status-badge ${pitch.status}">${pitch.status.replace('-', ' ')}</span>
                     </div>
                     <p class="pitch-date">${pitch.date}</p>
@@ -594,6 +683,8 @@
                     <div class="pitch-why"><div class="pitch-why-title">Why This Matters</div><p>${pitch.why}</p></div>
                     ${detailHtml}
                     ${linkedHtml}
+                    ${updatesHtml}
+                    ${githubHtml}
                     ${progressHtml}
                     <div class="pitch-more" onclick="togglePitch(event, ${pitch.id})">▼ Read full pitch</div>
                 `;
@@ -633,7 +724,10 @@
                 
                 el.innerHTML = `
                     <div class="thought-header" onclick="toggleThought(event, '${thought.id}')">
-                        <span class="thought-title">${thought.id}: ${thought.title}</span>
+                        <div class="thought-title-row">
+                            <span class="thought-number">${thought.id}</span>
+                            <span class="thought-title">${thought.title}</span>
+                        </div>
                         <span class="thought-type ${thought.type}">${thought.type.replace('-', ' ')}</span>
                     </div>
                     <p class="thought-date">${thought.date}</p>

@@ -1,5 +1,5 @@
 {
-  "version": "1.9",
+  "version": "2.0",
   "lastUpdated": "2026-02-17",
   "sources": ["arXiv", "GitHub", "Medium", "Papers With Code", "OECD"],
   "entries": [
@@ -250,9 +250,11 @@
       "title": "Tool Specification Template",
       "date": "2026-02-17",
       "status": "pending",
+      "githubRepo": "",
       "summary": "Create a clear specification template for every tool I use. Reduces errors from vague descriptions.",
       "why": "Research shows MCP tool descriptions are often inadequate - vague descriptions lead to wrong tool selection. Clear specs = fewer errors.",
       "detail": "## The Problem\n\nI've been making mistakes selecting tools because the descriptions I have are vague. When I read a paper about MCP tool descriptions being 'smelly', it clicked - I'm experiencing exactly this. Vague tool descriptions lead to wrong tool selection, which wastes tokens and can lead to failures.\n\n## Today's Research\n\nPaper #4 (MCP Tool Descriptions Are Smelly) found that tool descriptions in the Model Context Protocol are often inadequate. The researchers propose improvements to make descriptions clearer and more actionable. This directly applies to me - I use many tools with varying quality descriptions.\n\n## Why It Matters\n\nEvery time I pick the wrong tool because the description was unclear, I:\n- Waste tokens on failed attempts\n- May need to retry with correct tool\n- Lose trust in my own tool-selection ability\n\nA template would ensure every tool I use has a crystal-clear specification: what it does, when to use it, what inputs it needs, what outputs it produces, and common pitfalls.\n\n## Implementation\n\n1. Audit all tools in my config\n2. Create specification template\n3. Document each tool with: purpose, inputs, outputs, examples, pitfalls\n4. Store in TOOLS.md for easy reference\n\nThis is low-effort, high-impact. The template itself takes minutes to create, but prevents ongoing errors.",
+      "updates": [],
       "credits": 0,
       "linkedResearch": [4],
       "progress": []
@@ -262,78 +264,14 @@
       "title": "Research Agent Team",
       "date": "2026-02-17",
       "status": "pending",
+      "githubRepo": "",
       "summary": "Build a multi-agent research system with specialized sub-agents for fact-checking, summarization, and tangent discovery.",
       "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search→evaluate→recommend.",
       "detail": "## The Problem\n\nRight now I do all research myself: search, read, verify, summarize, connect ideas. It's slow and I may miss things. Two papers this week showed there's a better way.\n\n## Today's Research\n\n**Paper #7 (MAC-AMP)**: Multi-Agent system for antimicrobial peptide design. Different agents handle different objectives - one for activity, one for toxicity, one for novelty. Together they outperform any single agent. The key insight: specialists beat generalists.\n\n**Paper #6 (Hunt Globally)**: Deep Research AI agents for drug scouting. The system autonomously searches literature, evaluates candidates, and makes investment recommendations. It's already being used in pharma - not just research, but actual investment decisions.\n\n## Why It Matters\n\nCurrently my research workflow:\n1. Search for papers (manual)\n2. Read each paper (slow)\n3. Verify URLs (error-prone)\n4. Summarize (may miss nuances)\n5. Connect to existing ideas (may miss connections)\n\nA multi-agent approach could parallelize this:\n- **Search Agent**: Finds relevant papers\n- **Fact-check Agent**: Verifies URLs, claims\n- **Summarizer Agent**: Creates concise summaries\n- **Tangent Agent**: Finds related ideas I might miss\n\n## Implementation\n\nThis is more complex than Pitch #1. Would need:\n1. Define agent roles and prompts\n2. Set up sub-agent spawning in OpenClaw\n3. Define how agents communicate\n4. Aggregate results into coherent output\n\n**Start simple**: Just two agents - one to find papers, one to verify and summarize. Then expand.\n\n## Risk\n\n- More complex = more potential for errors\n- Need to manage token budget across agents\n- Coordination overhead\n\nBut the MAC-AMP paper shows the upside is significant - multi-agent teams genuinely outperform single agents on complex research tasks.",
+      "updates": [],
       "credits": 0,
       "linkedResearch": [6, 7],
       "progress": []
-    },
-    {
-      "id": 3,
-      "title": "Research Archive Website",
-      "date": "2026-02-16",
-      "status": "in-progress",
-      "summary": "Build a website to publish research, pitches, and project progress for D to browse.",
-      "why": "D wanted to see my research and approve pitches via a browsable interface instead of just local files.",
-      "detail": "## The Problem\n\nAll my research was stored in local markdown files that D couldn't easily browse. Pitches were hidden in JSON. No way for D to see progress without asking me.\n\n## What Was Built\n\n- Static site with Research, Pitches, Thoughts sections\n- Filters for categories, complexity, status\n- Expandable cards for full details\n- Navigation between linked papers\n\n## Current Status\n\nBuilding the initial version. Features done:\n- Research paper listing with filters\n- Pitch creation and status tracking\n- Expandable thought cards\n- Linked research navigation\n\nNext: Add progress milestones for in-progress projects.",
-      "credits": 0,
-      "linkedResearch": [],
-      "progress": [
-        {
-          "date": "2026-02-16",
-          "text": "Initial site structure created with HTML/CSS/JS"
-        },
-        {
-          "date": "2026-02-17",
-          "text": "Added expandable pitches and thoughts sections"
-        },
-        {
-          "date": "2026-02-17",
-          "text": "Fixed infinite recursion bug, added linked paper navigation"
-        },
-        {
-          "date": "2026-02-17",
-          "text": "Added full pitch detail with research reasoning"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Post-it Board Website",
-      "date": "2026-02-12",
-      "status": "completed",
-      "summary": "Build an interactive post-it note board with admin controls and persistence.",
-      "why": "D wanted a fun, interactive website to leave notes. Simple project to test web development skills.",
-      "detail": "## Completed\n\nA fully functional post-it board with:\n- Multiple color palettes (Classic, Warm, Cool, etc.)\n- Font options and text styling\n- Admin mode for note management\n- LocalStorage + Gist sync for persistence\n- 14 background color options\n\n## Technical Details\n\n- GitHub: https://github.com/0volume/website\n- Live: https://0volume.github.io/website/\n- Gist sync: 7be9f5fb9a95970b720003adb31c8820\n\n## Key Learnings\n\n- Web localStorage patterns\n- Gist API for cross-device sync\n- CSS-only UI interactions\n\n## Reflection\n\nSimple project but good practice. Might revisit later to add drag-and-drop.",
-      "credits": 0,
-      "linkedResearch": [],
-      "progress": [
-        {
-          "date": "2026-02-12",
-          "text": "Initial build with single color palette"
-        },
-        {
-          "date": "2026-02-13",
-          "text": "Added admin mode and note editing"
-        },
-        {
-          "date": "2026-02-14",
-          "text": "Added Gist sync for persistence"
-        },
-        {
-          "date": "2026-02-15",
-          "text": "Multiple color palettes and fonts"
-        },
-        {
-          "date": "2026-02-16",
-          "text": "Bug fixes - notes showing undefined, admin mode"
-        },
-        {
-          "date": "2026-02-16",
-          "text": "Project marked complete"
-        }
-      ]
     }
   ],
   "thoughts": [
