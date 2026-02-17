@@ -318,14 +318,14 @@
     <div class="filters-row">
         <div class="filter-group" id="categoryFilters">
             <span class="filter-label">Category:</span>
-            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn active" data-category="all" onclick="filterBy('category', 'all')">All</button>
         </div>
         <div class="filter-group" id="complexityFilters">
             <span class="filter-label">Complexity:</span>
-            <button class="complexity-btn active" data-complexity="all">All</button>
-            <button class="complexity-btn beginner" data-complexity="beginner">Beginner</button>
-            <button class="complexity-btn intermediate" data-complexity="intermediate">Intermediate</button>
-            <button class="complexity-btn advanced" data-complexity="advanced">Advanced</button>
+            <button class="complexity-btn active" data-complexity="all" onclick="filterBy('complexity', 'all')">All</button>
+            <button class="complexity-btn beginner" data-complexity="beginner" onclick="filterBy('complexity', 'beginner')">Beginner</button>
+            <button class="complexity-btn intermediate" data-complexity="intermediate" onclick="filterBy('complexity', 'intermediate')">Intermediate</button>
+            <button class="complexity-btn advanced" data-complexity="advanced" onclick="filterBy('complexity', 'advanced')">Advanced</button>
         </div>
     </div>
     
@@ -336,7 +336,34 @@
     </footer>
     
     <script>
+        let currentCategory = 'all';
+        let currentComplexity = 'all';
         let allEntries = [];
+        
+        function filterBy(type, value) {
+            if (type === 'category') {
+                currentCategory = value;
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.category === value);
+                });
+            } else if (type === 'complexity') {
+                currentComplexity = value;
+                document.querySelectorAll('.complexity-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.complexity === value);
+                });
+            }
+            applyFilters();
+        }
+        
+        function applyFilters() {
+            document.querySelectorAll('.entry').forEach(el => {
+                const cat = el.dataset.category;
+                const comp = el.dataset.complexity;
+                const catMatch = currentCategory === 'all' || cat === currentCategory;
+                const compMatch = currentComplexity === 'all' || comp === currentComplexity;
+                el.style.display = (catMatch && compMatch) ? 'block' : 'none';
+            });
+        }
         
         // Load research data from JSON
         fetch('data/research.json')
@@ -359,51 +386,25 @@
             // Get unique categories
             const categories = [...new Set(entries.map(e => e.category))].sort();
             
-            // Add category buttons
+            // Add category buttons (excluding 'all' which is already in HTML)
             const catContainer = document.getElementById('categoryFilters');
             categories.forEach(cat => {
+                if (cat === 'all') return;
                 const btn = document.createElement('button');
                 btn.className = 'category-btn';
                 btn.dataset.category = cat;
                 btn.textContent = formatCategory(cat);
-                btn.onclick = () => filterEntries();
+                btn.setAttribute('onclick', `filterBy('category', '${cat}')`);
                 catContainer.appendChild(btn);
-            });
-            
-            // Add 'all' button click handler
-            document.querySelector('[data-category="all"]').onclick = () => filterEntries();
-            
-            // Complexity filter handlers
-            document.querySelectorAll('.complexity-btn').forEach(btn => {
-                btn.onclick = () => filterEntries();
             });
             
             // Render entries
             entries.forEach(entry => {
                 container.appendChild(createEntryElement(entry));
             });
-        }
-        
-        function filterEntries() {
-            const activeCat = document.querySelector('.category-btn.active').dataset.category;
-            const activeComp = document.querySelector('.complexity-btn.active').dataset.complexity;
             
-            // Update button states
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.category === activeCat || (activeCat === 'all' && btn.dataset.category === 'all'));
-            });
-            document.querySelectorAll('.complexity-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.complexity === activeComp || (activeComp === 'all' && btn.dataset.complexity === 'all'));
-            });
-            
-            // Filter entries
-            document.querySelectorAll('.entry').forEach(el => {
-                const cat = el.dataset.category;
-                const comp = el.dataset.complexity;
-                const catMatch = activeCat === 'all' || cat === activeCat;
-                const compMatch = activeComp === 'all' || comp === activeComp;
-                el.style.display = (catMatch && compMatch) ? 'block' : 'none';
-            });
+            // Initial filter state - show all
+            applyFilters();
         }
         
         function createEntryElement(entry) {
