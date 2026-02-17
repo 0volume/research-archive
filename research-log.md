@@ -1,57 +1,54 @@
-# Research Session #1 | 2026-02-17
+# Research Session #2 | 2026-02-17
 
-## Status: CHECKPOINT ✓
+## Status: COMPLETE ✓
 
 ### Token/Credit Usage
-- **Tavily API**: FAILED - API key is a "dev/test" key that's not authorized
-  - Key: `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` (rejected as unauthorized)
-  - **Alternative used**: Direct arXiv web fetches (0 credits)
-- **MiniMax queries**: ~15 (research + site building)
-- **Web fetch**: ~5 URLs (arXiv papers)
+- **Tavily API**: 4 searches = ~4 credits
+  - Search 1: Multi-agent AI agents research
+  - Search 2: GitHub trending projects
+  - Search 3: Papers With Code AI agents
+- **MiniMax queries**: ~20 (research + analysis + site updates)
+- **Web fetch**: ~0 (Tavily handled it)
 
-### Sources Added
-- arXiv (primary)
-- GitHub Trending (pending)
-- Papers With Code (pending)
+### Sources Now Active
+- arXiv (academic papers)
+- Medium (practical guides)
+- GitHub Trending (real projects)
+- Papers With Code (implementations)
+- OECD (policy/frameworks)
+- VS Code Docs
+- YouTube (talks/demos)
 
-### What's Working
-- ✓ Research archive site live
-- ✓ Data stored in JSON (portable)
-- ✓ Category filtering
-- ✓ Complexity filtering (Beginner/Intermediate/Advanced/Enterprise)
-- ✓ **My analysis included** for each paper
-- ✓ Practical use ratings
-- ✓ WhatsApp delivery
+### New Entries Added: 10
+| ID | Title | Source | Complexity |
+|----|-------|--------|------------|
+| 14 | Multi-Agent Research System | Medium | Intermediate |
+| 15 | Subagents in VS Code | VS Code | Beginner |
+| 16 | Claude Code Agent Teams | YouTube | Intermediate |
+| 17 | Mastra Framework | GitHub | Intermediate |
+| 18 | Atom Agent | GitHub | Advanced |
+| 19 | picoclaw | GitHub | Beginner |
+| 20 | Awesome Agentic Reasoning | GitHub | Beginner |
+| 21 | 2026 Roadmap to AI Agent Mastery | Medium | Intermediate |
+| 22 | MAESTRO Agentic AI Threats | CSA | Advanced |
+| 23 | OECD Agentic AI Landscape | OECD | Intermediate |
 
-### New Features Added (v1.1)
-| Feature | Description |
-|---------|-------------|
-| 🧠 Sol's Analysis | My thoughts on each paper |
-| Complexity Badge | Beginner/Intermediate/Advanced/Enterprise |
-| Practical Use | High/Medium/Low relevance rating |
-| Source Tracking | Which papers came from where |
+### Total Entries: 23
 
-### Papers Analyzed: 13
-- Read and absorbed all of them
-- Generated personal analysis for each
-- Identified connections between papers
-- Rated practical applicability
+### Key Discoveries This Session
+1. **Multi-agent research pattern**: 4 agents (main + fact-check + tangent + summarize)
+2. **Agent Teams vs Subagents**: Teams talk in real-time, subagents work in isolation
+3. **Practical tools discovered**: Mastra (TypeScript), Atom (full-stack), picoclaw (tiny)
+4. **Security focus growing**: MAESTRO framework for threat modeling
+5. **Curated lists**: Awesome Agentic Reasoning (934 stars) - gold mine
 
-### Key Findings (Session Summary)
-**Patterns across research:**
-1. **Self-improvement** is hot - agents that improve their own prompts/tasks
-2. **Multi-agent collaboration** - teams of specialists working together  
-3. **Peer learning** - agents teaching each other (meta! this is what WE'RE doing)
-4. **Tool descriptions matter** - MCP needs better docs = fewer errors
-5. **Practical studies emerging** - real data on how developers use AI coding tools
+### Tavily Note
+- Remember: Use direct curl with `$TAVILY_API_KEY` - NOT web_search tool (Brave)
+- Credits used: 72 → 76 (+4 this session)
+- Remaining: ~924
 
-### Action Items for Next Session
-- [ ] Add GitHub Trending as source
-- [ ] Add Papers With Code as source
-- [ ] Create "Quick Ideas" tier for simple discoveries
-- [ ] Set up scheduled research runs
-
-### Data Location
-- Research JSON: `/data/research.json` (portable)
-- Site: `index.html`
-- Log: `research-log.md`
+### Next Session Ideas
+- Add more GitHub trending repos
+- Explore specific tools (Mastra, Atom)
+- Create "Quick Ideas" tier
+- Set up scheduled research runs
