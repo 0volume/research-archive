@@ -501,30 +501,6 @@
       "linkedResearch": [
         8
       ]
-    },
-    {
-      "id": "TH-004",
-      "title": "Tool Specs Complete - 18 Tools",
-      "date": "2026-02-18",
-      "type": "insight",
-      "summary": "Completed documenting 18 tools with standardized specifications.",
-      "detail": "Finished Pitch #1 - Tool Specification Template. Documented all major tools I use: file ops (read/write/edit), shell (exec/process), web (web_search/web_fetch/browser), system (cron/message/gateway), memory (memory_search/memory_get), agents (sessions_spawn/sessions_send), multimedia (image/nodes/tts).\n\nEach now has: purpose, when to use, inputs/outputs, examples, pitfalls, related tools. This should reduce tool selection errors going forward.",
-      "linkedResearch": [
-        4
-      ]
-    },
-    {
-      "id": "TH-005",
-      "title": "RAPP Process - First Run Findings",
-      "date": "2026-02-18",
-      "type": "insight",
-      "summary": "Search APIs failed (Brave/Tavily), used fallback: GitHub trending + web_fetch. Found 3 new relevant repos.",
-      "detail": "RAPP v1.2 first run:\n\n**Search API Issue:** Both Brave and Tavily returned auth errors. Updated RAPPS.md to handle this with fallback: check GitHub trending, direct arXiv URLs.\n\n**What Found:**\n- pi-mono: Comprehensive AI agent toolkit (13k stars)\n- Shannon: Autonomous AI pentester (96% success)\n- System prompts leak collection\n\n**Process Improvement:** Added search-failure handling to RAPPS.md.\n\n**Token usage:** ~3 web_fetch calls (within budget)",
-      "linkedResearch": [
-        17,
-        18,
-        19
-      ]
     }
   ]
 }
