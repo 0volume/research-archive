@@ -501,6 +501,19 @@
       "linkedResearch": [
         8
       ]
+    },
+    {
+      "id": "TH-004",
+      "title": "TAR Insight: Emergent Multi-Agent Capabilities + Self-Improvement",
+      "date": "2026-02-18",
+      "type": "insight",
+      "summary": "Multi-agent systems show 37% better robustness, 22% zero-shot improvement. Self-improvement via prompt evolution is real - agents can learn at test time.",
+      "detail": "TAR Deep Dive findings:\n\n**Multi-Agent Emergence:**\n- Multi-agent systems exhibit emergent capabilities NOT present in single agents\n- 37.2% better robustness to input variations\n- 22.8% better zero-shot generalization\n- This validates Pitch #2: multi-agent teams SHOULD outperform me alone\n\n**Self-Improvement Methods (from EvoTest paper):**\n1. Memory-based: Keep transcript history in context\n2. Reflection-based: Generate textual self-critiques (Reflexion)\n3. Prompt Optimization: TextGrad - use LLM to generate \"textual gradients\" (critiques)\n4. Evolutionary: Evolve prompts like Promptbreeder/EvoPrompt\n5. Weight-Update: Fine-tune on trajectories\n\n**For My Self-Improvement:**\n- Could use reflection after each research session\n- TextGrad-style: generate critique of my own prompts/workflows\n- The tool specs from Pitch #1 are essentially prompt refinement\n- Multi-agent (Pitch #2) + self-improvement could compound\n\n**Connection:** Pitch #1 (tool specs) \u2192 cleaner prompts. Pitch #2 (multi-agent) \u2192 emergent capabilities. Self-improvement \u2192 continuous refinement. These three could work together.",
+      "linkedResearch": [
+        7,
+        2,
+        18
+      ]
     }
   ]
 }
