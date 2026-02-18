@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #4: Secure Multi-Agent Research System - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #eaeaea; }
+        header { padding: 20px 0; border-bottom: 2px solid #16213e; margin-bottom: 25px; }
+        .back-link { color: #667eea; text-decoration: none; font-size: 0.9rem; }
+        h1 { font-size: 1.6rem; margin: 10px 0 0 0; color: #fff; }
+        .pitch-meta { display: flex; gap: 15px; flex-wrap: wrap; margin: 10px 0; font-size: 0.85rem; }
+        .status-pill { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; background: #f39c12; color: #fff; }
+        .section { background: #16213e; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .section h2 { font-size: 1.1rem; color: #667eea; margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .detail-content { color: #bbb; font-size: 0.9rem; }
+        .detail-content h3 { color: #667eea; font-size: 0.95rem; margin: 15px 0 8px 0; }
+        .detail-content ul { padding-left: 20px; margin: 5px 0; }
+        .detail-content li { margin: 4px 0; }
+        .update-item { background: #0f3460; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+        .update-date { font-size: 0.75rem; color: #888; margin-bottom: 5px; }
+        .update-text { color: #ccc; font-size: 0.85rem; }
+        .linked-papers { display: flex; flex-wrap: wrap; gap: 8px; }
+        .linked-paper { padding: 6px 12px; background: #0f3460; color: #667eea; text-decoration: none; border-radius: 6px; font-size: 0.8rem; }
+        footer { text-align: center; padding: 20px 0; color: #666; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #4: Secure Multi-Agent Research System</h1>
+        <div class="pitch-meta">
+            <span class="status-pill">pending</span>
+            <span>2026-02-18</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p>Build a multi-agent research team with security-first architecture. Combines Pitch #2 + #3 into one comprehensive implementation.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Multi-agent systems show 37% robustness improvement but peer-reviewed research shows 85% attack success rate. Must build security INTO the architecture, not as an afterthought.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>Multi-agent research teams can outperform single agents (37% better robustness) BUT peer-reviewed research shows 85% attack success rate on agentic AI defenses. These are intrinsically linked - you cannot have one without the other.</p>
+            
+            <h3>Research Synthesis</h3>
+            <p><strong>Multi-Agent Benefits:</strong></p>
+            <ul>
+                <li>Paper #7: MAC-AMP shows specialists beat generalists</li>
+                <li>Paper #23: Enterprise multi-agent systems using CrewAI, LangGraph, Google ADK</li>
+                <li>Paper #2: Self-improving agents via reflection loops</li>
+            </ul>
+            
+            <p><strong>Security Imperative:</strong></p>
+            <ul>
+                <li>Paper #21: 85% attack success rate, 42 attack techniques</li>
+                <li>Paper #22: Berkeley CLTC risk management framework</li>
+                <li>Paper #11: MAESTRO threat modeling</li>
+            </ul>
+            
+            <h3>The Merged Approach: Security-First Multi-Agent</h3>
+            
+            <p><strong>Architecture Principles:</strong></p>
+            <ul>
+                <li><strong>Defense in Depth</strong>: Multiple security layers</li>
+                <li><strong>Zero Trust</strong>: Verify everything, trust nothing</li>
+                <li><strong>最小権限</strong>: Agents get only what they need</li>
+                <li><strong>Fail Secure</strong>: Default to safe on errors</li>
+            </ul>
+            
+            <p><strong>Agent Roles (Revised):</strong></p>
+            <ul>
+                <li><strong>Search Agent</strong>: Finds papers, minimal attack surface</li>
+                <li><strong>Verify Agent</strong>: Cross-validates URLs, checks for injected content</li>
+                <li><strong>Summarize Agent</strong>: Creates summaries from verified sources</li>
+                <li><strong>Security Monitor Agent</strong>: Watches for anomalies (NEW)</li>
+            </ul>
+            
+            <p><strong>Security Controls Per Agent:</strong></p>
+            <ul>
+                <li>Input validation on all data sources</li>
+                <li>Output sanitization before passing to next agent</li>
+                <li>Memory encryption/sandboxing</li>
+                <li>Goal-lock: agents can't deviate from task</li>
+                <li>Human-in-loop for high-impact actions</li>
+            </ul>
+            
+            <h3>Implementation Phases</h3>
+            <ol>
+                <li><strong>Phase 1</strong>: Design security architecture</li>
+                <li><strong>Phase 2</strong>: Implement single secure agent</li>
+                <li><strong>Phase 3</strong>: Add second agent, test communication</li>
+                <li><strong>Phase 4</strong>: Full multi-agent with security monitoring</li>
+                <li><strong>Phase 5</strong>: Self-improvement loops</li>
+            </ol>
+            
+            <h3>Risk Mitigation</h3>
+            <ul>
+                <li>Start simple: 2 agents, not 4</li>
+                <li>Hard token limits per agent</li>
+                <li>Timeout on all agent calls</li>
+                <li>Logging/auditing everything</li>
+                <li>Regular security reviews</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Linked Research</h2>
+        <div class="linked-papers">
+            <a href="index.html" class="linked-paper">#7: MAC-AMP</a>
+            <a href="index.html" class="linked-paper">#2: Self-Improving</a>
+            <a href="index.html" class="linked-paper">#21: Prompt Injection</a>
+            <a href="index.html" class="linked-paper">#22: Berkeley Risk</a>
+            <a href="index.html" class="linked-paper">#11: MAESTRO</a>
+            <a href="index.html" class="linked-paper">#23: Multi-Agent Guide</a>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Updates</h2>
+        <div class="update-item">
+            <div class="update-date">2026-02-18 12:45 UTC</div>
+            <div class="update-text">Merged Pitch #2 + #3 into single security-first multi-agent pitch based on peer-reviewed research.</div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Research Archive | <a href="index.html" style="color:#667eea;">Back to all pitches</a></p>
+    </footer>
+</body>
+</html>

@@ -536,7 +536,7 @@
       "id": 2,
       "title": "Research Agent Team",
       "date": "2026-02-17",
-      "status": "pending",
+      "status": "superseded",
       "githubRepo": "",
       "summary": "Build a multi-agent research system with specialized sub-agents for fact-checking, summarization, and tangent discovery.",
       "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search\u2192evaluate\u2192recommend.",
@@ -562,7 +562,7 @@
       "id": 3,
       "title": "Security Integration for Multi-Agent Systems",
       "date": "2026-02-18",
-      "status": "pending",
+      "status": "superseded",
       "githubRepo": "",
       "summary": "Add security layer to Pitch #2 (multi-agent research) before implementation. Peer-reviewed: 85% attack success rate on agentic AI.",
       "why": "Peer-reviewed research shows 85% attack success rate on agentic AI. Multi-agent systems amplify risks. Must secure before building.",
@@ -577,6 +577,32 @@
       "linkedResearch": [
         21,
         11
+      ],
+      "progress": []
+    },
+    {
+      "id": 4,
+      "title": "Secure Multi-Agent Research System",
+      "date": "2026-02-18",
+      "status": "pending",
+      "githubRepo": "",
+      "summary": "Build a multi-agent research team with security-first architecture. Combines Pitch #2 + #3 into one comprehensive implementation.",
+      "why": "Multi-agent systems show 37% robustness improvement but face 85% attack success rate. Must build security INTO the architecture, not as an afterthought.",
+      "detail": "## The Problem\n\nMulti-agent research teams can outperform single agents (37% better robustness) BUT peer-reviewed research shows 85% attack success rate on agentic AI defenses. These are intrinsically linked - you cannot have one without the other.\n\n## Research Synthesis\n\n### Multi-Agent Benefits (from Previous Pitches)\n- Paper #7: MAC-AMP shows specialists beat generalists\n- Paper #23: Enterprise multi-agent systems using CrewAI, LangGraph, Google ADK\n- Paper #2: Self-improving agents via reflection loops\n\n### Security Imperative (from Previous Pitches)  \n- Paper #21: 85% attack success rate, 42 attack techniques\n- Paper #22: Berkeley CLTC risk management framework\n- Paper #11: MAESTRO threat modeling\n\n## The Merged Approach: Security-First Multi-Agent\n\n### Architecture Principles\n1. **Defense in Depth**: Multiple security layers\n2. **Zero Trust**: Verify everything, trust nothing\n3. **\u6700\u5c0f\u6a29\u9650 (Minimum Privilege)**: Agents get only what they need\n4. **Fail Secure**: Default to safe on errors\n\n### Agent Roles (Revised)\n- **Search Agent**: Finds papers, minimal attack surface\n- **Verify Agent**: Cross-validates URLs, checks for injected content\n- **Summarize Agent**: Creates summaries from verified sources\n- **Security Monitor Agent**: Watches for anomalies (NEW)\n\n### Security Controls Per Agent\n- Input validation on all data sources\n- Output sanitization before passing to next agent\n- Memory encryption/sandboxing\n- Goal-lock: agents can't deviate from task\n- Human-in-loop for high-impact actions\n\n### Implementation Phases\n1. **Phase 1**: Design security architecture (parallel with Pitch #3)\n2. **Phase 2**: Implement single secure agent\n3. **Phase 3**: Add second agent, test communication\n4. **Phase 4**: Full multi-agent with security monitoring\n5. **Phase 5**: Self-improvement loops\n\n## Risk Mitigation\n- Start simple: 2 agents, not 4\n- Hard token limits per agent\n- Timeout on all agent calls\n- Logging/auditing everything\n- Regular security reviews\n\n## Cross-Validated With\n- ICLR 2026 Workshop on Multi-Agent Learning\n- Google Cloud Multi-Agent Architecture\n- Berkeley CLTC Risk Framework\n- MAESTRO Threat Model\n",
+      "updates": [
+        {
+          "date": "2026-02-18 12:45 UTC",
+          "text": "Merged Pitch #2 + #3 into single security-first multi-agent pitch based on peer-reviewed research."
+        }
+      ],
+      "credits": 0,
+      "linkedResearch": [
+        7,
+        2,
+        21,
+        22,
+        11,
+        23
       ],
       "progress": []
     }
