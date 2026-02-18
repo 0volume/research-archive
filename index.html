@@ -223,10 +223,16 @@
         
         .pitch {
             background: #16213e;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-left: 3px solid #667eea;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .pitch:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         
         .pitch.pending { border-left-color: #f39c12; }
@@ -251,14 +257,14 @@
         
         .pitch-number {
             display: inline-block;
-            min-width: 22px;
-            height: 20px;
-            background: #667eea;
-            color: white;
+            min-width: 20px;
+            height: 18px;
+            background: #0f3460;
+            color: #667eea;
             border-radius: 4px;
             text-align: center;
-            line-height: 20px;
-            font-size: 0.65rem;
+            line-height: 18px;
+            font-size: 0.6rem;
             font-weight: bold;
         }
         
@@ -266,19 +272,37 @@
         
         .pitch-summary-compact { color: #ccc; font-size: 0.85rem; margin: 0; }
         
-        .pitch-linked { margin: 6px 0; }
+        .pitch-linked { margin: 8px 0; }
         .linked-tag {
             display: inline-block;
-            padding: 2px 6px;
+            padding: 3px 8px;
             background: #0f3460;
-            color: #667eea;
-            border-radius: 4px;
+            color: #8899bb;
+            border-radius: 12px;
             font-size: 0.7rem;
-            margin-right: 4px;
+            margin-right: 6px;
         }
         
-        .pitch-expand-compact { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px solid #333; }
-        .pitch-preview { color: #aaa; font-size: 0.8rem; line-height: 1.5; }
+        .pitch-expand-compact { 
+            display: none; 
+            margin-top: 10px; 
+            padding-top: 10px; 
+            border-top: 1px solid #333; 
+        }
+        
+        .pitch-preview { 
+            color: #bbb; 
+            font-size: 0.8rem; 
+            line-height: 1.6; 
+            background: #1a2a4a;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .pitch-preview strong {
+            color: #667eea;
+        }
         
         .pitch-footer {
             display: flex;
@@ -305,12 +329,43 @@
         .pitch-link {
             display: inline-block;
             padding: 4px 10px;
-            background: #24292e;
             color: white;
             text-decoration: none;
             border-radius: 4px;
             font-size: 0.75rem;
         }
+        
+        .pitch-link-details {
+            background: #3b464e;
+        }
+        
+        .pitch-link-github {
+            background: #24292e;
+        }
+        
+        .pitch-link:hover {
+            opacity: 0.85;
+        }
+        
+        /* Status Pills - cleaner look */
+        .status-pill {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-pending { background: #f39c12; color: #fff; }
+        .status-approved { background: #27ae60; color: #fff; }
+        .status-in-progress { background: #3498db; color: #fff; }
+        .status-completed { background: #27ae60; color: #fff; }
+        .status-denied { background: #e74c3c; color: #fff; }
+        
+        /* Remove old status-badge */
+        .status-badge { display: none; }
         
         .status-badge.pending { background: #f39c12; color: white; }
         .status-badge.approved { background: #27ae60; color: white; }
@@ -658,10 +713,11 @@
                     detailPreview = `<div class="pitch-preview"><strong>Why:</strong> ${pitch.why.substring(0, 150)}${pitch.why.length > 150 ? '...' : ''}</div>`;
                 }
                 
-                // Full page link
-                let pageLink = pitch.githubRepo 
-                    ? `<a href="${pitch.githubRepo}" target="_blank" class="pitch-link">📂 Project</a>`
-                    : `<a href="pitch-${pitch.id}.html" class="pitch-link">📄 Details</a>`;
+                // Full page link - show BOTH if github repo exists
+                let linksHtml = `<a href="pitch-${pitch.id}.html" class="pitch-link pitch-link-details">📄 Details</a>`;
+                if (pitch.githubRepo) {
+                    linksHtml += `<a href="${pitch.githubRepo}" target="_blank" class="pitch-link pitch-link-github">📂 Project</a>`;
+                }
                 
                 el.innerHTML = `
                     <div class="pitch-header" onclick="togglePitchCompact(${pitch.id})">
@@ -669,7 +725,7 @@
                             <span class="pitch-number">${pitch.id}</span>
                             <h2>${pitch.title}</h2>
                         </div>
-                        <span class="status-badge ${pitch.status}">${pitch.status.replace('-', ' ')}</span>
+                        <span class="status-pill status-${pitch.status}">${pitch.status.replace('-', ' ')}</span>
                     </div>
                     <p class="pitch-summary-compact">${pitch.summary}</p>
                     ${linkedHtml}
@@ -677,10 +733,10 @@
                         ${detailPreview}
                     </div>
                     <div class="pitch-footer">
-                        <span class="pitch-date">${pitch.date}</span>
+                        <span class="pitch-footer-date">${pitch.date}</span>
                         <div class="pitch-actions">
                             <a href="javascript:void(0)" onclick="togglePitchCompact(${pitch.id})" class="pitch-expand-btn" id="pitch-btn-${pitch.id}">▼ More</a>
-                            ${pageLink}
+                            ${linksHtml}
                         </div>
                     </div>
                 `;
