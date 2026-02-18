@@ -414,6 +414,29 @@
       "connectsTo": [
         11
       ]
+    },
+    {
+      "id": 22,
+      "title": "Berkeley CLTC: Agentic AI Risk-Management Standards Profile",
+      "date": "2026-02-18",
+      "source": "Berkeley CLTC",
+      "authors": "Nada Madkour, Jessica Newman et al.",
+      "summary": "UC Berkeley framework for managing risks of agentic AI. Complements NIST AI RMF. Covers single to multi-agent systems.",
+      "url": "https://cltc.berkeley.edu/2026/02/11/new-cltc-report-on-managing-risks-of-agentic-ai/",
+      "tags": [
+        "risk-management",
+        "security",
+        "berkeley",
+        "standards"
+      ],
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Peer-reviewed framework from Berkeley. Risk management for agentic AI - connects to Pitch #3 (Security).",
+      "practicalUse": "High",
+      "connectsTo": [
+        21,
+        3
+      ]
     }
   ],
   "pitches": [
