@@ -223,25 +223,24 @@
         
         .pitch {
             background: #16213e;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #667eea;
         }
         
         .pitch.pending { border-left-color: #f39c12; }
         .pitch.approved { border-left-color: #27ae60; }
         .pitch.in-progress { border-left-color: #3498db; }
         .pitch.denied { border-left-color: #e74c3c; }
+        .pitch.completed { border-left-color: #27ae60; }
         
         .pitch-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 8px;
             cursor: pointer;
+            margin-bottom: 6px;
         }
         
         .pitch-title-row {
@@ -252,34 +251,65 @@
         
         .pitch-number {
             display: inline-block;
-            min-width: 24px;
-            height: 22px;
+            min-width: 22px;
+            height: 20px;
             background: #667eea;
             color: white;
             border-radius: 4px;
             text-align: center;
-            line-height: 22px;
-            font-size: 0.7rem;
+            line-height: 20px;
+            font-size: 0.65rem;
             font-weight: bold;
         }
         
-        .pitch h2 { margin: 0; font-size: 1rem; color: #fff; }
+        .pitch h2 { margin: 0; font-size: 0.95rem; color: #fff; }
         
-        .pitch-expand { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
-        .pitch.expanded .pitch-expand { display: block; }
-        .pitch-expand p { color: #bbb; font-size: 0.85rem; margin-bottom: 10px; line-height: 1.7; }
-        .pitch-expand h3 { color: #667eea; font-size: 0.9rem; margin: 15px 0 8px 0; }
-        .pitch-expand ul { color: #bbb; font-size: 0.8rem; margin: 5px 0; padding-left: 20px; }
-        .pitch-expand li { margin: 4px 0; }
-        .pitch-more { display: block; margin-top: 10px; color: #667eea; font-size: 0.8rem; }
-        .pitch.expanded .pitch-more { display: none; }
+        .pitch-summary-compact { color: #ccc; font-size: 0.85rem; margin: 0; }
         
-        .status-badge {
+        .pitch-linked { margin: 6px 0; }
+        .linked-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            background: #0f3460;
+            color: #667eea;
+            border-radius: 4px;
             font-size: 0.7rem;
+            margin-right: 4px;
+        }
+        
+        .pitch-expand-compact { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px solid #333; }
+        .pitch-preview { color: #aaa; font-size: 0.8rem; line-height: 1.5; }
+        
+        .pitch-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #2a2a4a;
+        }
+        
+        .pitch-footer-date { color: #666; font-size: 0.75rem; }
+        
+        .pitch-actions { display: flex; gap: 8px; align-items: center; }
+        
+        .pitch-expand-btn {
+            color: #667eea;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        
+        .pitch-link {
+            display: inline-block;
             padding: 4px 10px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.75rem;
         }
         
         .status-badge.pending { background: #f39c12; color: white; }
@@ -287,31 +317,6 @@
         .status-badge.in-progress { background: #3498db; color: white; }
         .status-badge.completed { background: #27ae60; color: white; }
         .status-badge.denied { background: #e74c3c; color: white; }
-        
-        .pitch-date { font-size: 0.75rem; color: #888; margin-bottom: 8px; }
-        .pitch-summary { color: #ccc; margin-bottom: 10px; }
-        
-        .pitch-why {
-            background: #1a2a4a;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-left: 3px solid #667eea;
-        }
-        
-        .pitch-why-title { color: #667eea; font-size: 0.75rem; font-weight: bold; margin-bottom: 4px; }
-        .pitch-why p { margin: 0; color: #bbb; font-size: 0.8rem; }
-        
-        .linked-research { margin-top: 10px; }
-        .linked-research-title { font-size: 0.75rem; color: #888; margin-bottom: 5px; }
-        .linked-research a { color: #667eea; margin-right: 8px; font-size: 0.8rem; text-decoration: none; cursor: pointer; }
-        .linked-research a:hover { text-decoration: underline; }
-        
-        .progress-section { margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
-        .progress-title { font-size: 0.8rem; color: #3498db; font-weight: bold; margin-bottom: 8px; }
-        .progress-item { background: #0f3460; border-radius: 6px; padding: 8px; margin-bottom: 6px; }
-        .progress-date { font-size: 0.7rem; color: #888; }
-        .progress-text { color: #ccc; font-size: 0.8rem; margin-top: 4px; }
         
         .thought {
             background: #16213e;
@@ -641,64 +646,59 @@
                 el.className = 'pitch ' + pitch.status;
                 el.id = 'pitch-' + pitch.id;
                 
-                let progressHtml = '';
-                if (pitch.progress && pitch.progress.length > 0) {
-                    progressHtml = `<div class="progress-section"><div class="progress-title">📊 Progress</div>${pitch.progress.map(m => `<div class="progress-item"><div class="progress-date">${m.date}</div><div class="progress-text">${m.text}</div></div>`).join('')}</div>`;
-                }
-                
+                // Compact summary - always visible
                 let linkedHtml = '';
                 if (pitch.linkedResearch && pitch.linkedResearch.length > 0) {
-                    linkedHtml = `<div class="linked-research"><div class="linked-research-title">📚 Linked Papers</div>${pitch.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
+                    linkedHtml = `<div class="pitch-linked">📚 ${pitch.linkedResearch.map(id => `<span class="linked-tag">#${id}</span>`).join('')}</div>`;
                 }
                 
-                let updatesHtml = '';
-                if (pitch.updates && pitch.updates.length > 0) {
-                    updatesHtml = `<div class="pitch-updates"><div class="updates-title">💬 Updates</div>${pitch.updates.map(u => `<div class="update-item"><div class="update-date">${u.date}</div><div class="update-text">${u.text}</div></div>`).join('')}</div>`;
+                // Expanded detail - shows more info
+                let detailPreview = '';
+                if (pitch.why) {
+                    detailPreview = `<div class="pitch-preview"><strong>Why:</strong> ${pitch.why.substring(0, 150)}${pitch.why.length > 150 ? '...' : ''}</div>`;
                 }
                 
-                let githubHtml = '';
-                if (pitch.githubRepo) {
-                    githubHtml = `<a href="${pitch.githubRepo}" target="_blank" class="github-link">📂 View Project →</a>`;
-                } else {
-                    githubHtml = `<a href="pitch-${pitch.id}.html" class="github-link" style="background:#3b464e;">📄 Full Page →</a>`;
-                }
-                
-                let detailHtml = '';
-                if (pitch.detail) {
-                    let d = pitch.detail
-                        .replace(/^## (.+)$/gm, '<h3>$1</h3>')
-                        .replace(/^- (.+)$/gm, '<li>$1</li>')
-                        .replace(/\n\n/g, '</p><p>');
-                    detailHtml = `<div class="pitch-expand"><p>${d}</p></div>`;
-                }
+                // Full page link
+                let pageLink = pitch.githubRepo 
+                    ? `<a href="${pitch.githubRepo}" target="_blank" class="pitch-link">📂 Project</a>`
+                    : `<a href="pitch-${pitch.id}.html" class="pitch-link">📄 Details</a>`;
                 
                 el.innerHTML = `
-                    <div class="pitch-header" onclick="togglePitch(event, ${pitch.id})">
+                    <div class="pitch-header" onclick="togglePitchCompact(${pitch.id})">
                         <div class="pitch-title-row">
                             <span class="pitch-number">${pitch.id}</span>
-                            <h2>💡 ${pitch.title}</h2>
+                            <h2>${pitch.title}</h2>
                         </div>
                         <span class="status-badge ${pitch.status}">${pitch.status.replace('-', ' ')}</span>
                     </div>
-                    <p class="pitch-date">${pitch.date}</p>
-                    <p class="pitch-summary">${pitch.summary}</p>
-                    <div class="pitch-why"><div class="pitch-why-title">Why This Matters</div><p>${pitch.why}</p></div>
-                    ${detailHtml}
+                    <p class="pitch-summary-compact">${pitch.summary}</p>
                     ${linkedHtml}
-                    ${updatesHtml}
-                    ${githubHtml}
-                    ${progressHtml}
-                    <div class="pitch-more" onclick="togglePitch(event, ${pitch.id})">▼ Read full pitch</div>
+                    <div class="pitch-expand-compact" id="pitch-expand-${pitch.id}">
+                        ${detailPreview}
+                    </div>
+                    <div class="pitch-footer">
+                        <span class="pitch-date">${pitch.date}</span>
+                        <div class="pitch-actions">
+                            <a href="javascript:void(0)" onclick="togglePitchCompact(${pitch.id})" class="pitch-expand-btn" id="pitch-btn-${pitch.id}">▼ More</a>
+                            ${pageLink}
+                        </div>
+                    </div>
                 `;
                 
                 container.appendChild(el);
             });
         }
         
-        function togglePitch(e, id) {
-            e.stopPropagation();
-            const el = document.getElementById('pitch-' + id);
-            el.classList.toggle('expanded');
+        function togglePitchCompact(id) {
+            const el = document.getElementById('pitch-expand-' + id);
+            const btn = document.getElementById('pitch-btn-' + id);
+            if (el.style.display === 'block') {
+                el.style.display = 'none';
+                btn.textContent = '▼ More';
+            } else {
+                el.style.display = 'block';
+                btn.textContent = '▲ Less';
+            }
         }
         
         function renderThoughts() {
