@@ -168,11 +168,11 @@ agent-framework/
 └── memory/            # Encrypted agent memory
             </pre>
             
-            <h3>Rate Limits</h3>
+            <h3>Rate Limits (CRITICAL)</h3>
             <ul>
-                <li>Tavily: 50 queries/hour</li>
-                <li>LLM: 100k tokens/hour</li>
-                <li>Per-agent: 50 calls/hour</li>
+                <li>Tavily: <strong>5 queries/hour</strong> (~33/day, 1000/month)</li>
+                <li>LLM (MiniMax): <strong>20 calls/hour</strong> (100/5hrs plan limit)</li>
+                <li>Per-agent: 5 calls/hour</li>
             </ul>
             
             <h3>Security Features</h3>
