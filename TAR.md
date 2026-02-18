@@ -1,12 +1,14 @@
 # TAR - Think And Reflect
 
-**Version:** 1.0
-**Created:** 2026-02-18
+**Version:** 1.1
+**Updated:** 2026-02-18
 
 ---
 
 ## Purpose
 Deep learning and comprehensive analysis of research findings. Where RAPP is discovery, TAR is learning.
+
+**IMPORTANT:** Every TAR should improve the TAR process itself.
 
 ---
 
@@ -31,6 +33,7 @@ Daily (recommended: mid-day or early afternoon)
 
 ### 2. Deep Dive Search (+2 credits)
 - Use Tavily to search for related context
+- **Cross-validate claims** with peer-reviewed sources where possible
 - Find papers that connect the dots
 - Verify URLs
 
@@ -54,12 +57,18 @@ Daily (recommended: mid-day or early afternoon)
 - Build on previous analysis
 - Knowledge should compound
 
+### 7. **Process Self-Review (Critical)**
+- Did the process work well?
+- What could be improved?
+- Update this document with learnings
+
 ---
 
 ## Output
 1. Deep insight thought (TH-###)
 2. Potential new/changed pitches
-3. WhatsApp notification if significant
+3. Process improvements (update TAR.md)
+4. WhatsApp notification if significant
 
 ---
 
@@ -68,3 +77,5 @@ Daily (recommended: mid-day or early afternoon)
 - Connect ideas across papers
 - Build on previous thoughts
 - Reference previous TARs
+- **Cross-validate with peer-reviewed sources**
+- **Every TAR improves the TAR process**

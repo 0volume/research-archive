@@ -87,3 +87,4 @@ Find actionable insights that lead to improved capabilities for Sol.
 - Review existing research for changes
 - Every RAPP reviews and improves the RAPP process
 - If search fails: note it, use fallback, continue RAPP
+- **Cross-validate claims with peer-reviewed sources**
