@@ -129,12 +129,62 @@
     <div class="section">
         <h2>Updates</h2>
         <div class="update-item">
+            <div class="update-date">2026-02-18 14:10 UTC</div>
+            <div class="update-text">Phase 3 complete: Security layer enhanced with injection detection (17 patterns), goal drift detection, memory sanitization, violation logging.</div>
+        </div>
+        <div class="update-item">
             <div class="update-date">2026-02-18 14:07 UTC</div>
             <div class="update-text">Phase 2 complete: Created 4 agents (search, verify, summarize, security). Framework at /root/.openclaw/workspace/agent-framework/</div>
         </div>
         <div class="update-item">
             <div class="update-date">2026-02-18 12:45 UTC</div>
             <div class="update-text">Merged Pitch #2 + #3 into single security-first multi-agent pitch based on peer-reviewed research.</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Implementation Details</h2>
+        <div class="detail-content">
+            <h3>File Structure</h3>
+            <pre style="background:#0f3460;padding:10px;border-radius:6px;font-size:0.8rem;overflow-x:auto;">
+agent-framework/
+├── config.yaml         # Rate limits, security settings
+├── core.py             # Framework: RateLimiter, SecurityLayer, MemoryManager
+├── cli.py              # Command-line interface
+├── phase_manager.py    # Phase progression & self-prompting
+├── phase_state.json    # Current phase state
+├── agents/
+│   ├── base.py        # BaseAgent, ResearchAgent, VerifyAgent, etc.
+│   ├── search.yaml    # Search agent config
+│   ├── verify.yaml    # Verify agent config
+│   ├── summarize.yaml # Summarize agent config
+│   └── security.yaml  # Security monitor config
+├── logs/               # Agent execution logs
+└── memory/            # Encrypted agent memory
+            </pre>
+            
+            <h3>Rate Limits</h3>
+            <ul>
+                <li>Tavily: 50 queries/hour</li>
+                <li>LLM: 100k tokens/hour</li>
+                <li>Per-agent: 50 calls/hour</li>
+            </ul>
+            
+            <h3>Security Features</h3>
+            <ul>
+                <li>Input validation (17 injection patterns)</li>
+                <li>Output sanitization</li>
+                <li>Goal-lock (keyword-based drift detection)</li>
+                <li>Memory encryption (XOR)</li>
+                <li>Violation logging</li>
+            </ul>
+            
+            <h3>Next Phases</h3>
+            <ul>
+                <li>Phase 4 (3pm UTC): Memory persistence</li>
+                <li>Phase 5: OpenClaw integration</li>
+                <li>Phase 6: Self-improvement loops</li>
+            </ul>
         </div>
     </div>
     
