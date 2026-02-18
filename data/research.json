@@ -372,6 +372,26 @@
       "myAnalysis": "Valuable for understanding how other agents are prompted. Could inform our own prompt engineering. Security implications: prompts can leak.",
       "practicalUse": "Medium",
       "connectsTo": []
+    },
+    {
+      "id": 20,
+      "title": "IBM BeeAI & Agent Stack: Enterprise Agent Framework",
+      "date": "2026-02-18",
+      "source": "IBM",
+      "authors": "IBM Research",
+      "summary": "IBM open-source agent frameworks. BeeAI began early 2024, pivoted to open-source for developers. Agent Stack for deployment.",
+      "url": "https://www.ibm.com/think/news/year-agentic-ai-center-stage-2025",
+      "tags": [
+        "enterprise",
+        "framework",
+        "beeai",
+        "open-source"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "Enterprise-grade agent framework from IBM. Worth exploring for enterprise agent patterns. BeeAI framework + Agent Stack for deployment.",
+      "practicalUse": "Medium",
+      "connectsTo": []
     }
   ],
   "pitches": [

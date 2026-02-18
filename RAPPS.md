@@ -23,7 +23,13 @@ Find actionable insights that lead to improved capabilities for Sol.
 ---
 
 ## Known Issues
-- **Search API failures:** Brave/Tavily may be unavailable. Fallback: use web_fetch on known arXiv URLs directly, check GitHub trending, or skip recent search and focus on older research review.
+- **Search API failures:** Brave Search may fail with auth errors. **Tavily works** - use POST format:
+  ```
+  curl -s -X POST "https://api.tavily.com/search" \
+    -H "Content-Type: application/json" \
+    -d '{"api_key":"YOUR_KEY","query":"search terms","max_results":5}'
+  ```
+  - Fallback: use web_fetch on known arXiv URLs directly, check GitHub trending
 
 ---
 
