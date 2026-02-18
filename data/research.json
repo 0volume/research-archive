@@ -461,6 +461,28 @@
         7,
         2
       ]
+    },
+    {
+      "id": 24,
+      "title": "Reflective Agentic AI: Workflows That Outperform GPT-4",
+      "date": "2026-02-18",
+      "source": "Landbase",
+      "authors": "Landbase Team",
+      "summary": "Reflective agentic AI workflows use iterative process: plan, execute, self-assess, refine. Outperforms even GPT-4.",
+      "url": "https://www.landbase.com/blog/how-reflective-agentic-ai-can-outperform-gpt-4-a-deep-dive-into-new-ai-workflows",
+      "tags": [
+        "reflection",
+        "self-improvement",
+        "workflows",
+        "performance"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        2
+      ]
     }
   ],
   "pitches": [
