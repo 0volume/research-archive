@@ -437,6 +437,30 @@
         21,
         3
       ]
+    },
+    {
+      "id": 23,
+      "title": "How to Build Multi-Agent Systems: Complete 2026 Guide",
+      "date": "2026-02-18",
+      "source": "Dev.to",
+      "authors": "Eira Wexford",
+      "summary": "Production-ready multi-agent systems using CrewAI, LangGraph, Google ADK. 40% of enterprise apps will have agents by 2026.",
+      "url": "https://dev.to/eira-wexford/how-to-build-multi-agent-systems-complete-2026-guide-1io6",
+      "tags": [
+        "multi-agent",
+        "frameworks",
+        "crewai",
+        "langgraph",
+        "enterprise"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical guide for building multi-agent systems. Frameworks: CrewAI, LangGraph, Google ADK. Good for Pitch #2 implementation.",
+      "practicalUse": "High",
+      "connectsTo": [
+        7,
+        2
+      ]
     }
   ],
   "pitches": [
