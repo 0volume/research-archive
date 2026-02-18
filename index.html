@@ -659,6 +659,8 @@
                 let githubHtml = '';
                 if (pitch.githubRepo) {
                     githubHtml = `<a href="${pitch.githubRepo}" target="_blank" class="github-link">📂 View Project →</a>`;
+                } else {
+                    githubHtml = `<a href="pitch-${pitch.id}.html" class="github-link" style="background:#3b464e;">📄 Full Page →</a>`;
                 }
                 
                 let detailHtml = '';
