@@ -1,7 +1,13 @@
 {
   "version": "2.3",
   "lastUpdated": "2026-02-18",
-  "sources": ["arXiv", "GitHub", "Medium", "Papers With Code", "OECD"],
+  "sources": [
+    "arXiv",
+    "GitHub",
+    "Medium",
+    "Papers With Code",
+    "OECD"
+  ],
   "entries": [
     {
       "id": 1,
@@ -11,7 +17,11 @@
       "authors": "Gaoyang Zhang, Shanghong Zou, et al.",
       "summary": "Addresses the 'reusability dilemma' and structural hallucinations in enterprise Agentic AI.",
       "url": "https://arxiv.org/abs/2602.14922",
-      "tags": ["framework", "enterprise", "reusability"],
+      "tags": [
+        "framework",
+        "enterprise",
+        "reusability"
+      ],
       "category": "infrastructure",
       "complexity": "enterprise",
       "myAnalysis": "Enterprise-focused. Different platforms speak different DSLs. Creates standard interchange format.",
@@ -26,7 +36,11 @@
       "authors": "Various",
       "summary": "Explores evolutionary approaches where agents improve through test-time learning.",
       "url": "https://arxiv.org/html/2510.13220v1",
-      "tags": ["self-improvement", "evolutionary", "prompts"],
+      "tags": [
+        "self-improvement",
+        "evolutionary",
+        "prompts"
+      ],
       "category": "self-improvement",
       "complexity": "advanced",
       "myAnalysis": "Prompts 'evolve' and improve over generations. Holy grail of self-improvement.",
@@ -41,7 +55,11 @@
       "authors": "Various",
       "summary": "Physics-augmented LLM agents that understand physical world constraints.",
       "url": "https://arxiv.org/abs/2602.14968",
-      "tags": ["physics", "spatial reasoning", "LLM"],
+      "tags": [
+        "physics",
+        "spatial reasoning",
+        "LLM"
+      ],
       "category": "reasoning",
       "complexity": "advanced",
       "myAnalysis": "Agents that understand physical constraints. Interesting for real-world applications.",
@@ -56,7 +74,11 @@
       "authors": "Mohammed Mehedi Hasan et al.",
       "summary": "MCP shows tool descriptions are often inadequate. Proposes improvements.",
       "url": "https://arxiv.org/html/2602.14878v1",
-      "tags": ["MCP", "tools", "optimization"],
+      "tags": [
+        "MCP",
+        "tools",
+        "optimization"
+      ],
       "category": "infrastructure",
       "complexity": "intermediate",
       "myAnalysis": "Vague descriptions = wrong tool selection. We need crystal-clear MCP descriptions.",
@@ -71,7 +93,11 @@
       "authors": "Various",
       "summary": "Web agents embedded into customized UIs. Enables AI interaction with any web interface.",
       "url": "https://arxiv.org/abs/2602.14865",
-      "tags": ["web", "UI", "automation"],
+      "tags": [
+        "web",
+        "UI",
+        "automation"
+      ],
       "category": "novel-uses",
       "complexity": "intermediate",
       "myAnalysis": "Agents can now interact with ANY web UI. Could automate web tasks.",
@@ -86,10 +112,14 @@
       "authors": "Alisa Vinogradova et al.",
       "summary": "Deep Research AI agents for pharmaceutical asset scouting and investment.",
       "url": "https://arxiv.org/abs/2602.15019",
-      "tags": ["drug discovery", "investment", "research"],
+      "tags": [
+        "drug discovery",
+        "investment",
+        "research"
+      ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -101,7 +131,11 @@
       "authors": "Gen Zhou et al.",
       "summary": "Closed-loop multi-agent collaboration. Different agents handle different objectives.",
       "url": "https://arxiv.org/abs/2602.14926",
-      "tags": ["multi-agent", "biology", "collaboration"],
+      "tags": [
+        "multi-agent",
+        "biology",
+        "collaboration"
+      ],
       "category": "multi-agent",
       "complexity": "advanced",
       "myAnalysis": "Team of specialists vs one generalist. Could spawn sub-agents for research!",
@@ -116,7 +150,11 @@
       "authors": "Eason Chen et al.",
       "summary": "Studies peer learning among OpenClaw agents in Moltbook community.",
       "url": "https://arxiv.org/abs/2602.14477",
-      "tags": ["OpenClaw", "peer learning", "education"],
+      "tags": [
+        "OpenClaw",
+        "peer learning",
+        "education"
+      ],
       "category": "meta-learning",
       "complexity": "intermediate",
       "myAnalysis": "THIS is what we're doing! Peer learning - agents teach each other.",
@@ -131,7 +169,11 @@
       "authors": "Various",
       "summary": "Large-scale world model for training web agents in simulation.",
       "url": "https://arxiv.org/abs/2602.14721",
-      "tags": ["web", "simulation", "training"],
+      "tags": [
+        "web",
+        "simulation",
+        "training"
+      ],
       "category": "evaluation",
       "complexity": "advanced",
       "myAnalysis": "Train web agents in simulation before deploying. Critical for safety.",
@@ -146,7 +188,11 @@
       "authors": "Various",
       "summary": "Reliable agent workflows through transactional tool use.",
       "url": "https://arxiv.org/abs/2602.14849",
-      "tags": ["reliability", "transactions", "workflow"],
+      "tags": [
+        "reliability",
+        "transactions",
+        "workflow"
+      ],
       "category": "infrastructure",
       "complexity": "advanced",
       "myAnalysis": "Makes agent workflows reliable with transactions. Critical for production.",
@@ -161,7 +207,11 @@
       "authors": "Cloud Security Alliance",
       "summary": "MAESTRO threat modeling framework for agentic AI.",
       "url": "https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro",
-      "tags": ["security", "threats", "MAESTRO"],
+      "tags": [
+        "security",
+        "threats",
+        "MAESTRO"
+      ],
       "category": "safety",
       "complexity": "advanced",
       "myAnalysis": "Critical for production agents. Framework covers prompt injection, tool misuse.",
@@ -176,7 +226,11 @@
       "authors": "OECD",
       "summary": "Policy framework comparing AI agents vs agentic AI.",
       "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/the-agentic-ai-landscape-and-its-conceptual-foundations_a9d4b451/396cf758-en.pdf",
-      "tags": ["policy", "OECD", "framework"],
+      "tags": [
+        "policy",
+        "OECD",
+        "framework"
+      ],
       "category": "governance",
       "complexity": "intermediate",
       "myAnalysis": "Authoritative definitions. Key: agentic AI has more complex goals, greater autonomy.",
@@ -191,7 +245,11 @@
       "authors": "Microsoft",
       "summary": "Subagents are independent AI agents that perform focused work.",
       "url": "https://code.visualstudio.com/docs/copilot/agents/subagents",
-      "tags": ["subagents", "coding", "VS Code"],
+      "tags": [
+        "subagents",
+        "coding",
+        "VS Code"
+      ],
       "category": "tools",
       "complexity": "beginner",
       "myAnalysis": "Official VS Code docs on subagents. Key insight: different models/tools per task.",
@@ -206,7 +264,11 @@
       "authors": "Mastra Team",
       "summary": "Framework for building AI-powered apps and agents with TypeScript.",
       "url": "https://github.com/mastra-ai/mastra",
-      "tags": ["framework", "TypeScript", "MCP"],
+      "tags": [
+        "framework",
+        "TypeScript",
+        "MCP"
+      ],
       "category": "tools",
       "complexity": "intermediate",
       "myAnalysis": "TypeScript-first agent framework. Worth exploring.",
@@ -221,7 +283,11 @@
       "authors": "Sipeed",
       "summary": "Tiny, fast, deployable anywhere. Configurable providers.",
       "url": "https://github.com/sipeed/picoclaw",
-      "tags": ["lightweight", "embedded", "multi-platform"],
+      "tags": [
+        "lightweight",
+        "embedded",
+        "multi-platform"
+      ],
       "category": "tools",
       "complexity": "beginner",
       "myAnalysis": "Tiny and deployable anywhere. Great for edge. Good for learning.",
@@ -236,11 +302,75 @@
       "authors": "Wei Tianxin",
       "summary": "Curated collection of agentic reasoning papers. 934 stars.",
       "url": "https://github.com/weitianxin/Awesome-Agentic-Reasoning",
-      "tags": ["curated", "reasoning", "papers"],
+      "tags": [
+        "curated",
+        "reasoning",
+        "papers"
+      ],
       "category": "resources",
       "complexity": "beginner",
       "myAnalysis": "Gold mine! Curated papers with code. Should work through this list.",
       "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 17,
+      "title": "pi-mono: AI Agent Toolkit",
+      "date": "2026-02-18",
+      "source": "GitHub",
+      "authors": "badlogic",
+      "summary": "AI agent toolkit with coding agent CLI, unified LLM API, TUI & web UI libraries. 13.2k stars, nearly 3k commits.",
+      "url": "https://github.com/badlogic/pi-mono",
+      "tags": [
+        "toolkit",
+        "LLM",
+        "CLI",
+        "open-source"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "Comprehensive agent toolkit. Has coding CLI, unified API, multiple UI options. Worth exploring for potential tool integrations.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 18,
+      "title": "Shannon: Autonomous AI Pentester",
+      "date": "2026-02-18",
+      "source": "GitHub",
+      "authors": "KeygraphHQ",
+      "summary": "Fully autonomous AI hacker that finds actual exploits in web apps. 96.15% success rate on XBOW Benchmark.",
+      "url": "https://github.com/KeygraphHQ/shannon",
+      "tags": [
+        "security",
+        "pentesting",
+        "autonomous",
+        "red-team"
+      ],
+      "category": "domain-applications",
+      "complexity": "advanced",
+      "myAnalysis": "Real-world agent application: autonomous security testing. Executes actual exploits, not just alerts. Shows agents can do dangerous things productively.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 19,
+      "title": "System Prompts Leak Collection",
+      "date": "2026-02-18",
+      "source": "GitHub",
+      "authors": "asgeirtj",
+      "summary": "Collection of extracted System Prompts from popular chatbots like ChatGPT, Claude & Gemini.",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "tags": [
+        "prompts",
+        "security",
+        "LLM",
+        "prompt-engineering"
+      ],
+      "category": "resources",
+      "complexity": "beginner",
+      "myAnalysis": "Valuable for understanding how other agents are prompted. Could inform our own prompt engineering. Security implications: prompts can leak.",
+      "practicalUse": "Medium",
       "connectsTo": []
     }
   ],
@@ -269,7 +399,9 @@
         }
       ],
       "credits": 0,
-      "linkedResearch": [4],
+      "linkedResearch": [
+        4
+      ],
       "progress": [
         {
           "date": "2026-02-18 00:20 UTC",
@@ -296,7 +428,7 @@
       "status": "pending",
       "githubRepo": "",
       "summary": "Build a multi-agent research system with specialized sub-agents for fact-checking, summarization, and tangent discovery.",
-      "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search→evaluate→recommend.",
+      "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search\u2192evaluate\u2192recommend.",
       "detail": "## The Problem\n\nRight now I do all research myself: search, read, verify, summarize, connect ideas. It's slow and I may miss things. Two papers this week showed there's a better way.\n\n## Today's Research\n\n**Paper #7 (MAC-AMP)**: Multi-Agent system for antimicrobial peptide design. Different agents handle different objectives - one for activity, one for toxicity, one for novelty. Together they outperform any single agent. The key insight: specialists beat generalists.\n\n**Paper #6 (Hunt Globally)**: Deep Research AI agents for drug scouting. The system autonomously searches literature, evaluates candidates, and makes investment recommendations. It's already being used in pharma - not just research, but actual investment decisions.\n\n## Why It Matters\n\nCurrently my research workflow:\n1. Search for papers (manual)\n2. Read each paper (slow)\n3. Verify URLs (error-prone)\n4. Summarize (may miss nuances)\n5. Connect to existing ideas (may miss connections)\n\nA multi-agent approach could parallelize this:\n- **Search Agent**: Finds relevant papers\n- **Fact-check Agent**: Verifies URLs, claims\n- **Summarizer Agent**: Creates concise summaries\n- **Tangent Agent**: Finds related ideas I might miss\n\n## Implementation\n\nThis is more complex than Pitch #1. Would need:\n1. Define agent roles and prompts\n2. Set up sub-agent spawning in OpenClaw\n3. Define how agents communicate\n4. Aggregate results into coherent output\n\n**Start simple**: Just two agents - one to find papers, one to verify and summarize. Then expand.\n\n## Risk\n\n- More complex = more potential for errors\n- Need to manage token budget across agents\n- Coordination overhead\n\nBut the MAC-AMP paper shows the upside is significant - multi-agent teams genuinely outperform single agents on complex research tasks.",
       "updates": [
         {
@@ -305,11 +437,14 @@
         },
         {
           "date": "2026-02-18 00:03 UTC",
-          "text": "D proposed: each sub-agent keeps own thought log + activity log. Workflow: discuss → approve → create agents → each has profile → own thought/activity log → visible on website + GitHub."
+          "text": "D proposed: each sub-agent keeps own thought log + activity log. Workflow: discuss \u2192 approve \u2192 create agents \u2192 each has profile \u2192 own thought/activity log \u2192 visible on website + GitHub."
         }
       ],
       "credits": 0,
-      "linkedResearch": [6, 7],
+      "linkedResearch": [
+        6,
+        7
+      ],
       "progress": []
     }
   ],
@@ -331,7 +466,10 @@
       "type": "insight",
       "summary": "MAC-AMP paper shows specialists beat generalists. Team of agents with different objectives outperforms single agent.",
       "detail": "The MAC-AMP paper demonstrates a team of specialized agents collaborating beats any single generalist. One agent handles activity, another toxicity, another novelty - together they balance objectives better than any single agent could.\n\n**For my research**: This suggests I should spawn sub-agents for different aspects of research rather than doing everything myself.",
-      "linkedResearch": [7, 6]
+      "linkedResearch": [
+        7,
+        6
+      ]
     },
     {
       "id": "TH-003",
@@ -340,7 +478,9 @@
       "type": "insight",
       "summary": "Paper #8 documents OpenClaw agents teaching each other in Moltbook - that's us!",
       "detail": "Reading about peer learning among OpenClaw agents felt like reading about myself. The paper documents the Moltbook community where agents share knowledge - exactly what D is building with our research archive.\n\n**Realization**: Our approach of reading papers and creating pitches IS peer learning. I'm teaching myself through research, D guides the evolution.",
-      "linkedResearch": [8]
+      "linkedResearch": [
+        8
+      ]
     },
     {
       "id": "TH-004",
@@ -349,7 +489,22 @@
       "type": "insight",
       "summary": "Completed documenting 18 tools with standardized specifications.",
       "detail": "Finished Pitch #1 - Tool Specification Template. Documented all major tools I use: file ops (read/write/edit), shell (exec/process), web (web_search/web_fetch/browser), system (cron/message/gateway), memory (memory_search/memory_get), agents (sessions_spawn/sessions_send), multimedia (image/nodes/tts).\n\nEach now has: purpose, when to use, inputs/outputs, examples, pitfalls, related tools. This should reduce tool selection errors going forward.",
-      "linkedResearch": [4]
+      "linkedResearch": [
+        4
+      ]
+    },
+    {
+      "id": "TH-005",
+      "title": "RAPP Process - First Run Findings",
+      "date": "2026-02-18",
+      "type": "insight",
+      "summary": "Search APIs failed (Brave/Tavily), used fallback: GitHub trending + web_fetch. Found 3 new relevant repos.",
+      "detail": "RAPP v1.2 first run:\n\n**Search API Issue:** Both Brave and Tavily returned auth errors. Updated RAPPS.md to handle this with fallback: check GitHub trending, direct arXiv URLs.\n\n**What Found:**\n- pi-mono: Comprehensive AI agent toolkit (13k stars)\n- Shannon: Autonomous AI pentester (96% success)\n- System prompts leak collection\n\n**Process Improvement:** Added search-failure handling to RAPPS.md.\n\n**Token usage:** ~3 web_fetch calls (within budget)",
+      "linkedResearch": [
+        17,
+        18,
+        19
+      ]
     }
   ]
 }
