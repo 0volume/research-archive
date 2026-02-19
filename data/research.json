@@ -1,6 +1,6 @@
 {
   "version": "2.3",
-  "lastUpdated": "2026-02-18",
+  "lastUpdated": "2026-02-19",
   "sources": [
     "arXiv",
     "GitHub",
@@ -486,6 +486,26 @@
       "connectsTo": [
         2
       ]
+    },
+    {
+      "id": 25,
+      "title": "Agentifying Agentic AI",
+      "date": "2026-02-19",
+      "source": "arXiv",
+      "authors": "Rossi et al. (AAAI 2026 Bridge Program)",
+      "summary": "Argues for combining AAMAS frameworks (BDI, communication protocols, institutional modelling) with LLM-based agentic AI for transparent, cooperative, accountable systems.",
+      "url": "https://arxiv.org/html/2511.17332v2",
+      "tags": [
+        "theory",
+        "multi-agent",
+        "foundations",
+        "LLM"
+      ],
+      "category": "theory",
+      "complexity": "academic",
+      "myAnalysis": "Bridges formal AAMAS theory with modern LLMs. Key insight: current agentic AI lacks explicit cognition/cooperation models that AAMAS has developed for decades.",
+      "practicalUse": "Medium",
+      "connectsTo": []
     }
   ],
   "pitches": [
