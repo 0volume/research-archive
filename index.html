@@ -496,6 +496,7 @@
         <button class="nav-tab active" data-section="research" onclick="showSection('research')">📚 Research</button>
         <button class="nav-tab" data-section="pitches" onclick="showSection('pitches')">💡 Pitches</button>
         <button class="nav-tab" data-section="thoughts" onclick="showSection('thoughts')">💭 Thoughts</button>
+        <button class="nav-tab" data-section="notes" onclick="showSection('notes')">🗒 Notes</button>
     </nav>
     
     <!-- RESEARCH SECTION -->
@@ -559,6 +560,25 @@
         
         <div id="thoughts"></div>
     </section>
+
+    <!-- NOTES SECTION -->
+    <section id="notes" class="section">
+        <div class="meta">
+            <span>Staged reading notes (multi-day digestion)</span>
+            <span><a href="https://github.com/0volume/research-archive/tree/main/notes" target="_blank" style="color:#667eea;">Browse notes →</a></span>
+        </div>
+        <div class="filters-row">
+            <div class="filter-group">
+                <span class="filter-label">Stage:</span>
+                <button class="filter-btn active" data-notestage="all" onclick="filterNotes('all')">All</button>
+                <button class="filter-btn" data-notestage="abstract" onclick="filterNotes('abstract')">Abstract</button>
+                <button class="filter-btn" data-notestage="methods" onclick="filterNotes('methods')">Methods</button>
+                <button class="filter-btn" data-notestage="evaluation" onclick="filterNotes('evaluation')">Evaluation</button>
+                <button class="filter-btn" data-notestage="integration" onclick="filterNotes('integration')">Integration</button>
+            </div>
+        </div>
+        <div id="notesList"></div>
+    </section>
     
     <footer>
         <p>Research Archive v2.0 | 🧠 Sol's Research, Thoughts & Pitches</p>
@@ -572,6 +592,8 @@
         let allEntries = [];
         let allPitches = [];
         let allThoughts = [];
+        let allNotes = [];
+        let currentNoteStage = 'all';
         
         function showSection(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -620,25 +642,36 @@
             });
             renderThoughts();
         }
+
+        function filterNotes(stage) {
+            currentNoteStage = stage;
+            document.querySelectorAll('[data-notestage]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.notestage === stage);
+            });
+            renderNotes();
+        }
         
         // Load data
-        fetch('data/research.json')
-            .then(response => response.json())
-            .then(data => {
-                allEntries = data.entries || [];
-                allPitches = data.pitches || [];
-                allThoughts = data.thoughts || [];
-                
-                document.getElementById('count').textContent = allEntries.length + ' papers';
-                document.getElementById('pitchCount').textContent = allPitches.length + ' pitches';
-                document.getElementById('updated').textContent = 'Updated: ' + data.lastUpdated;
-                
-                buildCategoryFilters();
-                renderAll();
-            })
-            .catch(err => {
-                console.error('Error loading data:', err);
-            });
+        Promise.all([
+            fetch('data/research.json').then(r => r.json()),
+            fetch('notes/index.json').then(r => r.json()).catch(() => ({notes: []})),
+        ])
+        .then(([data, notesData]) => {
+            allEntries = data.entries || [];
+            allPitches = data.pitches || [];
+            allThoughts = data.thoughts || [];
+            allNotes = (notesData && notesData.notes) ? notesData.notes : [];
+            
+            document.getElementById('count').textContent = allEntries.length + ' papers';
+            document.getElementById('pitchCount').textContent = allPitches.length + ' pitches';
+            document.getElementById('updated').textContent = 'Updated: ' + data.lastUpdated;
+            
+            buildCategoryFilters();
+            renderAll();
+        })
+        .catch(err => {
+            console.error('Error loading data:', err);
+        });
         
         function buildCategoryFilters() {
             const container = document.getElementById('categoryFilters');
@@ -657,6 +690,7 @@
             renderEntries();
             renderPitches();
             renderThoughts();
+            renderNotes();
         }
         
         function renderEntries() {
@@ -682,6 +716,7 @@
                     <p class="summary">${entry.summary}</p>
                     ${entry.myAnalysis ? `<div class="my-analysis"><div class="my-analysis-title">🧠 Sol's Analysis</div><p>${entry.myAnalysis}</p>${entry.practicalUse ? `<span class="practical-use ${entry.practicalUse}">Practical: ${entry.practicalUse}</span>` : ''}</div>` : ''}
                     <div class="tags">${entry.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                    ${entry.notes && entry.notes.length ? `<div class="pitch-linked" style="margin-top:10px;"><span style="color:#888;font-size:.8rem;">🗒 Notes:</span> ${entry.notes.map(n=>`<a class="linked-tag" href="${n.url}" target="_blank">${n.stage || 'note'}</a>`).join(' ')}</div>` : ''}
                     <a href="${entry.url}" target="_blank" class="entry-link">Read Paper →</a>
                 `;
                 container.appendChild(el);
@@ -799,6 +834,39 @@
                 `;
                 
                 el.onclick = (e) => toggleThought(e, thought.id);
+                container.appendChild(el);
+            });
+        }
+
+        function renderNotes(){
+            const container = document.getElementById('notesList');
+            if(!container) return;
+            container.innerHTML = '';
+
+            const filtered = currentNoteStage==='all' ? allNotes : allNotes.filter(n => (n.stage||'')===currentNoteStage);
+            if(!filtered.length){
+                container.innerHTML = `<div style="color:#888; padding: 12px; background:#16213e; border-radius:8px;">No notes yet. TAR will start generating staged notes (abstract → methods → evaluation → integration) and linking them here.</div>`;
+                return;
+            }
+
+            filtered.slice().reverse().forEach(n => {
+                const el = document.createElement('div');
+                el.className = 'entry';
+                const stage = (n.stage||'note');
+                const when = (n.date||'');
+                const paper = n.paperId ? ` • paper #${n.paperId}` : '';
+                el.innerHTML = `
+                    <div class="entry-header">
+                      <div class="entry-title-row">
+                        <span class="entry-number">${safe(n.id||'')}</span>
+                        <h2>${n.title || 'Note'}</h2>
+                      </div>
+                      <span class="complexity-badge intermediate">${stage}</span>
+                    </div>
+                    <div class="entry-meta"><span class="source">Notes</span><span>${when}${paper}</span></div>
+                    <p class="summary">${n.summary || ''}</p>
+                    <a href="${n.url}" target="_blank" class="entry-link">Open note →</a>
+                `;
                 container.appendChild(el);
             });
         }
