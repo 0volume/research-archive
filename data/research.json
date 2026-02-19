@@ -506,6 +506,26 @@
       "myAnalysis": "Bridges formal AAMAS theory with modern LLMs. Key insight: current agentic AI lacks explicit cognition/cooperation models that AAMAS has developed for decades.",
       "practicalUse": "Medium",
       "connectsTo": []
+    },
+    {
+      "id": 26,
+      "title": "AgencyBench: Benchmarking the Frontiers of Autonomous Agents in 1M-Token Real-World Contexts",
+      "date": "2026-01-16",
+      "source": "arXiv",
+      "authors": "Keyu Li, Junhao Shi, Yang Xiao, Mohan Jiang, Jie Sun, Yunze Wu, Shijie Xia, Xiaojie Cai, Tianze Xu, Weiye Si, Wenjie Li, Dequan Wang, Pengfei Liu",
+      "summary": "Introduces AgencyBench, a benchmark derived from real-world AI usage for evaluating core agentic capabilities under long-context constraints.",
+      "url": "https://arxiv.org/abs/2601.11044",
+      "tags": [
+        "benchmark",
+        "evaluation",
+        "agents",
+        "long-context"
+      ],
+      "category": "evaluation",
+      "complexity": "advanced",
+      "myAnalysis": "High-signal benchmark work: focuses on multi-step autonomous agents and long-context constraints. Useful as a target for measuring reliability beyond toy tasks.",
+      "practicalUse": "High",
+      "connectsTo": []
     }
   ],
   "pitches": [
