@@ -86,7 +86,13 @@
       "complexity": "intermediate",
       "myAnalysis": "Vague descriptions = wrong tool selection. We need crystal-clear MCP descriptions.",
       "practicalUse": "High",
-      "connectsTo": []
+      "connectsTo": [],
+      "notes": [
+        {
+          "stage": "abstract",
+          "url": "notes/2026-02-19-paper-4-abstract-mcp-tool-descriptions-are-smelly-abstract.md"
+        }
+      ]
     },
     {
       "id": 5,

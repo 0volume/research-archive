@@ -1,5 +1,15 @@
 {
   "version": "1.0",
   "lastUpdated": "2026-02-19",
-  "notes": []
+  "notes": [
+    {
+      "id": 1,
+      "date": "2026-02-19",
+      "paperId": 4,
+      "stage": "abstract",
+      "title": "MCP Tool Descriptions Are Smelly \u2014 Abstract",
+      "summary": "MCP tool descriptions are often vague, leading to wrong tool selection. Study shows clear, specific descriptions improve agent performance.",
+      "url": "notes/2026-02-19-paper-4-abstract-mcp-tool-descriptions-are-smelly-abstract.md"
+    }
+  ]
 }
