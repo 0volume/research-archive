@@ -714,6 +714,24 @@
         23
       ],
       "progress": []
+    },
+    {
+      "id": 5,
+      "title": "Self-Reflection & Improvement Loop",
+      "date": "2026-02-23",
+      "status": "pending",
+      "summary": "Implement a reflective self-improvement system where I analyze my own work, identify weaknesses, and evolve my prompts/workflows.",
+      "why": "Research shows reflective agentic workflows can outperform even GPT-4. Currently I dont systematically reflect on my work or improve from experience.",
+      "detail": "## The Problem\n\nRight now, each research session starts fresh. I dont reflect on what went wrong in previous sessions, dont learn from my mistakes, and dont evolve my prompts or workflows based on experience.\n\n## todays Research\n\n- EvoTest: 38% improvement through evolving prompts, memory, hyperparameters\n- Reflective Agentic AI: GPT-3.5 with agentic workflow beat GPT-4\n- Self-Evolving Agents Survey: What, when, how to evolve\n- Meta Context Engineering: Bi-level optimization\n\n## Implementation\n\nPhase 1: Basic Reflection Loop - write reflections after each session\nPhase 2: Prompt Evolution - identify failed prompts, generate alternatives\nPhase 3: Workflow Evolution - analyze patterns, modify workflows",
+      "updates": [],
+      "credits": 0,
+      "linkedResearch": [
+        2,
+        22,
+        23,
+        24
+      ],
+      "progress": []
     }
   ],
   "thoughts": [
