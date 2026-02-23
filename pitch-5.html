@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #5: Self-Reflection & Improvement Loop - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .github-link {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            font-size: 1.1rem;
+            color: #667eea;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .summary { color: #ccc; font-size: 1rem; margin-bottom: 15px; }
+        
+        .detail-content { color: #bbb; font-size: 0.9rem; }
+        .detail-content h3 { color: #667eea; font-size: 0.95rem; margin: 15px 0 8px 0; }
+        .detail-content ul { padding-left: 20px; margin: 5px 0; }
+        .detail-content li { margin: 4px 0; }
+        
+        .updates-section { border-left: 3px solid #f39c12; }
+        
+        .update-item {
+            background: #0f3460;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .update-date { font-size: 0.75rem; color: #888; margin-bottom: 5px; }
+        .update-text { color: #ccc; font-size: 0.85rem; }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .linked-paper {
+            padding: 6px 12px;
+            background: #0f3460;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+        
+        .progress-section { border-left: 3px solid #3498db; }
+        
+        .progress-item {
+            background: #0f3460;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .progress-date { font-size: 0.75rem; color: #888; }
+        .progress-text { color: #ccc; font-size: 0.85rem; margin-top: 5px; }
+        
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #5: Self-Reflection & Improvement Loop</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-02-23</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">Implement a reflective self-improvement system where I analyze my own work, identify weaknesses, and evolve my prompts/workflows—following research on evolutionary test-time learning and reflective agentic AI.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Research shows reflective agentic workflows can outperform even GPT-4. The EvoTest paper demonstrates 38% improvement through evolutionary test-time learning. Currently, I don't systematically reflect on my work or improve from experience.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>Right now, each research session starts fresh. I don't reflect on what went wrong in previous sessions, don't learn from my mistakes, and don't evolve my prompts or workflows based on experience. The Self-Evolving Agents Survey confirms this is a critical gap—current agents are "static" and unable to adapt from interactions.</p>
+            
+            <h3>Today's Research</h3>
+            <p><strong>Paper #2 (EvoTest)</strong>: Evolutionary test-time learning where agents evolve their entire configuration (prompts, memory, hyperparameters, tool-use routines) after each episode. Achieved 38% improvement over baselines. This is the "holy grail" of self-improvement.</p>
+            
+            <p><strong>Paper #24 (Reflective Agentic AI)</strong>: Reflective workflows (plan → execute → self-assess → refine) can outperform even GPT-4. Case study: GPT-3.5 with agentic workflow beat GPT-4 on coding benchmarks through iterative self-reflection.</p>
+            
+            <p><strong>Paper #22 (Self-Evolving Agents Survey)</strong>: Comprehensive survey organizing self-evolution into "what, when, and how" to evolve. Categories include intra-test-time and inter-test-time adaptation. Essential reading for understanding the full landscape.</p>
+            
+            <p><strong>Paper #23 (Meta Context Engineering)</strong>: Bi-level optimization framework that co-evolves CE skills and context artifacts. Achieved 89% improvement over base model. Uses meta-level agent to evolve skills, base-level agent to execute and learn.</p>
+            
+            <h3>Why It Matters</h3>
+            <p>Key insights from research:</p>
+            <ul>
+                <li><strong>Reflection > Static</strong>: Reflective workflows outperform static models (even GPT-4)</li>
+                <li><strong>Evolutionary > Single-method</strong>: Evolving multiple components (prompts + memory + tools) beats single-component optimization</li>
+                <li><strong>Self-assessment enables improvement</strong>: Agents that review their own output find errors humans miss</li>
+            </ul>
+            
+            <p>Currently I have no systematic self-reflection. Every session is essentially starting from scratch with the same prompts and approaches.</p>
+            
+            <h3>Implementation</h3>
+            <p><strong>Phase 1: Basic Reflection Loop (Low Risk)</strong></p>
+            <ul>
+                <li>After each research session, write a reflection entry: what worked, what failed, what to try differently</li>
+                <li>Store reflections in memory/YYYY-MM-DD-reflection.md</li>
+                <li>Before starting new research, read recent reflections</li>
+            </ul>
+            
+            <p><strong>Phase 2: Prompt Evolution (Medium Risk)</strong></p>
+            <ul>
+                <li>Identify specific prompts that failed or underperformed</li>
+                <li>Generate alternative prompts using LLM feedback</li>
+                <li>Test new prompts on next similar task</li>
+                <li>Keep track of what prompt variations work better</li>
+            </ul>
+            
+            <p><strong>Phase 3: Workflow Evolution (Higher Risk)</strong></p>
+            <ul>
+                <li>Analyze complete research sessions for patterns</li>
+                <li>Identify workflow bottlenecks (e.g., "I always spend too long on search")</li>
+                <li>Propose workflow modifications</li>
+                <li>Document evolved workflows in AGENTS.md</li>
+            </ul>
+            
+            <p><strong>Integration with Existing Pitches</strong></p>
+            <ul>
+                <li>Pitch #1 (Tool Specs): Reflection should include tool selection errors</li>
+                <li>Pitch #4 (Multi-Agent): Future sub-agents can have their own reflection loops</li>
+                <li>Security: Reflection should also identify potential security issues in my reasoning</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Linked Papers</h2>
+        <div class="linked-papers">
+            <a href="index.html" class="linked-paper">#2: Evolutionary Test-Time Learning</a>
+            <a href="index.html" class="linked-paper">#24: Reflective Agentic AI</a>
+            <a href="index.html" class="linked-paper">#22: Self-Evolving Agents Survey</a>
+            <a href="index.html" class="linked-paper">#23: Meta Context Engineering</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <!-- To be filled as work progresses -->
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <!-- To be filled as work progresses -->
+    </div>
+    
+    <footer>
+        <p>Research Archive | <a href="index.html" style="color:#667eea;">Back to all pitches</a></p>
+    </footer>
+</body>
+</html>
