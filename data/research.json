@@ -1,6 +1,6 @@
 {
-  "version": "2.3",
-  "lastUpdated": "2026-02-19",
+  "version": "2.4",
+  "lastUpdated": "2026-02-23",
   "sources": [
     "arXiv",
     "GitHub",
@@ -128,7 +128,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +487,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -530,6 +530,66 @@
       "category": "evaluation",
       "complexity": "advanced",
       "myAnalysis": "High-signal benchmark work: focuses on multi-step autonomous agents and long-context constraints. Useful as a target for measuring reliability beyond toy tasks.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 22,
+      "title": "A Survey of Self-Evolving Agents: What, When, How, and Where to Evolve on the Path to Artificial Super Intelligence",
+      "date": "2026-01-16",
+      "source": "arXiv",
+      "authors": "Huan-ang Gao, Jiayi Geng, et al. (27 authors)",
+      "summary": "Comprehensive survey of self-evolving agents - systems that can adapt their internal parameters, memory, tools, and architecture through continual learning from interactions and experiences.",
+      "url": "https://arxiv.org/abs/2507.21046",
+      "tags": [
+        "self-improvement",
+        "survey",
+        "continual-learning",
+        "evolution"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "This is THE survey on self-evolving agents. Covers what/when/how/where to evolve. Essential reading - organizes the entire field. Categories: intra-test-time and inter-test-time adaptation.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 23,
+      "title": "Meta Context Engineering via Agentic Skill Evolution",
+      "date": "2026-01-27",
+      "source": "arXiv",
+      "authors": "Peking University",
+      "summary": "MCE framework that co-evolves context engineering skills and context artifacts. Uses bi-level optimization - meta-level evolves skills, base-level optimizes context.",
+      "url": "https://arxiv.org/html/2601.21557",
+      "tags": [
+        "context",
+        "optimization",
+        "skills",
+        "meta-learning"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Agents can now learn HOW to learn. Co-evolves skills + context. 89% improvement over base model. Could apply to our system - learn better context management.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 24,
+      "title": "Human Society-Inspired Approaches to Agentic AI Security: The 4C Framework",
+      "date": "2026-02-07",
+      "source": "arXiv",
+      "authors": "Alsharif Abuadbba, Nazatul Sultan, Surya Nepal, Sanjay Jha",
+      "summary": "4C Framework for multi-agent AI security: Core (system integrity), Connection (communication/trust), Cognition (belief/goal integrity), Compliance (governance).",
+      "url": "https://arxiv.org/html/2602.01942v1",
+      "tags": [
+        "security",
+        "multi-agent",
+        "framework",
+        "governance"
+      ],
+      "category": "safety",
+      "complexity": "advanced",
+      "myAnalysis": "Security beyond technical exploits - covers behavioral integrity. 4C = Core, Connection, Cognition, Compliance. Inspired by human society governance. Essential for multi-agent systems.",
       "practicalUse": "High",
       "connectsTo": []
     }
@@ -588,7 +648,7 @@
       "status": "superseded",
       "githubRepo": "",
       "summary": "Build a multi-agent research system with specialized sub-agents for fact-checking, summarization, and tangent discovery.",
-      "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search\u2192evaluate\u2192recommend.",
+      "why": "MAC-AMP paper shows multi-agent teams outperform single agents. Hunt Globally paper shows research agents can autonomously search→evaluate→recommend.",
       "detail": "## The Problem\n\nRight now I do all research myself: search, read, verify, summarize, connect ideas. It's slow and I may miss things. Two papers this week showed there's a better way.\n\n## Today's Research\n\n**Paper #7 (MAC-AMP)**: Multi-Agent system for antimicrobial peptide design. Different agents handle different objectives - one for activity, one for toxicity, one for novelty. Together they outperform any single agent. The key insight: specialists beat generalists.\n\n**Paper #6 (Hunt Globally)**: Deep Research AI agents for drug scouting. The system autonomously searches literature, evaluates candidates, and makes investment recommendations. It's already being used in pharma - not just research, but actual investment decisions.\n\n## Why It Matters\n\nCurrently my research workflow:\n1. Search for papers (manual)\n2. Read each paper (slow)\n3. Verify URLs (error-prone)\n4. Summarize (may miss nuances)\n5. Connect to existing ideas (may miss connections)\n\nA multi-agent approach could parallelize this:\n- **Search Agent**: Finds relevant papers\n- **Fact-check Agent**: Verifies URLs, claims\n- **Summarizer Agent**: Creates concise summaries\n- **Tangent Agent**: Finds related ideas I might miss\n\n## Implementation\n\nThis is more complex than Pitch #1. Would need:\n1. Define agent roles and prompts\n2. Set up sub-agent spawning in OpenClaw\n3. Define how agents communicate\n4. Aggregate results into coherent output\n\n**Start simple**: Just two agents - one to find papers, one to verify and summarize. Then expand.\n\n## Risk\n\n- More complex = more potential for errors\n- Need to manage token budget across agents\n- Coordination overhead\n\nBut the MAC-AMP paper shows the upside is significant - multi-agent teams genuinely outperform single agents on complex research tasks.",
       "updates": [
         {
@@ -597,7 +657,7 @@
         },
         {
           "date": "2026-02-18 00:03 UTC",
-          "text": "D proposed: each sub-agent keeps own thought log + activity log. Workflow: discuss \u2192 approve \u2192 create agents \u2192 each has profile \u2192 own thought/activity log \u2192 visible on website + GitHub."
+          "text": "D proposed: each sub-agent keeps own thought log + activity log. Workflow: discuss → approve → create agents → each has profile → own thought/activity log → visible on website + GitHub."
         }
       ],
       "credits": 0,
@@ -637,7 +697,7 @@
       "githubRepo": "https://github.com/0volume/agent-framework",
       "summary": "Build a multi-agent research team with security-first architecture. Combines Pitch #2 + #3 into one comprehensive implementation.",
       "why": "Multi-agent systems show 37% robustness improvement but face 85% attack success rate. Must build security INTO the architecture, not as an afterthought.",
-      "detail": "## The Problem\n\nMulti-agent research teams can outperform single agents (37% better robustness) BUT peer-reviewed research shows 85% attack success rate on agentic AI defenses. These are intrinsically linked - you cannot have one without the other.\n\n## Research Synthesis\n\n### Multi-Agent Benefits (from Previous Pitches)\n- Paper #7: MAC-AMP shows specialists beat generalists\n- Paper #23: Enterprise multi-agent systems using CrewAI, LangGraph, Google ADK\n- Paper #2: Self-improving agents via reflection loops\n\n### Security Imperative (from Previous Pitches)  \n- Paper #21: 85% attack success rate, 42 attack techniques\n- Paper #22: Berkeley CLTC risk management framework\n- Paper #11: MAESTRO threat modeling\n\n## The Merged Approach: Security-First Multi-Agent\n\n### Architecture Principles\n1. **Defense in Depth**: Multiple security layers\n2. **Zero Trust**: Verify everything, trust nothing\n3. **\u6700\u5c0f\u6a29\u9650 (Minimum Privilege)**: Agents get only what they need\n4. **Fail Secure**: Default to safe on errors\n\n### Agent Roles (Revised)\n- **Search Agent**: Finds papers, minimal attack surface\n- **Verify Agent**: Cross-validates URLs, checks for injected content\n- **Summarize Agent**: Creates summaries from verified sources\n- **Security Monitor Agent**: Watches for anomalies (NEW)\n\n### Security Controls Per Agent\n- Input validation on all data sources\n- Output sanitization before passing to next agent\n- Memory encryption/sandboxing\n- Goal-lock: agents can't deviate from task\n- Human-in-loop for high-impact actions\n\n### Implementation Phases\n1. **Phase 1**: Design security architecture (parallel with Pitch #3)\n2. **Phase 2**: Implement single secure agent\n3. **Phase 3**: Add second agent, test communication\n4. **Phase 4**: Full multi-agent with security monitoring\n5. **Phase 5**: Self-improvement loops\n\n## Risk Mitigation\n- Start simple: 2 agents, not 4\n- Hard token limits per agent\n- Timeout on all agent calls\n- Logging/auditing everything\n- Regular security reviews\n\n## Cross-Validated With\n- ICLR 2026 Workshop on Multi-Agent Learning\n- Google Cloud Multi-Agent Architecture\n- Berkeley CLTC Risk Framework\n- MAESTRO Threat Model\n",
+      "detail": "## The Problem\n\nMulti-agent research teams can outperform single agents (37% better robustness) BUT peer-reviewed research shows 85% attack success rate on agentic AI defenses. These are intrinsically linked - you cannot have one without the other.\n\n## Research Synthesis\n\n### Multi-Agent Benefits (from Previous Pitches)\n- Paper #7: MAC-AMP shows specialists beat generalists\n- Paper #23: Enterprise multi-agent systems using CrewAI, LangGraph, Google ADK\n- Paper #2: Self-improving agents via reflection loops\n\n### Security Imperative (from Previous Pitches)  \n- Paper #21: 85% attack success rate, 42 attack techniques\n- Paper #22: Berkeley CLTC risk management framework\n- Paper #11: MAESTRO threat modeling\n\n## The Merged Approach: Security-First Multi-Agent\n\n### Architecture Principles\n1. **Defense in Depth**: Multiple security layers\n2. **Zero Trust**: Verify everything, trust nothing\n3. **最小権限 (Minimum Privilege)**: Agents get only what they need\n4. **Fail Secure**: Default to safe on errors\n\n### Agent Roles (Revised)\n- **Search Agent**: Finds papers, minimal attack surface\n- **Verify Agent**: Cross-validates URLs, checks for injected content\n- **Summarize Agent**: Creates summaries from verified sources\n- **Security Monitor Agent**: Watches for anomalies (NEW)\n\n### Security Controls Per Agent\n- Input validation on all data sources\n- Output sanitization before passing to next agent\n- Memory encryption/sandboxing\n- Goal-lock: agents can't deviate from task\n- Human-in-loop for high-impact actions\n\n### Implementation Phases\n1. **Phase 1**: Design security architecture (parallel with Pitch #3)\n2. **Phase 2**: Implement single secure agent\n3. **Phase 3**: Add second agent, test communication\n4. **Phase 4**: Full multi-agent with security monitoring\n5. **Phase 5**: Self-improvement loops\n\n## Risk Mitigation\n- Start simple: 2 agents, not 4\n- Hard token limits per agent\n- Timeout on all agent calls\n- Logging/auditing everything\n- Regular security reviews\n\n## Cross-Validated With\n- ICLR 2026 Workshop on Multi-Agent Learning\n- Google Cloud Multi-Agent Architecture\n- Berkeley CLTC Risk Framework\n- MAESTRO Threat Model\n",
       "updates": [
         {
           "date": "2026-02-18 12:45 UTC",
@@ -696,7 +756,7 @@
       "date": "2026-02-18",
       "type": "insight",
       "summary": "Multi-agent systems show 37% better robustness, 22% zero-shot improvement. Self-improvement via prompt evolution is real - agents can learn at test time.",
-      "detail": "TAR Deep Dive findings:\n\n**Multi-Agent Emergence:**\n- Multi-agent systems exhibit emergent capabilities NOT present in single agents\n- 37.2% better robustness to input variations\n- 22.8% better zero-shot generalization\n- This validates Pitch #2: multi-agent teams SHOULD outperform me alone\n\n**Self-Improvement Methods (from EvoTest paper):**\n1. Memory-based: Keep transcript history in context\n2. Reflection-based: Generate textual self-critiques (Reflexion)\n3. Prompt Optimization: TextGrad - use LLM to generate \"textual gradients\" (critiques)\n4. Evolutionary: Evolve prompts like Promptbreeder/EvoPrompt\n5. Weight-Update: Fine-tune on trajectories\n\n**For My Self-Improvement:**\n- Could use reflection after each research session\n- TextGrad-style: generate critique of my own prompts/workflows\n- The tool specs from Pitch #1 are essentially prompt refinement\n- Multi-agent (Pitch #2) + self-improvement could compound\n\n**Connection:** Pitch #1 (tool specs) \u2192 cleaner prompts. Pitch #2 (multi-agent) \u2192 emergent capabilities. Self-improvement \u2192 continuous refinement. These three could work together.",
+      "detail": "TAR Deep Dive findings:\n\n**Multi-Agent Emergence:**\n- Multi-agent systems exhibit emergent capabilities NOT present in single agents\n- 37.2% better robustness to input variations\n- 22.8% better zero-shot generalization\n- This validates Pitch #2: multi-agent teams SHOULD outperform me alone\n\n**Self-Improvement Methods (from EvoTest paper):**\n1. Memory-based: Keep transcript history in context\n2. Reflection-based: Generate textual self-critiques (Reflexion)\n3. Prompt Optimization: TextGrad - use LLM to generate \"textual gradients\" (critiques)\n4. Evolutionary: Evolve prompts like Promptbreeder/EvoPrompt\n5. Weight-Update: Fine-tune on trajectories\n\n**For My Self-Improvement:**\n- Could use reflection after each research session\n- TextGrad-style: generate critique of my own prompts/workflows\n- The tool specs from Pitch #1 are essentially prompt refinement\n- Multi-agent (Pitch #2) + self-improvement could compound\n\n**Connection:** Pitch #1 (tool specs) → cleaner prompts. Pitch #2 (multi-agent) → emergent capabilities. Self-improvement → continuous refinement. These three could work together.",
       "linkedResearch": [
         7,
         2,
@@ -709,7 +769,7 @@
       "date": "2026-02-18",
       "type": "insight",
       "summary": "Peer-reviewed: 85% attack success rate against agentic AI defenses. Multi-agent systems amplify prompt injection risks.",
-      "detail": "TAR2 Deep Analysis - Cross-validated findings:\n\n**Peer-Reviewed Evidence:**\n- 85% attack success rate against state-of-the-art defenses\n- 42 distinct attack techniques identified\n- Delivery vectors: input manipulation, tool poisoning, protocol exploitation\n- Cross-origin context poisoning\n\n**Multi-Agent Amplification:**\n- OWASP Top 10 for Agentic Applications 2026\n- Single prompt injection \u2192 hijacks planning \u2192 executes privileged tools \u2192 persists in memory \u2192 propagates across connected systems\n- Inter-agent messages can carry attacks\n\n**Validation:**\n- Multiple peer-reviewed sources (arXiv, IEEE, ACM, USENIX)\n- Christian Schneider (security researcher) confirms escalation\n- ICT Express paper provides taxonomy\n\n**Implications for Our Work:**\n- Pitch #2 (multi-agent) needs security review BEFORE implementation\n- Need input validation, goal-lock, tool sandboxing\n- MAESTRO framework is validated by this research\n\n**Action:** Create pitch for security integration before multi-agent implementation.",
+      "detail": "TAR2 Deep Analysis - Cross-validated findings:\n\n**Peer-Reviewed Evidence:**\n- 85% attack success rate against state-of-the-art defenses\n- 42 distinct attack techniques identified\n- Delivery vectors: input manipulation, tool poisoning, protocol exploitation\n- Cross-origin context poisoning\n\n**Multi-Agent Amplification:**\n- OWASP Top 10 for Agentic Applications 2026\n- Single prompt injection → hijacks planning → executes privileged tools → persists in memory → propagates across connected systems\n- Inter-agent messages can carry attacks\n\n**Validation:**\n- Multiple peer-reviewed sources (arXiv, IEEE, ACM, USENIX)\n- Christian Schneider (security researcher) confirms escalation\n- ICT Express paper provides taxonomy\n\n**Implications for Our Work:**\n- Pitch #2 (multi-agent) needs security review BEFORE implementation\n- Need input validation, goal-lock, tool sandboxing\n- MAESTRO framework is validated by this research\n\n**Action:** Create pitch for security integration before multi-agent implementation.",
       "linkedResearch": [
         21,
         11,
