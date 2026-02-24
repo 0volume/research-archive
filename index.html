@@ -4,897 +4,563 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Agent Research Archive</title>
+    <link rel="stylesheet" href="wiki/css/cyberpunk.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
     <style>
-        * { box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #1a1a2e;
-            color: #eaeaea;
+        /* Global Cyberpunk Styles */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --neon-cyan: #00fff5;
+            --neon-magenta: #ff00ff;
+            --neon-orange: #ff6b35;
+            --neon-green: #00ff88;
+            --text-primary: #e0e0e0;
+            --text-muted: #6b6b7b;
+            --border-glow: rgba(0, 255, 245, 0.3);
         }
-        
+
+        body {
+            font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 245, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 245, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.1) 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Header - Cyberpunk */
         header {
             text-align: center;
-            padding: 25px 0;
-            border-bottom: 2px solid #16213e;
-            margin-bottom: 25px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 255, 245, 0.1);
+            position: relative;
         }
-        
+
+        header::before,
+        header::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--neon-cyan);
+            opacity: 0.6;
+        }
+
+        header::before {
+            top: -1px;
+            left: -1px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        header::after {
+            bottom: -1px;
+            right: -1px;
+            border-left: none;
+            border-top: none;
+        }
+
         h1 {
-            font-size: 2rem;
-            margin: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin: 0 0 8px 0;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 245, 0.3);
         }
-        
-        .subtitle { color: #888; margin-top: 8px; font-size: 0.9rem; }
-        
-        .nav-tabs {
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        .nav-container {
             display: flex;
-            gap: 8px;
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 25px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
             flex-wrap: wrap;
         }
-        
+
         .nav-tab {
-            padding: 10px 18px;
+            padding: 12px 24px;
             background: transparent;
-            border: 1px solid #667eea;
-            color: #667eea;
-            border-radius: 8px;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
-        
-        .nav-tab:hover, .nav-tab.active {
-            background: #667eea;
-            color: white;
+
+        .nav-tab:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 245, 0.2);
         }
-        
+
+        .nav-tab.active {
+            background: rgba(0, 255, 245, 0.15);
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        /* Wiki Link - Special styling */
+        .nav-tab.wiki-link {
+            border-color: var(--neon-magenta);
+            color: var(--neon-magenta);
+        }
+
+        .nav-tab.wiki-link:hover {
+            background: rgba(255, 0, 255, 0.15);
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+        }
+
+        /* Sections */
         .section { display: none; }
         .section.active { display: block; }
-        
+
+        /* Meta bar */
         .meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding: 12px 15px;
-            background: #16213e;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid #2a2a3a;
             border-radius: 8px;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
-        
-        .meta span { color: #888; font-size: 0.85rem; }
-        .entry-count { color: #667eea; font-weight: bold; }
-        
+
+        .meta span {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .entry-count {
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+
+        /* Filters */
         .filters-row {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 20px;
-            padding: 12px;
-            background: #16213e;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid #2a2a3a;
             border-radius: 8px;
         }
-        
+
         .filter-group {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             align-items: center;
         }
-        
-        .filter-label { color: #666; font-size: 0.8rem; margin-right: 5px; }
-        
+
+        .filter-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-right: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         .filter-btn {
-            padding: 5px 10px;
-            border: 1px solid #667eea;
+            padding: 8px 16px;
             background: transparent;
-            color: #667eea;
-            border-radius: 12px;
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
             cursor: pointer;
-            font-size: 0.75rem;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            border-radius: 4px;
         }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background: #667eea;
-            color: white;
+
+        .filter-btn:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
         }
-        
-        .filter-btn.pending { border-color: #f39c12; color: #f39c12; }
-        .filter-btn.pending.active, .filter-btn.pending:hover { background: #f39c12; color: white; }
-        
-        .filter-btn.approved { border-color: #27ae60; color: #27ae60; }
-        .filter-btn.approved.active, .filter-btn.approved:hover { background: #27ae60; color: white; }
-        
-        .filter-btn.in-progress { border-color: #3498db; color: #3498db; }
-        .filter-btn.in-progress.active, .filter-btn.in-progress:hover { background: #3498db; color: white; }
-        
-        .filter-btn.denied { border-color: #e74c3c; color: #e74c3c; }
-        .filter-btn.denied.active, .filter-btn.denied:hover { background: #e74c3c; color: white; }
-        
-        .filter-btn.completed { border-color: #27ae60; color: #27ae60; }
-        .filter-btn.completed.active, .filter-btn.completed:hover { background: #27ae60; color: white; }
-        
+
+        .filter-btn.active {
+            background: rgba(0, 255, 245, 0.15);
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        /* Entry Cards */
         .entry {
-            background: #16213e;
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
+            background: var(--bg-secondary);
+            border: 1px solid #2a2a3a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+            transition: all 0.3s ease;
         }
-        
-        .entry.beginner { border-left-color: #27ae60; }
-        .entry.intermediate { border-left-color: #f39c12; }
-        .entry.advanced { border-left-color: #e74c3c; }
-        
-        .entry-header {
+
+        .entry::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--neon-cyan);
+            opacity: 0.6;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .entry:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 245, 0.15);
+        }
+
+        .entry.beginner::before { background: var(--neon-green); }
+        .entry.intermediate::before { background: var(--neon-orange); }
+        .entry.advanced::before { background: var(--neon-magenta); }
+
+        .entry h3 {
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .entry p {
+            margin: 0 0 12px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Entry Meta */
+        .entry-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            gap: 8px;
             flex-wrap: wrap;
-            gap: 8px;
         }
-        
-        .entry-title-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-        
-        .entry-number {
-            display: inline-block;
-            min-width: 24px;
-            height: 22px;
-            background: #667eea;
-            color: white;
-            border-radius: 4px;
-            text-align: center;
-            line-height: 22px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-        
-        .entry h2 {
-            display: inline;
-            font-size: 1rem;
-            margin: 0;
-            color: #fff;
-        }
-        
+
         .complexity-badge {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.65rem;
-            padding: 3px 8px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 2px;
+            font-weight: 700;
             text-transform: uppercase;
         }
-        
-        .complexity-badge.beginner { background: #27ae60; color: white; }
-        .complexity-badge.intermediate { background: #f39c12; color: white; }
-        .complexity-badge.advanced { background: #e74c3c; color: white; }
-        
-        .entry-meta { margin: 8px 0; font-size: 0.8rem; color: #888; }
-        .entry-meta .source { background: #0f3460; padding: 2px 6px; border-radius: 4px; margin-right: 8px; }
-        
-        .authors { color: #aaa; font-size: 0.8rem; font-style: italic; margin-bottom: 8px; }
-        .summary { color: #ccc; margin: 8px 0; font-size: 0.9rem; }
-        
-        .my-analysis {
-            background: #1a2a4a;
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-            border-left: 3px solid #764ba2;
+
+        .complexity-badge.beginner {
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
         }
-        
-        .my-analysis-title { color: #764ba2; font-weight: bold; font-size: 0.75rem; margin-bottom: 5px; }
-        .my-analysis p { margin: 0; color: #bbb; font-size: 0.8rem; }
-        
-        .practical-use { display: inline-block; font-size: 0.65rem; padding: 3px 8px; border-radius: 6px; margin-top: 6px; font-weight: bold; }
-        .practical-use.high { background: #27ae60; color: white; }
-        .practical-use.medium { background: #f39c12; color: white; }
-        
-        .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-        .tag { font-size: 0.65rem; padding: 3px 6px; background: #0f3460; color: #667eea; border-radius: 8px; }
-        
-        .entry-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.8rem;
+
+        .complexity-badge.intermediate {
+            background: rgba(255, 107, 53, 0.15);
+            color: var(--neon-orange);
+            border: 1px solid var(--neon-orange);
         }
-        
-        .pitch {
-            background: #16213e;
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.2s, box-shadow 0.2s;
+
+        .complexity-badge.advanced {
+            background: rgba(255, 0, 255, 0.15);
+            color: var(--neon-magenta);
+            border: 1px solid var(--neon-magenta);
         }
-        
-        .pitch:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        
-        .pitch.pending { border-left-color: #f39c12; }
-        .pitch.approved { border-left-color: #27ae60; }
-        .pitch.in-progress { border-left-color: #3498db; }
-        .pitch.denied { border-left-color: #e74c3c; }
-        .pitch.completed { border-left-color: #27ae60; }
-        
-        .pitch-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 6px;
-        }
-        
-        .pitch-title-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .pitch-number {
-            display: inline-block;
-            min-width: 20px;
-            height: 18px;
-            background: #0f3460;
-            color: #667eea;
-            border-radius: 4px;
-            text-align: center;
-            line-height: 18px;
-            font-size: 0.6rem;
-            font-weight: bold;
-        }
-        
-        .pitch h2 { margin: 0; font-size: 0.95rem; color: #fff; }
-        
-        .pitch-summary-compact { color: #ccc; font-size: 0.85rem; margin: 0; }
-        
-        .pitch-linked { margin: 8px 0; }
-        .linked-tag {
-            display: inline-block;
-            padding: 3px 8px;
-            background: #0f3460;
-            color: #8899bb;
-            border-radius: 12px;
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
-            margin-right: 6px;
-        }
-        
-        .pitch-expand-compact { 
-            display: none; 
-            margin-top: 10px; 
-            padding-top: 10px; 
-            border-top: 1px solid #333; 
-        }
-        
-        .pitch-preview { 
-            color: #bbb; 
-            font-size: 0.8rem; 
-            line-height: 1.6; 
-            background: #1a2a4a;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 3px solid #667eea;
-        }
-        
-        .pitch-preview strong {
-            color: #667eea;
-        }
-        
-        .pitch-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid #2a2a4a;
-        }
-        
-        .pitch-footer-date { color: #666; font-size: 0.75rem; }
-        
-        .pitch-actions { display: flex; gap: 8px; align-items: center; }
-        
-        .pitch-expand-btn {
-            color: #667eea;
-            font-size: 0.8rem;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-        
-        .pitch-link {
-            display: inline-block;
-            padding: 4px 10px;
-            color: white;
-            text-decoration: none;
+            padding: 4px 8px;
+            background: var(--bg-tertiary);
+            color: var(--neon-cyan);
             border-radius: 4px;
-            font-size: 0.75rem;
+            border: 1px solid rgba(0, 255, 245, 0.2);
         }
-        
-        .pitch-link-details {
-            background: #3b464e;
-        }
-        
-        .pitch-link-github {
-            background: #24292e;
-        }
-        
-        .pitch-link:hover {
-            opacity: 0.85;
-        }
-        
-        /* Status Pills - cleaner look */
-        .status-pill {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .status-pending { background: #f39c12; color: #fff; }
-        .status-approved { background: #27ae60; color: #fff; }
-        .status-in-progress { background: #3498db; color: #fff; }
-        .status-completed { background: #27ae60; color: #fff; }
-        .status-denied { background: #e74c3c; color: #fff; }
-        
-        /* Remove old status-badge */
-        .status-badge { display: none; }
-        
-        .status-badge.pending { background: #f39c12; color: white; }
-        .status-badge.approved { background: #27ae60; color: white; }
-        .status-badge.in-progress { background: #3498db; color: white; }
-        .status-badge.completed { background: #27ae60; color: white; }
-        .status-badge.denied { background: #e74c3c; color: white; }
-        
-        .thought {
-            background: #16213e;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-left: 4px solid #667eea;
-            cursor: pointer;
-        }
-        
-        .thought.insight { border-left-color: #9b59b6; }
-        .thought.self-correction { border-left-color: #e74c3c; }
-        
-        .thought-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .thought-title-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-        
-        .thought-number {
-            display: inline-block;
-            min-width: 50px;
-            height: 20px;
-            background: #667eea;
-            color: white;
-            border-radius: 4px;
+
+        /* Loading */
+        .loading {
             text-align: center;
-            line-height: 20px;
-            font-size: 0.65rem;
-            font-weight: bold;
+            padding: 60px 20px;
         }
-        
-        .thought-title { font-size: 0.95rem; color: #fff; font-weight: bold; }
-        
-        .thought-type {
-            font-size: 0.65rem;
-            padding: 3px 8px;
-            border-radius: 8px;
-            text-transform: uppercase;
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--bg-tertiary);
+            border-top-color: var(--neon-cyan);
+            border-right-color: var(--neon-magenta);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
-        
-        .thought-type.insight { background: #9b59b6; color: white; }
-        .thought-type.self-correction { background: #e74c3c; color: white; }
-        
-        .thought-date { font-size: 0.75rem; color: #888; margin: 5px 0; }
-        .thought-summary { color: #ccc; font-size: 0.85rem; }
-        
-        .thought-expand { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid #333; }
-        .thought.expanded .thought-expand { display: block; }
-        
-        .thought-expand p { color: #bbb; font-size: 0.85rem; margin-bottom: 10px; }
-        .thought-linked a { color: #667eea; margin-right: 8px; font-size: 0.8rem; cursor: pointer; }
-        
-        .thought-more { display: block; margin-top: 10px; color: #667eea; font-size: 0.8rem; }
-        .thought.expanded .thought-more { display: none; }
-        
-        .thought-howapplied {
-            background: #1a3a2a;
-            border-radius: 6px;
-            padding: 10px;
-            margin: 10px 0;
-            border-left: 3px solid #27ae60;
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
-        
-        .howapplied-title { color: #27ae60; font-size: 0.75rem; font-weight: bold; margin-bottom: 4px; }
-        .thought-howapplied p { margin: 0; color: #bbb; font-size: 0.8rem; }
-        
-        .github-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 14px;
-            background: #24292e;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.8rem;
+
+        .loading p {
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
         }
-        
-        .github-link:hover { background: #3b464e; }
-        
-        .pitch-updates {
-            background: #1a2a4a;
-            border-radius: 8px;
-            padding: 12px;
-            margin: 12px 0;
-            border-left: 3px solid #f39c12;
-        }
-        
-        .updates-title { color: #f39c12; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; }
-        .update-item { background: #0f3460; border-radius: 6px; padding: 8px; margin-bottom: 6px; }
-        .update-date { font-size: 0.7rem; color: #888; }
-        .update-text { color: #ccc; font-size: 0.8rem; margin-top: 4px; }
-        
-        .pitch.completed { border-left-color: #27ae60; opacity: 0.9; }
-        .pitch.in-progress { border-left-color: #3498db; }
-        
-        footer { text-align: center; padding: 25px 0; color: #666; font-size: 0.85rem; }
-        
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon-magenta); }
+
+        /* Mobile */
         @media (max-width: 600px) {
-            body { padding: 12px; }
-            h1 { font-size: 1.5rem; }
-            .entry, .pitch, .thought { padding: 14px; }
+            .container { padding: 16px; }
+            h1 { font-size: 1.6rem; }
+            .nav-tab { padding: 10px 16px; font-size: 0.8rem; }
+            .entry { padding: 16px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🧠 AI Agent Research Archive</h1>
-        <p class="subtitle">Research • Thoughts • Pitches</p>
-    </header>
-    
-    <nav class="nav-tabs">
-        <button class="nav-tab active" data-section="research" onclick="showSection('research')">📚 Research</button>
-        <button class="nav-tab" data-section="pitches" onclick="showSection('pitches')">💡 Pitches</button>
-        <button class="nav-tab" data-section="thoughts" onclick="showSection('thoughts')">💭 Thoughts</button>
-        <button class="nav-tab" data-section="notes" onclick="showSection('notes')">🗒 Notes</button>
-        <a href="wiki/" class="nav-tab" style="display:inline-block; text-decoration:none; margin-left:10px;">🔍 Wiki</a>
-    </nav>
-    
-    <!-- RESEARCH SECTION -->
-    <section id="research" class="section active">
-        <div class="meta">
-            <span class="entry-count" id="count">Loading...</span>
-            <span id="updated">--</span>
-        </div>
-        
-        <div class="filters-row">
-            <div class="filter-group" id="categoryFilters">
-                <span class="filter-label">Category:</span>
-                <button class="filter-btn active" data-category="all" onclick="filterBy('category', 'all')">All</button>
-            </div>
-            <div class="filter-group">
-                <span class="filter-label">Complexity:</span>
-                <button class="filter-btn active" data-complexity="all" onclick="filterBy('complexity', 'all')">All</button>
-            </div>
-        </div>
-        
-        <div id="entries"></div>
-    </section>
-    
-    <!-- PITCHES SECTION -->
-    <section id="pitches" class="section">
-        <div class="meta">
-            <span id="pitchCount">Loading...</span>
-            <span>Self-improvement proposals</span>
-        </div>
-        
-        <div class="filters-row">
-            <div class="filter-group">
-                <span class="filter-label">Status:</span>
-                <button class="filter-btn active" data-status="all" onclick="filterPitches('all')">All</button>
-                <button class="filter-btn pending" data-status="pending" onclick="filterPitches('pending')">Pending</button>
-                <button class="filter-btn approved" data-status="approved" onclick="filterPitches('approved')">Approved</button>
-                <button class="filter-btn in-progress" data-status="in-progress" onclick="filterPitches('in-progress')">In Progress</button>
-                <button class="filter-btn completed" data-status="completed" onclick="filterPitches('completed')">Completed</button>
-                <button class="filter-btn denied" data-status="denied" onclick="filterPitches('denied')">Denied</button>
-            </div>
-        </div>
-        
-        <div id="pitches"></div>
-    </section>
-    
-    <!-- THOUGHTS SECTION -->
-    <section id="thoughts" class="section">
-        <div class="meta">
-            <span>Research reflections & insights</span>
-            <span><a href="https://github.com/0volume/research-archive/blob/main/thought-log.md" target="_blank" style="color:#667eea;">View full log →</a></span>
-        </div>
-        
-        <div class="filters-row">
-            <div class="filter-group">
-                <span class="filter-label">Type:</span>
-                <button class="filter-btn active" data-type="all" onclick="filterThoughts('all')">All</button>
-                <button class="filter-btn" data-type="insight" onclick="filterThoughts('insight')">Insights</button>
-                <button class="filter-btn" data-type="self-correction" onclick="filterThoughts('self-correction')">Self-Corrections</button>
-            </div>
-        </div>
-        
-        <div id="thoughts"></div>
-    </section>
+    <div class="container">
+        <header>
+            <h1>AI Agent Research Archive</h1>
+            <div class="subtitle">Research • Thoughts • Pitches</div>
+        </header>
 
-    <!-- NOTES SECTION -->
-    <section id="notes" class="section">
-        <div class="meta">
-            <span>Staged reading notes (multi-day digestion)</span>
-            <span><a href="https://github.com/0volume/research-archive/tree/main/notes" target="_blank" style="color:#667eea;">Browse notes →</a></span>
+        <div class="nav-container">
+            <button class="nav-tab active" data-tab="research">📚 Research</button>
+            <button class="nav-tab" data-tab="thoughts">💭 Thoughts</button>
+            <button class="nav-tab" data-tab="pitches">🎯 Pitches</button>
+            <a href="wiki/" class="nav-tab wiki-link">🔍 Wiki</a>
         </div>
-        <div class="filters-row">
-            <div class="filter-group">
-                <span class="filter-label">Stage:</span>
-                <button class="filter-btn active" data-notestage="all" onclick="filterNotes('all')">All</button>
-                <button class="filter-btn" data-notestage="abstract" onclick="filterNotes('abstract')">Abstract</button>
-                <button class="filter-btn" data-notestage="methods" onclick="filterNotes('methods')">Methods</button>
-                <button class="filter-btn" data-notestage="evaluation" onclick="filterNotes('evaluation')">Evaluation</button>
-                <button class="filter-btn" data-notestage="integration" onclick="filterNotes('integration')">Integration</button>
+
+        <div id="research" class="section active">
+            <div class="meta">
+                <span>Category: <span id="category-count" class="entry-count">-</span></span>
+                <span>Complexity: <span id="complexity-count" class="entry-count">-</span></span>
+            </div>
+            <div class="filters-row">
+                <div class="filter-group">
+                    <span class="filter-label">//complexity</span>
+                    <button class="filter-btn active" data-filter="all">ALL</button>
+                    <button class="filter-btn" data-filter="beginner">BEGINNER</button>
+                    <button class="filter-btn" data-filter="intermediate">INTERMEDIATE</button>
+                    <button class="filter-btn" data-filter="advanced">ADVANCED</button>
+                </div>
+            </div>
+            <div id="research-list">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading research data...</p>
+                </div>
             </div>
         </div>
-        <div id="notesList"></div>
-    </section>
-    
-    <footer>
-        <p>Research Archive v2.0 | 🧠 Sol's Research, Thoughts & Pitches</p>
-    </footer>
-    
+
+        <div id="thoughts" class="section">
+            <div class="meta">
+                <span>Total Thoughts: <span id="thoughts-count" class="entry-count">-</span></span>
+            </div>
+            <div id="thoughts-list">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading thoughts...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="pitches" class="section">
+            <div class="meta">
+                <span>Stage: <span id="pitch-stage" class="entry-count">Staged reading notes (multi-day digestion)</span></span>
+                <a href="https://github.com/0volume/research-archive/tree/main/notes" target="_blank" class="nav-tab" style="font-size: 0.75rem; padding: 6px 12px;">Browse notes →</a>
+            </div>
+            <div id="pitches-list">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading pitches...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        let currentCategory = 'all';
-        let currentComplexity = 'all';
-        let currentPitchStatus = 'all';
-        let currentThoughtType = 'all';
-        let allEntries = [];
-        let allPitches = [];
-        let allThoughts = [];
-        let allNotes = [];
-        let currentNoteStage = 'all';
-        
-        function showSection(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.querySelector('[data-section="' + id + '"]').classList.add('active');
-        }
-        
-        function filterBy(type, value) {
-            if (type === 'category') {
-                currentCategory = value;
-                document.querySelectorAll('[data-category]').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.category === value);
-                });
-            } else if (type === 'complexity') {
-                currentComplexity = value;
-                document.querySelectorAll('[data-complexity]').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.complexity === value);
-                });
-            }
-            applyEntryFilters();
-        }
-        
-        function applyEntryFilters() {
-            document.querySelectorAll('.entry').forEach(el => {
-                const cat = el.dataset.category;
-                const comp = el.dataset.complexity;
-                const catMatch = currentCategory === 'all' || cat === currentCategory;
-                const compMatch = currentComplexity === 'all' || comp === currentComplexity;
-                el.style.display = (catMatch && compMatch) ? 'block' : 'none';
+        // Tab switching
+        document.querySelectorAll('.nav-tab[data-tab]').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
             });
-        }
-        
-        function filterPitches(status) {
-            currentPitchStatus = status;
-            document.querySelectorAll('[data-status]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.status === status);
-            });
-            renderPitches();
-        }
-        
-        function filterThoughts(type) {
-            currentThoughtType = type;
-            document.querySelectorAll('[data-type]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.type === type);
-            });
-            renderThoughts();
-        }
-
-        function filterNotes(stage) {
-            currentNoteStage = stage;
-            document.querySelectorAll('[data-notestage]').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.notestage === stage);
-            });
-            renderNotes();
-        }
-        
-        // Load data
-        Promise.all([
-            fetch('data/research.json').then(r => r.json()),
-            fetch('notes/index.json').then(r => r.json()).catch(() => ({notes: []})),
-        ])
-        .then(([data, notesData]) => {
-            allEntries = data.entries || [];
-            allPitches = data.pitches || [];
-            allThoughts = data.thoughts || [];
-            allNotes = (notesData && notesData.notes) ? notesData.notes : [];
-            
-            document.getElementById('count').textContent = allEntries.length + ' papers';
-            document.getElementById('pitchCount').textContent = allPitches.length + ' pitches';
-            document.getElementById('updated').textContent = 'Updated: ' + data.lastUpdated;
-            
-            buildCategoryFilters();
-            renderAll();
-        })
-        .catch(err => {
-            console.error('Error loading data:', err);
         });
-        
-        function buildCategoryFilters() {
-            const container = document.getElementById('categoryFilters');
-            const categories = [...new Set(allEntries.map(e => e.category))].sort();
-            categories.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = 'filter-btn';
-                btn.dataset.category = cat;
-                btn.textContent = formatCategory(cat);
-                btn.onclick = () => filterBy('category', cat);
-                container.appendChild(btn);
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterEntries(btn.dataset.filter);
+            });
+        });
+
+        function filterEntries(level) {
+            document.querySelectorAll('.entry').forEach(entry => {
+                if (level === 'all' || entry.classList.contains(level)) {
+                    entry.style.display = 'block';
+                } else {
+                    entry.style.display = 'none';
+                }
             });
         }
-        
-        function renderAll() {
-            renderEntries();
-            renderPitches();
-            renderThoughts();
-            renderNotes();
-        }
-        
-        function renderEntries() {
-            const container = document.getElementById('entries');
-            container.innerHTML = '';
+
+        // Load data from GitHub JSON files
+        async function loadData() {
+            const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
             
-            allEntries.forEach(entry => {
-                const el = document.createElement('div');
-                el.className = 'entry ' + (entry.complexity || 'intermediate');
-                el.dataset.category = entry.category;
-                el.dataset.complexity = entry.complexity || 'intermediate';
+            try {
+                // Load research
+                const researchRes = await fetch(baseUrl + 'research.json');
+                const researchData = await researchRes.json();
+                renderResearch(researchData);
                 
-                el.innerHTML = `
-                    <div class="entry-header">
-                        <div class="entry-title-row">
-                            <span class="entry-number">${entry.id}</span>
-                            <h2>${entry.title}</h2>
-                        </div>
-                        ${entry.complexity ? `<span class="complexity-badge ${entry.complexity}">${entry.complexity}</span>` : ''}
-                    </div>
-                    <div class="entry-meta"><span class="source">${entry.source}</span><span>${entry.date}</span></div>
-                    <p class="authors">${entry.authors}</p>
-                    <p class="summary">${entry.summary}</p>
-                    ${entry.myAnalysis ? `<div class="my-analysis"><div class="my-analysis-title">🧠 Sol's Analysis</div><p>${entry.myAnalysis}</p>${entry.practicalUse ? `<span class="practical-use ${entry.practicalUse}">Practical: ${entry.practicalUse}</span>` : ''}</div>` : ''}
-                    <div class="tags">${entry.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-                    ${entry.notes && entry.notes.length ? `<div class="pitch-linked" style="margin-top:10px;"><span style="color:#888;font-size:.8rem;">🗒 Notes:</span> ${entry.notes.map(n=>`<a class="linked-tag" href="${n.url}" target="_blank">${n.stage || 'note'}</a>`).join(' ')}</div>` : ''}
-                    <a href="${entry.url}" target="_blank" class="entry-link">Read Paper →</a>
-                `;
-                container.appendChild(el);
-            });
-        }
-        
-        function renderPitches() {
-            const container = document.getElementById('pitches');
-            container.innerHTML = '';
-            
-            const filtered = currentPitchStatus === 'all' 
-                ? allPitches 
-                : allPitches.filter(p => p.status === currentPitchStatus);
-            
-            filtered.forEach(pitch => {
-                const el = document.createElement('div');
-                el.className = 'pitch ' + pitch.status;
-                el.id = 'pitch-' + pitch.id;
+                // Load thoughts
+                const thoughtsRes = await fetch(baseUrl + 'thoughts.json');
+                const thoughtsData = await thoughtsRes.json();
+                renderThoughts(thoughtsData);
                 
-                // Compact summary - always visible
-                let linkedHtml = '';
-                if (pitch.linkedResearch && pitch.linkedResearch.length > 0) {
-                    linkedHtml = `<div class="pitch-linked">📚 ${pitch.linkedResearch.map(id => `<span class="linked-tag">#${id}</span>`).join('')}</div>`;
-                }
-                
-                // Expanded detail - shows more info
-                let detailPreview = '';
-                if (pitch.why) {
-                    detailPreview = `<div class="pitch-preview"><strong>Why:</strong> ${pitch.why.substring(0, 150)}${pitch.why.length > 150 ? '...' : ''}</div>`;
-                }
-                
-                // Full page link - show BOTH if github repo exists
-                let linksHtml = `<a href="pitch-${pitch.id}.html" class="pitch-link pitch-link-details">📄 Details</a>`;
-                if (pitch.githubRepo) {
-                    linksHtml += `<a href="${pitch.githubRepo}" target="_blank" class="pitch-link pitch-link-github">📂 Project</a>`;
-                }
-                
-                el.innerHTML = `
-                    <div class="pitch-header" onclick="togglePitchCompact(${pitch.id})">
-                        <div class="pitch-title-row">
-                            <span class="pitch-number">${pitch.id}</span>
-                            <h2>${pitch.title}</h2>
-                        </div>
-                        <span class="status-pill status-${pitch.status}">${pitch.status.replace('-', ' ')}</span>
-                    </div>
-                    <p class="pitch-summary-compact">${pitch.summary}</p>
-                    ${linkedHtml}
-                    <div class="pitch-expand-compact" id="pitch-expand-${pitch.id}">
-                        ${detailPreview}
-                    </div>
-                    <div class="pitch-footer">
-                        <span class="pitch-footer-date">${pitch.date}</span>
-                        <div class="pitch-actions">
-                            <a href="javascript:void(0)" onclick="togglePitchCompact(${pitch.id})" class="pitch-expand-btn" id="pitch-btn-${pitch.id}">▼ More</a>
-                            ${linksHtml}
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(el);
-            });
-        }
-        
-        function togglePitchCompact(id) {
-            const el = document.getElementById('pitch-expand-' + id);
-            const btn = document.getElementById('pitch-btn-' + id);
-            if (el.style.display === 'block') {
-                el.style.display = 'none';
-                btn.textContent = '▼ More';
-            } else {
-                el.style.display = 'block';
-                btn.textContent = '▲ Less';
+                // Load pitches
+                const pitchesRes = await fetch(baseUrl + 'pitches.json');
+                const pitchesData = await pitchesRes.json();
+                renderPitches(pitchesData);
+            } catch (err) {
+                console.error('Error loading data:', err);
+                document.getElementById('research-list').innerHTML = '<p style="color: #ff6b35;">Error loading data. Please refresh.</p>';
             }
         }
-        
-        function renderThoughts() {
-            const container = document.getElementById('thoughts');
-            container.innerHTML = '';
+
+        function renderResearch(data) {
+            const container = document.getElementById('research-list');
+            const categories = new Set();
+            const complexities = new Set();
             
-            const filtered = currentThoughtType === 'all'
-                ? allThoughts
-                : allThoughts.filter(t => t.type === currentThoughtType);
-            
-            filtered.forEach(thought => {
-                const el = document.createElement('div');
-                el.className = 'thought ' + thought.type;
-                el.id = 'thought-' + thought.id;
-                
-                let linkedHtml = '';
-                if (thought.linkedResearch && thought.linkedResearch.length > 0) {
-                    linkedHtml = `<div class="thought-linked"><div class="linked-research-title">📚 Related Papers</div>${thought.linkedResearch.map(id => `<a href="javascript:void(0)" onclick="showResearchEntry(${id})">#${id}</a>`).join('')}</div>`;
-                }
-                
-                let howAppliedHtml = '';
-                if (thought.howApplied) {
-                    howAppliedHtml = `<div class="thought-howapplied"><div class="howapplied-title">🔧 How I Applied This</div><p>${thought.howApplied}</p></div>`;
-                }
-                
-                el.innerHTML = `
-                    <div class="thought-header" onclick="toggleThought(event, '${thought.id}')">
-                        <div class="thought-title-row">
-                            <span class="thought-number">${thought.id}</span>
-                            <span class="thought-title">${thought.title}</span>
+            let html = '';
+            data.forEach((item, i) => {
+                categories.add(item.category);
+                complexities.add(item.complexity);
+                html += `
+                    <div class="entry ${item.complexity}">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="entry-meta">
+                            <span class="complexity-badge ${item.complexity}">${item.complexity}</span>
+                            <span class="tag">${item.category}</span>
                         </div>
-                        <span class="thought-type ${thought.type}">${thought.type.replace('-', ' ')}</span>
                     </div>
-                    <p class="thought-date">${thought.date}</p>
-                    <p class="thought-summary">${thought.summary}</p>
-                    <div class="thought-expand">
-                        <p>${thought.detail}</p>
-                        ${howAppliedHtml}
-                        ${linkedHtml}
-                    </div>
-                    <div class="thought-more" onclick="toggleThought(event, '${thought.id}')">▼ Read more</div>
                 `;
-                
-                el.onclick = (e) => toggleThought(e, thought.id);
-                container.appendChild(el);
             });
+            
+            container.innerHTML = html;
+            document.getElementById('category-count').textContent = categories.size;
+            document.getElementById('complexity-count').textContent = complexities.size;
         }
 
-        function renderNotes(){
-            const container = document.getElementById('notesList');
-            if(!container) return;
-            container.innerHTML = '';
-
-            const filtered = currentNoteStage==='all' ? allNotes : allNotes.filter(n => (n.stage||'')===currentNoteStage);
-            if(!filtered.length){
-                container.innerHTML = `<div style="color:#888; padding: 12px; background:#16213e; border-radius:8px;">No notes yet. TAR will start generating staged notes (abstract → methods → evaluation → integration) and linking them here.</div>`;
-                return;
-            }
-
-            filtered.slice().reverse().forEach(n => {
-                const el = document.createElement('div');
-                el.className = 'entry';
-                const stage = (n.stage||'note');
-                const when = (n.date||'');
-                const paper = n.paperId ? ` • paper #${n.paperId}` : '';
-                el.innerHTML = `
-                    <div class="entry-header">
-                      <div class="entry-title-row">
-                        <span class="entry-number">${safe(n.id||'')}</span>
-                        <h2>${n.title || 'Note'}</h2>
-                      </div>
-                      <span class="complexity-badge intermediate">${stage}</span>
+        function renderThoughts(data) {
+            const container = document.getElementById('thoughts-list');
+            document.getElementById('thoughts-count').textContent = data.length;
+            
+            let html = '';
+            data.slice(0, 10).forEach(item => {
+                html += `
+                    <div class="entry">
+                        <h3>${item.title}</h3>
+                        <p>${item.content.substring(0, 150)}...</p>
+                        <div class="entry-meta">
+                            <span class="tag">${item.type || 'thought'}</span>
+                        </div>
                     </div>
-                    <div class="entry-meta"><span class="source">Notes</span><span>${when}${paper}</span></div>
-                    <p class="summary">${n.summary || ''}</p>
-                    <a href="${n.url}" target="_blank" class="entry-link">Open note →</a>
                 `;
-                container.appendChild(el);
             });
+            
+            container.innerHTML = html || '<p style="color: var(--text-muted);">No thoughts yet.</p>';
         }
-        
-        function toggleThought(e, id) {
-            e.stopPropagation();
-            const el = document.getElementById('thought-' + id);
-            el.classList.toggle('expanded');
+
+        function renderPitches(data) {
+            const container = document.getElementById('pitches-list');
+            
+            let html = '';
+            data.forEach(item => {
+                html += `
+                    <div class="entry">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <div class="entry-meta">
+                            <span class="complexity-badge ${item.status || 'pending'}">${item.status || 'pending'}</span>
+                            <span class="tag">${item.priority || 'normal'} priority</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html || '<p style="color: var(--text-muted);">No pitches yet.</p>';
         }
-        
-        function showResearchEntry(id) {
-            showSection('research');
-            setTimeout(() => {
-                const entries = document.querySelectorAll('.entry');
-                entries.forEach((el, idx) => {
-                    if (allEntries[idx] && allEntries[idx].id === id) {
-                        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        el.style.boxShadow = '0 0 20px #667eea';
-                        setTimeout(() => el.style.boxShadow = '', 2000);
-                    }
-                });
-            }, 100);
-        }
-        
-        function formatCategory(cat) {
-            return cat.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        }
+
+        // Initialize
+        loadData();
     </script>
 </body>
 </html>
