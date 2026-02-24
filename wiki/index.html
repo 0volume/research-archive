@@ -120,23 +120,14 @@
   <!-- Load wiki JavaScript -->
   <script src="./js/wiki.js"></script>
   
-  <!-- Initialize after wiki.js loads -->
+  <!-- Initialize wiki app -->
   <script>
-    // Initialize wiki app
-    console.log('WikiApp available:', typeof WikiApp !== 'undefined');
-    if (typeof WikiApp !== 'undefined') {
-      // Wait for DOM or init immediately
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          console.log('DOM ready, creating WikiApp');
-          window.wikiApp = new WikiApp();
-        });
-      } else {
-        console.log('Creating WikiApp immediately');
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
         window.wikiApp = new WikiApp();
-      }
+      });
     } else {
-      console.error('WikiApp not defined - script may have failed to load');
+      window.wikiApp = new WikiApp();
     }
   </script>
   

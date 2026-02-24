@@ -98,27 +98,20 @@ class WikiApp {
 
   async loadHomepage() {
     try {
-      console.log('Loading homepage data from:', this.baseUrl + 'wiki/data/topics.json');
       const response = await fetch(this.baseUrl + 'wiki/data/topics.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error('Failed to fetch');
       this.data = await response.json();
-      console.log('Data loaded successfully:', this.data);
       this.renderHomepage();
     } catch (error) {
       console.error('Failed to load wiki data:', error);
-      this.showError('Failed to load research data: ' + error.message);
+      this.showError('Failed to load research data');
     }
   }
 
   async loadTopic(slug) {
     try {
-      console.log('Loading topic:', slug);
       const response = await fetch(this.baseUrl + 'wiki/data/topics.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error('Failed to fetch');
       this.data = await response.json();
       
       this.currentTopic = this.data.topics.find(t => t.slug === slug);
