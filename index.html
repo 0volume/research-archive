@@ -170,6 +170,35 @@
     </div>
 
     <script>
+        // Pre-loaded data - always available
+        const embeddedData = {
+            research: [
+                { id: 1, title: "ReusStdFlow: A Standardized Reusability Framework", category: "infrastructure", complexity: "enterprise", summary: "Addresses the 'reusability dilemma' in enterprise Agentic AI.", url: "https://arxiv.org/abs/2602.14922" },
+                { id: 2, title: "Evolutionary Test-Time Learning for Self-Improving Agents", category: "self-improvement", complexity: "advanced", summary: "Prompts evolve and improve over generations.", url: "https://arxiv.org/html/2510.13220v1" },
+                { id: 3, title: "PhyScensis: Physics-Augmented LLM Agents", category: "reasoning", complexity: "advanced", summary: "Physics-augmented LLM agents." },
+                { id: 4, title: "MCP: Model Context Protocol", category: "infrastructure", complexity: "intermediate", summary: "Anthropic's open protocol for AI connections." }
+            ],
+            thoughts: [
+                { id: "001", date: "2026-02-17", title: "Entry 001 | Tool Specs & Peer Learning", summary: "Research on ME and MCP tool descriptions." },
+                { id: "002", date: "2026-02-17", title: "Entry 002 | Evolutionary Prompt Learning", summary: "Explored evolutionary prompt learning." },
+                { id: "003", date: "2026-02-17", title: "Entry 003 | Hallucination Self-Improvement", summary: "Addressing fabricated links with verification." },
+                { id: "factcheck-005", date: "2026-02-23", title: "Fact-Check: Pitch #5", summary: "Verified URLs and claims. CONDITIONALLY APPROVED." }
+            ],
+            pitches: [
+                { id: 1, title: "Tool Specification Template", status: "implemented", url: "pitch-1.html" },
+                { id: 2, title: "Research Agent Team", status: "pending", url: "pitch-2.html" },
+                { id: 3, title: "Security Integration", status: "pending", url: "pitch-3.html" },
+                { id: 4, title: "Secure Multi-Agent Research System", status: "implemented", url: "pitch-4.html" },
+                { id: 5, title: "Self-Reflection & Improvement Loop", status: "research", url: "pitch-5.html" }
+            ],
+            notes: [
+                { slug: "self-reflection", name: "Self-Reflection & Improvement Loop", status: "research-complete", description: "Enabling agents to reflect and improve over time.", keyFindings: ["Gradient-free whole-system evolution", "Self-evolution taxonomy"] }
+            ]
+        };
+        
+        // Use embedded data initially for instant load
+        let currentData = { ...embeddedData };
+        
         // Mobile navigation toggle
         function toggleMobileNav() {
             const nav = document.getElementById('main-nav');
@@ -484,81 +513,54 @@
             throw new Error('All fetch methods failed for: ' + url);
         }
         
-        // Data fallback - embedded minimal data if fetch fails
-        // This serves as ultimate fallback with known good data
-        const fallbackData = {
-            research: [
-                { title: "Sample Research", category: "infrastructure", complexity: "intermediate" }
-            ],
-            thoughts: [
-                { title: "Sample Thought", date: "2026-02-24" }
-            ],
-            pitches: [
-                { title: "Sample Pitch", status: "pending" }
-            ],
-            notes: [
-                { name: "Sample Topic", status: "research" }
-            ]
-        };
-        
-        // Load data from GitHub JSON files
+        // Load data - use embedded first for instant display, then refresh from GitHub
         async function loadData() {
+            // First, render embedded data immediately for fast UX
+            console.log('[loadData] Using embedded data for instant display');
+            renderResearch(currentData.research);
+            renderThoughts(currentData.thoughts);
+            renderPitches(currentData.pitches);
+            renderNotes(currentData.notes);
+            updateStats(currentData.research, currentData.thoughts, currentData.pitches, currentData.notes);
+            
+            // Then try to refresh from GitHub in background
             const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
-            const dataUrls = {
-                research: baseUrl + 'data/research.json',
-                thoughts: baseUrl + 'data/thoughts.json',
-                pitches: baseUrl + 'data/pitches.json',
-                topics: baseUrl + 'data/topics.json'
-            };
             
-            console.log('[loadData] Starting load from:', dataUrls);
-            
-            // Load all data with individual error handling per file
-            const results = await Promise.allSettled([
-                fetchJSON(dataUrls.research).then(d => d?.entries || []).catch(() => []),
-                fetchJSON(dataUrls.thoughts).then(d => d?.thoughts || d || []).catch(() => []),
-                fetchJSON(dataUrls.pitches).then(d => d?.pitches || d || []).catch(() => []),
-                fetchJSON(dataUrls.topics).then(d => d?.topics || d || []).catch(() => [])
-            ]);
-            
-            // Extract data or empty arrays on failure
-            const researchData = results[0].status === 'fulfilled' ? results[0].value : [];
-            const thoughtsData = results[1].status === 'fulfilled' ? results[1].value : [];
-            const pitchesData = results[2].status === 'fulfilled' ? results[2].value : [];
-            const topicsData = results[3].status === 'fulfilled' ? results[3].value : [];
-            
-            console.log('[loadData] Loaded:', {
-                research: researchData.length,
-                thoughts: thoughtsData.length,
-                pitches: pitchesData.length,
-                notes: topicsData.length
-            });
-            
-            // Check if we got ANY data
-            const totalData = researchData.length + thoughtsData.length + pitchesData.length + topicsData.length;
-            if (totalData === 0) {
-                console.error('[loadData] ALL fetches failed - using minimal fallback');
-                // Use minimal fallback
-                renderResearch(fallbackData.research);
-                renderThoughts(fallbackData.thoughts);
-                renderPitches(fallbackData.pitches);
-                renderNotes(fallbackData.notes);
-                updateStats(fallbackData.research, fallbackData.thoughts, fallbackData.pitches, fallbackData.notes);
-            } else {
-                // Render all sections with loaded data
-                renderResearch(researchData);
-                renderThoughts(thoughtsData);
-                renderPitches(pitchesData);
-                renderNotes(topicsData);
-                
-                // Update stats
-                updateStats(researchData, thoughtsData, pitchesData, topicsData);
+            async function safeFetch(url, extractFn) {
+                try {
+                    const data = await fetchJSON(url);
+                    return extractFn(data);
+                } catch (e) {
+                    console.warn('[loadData] Refresh failed:', url, e.message);
+                    return null;
+                }
             }
             
-            // Handle hash after data loads
-            handleHash();
+            // Try to refresh in background
+            const [newResearch, newThoughts, newPitches, newTopics] = await Promise.all([
+                safeFetch(baseUrl + 'data/research.json', d => d?.entries || null),
+                safeFetch(baseUrl + 'data/thoughts.json', d => d?.thoughts || null),
+                safeFetch(baseUrl + 'data/pitches.json', d => d?.pitches || null),
+                safeFetch(baseUrl + 'data/topics.json', d => d?.topics || null)
+            ]);
             
-            // Listen for hash changes
+            // Only update if we got valid data
+            if (newResearch || newThoughts || newPitches || newTopics) {
+                console.log('[loadData] Data refreshed from GitHub');
+                currentData.research = newResearch || currentData.research;
+                currentData.thoughts = newThoughts || currentData.thoughts;
+                currentData.pitches = newPitches || currentData.pitches;
+                currentData.notes = newTopics || currentData.notes;
+                
+                // Re-render with fresh data
+                renderResearch(currentData.research);
+                renderThoughts(currentData.thoughts);
+                renderPitches(currentData.pitches);
+                renderNotes(currentData.notes);
+                updateStats(currentData.research, currentData.thoughts, currentData.pitches, currentData.notes);
+            }
+            
+            handleHash();
             window.addEventListener('hashchange', handleHash);
         }
 
