@@ -199,10 +199,26 @@
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             targetSection.classList.add('active');
             
-            // Update nav highlight
+            // Update main nav highlight (top navigation)
             document.querySelectorAll('.archive-nav a').forEach(a => a.classList.remove('active'));
             const navLink = document.querySelector(`.archive-nav a[href="#${id}"]`);
             if (navLink) navLink.classList.add('active');
+            
+            // Update sidebar stat-box active states
+            document.querySelectorAll('.stat-box.clickable').forEach(box => {
+                box.classList.remove('active');
+                if (box.getAttribute('href') === '#' + id) {
+                    box.classList.add('active');
+                }
+            });
+            
+            // Update sidebar NAVIGATION (key-finding-tag) active state
+            document.querySelectorAll('.archive-sidebar .key-finding-tag').forEach(tag => {
+                tag.classList.remove('active');
+                if (tag.getAttribute('href') === '#' + id) {
+                    tag.classList.add('active');
+                }
+            });
             
             // Update URL hash (only if different to avoid loops)
             if (window.location.hash !== '#' + id) {
@@ -232,6 +248,30 @@
 
         // Handle initial hash on page load (show section before data loads)
         handleInitialHash();
+        
+        // Set initial active states on nav elements
+        function setInitialActiveState() {
+            const hash = window.location.hash.slice(1) || 'research';
+            
+            // Update sidebar stat-box active states
+            document.querySelectorAll('.stat-box.clickable').forEach(box => {
+                box.classList.remove('active');
+                if (box.getAttribute('href') === '#' + hash) {
+                    box.classList.add('active');
+                }
+            });
+            
+            // Update sidebar NAVIGATION active state
+            document.querySelectorAll('.archive-sidebar .key-finding-tag').forEach(tag => {
+                tag.classList.remove('active');
+                if (tag.getAttribute('href') === '#' + hash) {
+                    tag.classList.add('active');
+                }
+            });
+        }
+        
+        // Apply initial active state after DOM is ready
+        setImmediate(() => setInitialActiveState());
         
         // Nav click handlers - main navigation
         document.querySelectorAll('.archive-nav a').forEach(link => {

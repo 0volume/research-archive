@@ -358,19 +358,30 @@ class WikiApp {
       </div>
     `;
     
-    // Update sidebar stats
-    if (this.data.topics) {
+    // Update sidebar stats - ensure data is loaded first
+    if (this.data && this.data.topics) {
+      const topics = this.data.topics;
       const stats = {
-        'stat-topics': this.data.topics.length,
-        'stat-papers': this.data.topics.reduce((sum, t) => sum + (t.papers?.length || 0), 0),
-        'stat-complete': this.data.topics.filter(t => t.status === 'research-complete').length,
-        'stat-impl': this.data.topics.filter(t => t.hasImplementation).length
+        'stat-topics': topics.length,
+        'stat-papers': topics.reduce((sum, t) => sum + (t.papers?.length || 0), 0),
+        'stat-complete': topics.filter(t => t.status === 'research-complete').length,
+        'stat-impl': topics.filter(t => t.hasImplementation).length
       };
       
-      // Animate stat numbers
+      // Animate stat numbers - clear "-" first
       Object.entries(stats).forEach(([id, target]) => {
         const el = document.getElementById(id);
-        if (el) this.animateCount(el, target);
+        if (el) {
+          // Clear the placeholder "-" before animating
+          el.textContent = '0';
+          this.animateCount(el, target);
+        }
+      });
+    } else {
+      // Fallback: if no data, show 0
+      ['stat-topics', 'stat-papers', 'stat-complete', 'stat-impl'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = '0';
       });
     }
     
