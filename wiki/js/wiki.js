@@ -80,25 +80,38 @@ class WikiApp {
     this.init();
   }
 
-  // Helper method to fetch with timeout
+  // Helper method to fetch with timeout and CORS proxy fallback
   async fetchWithTimeout(url, options = {}, timeout = 10000) {
-    const controller = new AbortController();
-    const id = setTimeout(() => {
-      console.warn(`[Wiki] Fetch timeout for: ${url}`);
-      controller.abort();
-    }, timeout);
-
+    // Try direct fetch first
     try {
+      const controller = new AbortController();
+      const id = setTimeout(() => {
+        console.warn(`[Wiki] Fetch timeout for: ${url}`);
+        controller.abort();
+      }, timeout);
+
       const response = await fetch(url, {
         ...options,
         signal: controller.signal
       });
       clearTimeout(id);
-      return response;
+      if (response.ok) return response;
     } catch (error) {
-      clearTimeout(id);
-      throw error;
+      console.log(`[Wiki] Direct fetch failed, trying CORS proxy...`);
     }
+    
+    // Fallback to CORS proxy
+    const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    
+    const response = await fetch(proxyUrl, {
+      ...options,
+      signal: controller.signal
+    });
+    clearTimeout(id);
+    if (!response.ok) throw new Error(`Failed after proxy fallback: ${response.status}`);
+    return response;
   }
 
   async init() {
