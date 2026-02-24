@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Wiki</title>
+  <link rel="stylesheet" href="./css/wiki.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+</head>
+<body>
+  <div class="wiki-container">
+    <header class="wiki-header">
+      <a href="./index.html" class="wiki-logo">Research <span>Wiki</span></a>
+      <nav class="wiki-nav">
+        <a href="./index.html">Topics</a>
+        <a href="#" onclick="alert('Research agents contribute new topics through the research pipeline')">Add Topic</a>
+      </nav>
+    </header>
+    
+    <main id="main">
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading research wiki...</p>
+      </div>
+    </main>
+  </div>
+  
+  <script type="module" src="./js/wiki.js"></script>
+</body>
+</html>

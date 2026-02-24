@@ -1,0 +1,100 @@
+{
+  "generated": "2026-02-24T00:19:57.735Z",
+  "topics": [
+    {
+      "slug": "self-reflection",
+      "name": "Self-Reflection & Improvement Loop",
+      "description": "Enabling agents to reflect on their outputs, identify improvements, and evolve their strategies over time through iterative self-assessment and inter-episode learning.",
+      "created": "2026-02-23",
+      "status": "research-complete",
+      "keyFindings": [
+        "Gradient-free whole-system evolution (EvoTest) achieves 38-57% improvement over baselines",
+        "Self-evolution taxonomy: what (model/context/tools/architecture), when (intra/inter-test-time), how (rewards/feedback/multi-agent)",
+        "MCE achieves 5.6-53.8% improvement through bi-level optimization",
+        "Reflective workflows can make GPT-3.5 outperform GPT-4"
+      ],
+      "papers": [
+        {
+          "file": "papers/paper-2.md",
+          "title": "Paper #2: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+          "authors": "** Yufei He, Juncheng Liu, Yue Liu, Yibo Li, Tri Cao, Zhiyuan Hu, Xinxing Xu, Bryan Hooi",
+          "date": "** October 2025",
+          "source": "** arXiv"
+        },
+        {
+          "file": "papers/paper-22.md",
+          "title": "Paper #22: A Survey of Self-Evolving Agents",
+          "authors": "** Huan-ang Gao, Jiayi Geng, Wenyue Hua, et al. (27 authors)",
+          "date": "** January 2026 (v4)",
+          "source": "** arXiv"
+        },
+        {
+          "file": "papers/paper-23.md",
+          "title": "Paper #23: Meta Context Engineering via Agentic Skill Evolution",
+          "authors": "** Haoran Ye, Xuning He, Vincent Arak, Haonan Dong, Guojie Song",
+          "date": "** January 2026",
+          "source": "** arXiv",
+          "keyInsight": "s for **Pitch"
+        },
+        {
+          "file": "papers/paper-24.md",
+          "title": "Paper #24: Reflective Agentic AI - Workflows That Outperform GPT-4",
+          "authors": "** Landbase Team",
+          "date": "** February 2026",
+          "source": "** Landbase Blog"
+        }
+      ],
+      "hasImplementation": true,
+      "agent": "research-agent"
+    }
+  ],
+  "recentUpdates": [
+    {
+      "slug": "self-reflection",
+      "name": "Self-Reflection & Improvement Loop",
+      "description": "Enabling agents to reflect on their outputs, identify improvements, and evolve their strategies over time through iterative self-assessment and inter-episode learning.",
+      "created": "2026-02-23",
+      "status": "research-complete",
+      "keyFindings": [
+        "Gradient-free whole-system evolution (EvoTest) achieves 38-57% improvement over baselines",
+        "Self-evolution taxonomy: what (model/context/tools/architecture), when (intra/inter-test-time), how (rewards/feedback/multi-agent)",
+        "MCE achieves 5.6-53.8% improvement through bi-level optimization",
+        "Reflective workflows can make GPT-3.5 outperform GPT-4"
+      ],
+      "papers": [
+        {
+          "file": "papers/paper-2.md",
+          "title": "Paper #2: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+          "authors": "** Yufei He, Juncheng Liu, Yue Liu, Yibo Li, Tri Cao, Zhiyuan Hu, Xinxing Xu, Bryan Hooi",
+          "date": "** October 2025",
+          "source": "** arXiv"
+        },
+        {
+          "file": "papers/paper-22.md",
+          "title": "Paper #22: A Survey of Self-Evolving Agents",
+          "authors": "** Huan-ang Gao, Jiayi Geng, Wenyue Hua, et al. (27 authors)",
+          "date": "** January 2026 (v4)",
+          "source": "** arXiv"
+        },
+        {
+          "file": "papers/paper-23.md",
+          "title": "Paper #23: Meta Context Engineering via Agentic Skill Evolution",
+          "authors": "** Haoran Ye, Xuning He, Vincent Arak, Haonan Dong, Guojie Song",
+          "date": "** January 2026",
+          "source": "** arXiv",
+          "keyInsight": "s for **Pitch"
+        },
+        {
+          "file": "papers/paper-24.md",
+          "title": "Paper #24: Reflective Agentic AI - Workflows That Outperform GPT-4",
+          "authors": "** Landbase Team",
+          "date": "** February 2026",
+          "source": "** Landbase Blog"
+        }
+      ],
+      "hasImplementation": true,
+      "agent": "research-agent"
+    }
+  ],
+  "totalTopics": 1
+}
