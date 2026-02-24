@@ -284,8 +284,8 @@
         }
 
         // Fetch with timeout and CORS proxy fallback
-        async function fetchWithFallback(url, timeout = 8000) {
-            // Try direct fetch first
+        async function fetchWithFallback(url, timeout = 5000) {
+            // Try direct fetch first (GitHub raw supports CORS)
             try {
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), timeout);
@@ -293,14 +293,22 @@
                 clearTimeout(id);
                 if (response.ok) return response;
             } catch (e) {
-                console.log('Direct fetch failed, trying CORS proxy...');
+                console.log('Direct fetch failed:', e.message);
             }
             
-            // Fallback to CORS proxy
-            const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
-            const response = await fetch(proxyUrl);
-            if (!response.ok) throw new Error('Failed to load data');
-            return response;
+            // Fallback to CORS proxy (slower but more compatible)
+            try {
+                const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), timeout);
+                const response = await fetch(proxyUrl, { signal: controller.signal });
+                clearTimeout(id);
+                if (response.ok) return response;
+            } catch (e) {
+                console.log('Proxy fetch failed:', e.message);
+            }
+            
+            throw new Error('All fetch attempts failed');
         }
         
         // Load data from GitHub JSON files
