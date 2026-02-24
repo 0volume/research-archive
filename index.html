@@ -30,33 +30,26 @@
             <div class="sidebar-section">
                 <h3>// STATS</h3>
                 <div class="sidebar-stats">
-                    <div class="stat-box">
+                    <a href="#research" class="stat-box clickable" onclick="showSection('research'); return true;">
                         <div class="stat-number" id="stat-categories">-</div>
                         <div class="stat-label">Categories</div>
-                    </div>
-                    <div class="stat-box">
+                    </a>
+                    <a href="#research" class="stat-box clickable" onclick="showSection('research'); return true;">
                         <div class="stat-number" id="stat-entries">-</div>
                         <div class="stat-label">Entries</div>
-                    </div>
-                    <div class="stat-box">
+                    </a>
+                    <a href="#thoughts" class="stat-box clickable" onclick="showSection('thoughts'); return true;">
                         <div class="stat-number" id="stat-thoughts">-</div>
                         <div class="stat-label">Thoughts</div>
-                    </div>
-                    <div class="stat-box">
+                    </a>
+                    <a href="#pitches" class="stat-box clickable" onclick="showSection('pitches'); return true;">
                         <div class="stat-number" id="stat-pitches">-</div>
                         <div class="stat-label">Pitches</div>
-                    </div>
+                    </a>
                 </div>
             </div>
             
-            <div class="sidebar-section">
-                <h3>// QUICK_LINKS</h3>
-                <div class="key-findings">
-                    <span class="key-finding-tag">beginner</span>
-                    <span class="key-finding-tag">intermediate</span>
-                    <span class="key-finding-tag">advanced</span>
-                </div>
-            </div>
+            <!-- QUICK_LINKS removed - using top filters instead -->
             
             <div class="sidebar-section">
                 <h3>// NAVIGATION</h3>
@@ -248,13 +241,33 @@
             });
         }
 
+        // Fetch with timeout and CORS proxy fallback
+        async function fetchWithFallback(url, timeout = 8000) {
+            // Try direct fetch first
+            try {
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), timeout);
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(id);
+                if (response.ok) return response;
+            } catch (e) {
+                console.log('Direct fetch failed, trying CORS proxy...');
+            }
+            
+            // Fallback to CORS proxy
+            const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+            const response = await fetch(proxyUrl);
+            if (!response.ok) throw new Error('Failed to load data');
+            return response;
+        }
+        
         // Load data from GitHub JSON files
         async function loadData() {
             const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
             
             try {
                 // Load research from data/ folder
-                const researchRes = await fetch(baseUrl + 'data/research.json');
+                const researchRes = await fetchWithFallback(baseUrl + 'data/research.json');
                 if (!researchRes.ok) throw new Error('Failed to load research data');
                 const researchObj = await researchRes.json();
                 renderResearch(researchObj.entries || []);
@@ -262,7 +275,7 @@
                 // Try to load thoughts (optional - may not exist)
                 let thoughtsData = [];
                 try {
-                    const thoughtsRes = await fetch(baseUrl + 'data/thoughts.json');
+                    const thoughtsRes = await fetchWithFallback(baseUrl + 'data/thoughts.json');
                     if (thoughtsRes.ok) {
                         const thoughtsJson = await thoughtsRes.json();
                         // Handle both wrapped {thoughts: [...]} and direct [...] formats
@@ -276,7 +289,7 @@
                 // Try to load pitches (optional - may not exist)
                 let pitchesData = [];
                 try {
-                    const pitchesRes = await fetch(baseUrl + 'data/pitches.json');
+                    const pitchesRes = await fetchWithFallback(baseUrl + 'data/pitches.json');
                     if (pitchesRes.ok) {
                         const pitchesJson = await pitchesRes.json();
                         // Handle both wrapped {pitches: [...]} and direct [...] formats

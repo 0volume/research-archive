@@ -1246,6 +1246,24 @@
   line-height: 1;
 }
 
+/* Clickable stat boxes */
+.stat-box.clickable {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.stat-box.clickable:hover {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: var(--neon-green);
+    transform: translateY(-2px);
+}
+
+.stat-box.clickable:active {
+    transform: translateY(0);
+}
+
 /* Section visibility control */
 .section {
     display: none;
