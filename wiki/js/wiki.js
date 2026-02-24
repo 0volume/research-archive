@@ -73,8 +73,8 @@ class WikiApp {
     this.currentTopic = null;
     this.searchQuery = '';
     this.activeFilter = 'all';
-    // GitHub raw URL for data
-    this.baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
+    // Local data path for GitHub Pages
+    this.baseUrl = './';
     this.init();
   }
 
@@ -104,7 +104,7 @@ class WikiApp {
       this.renderHomepage();
     } catch (error) {
       console.error('Failed to load wiki data:', error);
-      this.showError('Failed to load research data');
+      this.showError('Failed to load research data. Please try again later.');
     }
   }
 
