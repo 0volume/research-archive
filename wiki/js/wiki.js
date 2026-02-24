@@ -73,6 +73,8 @@ class WikiApp {
     this.currentTopic = null;
     this.searchQuery = '';
     this.activeFilter = 'all';
+    // GitHub raw URL for data
+    this.baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
     this.init();
   }
 
@@ -96,7 +98,8 @@ class WikiApp {
 
   async loadHomepage() {
     try {
-      const response = await fetch('./data/topics.json');
+      const response = await fetch(this.baseUrl + 'wiki/data/topics.json');
+      if (!response.ok) throw new Error('Failed to fetch');
       this.data = await response.json();
       this.renderHomepage();
     } catch (error) {
@@ -107,7 +110,8 @@ class WikiApp {
 
   async loadTopic(slug) {
     try {
-      const response = await fetch('./data/topics.json');
+      const response = await fetch(this.baseUrl + 'wiki/data/topics.json');
+      if (!response.ok) throw new Error('Failed to fetch');
       this.data = await response.json();
       
       this.currentTopic = this.data.topics.find(t => t.slug === slug);
@@ -209,7 +213,7 @@ class WikiApp {
   }
 
   renderTopicCard(topic) {
-    const findingsTags = topic.keyFindings.slice(0, 3).map(f => 
+    const findingsTags = (topic.keyFindings || []).slice(0, 3).map(f => 
       `<span class="key-finding-tag">${this.truncate(f, 40)}</span>`
     ).join('');
     
@@ -233,15 +237,15 @@ class WikiApp {
             ${statusText}
           </span>
         </div>
-        <p class="topic-description">${topic.description}</p>
+        <p class="topic-description">${topic.description || ''}</p>
         <div class="key-findings">${findingsTags}</div>
         <div class="topic-meta">
-          <span>📄 ${topic.papers.length} papers</span>
+          <span>📄 ${(topic.papers || []).length} papers</span>
           <span>📅 ${this.formatDate(topic.created)}</span>
           ${topic.hasImplementation ? '<span>🚀 Implementation</span>' : ''}
         </div>
         <div class="agent-badge">
-          🤖 Added by ${topic.agent}
+          🤖 Added by ${topic.agent || 'Research Agent'}
         </div>
       </a>
     `;
@@ -260,7 +264,8 @@ class WikiApp {
     const nextTopic = currentIndex < sortedTopics.length - 1 ? sortedTopics[currentIndex + 1] : null;
     
     // Render papers
-    const papersHTML = topic.papers.map((paper, i) => `
+    const papersList = topic.papers || [];
+    const papersHTML = papersList.map((paper, i) => `
       <div class="paper-item">
         <h3 class="paper-title">
           ${paper.url ? `<a href="${paper.url}" target="_blank" rel="noopener">${paper.title || `Paper #${i+1}`}</a>` : (paper.title || `Paper #${i+1}`)}
@@ -325,7 +330,7 @@ class WikiApp {
         
         <div class="topic-header">
           <h1 class="topic-title">${topic.name}</h1>
-          <p class="topic-date">Created ${this.formatDate(topic.created)} • ${topic.papers.length} papers</p>
+          <p class="topic-date">Created ${this.formatDate(topic.created)} • ${papersList.length} papers</p>
           <p class="topic-description" style="margin-top: 12px;">${topic.description}</p>
           <div class="agent-badge" style="margin-top: 12px;">
             🤖 Research by ${topic.agent}
@@ -349,7 +354,7 @@ class WikiApp {
         <div class="content-section">
           <div class="section-header">
             <h2>📄 Research Papers</h2>
-            <span class="section-count">${topic.papers.length} papers</span>
+            <span class="section-count">${papersList.length} papers</span>
           </div>
           <div class="papers-list">
             ${papersHTML}
