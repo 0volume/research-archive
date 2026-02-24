@@ -1,0 +1,76 @@
+{
+  "topic": "Self-Reflection & Improvement Loop",
+  "created": "2026-02-23",
+  "pitch": "pitch-5.html",
+  "description": "Enabling agents to reflect on their outputs, identify improvements, and evolve their strategies over time through iterative self-assessment and inter-episode learning.",
+  "papers": [
+    {
+      "id": 2,
+      "title": "EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+      "authors": "Yufei He, Juncheng Liu, et al.",
+      "date": "2025-10-17",
+      "source": "arXiv",
+      "url": "https://arxiv.org/html/2510.13220v1",
+      "file": "papers/paper-2.md",
+      "key_insight": "Actor + Evolver architecture for gradient-free whole-system evolution"
+    },
+    {
+      "id": 22,
+      "title": "A Survey of Self-Evolving Agents: What, When, How, and Where to Evolve",
+      "authors": "Huan-ang Gao, Jiayi Geng, et al. (27 authors)",
+      "date": "2026-01-16",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2507.21046",
+      "file": "papers/paper-22.md",
+      "key_insight": "Taxonomy of self-evolution: what/when/how to evolve, intra vs inter-test-time"
+    },
+    {
+      "id": 23,
+      "title": "Meta Context Engineering via Agentic Skill Evolution",
+      "authors": "Haoran Ye, Xuning He, et al.",
+      "date": "2026-01-27",
+      "source": "arXiv",
+      "url": "https://arxiv.org/html/2601.21557",
+      "file": "papers/paper-23.md",
+      "key_insight": "Bi-level optimization: meta-level skill evolution + base-level context optimization"
+    },
+    {
+      "id": 24,
+      "title": "Reflective Agentic AI: Workflows That Outperform GPT-4",
+      "authors": "Landbase Team",
+      "date": "2026-02-18",
+      "source": "Landbase",
+      "url": "https://www.landbase.com/blog/how-reflective-agentic-ai-can-outperform-gpt-4-a-deep-dive-into-new-ai-workflows",
+      "file": "papers/paper-24.md",
+      "key_insight": "Plan → Execute → Self-Assess → Refine workflow pattern"
+    }
+  ],
+  "implementation": "implementation-plan.md",
+  "status": "research-complete",
+  "key_findings": [
+    "Gradient-free whole-system evolution (EvoTest) achieves 38-57% improvement over baselines",
+    "Self-evolution taxonomy: what (model/context/tools/architecture), when (intra/inter-test-time), how (rewards/feedback/multi-agent)",
+    "MCE achieves 5.6-53.8% improvement through bi-level optimization",
+    "Reflective workflows can make GPT-3.5 outperform GPT-4"
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Core Reflection Loop",
+      "weeks": "1-3",
+      "deliverable": "Plan → Execute → Self-Assess → Refine workflow"
+    },
+    {
+      "phase": 2,
+      "name": "Inter-Episode Learning",
+      "weeks": "4-6",
+      "deliverable": "EpisodeAnalyzer, PromptEvolver, ContextMemory"
+    },
+    {
+      "phase": 3,
+      "name": "Full Self-Evolving System",
+      "weeks": "7-10",
+      "deliverable": "SkillEvolver, ContextOptimizer, bi-level evolution"
+    }
+  ]
+}
