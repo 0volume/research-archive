@@ -627,6 +627,113 @@
 .cyber-tag:hover {
   background: rgba(0, 255, 245, 0.15);
   border-color: var(--primary);
+  box-shadow: 
+    0 0 12px rgba(0, 255, 245, 0.4),
+    0 0 24px rgba(0, 255, 245, 0.2);
+  text-shadow: 0 0 8px rgba(0, 255, 242, 0.8);
+}
+
+/* ===========================================
+   ENTRY CARD - Wiki/Archive Unified Style
+   =========================================== */
+
+.entry-card {
+  background: var(--bg-panel);
+  border: 1px solid rgba(0, 255, 245, 0.1);
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Corner accents */
+.entry-card::before,
+.entry-card::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--neon-cyan);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.entry-card::before {
+  top: 8px;
+  left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.entry-card::after {
+  bottom: 8px;
+  right: 8px;
+  border-left: none;
+  border-top: none;
+}
+
+.entry-card:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 245, 0.3),
+    0 0 30px rgba(0, 255, 245, 0.15),
+    0 0 45px rgba(255, 0, 255, 0.05);
+  transform: translateY(-4px) scale(1.01);
+  animation: cardPulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes cardPulseGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 15px rgba(0, 255, 245, 0.3),
+      0 0 30px rgba(0, 255, 245, 0.15),
+      0 0 45px rgba(255, 0, 255, 0.05);
+  }
+  50% { 
+    box-shadow: 
+      0 0 25px rgba(0, 255, 245, 0.5),
+      0 0 50px rgba(0, 255, 245, 0.25),
+      0 0 75px rgba(255, 0, 255, 0.15);
+  }
+}
+
+.entry-card:hover::before,
+.entry-card:hover::after {
+  opacity: 1;
+  border-color: var(--neon-magenta);
+}
+
+.entry-card.beginner::before,
+.entry-card.beginner::after {
+  border-color: var(--neon-green);
+}
+
+.entry-card.intermediate::before,
+.entry-card.intermediate::after {
+  border-color: var(--neon-orange);
+}
+
+.entry-card.advanced::before,
+.entry-card.advanced::after {
+  border-color: var(--neon-magenta);
+}
+
+.entry-card h3 {
+  margin: 0 0 10px 0;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.entry-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
 /* ===========================================
