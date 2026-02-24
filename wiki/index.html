@@ -120,6 +120,26 @@
   <script src="./js/wiki.js"></script>
   
   <script>
+    // Initialize wiki app immediately
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM loaded, initializing wiki...');
+      if (typeof WikiApp !== 'undefined') {
+        window.wikiApp = new WikiApp();
+      } else {
+        console.error('WikiApp class not found!');
+      }
+    });
+    
+    // Also try immediately in case DOM is already ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      console.log('DOM already ready, initializing wiki...');
+      if (typeof WikiApp !== 'undefined') {
+        window.wikiApp = new WikiApp();
+      }
+    }
+  </script>
+  
+  <script>
     // Mobile navigation toggle
     function toggleMobileNav() {
       const nav = document.getElementById('main-nav');
