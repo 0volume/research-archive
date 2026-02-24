@@ -1245,3 +1245,12 @@
   display: block;
   line-height: 1;
 }
+
+/* Section visibility control */
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
