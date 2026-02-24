@@ -1230,3 +1230,199 @@ body::before {
     padding: 12px 16px; /* Larger touch targets */
   }
 }
+
+/* ===========================================
+   GLITCH EFFECT ON TITLES
+   =========================================== */
+
+.archive-title h1,
+.wiki-logo,
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.archive-title h1::before,
+.wiki-logo::before,
+.section-title::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: glitchReveal 3s infinite;
+}
+
+.archive-title h1::after,
+.wiki-logo::after,
+.section-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--neon-magenta), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: glitchReveal 3s infinite reverse;
+}
+
+@keyframes glitchReveal {
+  0%, 90%, 100% { opacity: 0; transform: translate(0); }
+  92% { opacity: 0.8; transform: translate(-2px, 1px); }
+  94% { opacity: 0; transform: translate(2px, -1px); }
+  96% { opacity: 0.6; transform: translate(-1px, 2px); }
+  98% { opacity: 0; transform: translate(1px, -2px); }
+}
+
+/* ===========================================
+   ANIMATED BORDER GRADIENTS ON CARDS
+   =========================================== */
+
+.topic-card,
+.entry-card {
+  position: relative;
+  background: var(--bg-secondary);
+}
+
+.topic-card::before,
+.entry-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-cyan));
+  background-size: 200% 100%;
+  border-radius: calc(var(--radius) + 2px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: borderGradient 3s linear infinite;
+}
+
+.topic-card:hover::before,
+.entry-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes borderGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ===========================================
+   FOOTER STYLING
+   =========================================== */
+
+.archive-footer,
+.wiki-footer {
+  grid-column: 1 / -1;
+  margin-top: 32px;
+  padding: 20px 32px;
+  background: rgba(18, 18, 26, 0.9);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 245, 0.15);
+  border-radius: var(--radius);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--neon-magenta);
+  letter-spacing: 2px;
+  text-shadow: var(--glow-magenta);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
+.footer-copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ===========================================
+   ENHANCED HOVER GLOW
+   =========================================== */
+
+.topic-card:hover,
+.entry-card:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 245, 0.4),
+    0 0 40px rgba(0, 255, 245, 0.2),
+    0 0 60px rgba(255, 0, 255, 0.1);
+  border-color: var(--neon-cyan);
+}
+
+.entry-card.beginner:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 65, 0.4),
+    0 0 40px rgba(0, 255, 65, 0.2),
+    0 0 60px rgba(0, 255, 65, 0.1);
+}
+
+.entry-card.intermediate:hover {
+  box-shadow: 
+    0 0 20px rgba(255, 107, 53, 0.4),
+    0 0 40px rgba(255, 107, 53, 0.2),
+    0 0 60px rgba(255, 107, 53, 0.1);
+}
+
+.entry-card.advanced:hover {
+  box-shadow: 
+    0 0 20px rgba(255, 0, 255, 0.4),
+    0 0 40px rgba(255, 0, 255, 0.2),
+    0 0 60px rgba(255, 0, 255, 0.1);
+}
+
+/* ===========================================
+   RESPONSIVE FOOTER
+   =========================================== */
+
+@media (max-width: 640px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
