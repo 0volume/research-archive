@@ -150,6 +150,14 @@ body::before {
   text-shadow: var(--glow-cyan);
 }
 
+.wiki-nav a.active {
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  background: rgba(0, 255, 245, 0.15);
+  box-shadow: var(--glow-cyan);
+  text-shadow: var(--glow-cyan);
+}
+
 /* Sidebar */
 .wiki-sidebar {
   background: rgba(18, 18, 26, 0.8);
@@ -819,6 +827,14 @@ body::before {
   border-color: var(--neon-magenta);
   box-shadow: var(--glow-magenta);
   text-shadow: var(--glow-magenta);
+}
+
+.archive-nav a.active {
+  color: var(--neon-cyan);
+  border-color: var(--neon-cyan);
+  background: rgba(0, 255, 245, 0.15);
+  box-shadow: var(--glow-cyan);
+  text-shadow: var(--glow-cyan);
 }
 
 /* Archive Layout */
