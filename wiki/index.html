@@ -117,25 +117,26 @@
     </script>
   </div>
   
+  <!-- Load wiki JavaScript -->
   <script src="./js/wiki.js"></script>
   
+  <!-- Initialize after wiki.js loads -->
   <script>
-    // Initialize wiki app immediately
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM loaded, initializing wiki...');
-      if (typeof WikiApp !== 'undefined') {
-        window.wikiApp = new WikiApp();
+    // Initialize wiki app
+    console.log('WikiApp available:', typeof WikiApp !== 'undefined');
+    if (typeof WikiApp !== 'undefined') {
+      // Wait for DOM or init immediately
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('DOM ready, creating WikiApp');
+          window.wikiApp = new WikiApp();
+        });
       } else {
-        console.error('WikiApp class not found!');
-      }
-    });
-    
-    // Also try immediately in case DOM is already ready
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      console.log('DOM already ready, initializing wiki...');
-      if (typeof WikiApp !== 'undefined') {
+        console.log('Creating WikiApp immediately');
         window.wikiApp = new WikiApp();
       }
+    } else {
+      console.error('WikiApp not defined - script may have failed to load');
     }
   </script>
   
