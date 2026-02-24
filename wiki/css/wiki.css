@@ -251,6 +251,11 @@ body::before {
   transform: translateY(-2px);
 }
 
+/* Override cursor for clickable stat boxes */
+.stat-box.clickable {
+  cursor: pointer;
+}
+
 .stat-number {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.4rem;
