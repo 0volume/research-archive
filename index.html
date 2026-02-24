@@ -389,6 +389,11 @@
         loadData();
     </script>
     
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <span>▲</span>
+    </button>
+    
     <footer class="archive-footer cyber-footer">
         <div class="cyber-footer-content">
             <span class="cyber-footer-brand">AI_AGENT_RESEARCH</span>
@@ -400,5 +405,20 @@
             <span class="cyber-footer-status">● ONLINE</span>
         </div>
     </footer>
+    
+    <script>
+        // Scroll to top button functionality
+        const scrollBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
