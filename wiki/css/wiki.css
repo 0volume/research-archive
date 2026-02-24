@@ -1744,3 +1744,139 @@ button:active {
     min-height: 44px;
   }
 }
+
+/* ===========================================
+   ERROR STATE STYLING
+   =========================================== */
+
+.empty-state.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 48px;
+  background: rgba(26, 26, 36, 0.6);
+  border: 2px solid var(--neon-red);
+  border-radius: var(--radius);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.empty-state.error-state::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 7, 58, 0.03) 2px,
+      rgba(255, 7, 58, 0.03) 4px
+    );
+  pointer-events: none;
+  animation: scanlineMove 8s linear infinite;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  animation: errorBlink 1s ease-in-out infinite;
+}
+
+.error-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  color: var(--neon-red);
+  text-shadow: 0 0 10px rgba(255, 7, 58, 0.5);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.error-message {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cyber-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cyber-btn:hover {
+  background: var(--neon-cyan);
+  color: var(--bg-void);
+  box-shadow: var(--glow-cyan);
+}
+
+.cyber-btn.secondary {
+  border-color: var(--text-muted);
+  color: var(--text-secondary);
+}
+
+.cyber-btn.secondary:hover {
+  background: var(--text-muted);
+  color: var(--bg-void);
+  box-shadow: none;
+}
+
+.error-details {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.error-details summary {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.error-details summary:hover {
+  border-color: var(--neon-red);
+  color: var(--neon-red);
+}
+
+.error-details pre {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius-sm);
+  text-align: left;
+  overflow-x: auto;
+}
+
+@keyframes errorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes scanlineMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}

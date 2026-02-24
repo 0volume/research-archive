@@ -73,9 +73,32 @@ class WikiApp {
     this.currentTopic = null;
     this.searchQuery = '';
     this.activeFilter = 'all';
-    // Local data path for GitHub Pages
-    this.baseUrl = './';
+    // GitHub raw URL for data - with fallback to local
+    this.baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
+    this.localDataUrl = './data/topics.json';
+    this.fetchTimeout = 10000; // 10 second timeout
     this.init();
+  }
+
+  // Helper method to fetch with timeout
+  async fetchWithTimeout(url, options = {}, timeout = 10000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => {
+      console.warn(`[Wiki] Fetch timeout for: ${url}`);
+      controller.abort();
+    }, timeout);
+
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal
+      });
+      clearTimeout(id);
+      return response;
+    } catch (error) {
+      clearTimeout(id);
+      throw error;
+    }
   }
 
   async init() {
@@ -97,33 +120,88 @@ class WikiApp {
   }
 
   async loadHomepage() {
+    console.log('[Wiki] Loading homepage...');
     try {
-      const response = await fetch('data/topics.json');
-      if (!response.ok) throw new Error('Failed to fetch');
+      // Try GitHub first
+      console.log('[Wiki] Attempting to fetch from GitHub:', this.baseUrl + 'wiki/data/topics.json');
+      const response = await this.fetchWithTimeout(
+        this.baseUrl + 'wiki/data/topics.json', 
+        {}, 
+        this.fetchTimeout
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
       this.data = await response.json();
+      console.log('[Wiki] Successfully loaded data from GitHub, topics:', this.data.topics?.length);
       this.renderHomepage();
     } catch (error) {
-      console.error('Failed to load wiki data:', error);
-      this.showError('Failed to load research data. Please try again later.');
+      console.error('[Wiki] GitHub fetch failed:', error.message);
+      
+      // Try local fallback
+      console.log('[Wiki] Trying local fallback:', this.localDataUrl);
+      try {
+        const localResponse = await this.fetchWithTimeout(
+          this.localDataUrl,
+          {},
+          5000
+        );
+        
+        if (!localResponse.ok) {
+          throw new Error(`Local HTTP ${localResponse.status}`);
+        }
+        
+        this.data = await localResponse.json();
+        console.log('[Wiki] Successfully loaded from local, topics:', this.data.topics?.length);
+        this.renderHomepage();
+      } catch (localError) {
+        console.error('[Wiki] Local fetch also failed:', localError.message);
+        this.showError('Failed to load wiki data. Please refresh or try again later.');
+      }
     }
   }
 
   async loadTopic(slug) {
+    console.log('[Wiki] Loading topic:', slug);
     try {
-      const response = await fetch('data/topics.json');
-      if (!response.ok) throw new Error('Failed to fetch');
+      const response = await this.fetchWithTimeout(
+        this.baseUrl + 'wiki/data/topics.json',
+        {},
+        this.fetchTimeout
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      
       this.data = await response.json();
       
       this.currentTopic = this.data.topics.find(t => t.slug === slug);
       
       if (!this.currentTopic) {
-        this.showError('Topic not found');
-        return;
+        // Try local
+        console.log('[Wiki] Topic not found in GitHub data, trying local...');
+        try {
+          const localResponse = await this.fetchWithTimeout(this.localDataUrl, {}, 5000);
+          if (localResponse.ok) {
+            this.data = await localResponse.json();
+            this.currentTopic = this.data.topics.find(t => t.slug === slug);
+          }
+        } catch (e) {
+          console.warn('[Wiki] Local fallback failed:', e.message);
+        }
+        
+        if (!this.currentTopic) {
+          this.showError('Topic not found');
+          return;
+        }
       }
       
       this.renderTopic();
     } catch (error) {
-      console.error('Failed to load topic:', error);
+      console.error('[Wiki] Failed to load topic:', error);
       this.showError('Failed to load topic');
     }
   }
@@ -646,10 +724,20 @@ class WikiApp {
   showError(message) {
     const main = document.getElementById('main');
     main.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-state-icon">⚠️</div>
-        <h3>${message}</h3>
-        <p><a href="./index.html" style="color: var(--accent-blue);">Return to homepage</a></p>
+      <div class="empty-state error-state">
+        <div class="empty-state-icon error-icon">⚠️</div>
+        <h3 class="error-title">SYSTEM_ERROR</h3>
+        <p class="error-message">${message}</p>
+        <div class="error-actions">
+          <a href="./index.html" class="cyber-btn">⟲ RETRY</a>
+          <a href="../index.html" class="cyber-btn secondary">← RESEARCH</a>
+        </div>
+        <div class="error-details">
+          <details>
+            <summary>DEBUG_INFO</summary>
+            <pre id="error-debug">Click retry to see debug info</pre>
+          </details>
+        </div>
       </div>
     `;
   }
