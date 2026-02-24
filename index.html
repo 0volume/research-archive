@@ -74,6 +74,11 @@
                 <div class="archive-subtitle">Research • Thoughts • Pitches</div>
             </div>
 
+            <!-- Archive Search -->
+            <div class="archive-search-container">
+                <input type="text" class="archive-search" id="archive-search" placeholder="Search research, thoughts, and pitches... (Press / to focus)">
+            </div>
+
             <div id="research" class="section active">
                 <div class="archive-meta">
                     <span>Category: <span id="category-count" class="entry-count">-</span></span>
@@ -178,6 +183,37 @@
                 filterEntries(btn.dataset.filter);
             });
         });
+
+        // Search functionality
+        const searchInput = document.getElementById('archive-search');
+        
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            searchEntries(query);
+        });
+
+        // Keyboard shortcut: Press / to focus search
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        function searchEntries(query) {
+            // Search through all entry cards
+            document.querySelectorAll('.entry-card').forEach(card => {
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+                const tags = Array.from(card.querySelectorAll('.entry-tag, .complexity-badge')).map(t => t.textContent.toLowerCase()).join(' ');
+                
+                if (query === '' || title.includes(query) || description.includes(query) || tags.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
         function filterEntries(level) {
             document.querySelectorAll('.entry-card').forEach(entry => {

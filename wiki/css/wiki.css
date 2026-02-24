@@ -536,6 +536,7 @@ body::before {
   margin-bottom: 16px;
 }
 
+/* Key Finding Tags - Enhanced Hover Glow */
 .key-finding-tag {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
@@ -544,6 +545,38 @@ body::before {
   border: 1px solid rgba(0, 255, 245, 0.2);
   border-radius: var(--radius-sm);
   color: var(--neon-cyan);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.key-finding-tag:hover {
+  background: rgba(0, 255, 245, 0.15);
+  border-color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(0, 255, 242, 0.6);
+}
+
+/* Wiki Nav Link - Enhanced with Pulsing Magenta Animation */
+.wiki-nav-link {
+  border-color: var(--neon-magenta) !important;
+  color: var(--neon-magenta) !important;
+}
+
+.wiki-nav-link:hover {
+  background: rgba(255, 0, 255, 0.15) !important;
+  border-color: var(--neon-magenta) !important;
+  box-shadow: var(--glow-magenta) !important;
+  text-shadow: var(--glow-magenta) !important;
+  animation: magentaPulse 2s ease-in-out infinite;
+}
+
+@keyframes magentaPulse {
+  0%, 100% { 
+    box-shadow: var(--glow-magenta);
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.7), 0 0 30px rgba(255, 0, 255, 0.4), 0 0 60px rgba(255, 0, 255, 0.2);
+  }
 }
 
 .topic-meta {

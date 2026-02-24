@@ -678,3 +678,116 @@
 .cyber-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--secondary);
 }
+
+/* ===========================================
+   SEARCH INPUT STYLES FOR ARCHIVE
+   =========================================== */
+
+.archive-search {
+  width: 100%;
+  padding: 14px 20px 14px 48px;
+  background: var(--bg-card);
+  border: 2px solid rgba(0, 255, 245, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: 'JetBrains Mono', monospace;
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+}
+
+.archive-search:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+  background: var(--bg-panel);
+}
+
+.archive-search::placeholder {
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.archive-search-container {
+  position: relative;
+}
+
+.archive-search-container::before {
+  content: '⌕';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--neon-cyan);
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+/* Enhanced Key Finding Tag Hover with Glow */
+.key-finding-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  background: rgba(0, 255, 245, 0.05);
+  border: 1px solid rgba(0, 255, 245, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--neon-cyan);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.key-finding-tag:hover {
+  background: rgba(0, 255, 245, 0.15);
+  border-color: var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(0, 255, 242, 0.6);
+  cursor: pointer;
+}
+
+/* ===========================================
+   ARCHIVE-SPECIFIC TITLE GLITCH EFFECTS
+   =========================================== */
+
+.archive-title h1 {
+  position: relative;
+  display: inline-block;
+}
+
+.archive-title h1::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: archiveGlitch 4s infinite;
+}
+
+.archive-title h1::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--neon-magenta), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: archiveGlitch 4s infinite reverse;
+}
+
+@keyframes archiveGlitch {
+  0%, 85%, 100% { opacity: 0; transform: translate(0); }
+  87% { opacity: 0.8; transform: translate(-3px, 2px); }
+  89% { opacity: 0; transform: translate(3px, -2px); }
+  91% { opacity: 0.7; transform: translate(-2px, 3px); }
+  93% { opacity: 0; transform: translate(2px, -3px); }
+}
