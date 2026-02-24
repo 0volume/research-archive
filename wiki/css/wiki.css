@@ -623,10 +623,8 @@ button:active::after,
   100% { text-shadow: 2px 0 var(--neon-magenta), -2px 0 var(--neon-cyan); }
 }
 
-/* Entry Card Glitch */
-.entry-card:hover {
-  animation: glitchHover 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
+/* Entry Card Glitch - for topic cards only */
+/* Removing conflicting .entry-card:hover - using the one below instead */
 
 .topic-card:hover::before,
 .topic-card:hover::after {

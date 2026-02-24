@@ -361,16 +361,16 @@
             data.forEach((item, i) => {
                 categories.add(item.category);
                 complexities.add(item.complexity);
-                // Link to GitHub research folder or specific file
-                const githubUrl = item.url || `https://github.com/0volume/research-archive/tree/main/research/${(item.title || '').toLowerCase().replace(/\s+/g, '-')}`;
+                // Link to wiki topic page
+                const wikiUrl = item.url || `wiki/?topic=${encodeURIComponent((item.title || '').toLowerCase().replace(/\s+/g, '-'))}`;
                 html += `
-                    <a href="${githubUrl}" target="_blank" class="entry-card ${item.complexity}">
+                    <a href="${wikiUrl}" class="entry-card ${item.complexity}">
                         <h3>${item.title}</h3>
                         <p>${item.summary || item.description || ''}</p>
                         <div class="entry-meta">
                             <span class="complexity-badge ${item.complexity}">${item.complexity}</span>
                             <span class="entry-tag">${item.category}</span>
-                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ GitHub</span>
+                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ Wiki</span>
                         </div>
                     </a>
                 `;
@@ -395,14 +395,15 @@
             thoughtsArray.slice(0, 10).forEach(item => {
                 // Handle both summary and content fields
                 const content = item.summary || item.content || 'No content';
-                const thoughtUrl = item.url || `https://github.com/0volume/research-archive/tree/main#thoughts`;
+                // Link to wiki thoughts section
+                const thoughtUrl = item.url || `wiki/#thoughts`;
                 html += `
-                    <a href="${thoughtUrl}" target="_blank" class="entry-card">
+                    <a href="${thoughtUrl}" class="entry-card">
                         <h3>${item.title}</h3>
                         <p>${content.substring(0, 150)}${content.length > 150 ? '...' : ''}</p>
                         <div class="entry-meta">
                             <span class="entry-tag">${item.date || ''}</span>
-                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ View</span>
+                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ Wiki</span>
                         </div>
                     </a>
                 `;
@@ -416,21 +417,21 @@
             const pitchesArray = data || [];
             
             if (pitchesArray.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted);">No pitches yet. <a href="https://github.com/0volume/research-archive/tree/main" target="_blank" style="color: var(--neon-cyan);">View pitch files on GitHub →</a></p>';
+                container.innerHTML = '<p style="color: var(--text-muted);">No pitches yet. <a href="wiki/" style="color: var(--neon-cyan);">View pitches on Wiki →</a></p>';
                 return;
             }
             
             let html = '';
             pitchesArray.forEach(item => {
-                // Link to pitch HTML file in root folder
-                const pitchUrl = item.url || `https://github.com/0volume/research-archive/blob/main/${item.file}`;
+                // Link to rendered pitch HTML page (not GitHub blob)
+                const pitchUrl = item.url || `pitch-${item.id}.html`;
                 html += `
-                    <a href="${pitchUrl}" target="_blank" class="entry-card">
+                    <a href="${pitchUrl}" class="entry-card">
                         <h3>Pitch #${item.id}: ${item.title}</h3>
                         <p>Status: ${item.status || 'pending'}</p>
                         <div class="entry-meta">
                             <span class="complexity-badge ${item.status || 'pending'}">${item.status || 'pending'}</span>
-                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ GitHub</span>
+                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ View</span>
                         </div>
                     </a>
                 `;
