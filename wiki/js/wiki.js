@@ -95,6 +95,20 @@ class WikiApp {
     }
   }
   
+  // Unified handler for stats tiles - reads from data-attributes
+  handleStatClick(element) {
+    const section = element.dataset.section;
+    const filter = element.dataset.filter;
+    
+    if (section) {
+      this.showSection(section);
+    }
+    if (filter) {
+      this.filterByStatus(filter);
+    }
+    return true;
+  }
+  
   // Filter by status (for clickable stats)
   filterByStatus(status) {
     this.activeFilter = status;

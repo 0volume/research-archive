@@ -30,23 +30,23 @@
             <div class="sidebar-section">
                 <h3>// STATS</h3>
                 <div class="sidebar-stats">
-                    <a href="#research" class="stat-box clickable" onclick="showSection('research'); filterEntries('all'); return true;">
+                    <a href="#research" class="stat-box clickable" onclick="showSection('research'); return true;" data-section="research">
                         <div class="stat-number" id="stat-categories">-</div>
                         <div class="stat-label">Categories</div>
                     </a>
-                    <a href="#research" class="stat-box clickable" onclick="showSection('research'); filterEntries('all'); return true;">
+                    <a href="#research" class="stat-box clickable" onclick="showSection('research'); return true;" data-section="research">
                         <div class="stat-number" id="stat-entries">-</div>
                         <div class="stat-label">Entries</div>
                     </a>
-                    <a href="#thoughts" class="stat-box clickable" onclick="showSection('thoughts'); return true;">
+                    <a href="#thoughts" class="stat-box clickable" onclick="showSection('thoughts'); return true;" data-section="thoughts">
                         <div class="stat-number" id="stat-thoughts">-</div>
                         <div class="stat-label">Thoughts</div>
                     </a>
-                    <a href="#pitches" class="stat-box clickable" onclick="showSection('pitches'); return true;">
+                    <a href="#pitches" class="stat-box clickable" onclick="showSection('pitches'); return true;" data-section="pitches">
                         <div class="stat-number" id="stat-pitches">-</div>
                         <div class="stat-label">Pitches</div>
                     </a>
-                    <a href="#notes" class="stat-box clickable" onclick="showSection('notes'); return true;">
+                    <a href="#notes" class="stat-box clickable" onclick="showSection('notes'); return true;" data-section="notes">
                         <div class="stat-number" id="stat-notes">-</div>
                         <div class="stat-label">Notes</div>
                     </a>
@@ -54,16 +54,6 @@
             </div>
             
             <!-- QUICK_LINKS removed - using top filters instead -->
-            
-            <div class="sidebar-section">
-                <h3>// NAVIGATION</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="#research" class="key-finding-tag" style="text-decoration: none; text-align: center;">📚 Research</a>
-                    <a href="#thoughts" class="key-finding-tag" style="text-decoration: none; text-align: center;">💭 Thoughts</a>
-                    <a href="#pitches" class="key-finding-tag" style="text-decoration: none; text-align: center;">🎯 Pitches</a>
-                    <a href="#notes" class="key-finding-tag" style="text-decoration: none; text-align: center;">📋 Research Notes</a>
-                </div>
-            </div>
         </aside>
         
         <main class="archive-main">

@@ -30,19 +30,19 @@
       <div class="sidebar-section">
         <h3>// STATS</h3>
         <div class="sidebar-stats">
-          <a href="#research" class="stat-box clickable" onclick="wikiApp && wikiApp.showSection('research'); return true;">
+          <a href="#research" class="stat-box clickable" onclick="wikiApp && wikiApp.handleStatClick(this); return true;" data-section="research">
             <div class="stat-number" id="stat-topics">-</div>
             <div class="stat-label">Topics</div>
           </a>
-          <a href="#papers" class="stat-box clickable" onclick="wikiApp && wikiApp.showSection('papers'); return true;">
+          <a href="#papers" class="stat-box clickable" onclick="wikiApp && wikiApp.handleStatClick(this); return true;" data-section="papers">
             <div class="stat-number" id="stat-papers">-</div>
             <div class="stat-label">Papers</div>
           </a>
-          <a href="#complete" class="stat-box clickable" onclick="wikiApp && wikiApp.filterByStatus('complete'); return true;">
+          <a href="#complete" class="stat-box clickable" onclick="wikiApp && wikiApp.handleStatClick(this); return true;" data-filter="complete">
             <div class="stat-number" id="stat-complete">-</div>
             <div class="stat-label">Complete</div>
           </a>
-          <a href="#implemented" class="stat-box clickable" onclick="wikiApp && wikiApp.filterByStatus('implemented'); return true;">
+          <a href="#implemented" class="stat-box clickable" onclick="wikiApp && wikiApp.handleStatClick(this); return true;" data-filter="implemented">
             <div class="stat-number" id="stat-impl">-</div>
             <div class="stat-label">Live</div>
           </a>
