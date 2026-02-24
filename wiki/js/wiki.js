@@ -98,7 +98,7 @@ class WikiApp {
 
   async loadHomepage() {
     try {
-      const response = await fetch(this.baseUrl + 'wiki/data/topics.json');
+      const response = await fetch('data/topics.json');
       if (!response.ok) throw new Error('Failed to fetch');
       this.data = await response.json();
       this.renderHomepage();
@@ -110,7 +110,7 @@ class WikiApp {
 
   async loadTopic(slug) {
     try {
-      const response = await fetch(this.baseUrl + 'wiki/data/topics.json');
+      const response = await fetch('data/topics.json');
       if (!response.ok) throw new Error('Failed to fetch');
       this.data = await response.json();
       
