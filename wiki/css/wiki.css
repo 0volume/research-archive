@@ -336,6 +336,39 @@ body::before {
   box-shadow: var(--glow-cyan);
 }
 
+/* Button Ripple Effect */
+.filter-btn,
+.cyber-filter-btn,
+button,
+.wiki-nav a {
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::after,
+.cyber-filter-btn::after,
+button::after,
+.wiki-nav a::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.filter-btn:active::after,
+.cyber-filter-btn:active::after,
+button:active::after,
+.wiki-nav a:active::after {
+  width: 300px;
+  height: 300px;
+}
+
 .result-count {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.8rem;
@@ -609,6 +642,22 @@ body::before {
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: 0.5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.topic-card:hover .topic-name {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan);
+  animation: textGlitch 0.3s ease-in-out;
+}
+
+@keyframes textGlitch {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
 }
 
 .topic-status {
