@@ -175,13 +175,18 @@ class WikiApp {
     
     // Update sidebar stats
     if (this.data.topics) {
-      document.getElementById('stat-topics').textContent = this.data.topics.length;
-      const totalPapers = this.data.topics.reduce((sum, t) => sum + (t.papers?.length || 0), 0);
-      document.getElementById('stat-papers').textContent = totalPapers;
-      const complete = this.data.topics.filter(t => t.status === 'research-complete').length;
-      document.getElementById('stat-complete').textContent = complete;
-      const implemented = this.data.topics.filter(t => t.hasImplementation).length;
-      document.getElementById('stat-impl').textContent = implemented;
+      const stats = {
+        'stat-topics': this.data.topics.length,
+        'stat-papers': this.data.topics.reduce((sum, t) => sum + (t.papers?.length || 0), 0),
+        'stat-complete': this.data.topics.filter(t => t.status === 'research-complete').length,
+        'stat-impl': this.data.topics.filter(t => t.hasImplementation).length
+      };
+      
+      // Animate stat numbers
+      Object.entries(stats).forEach(([id, target]) => {
+        const el = document.getElementById(id);
+        if (el) this.animateCount(el, target);
+      });
     }
     
     // Update sidebar recent updates
@@ -494,15 +499,21 @@ class WikiApp {
         document.getElementById('search')?.focus();
       }
       
-      // Go home with Escape
+      // Go back/home with Escape
       if (e.key === 'Escape') {
         const searchInput = document.getElementById('search');
         if (searchInput === document.activeElement) {
           searchInput.blur();
-        } else if (!window.location.search.includes('topic=')) {
-          // Already on home
-        } else {
+          return;
+        }
+        
+        // If on topic page, go back to wiki home
+        if (window.location.search.includes('topic=')) {
           window.location.href = './index.html';
+        }
+        // If on wiki home, go to main archive
+        else {
+          window.location.href = '../';
         }
       }
     });
@@ -520,6 +531,34 @@ class WikiApp {
   truncate(str, length) {
     if (str.length <= length) return str;
     return str.slice(0, length) + '...';
+  }
+
+  animateCount(element, target) {
+    const duration = 800;
+    const start = 0;
+    const startTime = performance.now();
+    
+    const update = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Ease out cubic
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = Math.floor(start + (target - start) * easeOut);
+      
+      element.textContent = current;
+      
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        element.textContent = target;
+        // Add pulse animation on complete
+        element.classList.add('counting');
+        setTimeout(() => element.classList.remove('counting'), 300);
+      }
+    };
+    
+    requestAnimationFrame(update);
   }
 
   renderImplementationPlan(markdown) {
