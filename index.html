@@ -46,6 +46,10 @@
                         <div class="stat-number" id="stat-pitches">-</div>
                         <div class="stat-label">Pitches</div>
                     </a>
+                    <a href="#notes" class="stat-box clickable" onclick="showSection('notes'); return true;">
+                        <div class="stat-number" id="stat-notes">-</div>
+                        <div class="stat-label">Notes</div>
+                    </a>
                 </div>
             </div>
             
@@ -57,6 +61,7 @@
                     <a href="#research" class="key-finding-tag" style="text-decoration: none; text-align: center;">📚 Research</a>
                     <a href="#thoughts" class="key-finding-tag" style="text-decoration: none; text-align: center;">💭 Thoughts</a>
                     <a href="#pitches" class="key-finding-tag" style="text-decoration: none; text-align: center;">🎯 Pitches</a>
+                    <a href="#notes" class="key-finding-tag" style="text-decoration: none; text-align: center;">📋 Research Notes</a>
                 </div>
             </div>
         </aside>
@@ -131,6 +136,23 @@
                     </div>
                 </div>
             </div>
+
+            <div id="notes" class="section">
+                <div class="archive-meta">
+                    <span>Research Notes: <span id="notes-count" class="entry-count">-</span> implementation plans</span>
+                    <a href="https://github.com/0volume/research-archive/tree/main/research/topics" target="_blank" class="nav-tab" style="font-size: 0.75rem; padding: 6px 12px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); border-radius: 3px;">View on GitHub →</a>
+                </div>
+                <div id="notes-list">
+                    <div class="loading">
+                        <div class="cyber-spinner"></div>
+                        <div class="decrypting-loader">
+                            <div class="decrypting-text">DECRYPTING_DATA</div>
+                            <div class="decrypting-progress"></div>
+                            <div class="decrypting-status">ACCESSING_NEURAL_GRID...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -156,8 +178,8 @@
         // Tab switching via URL hash
         function handleHash() {
             const hash = window.location.hash.slice(1);
-            // Support all sections: research, thoughts, pitches
-            if (hash === 'research' || hash === 'thoughts' || hash === 'pitches') {
+            // Support all sections: research, thoughts, pitches, notes
+            if (hash === 'research' || hash === 'thoughts' || hash === 'pitches' || hash === 'notes') {
                 showSection(hash);
             } else if (!hash) {
                 // Default to research on empty hash
@@ -320,8 +342,21 @@
                 }
                 renderPitches(pitchesData);
                 
+                // Load topics (research notes/implementation plans)
+                let topicsData = [];
+                try {
+                    const topicsRes = await fetchWithFallback(baseUrl + 'data/topics.json');
+                    if (topicsRes.ok) {
+                        const topicsJson = await topicsRes.json();
+                        topicsData = topicsJson.topics || topicsJson;
+                    }
+                } catch (e) {
+                    console.log('Topics data not available');
+                }
+                renderNotes(topicsData);
+                
                 // Update sidebar stats
-                updateStats(researchObj.entries || [], thoughtsData, pitchesData);
+                updateStats(researchObj.entries || [], thoughtsData, pitchesData, topicsData);
                 
                 // Handle initial hash
                 handleHash();
@@ -333,15 +368,17 @@
             }
         }
 
-        function updateStats(research, thoughts, pitches) {
+        function updateStats(research, thoughts, pitches, notes) {
             const researchArray = research || [];
             const thoughtsArray = thoughts || [];
             const pitchesArray = pitches || [];
+            const notesArray = notes || [];
             
             // Update stats - handle 0 gracefully
             document.getElementById('stat-entries').textContent = researchArray.length || 0;
             document.getElementById('stat-thoughts').textContent = thoughtsArray.length || 0;
             document.getElementById('stat-pitches').textContent = pitchesArray.length || 0;
+            document.getElementById('stat-notes').textContent = notesArray.length || 0;
             
             const categories = new Set(researchArray.map(r => r.category));
             document.getElementById('stat-categories').textContent = categories.size || 0;
@@ -432,6 +469,38 @@
                         <div class="entry-meta">
                             <span class="complexity-badge ${item.status || 'pending'}">${item.status || 'pending'}</span>
                             <span class="entry-tag" style="color: var(--neon-magenta);">↗ View</span>
+                        </div>
+                    </a>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function renderNotes(data) {
+            const container = document.getElementById('notes-list');
+            const topicsArray = data || [];
+            
+            if (topicsArray.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted);">No research notes yet.</p>';
+                return;
+            }
+            
+            let html = '';
+            topicsArray.forEach(topic => {
+                // Link to research topic on GitHub
+                const notesUrl = topic.url || `https://github.com/0volume/research-archive/tree/main/research/topics/${topic.slug}`;
+                const status = topic.status || 'research';
+                const statusClass = status === 'research-complete' ? 'complete' : status;
+                
+                html += `
+                    <a href="${notesUrl}" target="_blank" class="entry-card">
+                        <h3>${topic.name}</h3>
+                        <p>${topic.description || ''}</p>
+                        <div class="entry-meta">
+                            <span class="complexity-badge ${statusClass}">${status.replace(/-/g, ' ')}</span>
+                            <span class="entry-tag">${topic.keyFindings ? topic.keyFindings.length + ' key findings' : ''}</span>
+                            <span class="entry-tag" style="color: var(--neon-magenta);">📋 Implementation Plan</span>
                         </div>
                     </a>
                 `;

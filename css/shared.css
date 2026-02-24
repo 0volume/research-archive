@@ -678,27 +678,8 @@
 
 .entry-card:hover {
   border-color: var(--neon-cyan);
-  box-shadow: 
-    0 0 15px rgba(0, 255, 245, 0.3),
-    0 0 30px rgba(0, 255, 245, 0.15),
-    0 0 45px rgba(255, 0, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 245, 0.4), 0 0 40px rgba(0, 255, 245, 0.2);
   transform: translateY(-4px) scale(1.01);
-  animation: cardPulseGlow 2s ease-in-out infinite;
-}
-
-@keyframes cardPulseGlow {
-  0%, 100% { 
-    box-shadow: 
-      0 0 15px rgba(0, 255, 245, 0.3),
-      0 0 30px rgba(0, 255, 245, 0.15),
-      0 0 45px rgba(255, 0, 255, 0.05);
-  }
-  50% { 
-    box-shadow: 
-      0 0 25px rgba(0, 255, 245, 0.5),
-      0 0 50px rgba(0, 255, 245, 0.25),
-      0 0 75px rgba(255, 0, 255, 0.15);
-  }
 }
 
 .entry-card:hover::before,
