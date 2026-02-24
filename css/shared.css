@@ -293,6 +293,24 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 245, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.cyber-filter-btn:hover::before {
+  transform: translateX(100%);
 }
 
 .cyber-filter-btn:hover {
@@ -300,7 +318,9 @@
   color: var(--primary);
   background: rgba(0, 255, 245, 0.1);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 255, 245, 0.2);
+  box-shadow: 
+    0 4px 12px rgba(0, 255, 245, 0.2),
+    0 0 20px rgba(0, 255, 245, 0.15);
 }
 
 .cyber-filter-btn.active {
@@ -308,8 +328,29 @@
   border-color: var(--primary);
   color: var(--primary);
   box-shadow: 
-    0 0 10px rgba(0, 255, 245, 0.3),
-    0 0 20px rgba(0, 255, 245, 0.1);
+    0 0 10px rgba(0, 255, 245, 0.4),
+    0 0 20px rgba(0, 255, 245, 0.2),
+    inset 0 0 20px rgba(0, 255, 245, 0.1);
+  text-shadow: 0 0 8px rgba(0, 255, 245, 0.6);
+}
+
+/* Scanline effect on active button */
+.cyber-filter-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 245, 0.03) 2px,
+    rgba(0, 255, 245, 0.03) 4px
+  );
+  animation: scanlineMove 4s linear infinite;
+  pointer-events: none;
 }
 
 /* ===========================================
@@ -700,6 +741,91 @@
   56% { opacity: 1; }
 }
 
+/* ===========================================
+   DECRYPTING LOADING ANIMATION
+   Matrix-style character cycling effect
+   =========================================== */
+
+.decrypting-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.decrypting-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 242, 0.6), 0 0 20px rgba(0, 255, 242, 0.3);
+  letter-spacing: 2px;
+  display: flex;
+  gap: 4px;
+}
+
+.decrypting-char {
+  display: inline-block;
+  animation: decryptChar 0.1s ease-in-out;
+}
+
+@keyframes decryptChar {
+  0%, 100% { 
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 242, 0.6);
+  }
+  50% { 
+    color: var(--neon-magenta);
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+  }
+}
+
+.decrypting-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Progress bar for decrypting effect */
+.decrypting-progress {
+  width: 200px;
+  height: 4px;
+  background: rgba(0, 255, 245, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.decrypting-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  animation: decryptProgress 2s ease-in-out infinite;
+}
+
+@keyframes decryptProgress {
+  0% { width: 0%; left: 0%; }
+  50% { width: 70%; left: 0%; }
+  100% { width: 0%; left: 100%; }
+}
+
+/* Glitch effect on decrypting */
+.decrypting-text.glitch {
+  animation: decryptGlitch 0.3s ease-in-out;
+}
+
+@keyframes decryptGlitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
 /* Loading Overlay - Full screen with proper z-index */
 .loading-overlay {
   position: fixed;
@@ -848,15 +974,84 @@
   color: var(--neon-cyan);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.key-finding-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 245, 0.2), transparent);
+  transition: left 0.4s ease;
+}
+
+.key-finding-tag:hover::before {
+  left: 100%;
 }
 
 .key-finding-tag:hover {
   background: rgba(0, 255, 245, 0.15);
   border-color: var(--neon-cyan);
-  box-shadow: var(--glow-cyan);
-  transform: translateY(-2px);
-  text-shadow: 0 0 8px rgba(0, 255, 242, 0.6);
+  box-shadow: 
+    0 0 12px rgba(0, 255, 245, 0.4),
+    0 0 24px rgba(0, 255, 245, 0.2);
+  transform: translateY(-2px) scale(1.05);
+  text-shadow: 0 0 8px rgba(0, 255, 242, 0.8);
   cursor: pointer;
+  padding: 5px 12px;
+}
+
+/* Secondary tag variant */
+.key-finding-tag.secondary {
+  border-color: rgba(255, 0, 255, 0.2);
+  color: var(--secondary);
+  background: rgba(255, 0, 255, 0.05);
+}
+
+.key-finding-tag.secondary:hover {
+  background: rgba(255, 0, 255, 0.15);
+  border-color: var(--secondary);
+  box-shadow: 
+    0 0 12px rgba(255, 0, 255, 0.4),
+    0 0 24px rgba(255, 0, 255, 0.2);
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+}
+
+/* Entry Tag Styling */
+.entry-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  background: rgba(0, 255, 245, 0.05);
+  border: 1px solid rgba(0, 255, 245, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--neon-cyan);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.entry-tag:hover {
+  background: rgba(0, 255, 245, 0.15);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 255, 245, 0.3);
+  transform: translateY(-1px);
+}
+
+.entry-tag.magenta {
+  border-color: rgba(255, 0, 255, 0.2);
+  color: var(--secondary);
+  background: rgba(255, 0, 255, 0.05);
+}
+
+.entry-tag.magenta:hover {
+  background: rgba(255, 0, 255, 0.15);
+  border-color: var(--secondary);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
 }
 
 /* ===========================================

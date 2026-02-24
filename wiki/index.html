@@ -68,9 +68,53 @@
     <main class="wiki-main" id="main">
       <div class="loading">
         <div class="cyber-spinner"></div>
-        <p style="font-family: 'JetBrains Mono', monospace; color: var(--neon-cyan);">LOADING_DATA...</p>
+        <div class="decrypting-loader">
+          <div class="decrypting-text" id="decrypting-text">DECRYPTING_DATA</div>
+          <div class="decrypting-progress"></div>
+          <div class="decrypting-status">ACCESSING_NEURAL_GRID...</div>
+        </div>
       </div>
     </main>
+    
+    <script>
+      // Decrypting text animation
+      const decryptingText = document.getElementById('decrypting-text');
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+      const originalText = 'DECRYPTING_DATA';
+      
+      function animateDecrypt() {
+        let iteration = 0;
+        const maxIterations = 15;
+        
+        const interval = setInterval(() => {
+          decryptingText.textContent = originalText
+            .split('')
+            .map((letter, index) => {
+              if (index < iteration) {
+                return originalText[index];
+              }
+              return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+          
+          if (iteration >= originalText.length) {
+            clearInterval(interval);
+          }
+          
+          iteration += 1 / 3;
+        }, 30);
+      }
+      
+      // Start animation
+      animateDecrypt();
+      
+      // Repeat animation every 5 seconds while loading
+      setInterval(() => {
+        if (document.querySelector('.loading')) {
+          animateDecrypt();
+        }
+      }, 5000);
+    </script>
   </div>
   
   <script type="module" src="./js/wiki.js"></script>
