@@ -418,59 +418,70 @@
             });
         }
 
-        // Fetch with timeout and CORS proxy fallback
-        async function fetchWithFallback(url, timeout = 8000) {
-            console.log('[fetchWithFallback] Attempting to fetch:', url);
+        // Fetch with better error handling - simple and robust
+        async function fetchJSON(url, timeout = 15000) {
+            console.log('[fetchJSON] Fetching:', url);
             
-            // Try direct fetch first (GitHub raw supports CORS)
+            // Try direct GitHub raw first
             try {
-                console.log('[fetchWithFallback] Trying direct fetch...');
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), timeout);
-                const response = await fetch(url, { signal: controller.signal });
+                const response = await fetch(url, { 
+                    signal: controller.signal,
+                    headers: { 'Accept': 'application/json' }
+                });
                 clearTimeout(id);
-                if (response.ok) {
-                    console.log('[fetchWithFallback] Direct fetch succeeded');
-                    return response;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
-                console.log('[fetchWithFallback] Direct fetch returned non-OK:', response.status);
+                
+                const data = await response.json();
+                console.log('[fetchJSON] Success:', url, '->', Array.isArray(data) ? data.length + ' items' : 'object');
+                return data;
             } catch (e) {
-                console.log('[fetchWithFallback] Direct fetch failed:', e.message);
+                console.log('[fetchJSON] Direct failed:', e.message);
             }
             
-            // Fallback to CORS proxy (slower but more compatible)
+            // Try allorigins proxy as fallback
             try {
-                console.log('[fetchWithFallback] Trying CORS proxy...');
                 const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), timeout);
                 const response = await fetch(proxyUrl, { signal: controller.signal });
                 clearTimeout(id);
-                if (response.ok) {
-                    console.log('[fetchWithFallback] Proxy fetch succeeded');
-                    return response;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
+                
+                const data = await response.json();
+                console.log('[fetchJSON] Proxy success:', url);
+                return data;
             } catch (e) {
-                console.log('[fetchWithFallback] Proxy fetch failed:', e.message);
+                console.log('[fetchJSON] Proxy failed:', e.message);
             }
             
-            // Last resort: try ghproxy CDN
+            // Try ghproxy CDN as last resort
             try {
-                console.log('[fetchWithFallback] Trying ghproxy CDN...');
                 const cdnUrl = 'https://ghproxy.com/' + url;
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), timeout);
                 const response = await fetch(cdnUrl, { signal: controller.signal });
                 clearTimeout(id);
-                if (response.ok) {
-                    console.log('[fetchWithFallback] CDN fetch succeeded');
-                    return response;
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
+                
+                const data = await response.json();
+                console.log('[fetchJSON] CDN success:', url);
+                return data;
             } catch (e) {
-                console.log('[fetchWithFallback] CDN fetch failed:', e.message);
+                console.log('[fetchJSON] CDN failed:', e.message);
             }
             
-            throw new Error('All fetch attempts failed for: ' + url);
+            throw new Error('All fetch methods failed for: ' + url);
         }
         
         // Data fallback - embedded minimal data if fetch fails
@@ -493,55 +504,48 @@
         // Load data from GitHub JSON files
         async function loadData() {
             const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
+            const dataUrls = {
+                research: baseUrl + 'data/research.json',
+                thoughts: baseUrl + 'data/thoughts.json',
+                pitches: baseUrl + 'data/pitches.json',
+                topics: baseUrl + 'data/topics.json'
+            };
             
-            // Try to load with a reasonable timeout, but don't fail completely
-            // Use Promise.race but also catch errors and use fallback
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 12000);
-                
-                // Try to load all data in parallel with fallback on each failure
-                const [researchData, thoughtsData, pitchesData, topicsData] = await Promise.all([
-                    fetchWithFallback(baseUrl + 'data/research.json')
-                        .then(r => r.json())
-                        .then(d => d.entries || [])
-                        .catch(e => {
-                            console.warn('[loadData] Using fallback for research:', e.message);
-                            return [];
-                        }),
-                    fetchWithFallback(baseUrl + 'data/thoughts.json')
-                        .then(r => r.json())
-                        .then(d => d.thoughts || d || [])
-                        .catch(e => {
-                            console.warn('[loadData] Using fallback for thoughts:', e.message);
-                            return [];
-                        }),
-                    fetchWithFallback(baseUrl + 'data/pitches.json')
-                        .then(r => r.json())
-                        .then(d => d.pitches || d || [])
-                        .catch(e => {
-                            console.warn('[loadData] Using fallback for pitches:', e.message);
-                            return [];
-                        }),
-                    fetchWithFallback(baseUrl + 'data/topics.json')
-                        .then(r => r.json())
-                        .then(d => d.topics || d || [])
-                        .catch(e => {
-                            console.warn('[loadData] Using fallback for topics:', e.message);
-                            return [];
-                        })
-                ]);
-                
-                clearTimeout(timeoutId);
-                
-                console.log('[loadData] Data loaded:', {
-                    research: researchData.length,
-                    thoughts: thoughtsData.length,
-                    pitches: pitchesData.length,
-                    notes: topicsData.length
-                });
-                
-                // Render all sections
+            console.log('[loadData] Starting load from:', dataUrls);
+            
+            // Load all data with individual error handling per file
+            const results = await Promise.allSettled([
+                fetchJSON(dataUrls.research).then(d => d?.entries || []).catch(() => []),
+                fetchJSON(dataUrls.thoughts).then(d => d?.thoughts || d || []).catch(() => []),
+                fetchJSON(dataUrls.pitches).then(d => d?.pitches || d || []).catch(() => []),
+                fetchJSON(dataUrls.topics).then(d => d?.topics || d || []).catch(() => [])
+            ]);
+            
+            // Extract data or empty arrays on failure
+            const researchData = results[0].status === 'fulfilled' ? results[0].value : [];
+            const thoughtsData = results[1].status === 'fulfilled' ? results[1].value : [];
+            const pitchesData = results[2].status === 'fulfilled' ? results[2].value : [];
+            const topicsData = results[3].status === 'fulfilled' ? results[3].value : [];
+            
+            console.log('[loadData] Loaded:', {
+                research: researchData.length,
+                thoughts: thoughtsData.length,
+                pitches: pitchesData.length,
+                notes: topicsData.length
+            });
+            
+            // Check if we got ANY data
+            const totalData = researchData.length + thoughtsData.length + pitchesData.length + topicsData.length;
+            if (totalData === 0) {
+                console.error('[loadData] ALL fetches failed - using minimal fallback');
+                // Use minimal fallback
+                renderResearch(fallbackData.research);
+                renderThoughts(fallbackData.thoughts);
+                renderPitches(fallbackData.pitches);
+                renderNotes(fallbackData.notes);
+                updateStats(fallbackData.research, fallbackData.thoughts, fallbackData.pitches, fallbackData.notes);
+            } else {
+                // Render all sections with loaded data
                 renderResearch(researchData);
                 renderThoughts(thoughtsData);
                 renderPitches(pitchesData);
@@ -549,20 +553,10 @@
                 
                 // Update stats
                 updateStats(researchData, thoughtsData, pitchesData, topicsData);
-                
-                // Handle hash after data loads
-                handleHash();
-                
-            } catch (err) {
-                console.error('[loadData] Critical error loading data:', err);
-                // Use fallback data
-                console.log('[loadData] Using complete fallback data');
-                renderResearch(fallbackData.research);
-                renderThoughts(fallbackData.thoughts);
-                renderPitches(fallbackData.pitches);
-                renderNotes(fallbackData.notes);
-                updateStats(fallbackData.research, fallbackData.thoughts, fallbackData.pitches, fallbackData.notes);
             }
+            
+            // Handle hash after data loads
+            handleHash();
             
             // Listen for hash changes
             window.addEventListener('hashchange', handleHash);

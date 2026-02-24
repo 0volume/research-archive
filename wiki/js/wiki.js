@@ -483,6 +483,9 @@ class WikiApp {
         ${paper.keyInsight ? `<div class="paper-insight">💡 ${paper.keyInsight}</div>` : ''}
       </div>
     `).join('');
+
+    // GitHub Discussions comment link
+    const discussionLink = `https://github.com/0volume/research-archive/discussions`;
     
     // Render phases if available
     let phasesHTML = '';
@@ -580,6 +583,13 @@ class WikiApp {
             </a>
           ` : ''}
         </nav>
+        
+        <!-- GitHub Discussions Comment Link -->
+        <div class="discussion-section">
+          <a href="${discussionLink}" target="_blank" rel="noopener" class="discussion-link">
+            💬 Add Comment / Discuss this topic on GitHub
+          </a>
+        </div>
       </div>
     `;
   }
