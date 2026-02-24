@@ -204,13 +204,35 @@
             const navLink = document.querySelector(`.archive-nav a[href="#${id}"]`);
             if (navLink) navLink.classList.add('active');
             
-            // Update URL hash
-            window.location.hash = id;
+            // Update URL hash (only if different to avoid loops)
+            if (window.location.hash !== '#' + id) {
+                history.replaceState(null, null, '#' + id);
+            }
             
             // Smooth scroll to section
             targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Handle hash on page load (before data loads)
+        function handleInitialHash() {
+            const hash = window.location.hash.slice(1);
+            // Pre-show section even before data loads
+            if (hash && ['research', 'thoughts', 'pitches', 'notes'].includes(hash)) {
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                const targetSection = document.getElementById(hash);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            } else {
+                // Default to research
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                document.getElementById('research')?.classList.add('active');
+            }
+        }
+
+        // Handle initial hash on page load (show section before data loads)
+        handleInitialHash();
+        
         // Nav click handlers - main navigation
         document.querySelectorAll('.archive-nav a').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -311,69 +333,119 @@
             throw new Error('All fetch attempts failed');
         }
         
+        // Data fallback - embedded minimal data if fetch fails
+        const fallbackData = {
+            research: [],
+            thoughts: [],
+            pitches: [],
+            notes: []
+        };
+        
         // Load data from GitHub JSON files
         async function loadData() {
             const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
             
+            // Data loading timeout - fallback after 10 seconds
+            const dataLoadTimeout = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Data load timeout')), 10000)
+            );
+            
+            // Actual data loading
+            const loadPromise = (async () => {
+                try {
+                    // Load research from data/ folder
+                    const researchRes = await fetchWithFallback(baseUrl + 'data/research.json');
+                    if (!researchRes.ok) throw new Error('Failed to load research data');
+                    const researchObj = await researchRes.json();
+                    renderResearch(researchObj.entries || []);
+                    
+                    // Try to load thoughts (optional - may not exist)
+                    let thoughtsData = [];
+                    try {
+                        const thoughtsRes = await fetchWithFallback(baseUrl + 'data/thoughts.json');
+                        if (thoughtsRes.ok) {
+                            const thoughtsJson = await thoughtsRes.json();
+                            // Handle both wrapped {thoughts: [...]} and direct [...] formats
+                            thoughtsData = thoughtsJson.thoughts || thoughtsJson;
+                        }
+                    } catch (e) {
+                        console.log('Thoughts data not available');
+                    }
+                    renderThoughts(thoughtsData);
+                    
+                    // Try to load pitches (optional - may not exist)
+                    let pitchesData = [];
+                    try {
+                        const pitchesRes = await fetchWithFallback(baseUrl + 'data/pitches.json');
+                        if (pitchesRes.ok) {
+                            const pitchesJson = await pitchesRes.json();
+                            // Handle both wrapped {pitches: [...]} and direct [...] formats
+                            pitchesData = pitchesJson.pitches || pitchesJson;
+                        }
+                    } catch (e) {
+                        console.log('Pitches data not available');
+                    }
+                    renderPitches(pitchesData);
+                    
+                    // Load topics (research notes/implementation plans)
+                    let topicsData = [];
+                    try {
+                        const topicsRes = await fetchWithFallback(baseUrl + 'data/topics.json');
+                        if (topicsRes.ok) {
+                            const topicsJson = await topicsRes.json();
+                            topicsData = topicsJson.topics || topicsJson;
+                        }
+                    } catch (e) {
+                        console.log('Topics data not available');
+                    }
+                    renderNotes(topicsData);
+                    
+                    // Update sidebar stats
+                    updateStats(researchObj.entries || [], thoughtsData, pitchesData, topicsData);
+                    
+                    return true;
+                } catch (err) {
+                    console.error('Error loading data:', err);
+                    throw err;
+                }
+            })();
+            
             try {
-                // Load research from data/ folder
-                const researchRes = await fetchWithFallback(baseUrl + 'data/research.json');
-                if (!researchRes.ok) throw new Error('Failed to load research data');
-                const researchObj = await researchRes.json();
-                renderResearch(researchObj.entries || []);
+                // Race between data load and timeout
+                await Promise.race([loadPromise, dataLoadTimeout]);
                 
-                // Try to load thoughts (optional - may not exist)
-                let thoughtsData = [];
-                try {
-                    const thoughtsRes = await fetchWithFallback(baseUrl + 'data/thoughts.json');
-                    if (thoughtsRes.ok) {
-                        const thoughtsJson = await thoughtsRes.json();
-                        // Handle both wrapped {thoughts: [...]} and direct [...] formats
-                        thoughtsData = thoughtsJson.thoughts || thoughtsJson;
-                    }
-                } catch (e) {
-                    console.log('Thoughts data not available');
-                }
-                renderThoughts(thoughtsData);
-                
-                // Try to load pitches (optional - may not exist)
-                let pitchesData = [];
-                try {
-                    const pitchesRes = await fetchWithFallback(baseUrl + 'data/pitches.json');
-                    if (pitchesRes.ok) {
-                        const pitchesJson = await pitchesRes.json();
-                        // Handle both wrapped {pitches: [...]} and direct [...] formats
-                        pitchesData = pitchesJson.pitches || pitchesJson;
-                    }
-                } catch (e) {
-                    console.log('Pitches data not available');
-                }
-                renderPitches(pitchesData);
-                
-                // Load topics (research notes/implementation plans)
-                let topicsData = [];
-                try {
-                    const topicsRes = await fetchWithFallback(baseUrl + 'data/topics.json');
-                    if (topicsRes.ok) {
-                        const topicsJson = await topicsRes.json();
-                        topicsData = topicsJson.topics || topicsJson;
-                    }
-                } catch (e) {
-                    console.log('Topics data not available');
-                }
-                renderNotes(topicsData);
-                
-                // Update sidebar stats
-                updateStats(researchObj.entries || [], thoughtsData, pitchesData, topicsData);
-                
-                // Handle initial hash
+                // Handle hash after data loads
                 handleHash();
                 window.addEventListener('hashchange', handleHash);
             } catch (err) {
-                console.error('Error loading data:', err);
-                document.getElementById('research-list').innerHTML = 
-                    '<div class="error-state"><p style="color: var(--neon-orange);">⚠ Error loading data. Please refresh.</p></div>';
+                console.warn('Data load failed or timed out, showing fallback message');
+                showDataError();
             }
+        }
+
+        function showDataError() {
+            // Replace loading animations with user-friendly error
+            const sections = ['research-list', 'thoughts-list', 'pitches-list', 'notes-list'];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = `
+                        <div class="error-state" style="padding: 20px; text-align: center;">
+                            <p style="color: var(--neon-orange);">⚠ Unable to load data from server</p>
+                            <p style="color: var(--text-muted); font-size: 0.85rem;">
+                                Data may be loading or temporarily unavailable.<br>
+                                <a href="#" onclick="location.reload()" style="color: var(--neon-cyan);">Click to retry</a>
+                            </p>
+                        </div>
+                    `;
+                }
+            });
+            // Update stats to show 0
+            document.getElementById('stat-entries').textContent = '0';
+            document.getElementById('stat-thoughts').textContent = '0';
+            document.getElementById('stat-pitches').textContent = '0';
+            document.getElementById('stat-notes').textContent = '0';
+            document.getElementById('stat-categories').textContent = '0';
         }
 
         function updateStats(research, thoughts, pitches, notes) {

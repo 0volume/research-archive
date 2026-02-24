@@ -30,22 +30,22 @@
       <div class="sidebar-section">
         <h3>// STATS</h3>
         <div class="sidebar-stats">
-          <div class="stat-box">
+          <a href="#research" class="stat-box clickable" onclick="wikiApp && wikiApp.showSection('research'); return true;">
             <div class="stat-number" id="stat-topics">-</div>
             <div class="stat-label">Topics</div>
-          </div>
-          <div class="stat-box">
+          </a>
+          <a href="#papers" class="stat-box clickable" onclick="wikiApp && wikiApp.showSection('papers'); return true;">
             <div class="stat-number" id="stat-papers">-</div>
             <div class="stat-label">Papers</div>
-          </div>
-          <div class="stat-box">
+          </a>
+          <a href="#complete" class="stat-box clickable" onclick="wikiApp && wikiApp.filterByStatus('complete'); return true;">
             <div class="stat-number" id="stat-complete">-</div>
             <div class="stat-label">Complete</div>
-          </div>
-          <div class="stat-box">
+          </a>
+          <a href="#implemented" class="stat-box clickable" onclick="wikiApp && wikiApp.filterByStatus('implemented'); return true;">
             <div class="stat-number" id="stat-impl">-</div>
             <div class="stat-label">Live</div>
-          </div>
+          </a>
         </div>
       </div>
       

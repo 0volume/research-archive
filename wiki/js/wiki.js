@@ -77,7 +77,48 @@ class WikiApp {
     this.baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
     this.localDataUrl = '../data/topics.json';
     this.fetchTimeout = 10000; // 10 second timeout
+    this.loadTimeout = null;
     this.init();
+  }
+
+  // Show a section (for hash navigation)
+  showSection(sectionId) {
+    // Scroll to main content area
+    const main = document.getElementById('main');
+    if (main) {
+      main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Update URL hash
+    if (window.location.hash !== '#' + sectionId) {
+      history.replaceState(null, null, '#' + sectionId);
+    }
+  }
+  
+  // Filter by status (for clickable stats)
+  filterByStatus(status) {
+    this.activeFilter = status;
+    
+    // Update filter buttons UI
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      if (btn.dataset.filter === status) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+    
+    // Apply filter
+    this.filterTopics();
+    
+    // Scroll to topics grid
+    const grid = document.getElementById('topics-grid');
+    if (grid) {
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // Helper method to fetch with timeout and CORS proxy fallback
@@ -115,6 +156,12 @@ class WikiApp {
   }
 
   async init() {
+    // Handle hash navigation on page load
+    this.handleInitialHash();
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', () => this.handleHashChange());
+    
     // Check if we're on topic page
     const urlParams = new URLSearchParams(window.location.search);
     const topicSlug = urlParams.get('topic');
@@ -130,6 +177,34 @@ class WikiApp {
     
     // Setup keyboard shortcuts
     this.setupKeyboard();
+    
+    // Set data load timeout fallback
+    this.loadTimeout = setTimeout(() => {
+      if (!this.data) {
+        console.warn('[Wiki] Data load timeout - showing error state');
+        this.showError('Data load timed out. Please refresh or try again.');
+      }
+    }, 12000);
+  }
+
+  handleInitialHash() {
+    const hash = window.location.hash.slice(1);
+    // Pre-handle hash navigation if needed
+    if (hash && hash !== window.location.search) {
+      console.log('[Wiki] Initial hash:', hash);
+    }
+  }
+
+  handleHashChange() {
+    const hash = window.location.hash.slice(1);
+    console.log('[Wiki] Hash changed:', hash);
+    
+    // If hash is a filter status, apply it
+    if (hash === 'complete' || hash === 'implemented' || hash === 'research') {
+      this.filterByStatus(hash);
+    } else if (hash === 'papers' || hash === 'topics') {
+      this.showSection(hash);
+    }
   }
 
   async loadHomepage() {
@@ -149,6 +224,13 @@ class WikiApp {
       
       this.data = await response.json();
       console.log('[Wiki] Successfully loaded data from GitHub, topics:', this.data.topics?.length);
+      
+      // Clear the timeout since data loaded successfully
+      if (this.loadTimeout) {
+        clearTimeout(this.loadTimeout);
+        this.loadTimeout = null;
+      }
+      
       this.renderHomepage();
     } catch (error) {
       console.error('[Wiki] GitHub fetch failed:', error.message);
@@ -168,6 +250,13 @@ class WikiApp {
         
         this.data = await localResponse.json();
         console.log('[Wiki] Successfully loaded from local, topics:', this.data.topics?.length);
+        
+        // Clear the timeout since data loaded successfully
+        if (this.loadTimeout) {
+          clearTimeout(this.loadTimeout);
+          this.loadTimeout = null;
+        }
+        
         this.renderHomepage();
       } catch (localError) {
         console.error('[Wiki] Local fetch also failed:', localError.message);
