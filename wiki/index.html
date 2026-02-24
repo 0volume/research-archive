@@ -14,7 +14,12 @@
       <a href="./index.html" class="wiki-logo cyber-logo" data-text="RESEARCH_WIKI">
         <span class="logo-icon">◈</span> RESEARCH_WIKI
       </a>
-      <nav class="wiki-nav cyber-nav">
+      <button class="hamburger-menu" aria-label="Toggle navigation" onclick="toggleMobileNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="wiki-nav cyber-nav" id="main-nav">
         <a href="../index.html" class="archive-nav-link">📚 RESEARCH</a>
         <a href="./index.html" class="active">🔍 WIKI</a>
         <a href="https://github.com/0volume/research-archive" target="_blank">GITHUB ⊞</a>
@@ -69,6 +74,26 @@
   </div>
   
   <script type="module" src="./js/wiki.js"></script>
+  
+  <script>
+    // Mobile navigation toggle
+    function toggleMobileNav() {
+      const nav = document.getElementById('main-nav');
+      const hamburger = document.querySelector('.hamburger-menu');
+      nav.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    }
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        const hamburger = document.querySelector('.hamburger-menu');
+        nav.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  </script>
   
   <footer class="wiki-footer cyber-footer">
     <div class="cyber-footer-content">

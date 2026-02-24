@@ -14,7 +14,12 @@
             <a href="./index.html" class="archive-logo cyber-logo">
                 <span class="logo-icon">🧠</span> AI_AGENT_RESEARCH
             </a>
-            <nav class="archive-nav cyber-nav">
+            <button class="hamburger-menu" aria-label="Toggle navigation" onclick="toggleMobileNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="archive-nav cyber-nav" id="main-nav">
                 <a href="./index.html" class="active">📚 Research</a>
                 <a href="wiki/" class="wiki-nav-link">🔍 Wiki</a>
                 <a href="https://github.com/0volume/research-archive" target="_blank">GitHub ⊞</a>
@@ -119,6 +124,24 @@
     </div>
 
     <script>
+        // Mobile navigation toggle
+        function toggleMobileNav() {
+            const nav = document.getElementById('main-nav');
+            const hamburger = document.querySelector('.hamburger-menu');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('#main-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('main-nav');
+                const hamburger = document.querySelector('.hamburger-menu');
+                nav.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
         // Tab switching via URL hash
         function handleHash() {
             const hash = window.location.hash.slice(1);

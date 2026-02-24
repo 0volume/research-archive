@@ -11,16 +11,16 @@
   --bg-elevated: #22222e;
   --bg-secondary: #15151f;
   
-  /* Neon Accents */
-  --neon-cyan: #00fff5;
+  /* Neon Accents - Solaris Portal Exact */
+  --neon-cyan: #00fff2;
   --neon-magenta: #ff00ff;
   --neon-orange: #ff6b35;
   --neon-green: #00ff41;
   --neon-red: #ff073a;
   --neon-yellow: #ffe700;
   
-  /* Glow Effects */
-  --glow-cyan: 0 0 10px rgba(0, 255, 245, 0.5), 0 0 20px rgba(0, 255, 245, 0.3), 0 0 40px rgba(0, 255, 245, 0.1);
+  /* Glow Effects - Using exact Solaris colors */
+  --glow-cyan: 0 0 10px rgba(0, 255, 242, 0.5), 0 0 20px rgba(0, 255, 242, 0.3), 0 0 40px rgba(0, 255, 242, 0.1);
   --glow-magenta: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.3);
   --glow-orange: 0 0 10px rgba(255, 107, 53, 0.5), 0 0 20px rgba(255, 107, 53, 0.3);
   --glow-green: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3), 0 0 40px rgba(0, 255, 65, 0.1);
