@@ -264,7 +264,9 @@
                 try {
                     const thoughtsRes = await fetch(baseUrl + 'data/thoughts.json');
                     if (thoughtsRes.ok) {
-                        thoughtsData = await thoughtsRes.json();
+                        const thoughtsJson = await thoughtsRes.json();
+                        // Handle both wrapped {thoughts: [...]} and direct [...] formats
+                        thoughtsData = thoughtsJson.thoughts || thoughtsJson;
                     }
                 } catch (e) {
                     console.log('Thoughts data not available');
@@ -276,7 +278,9 @@
                 try {
                     const pitchesRes = await fetch(baseUrl + 'data/pitches.json');
                     if (pitchesRes.ok) {
-                        pitchesData = await pitchesRes.json();
+                        const pitchesJson = await pitchesRes.json();
+                        // Handle both wrapped {pitches: [...]} and direct [...] formats
+                        pitchesData = pitchesJson.pitches || pitchesJson;
                     }
                 } catch (e) {
                     console.log('Pitches data not available');
@@ -352,13 +356,15 @@
             
             let html = '';
             thoughtsArray.slice(0, 10).forEach(item => {
-                const thoughtUrl = item.url || `https://github.com/0volume/research-archive/tree/main/thoughts/${(item.title || '').toLowerCase().replace(/\s+/g, '-')}`;
+                // Handle both summary and content fields
+                const content = item.summary || item.content || 'No content';
+                const thoughtUrl = item.url || `https://github.com/0volume/research-archive/tree/main#thoughts`;
                 html += `
                     <a href="${thoughtUrl}" target="_blank" class="entry-card">
                         <h3>${item.title}</h3>
-                        <p>${item.content ? item.content.substring(0, 150) + '...' : 'No content'}</p>
+                        <p>${content.substring(0, 150)}${content.length > 150 ? '...' : ''}</p>
                         <div class="entry-meta">
-                            <span class="entry-tag">${item.type || 'thought'}</span>
+                            <span class="entry-tag">${item.date || ''}</span>
                             <span class="entry-tag" style="color: var(--neon-magenta);">↗ View</span>
                         </div>
                     </a>
@@ -379,14 +385,14 @@
             
             let html = '';
             pitchesArray.forEach(item => {
-                const pitchUrl = item.url || `https://github.com/0volume/research-archive/tree/main/pitches/${(item.title || '').toLowerCase().replace(/\s+/g, '-')}`;
+                // Link to pitch HTML file in root folder
+                const pitchUrl = item.url || `https://github.com/0volume/research-archive/blob/main/${item.file}`;
                 html += `
                     <a href="${pitchUrl}" target="_blank" class="entry-card">
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
+                        <h3>Pitch #${item.id}: ${item.title}</h3>
+                        <p>Status: ${item.status || 'pending'}</p>
                         <div class="entry-meta">
                             <span class="complexity-badge ${item.status || 'pending'}">${item.status || 'pending'}</span>
-                            <span class="entry-tag">${item.priority || 'normal'} priority</span>
                             <span class="entry-tag" style="color: var(--neon-magenta);">↗ GitHub</span>
                         </div>
                     </a>
