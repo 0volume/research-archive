@@ -84,6 +84,7 @@
                         <button class="cyber-filter-btn" data-filter="beginner">BEGINNER</button>
                         <button class="cyber-filter-btn" data-filter="intermediate">INTERMEDIATE</button>
                         <button class="cyber-filter-btn" data-filter="advanced">ADVANCED</button>
+                        <button class="cyber-filter-btn" data-filter="enterprise">ENTERPRISE</button>
                     </div>
                 </div>
                 <div id="research-list">
@@ -155,8 +156,12 @@
         // Tab switching via URL hash
         function handleHash() {
             const hash = window.location.hash.slice(1);
-            if (hash === 'thoughts' || hash === 'pitches') {
+            // Support all sections: research, thoughts, pitches
+            if (hash === 'research' || hash === 'thoughts' || hash === 'pitches') {
                 showSection(hash);
+            } else if (!hash) {
+                // Default to research on empty hash
+                showSection('research');
             }
         }
         
@@ -330,12 +335,16 @@
 
         function updateStats(research, thoughts, pitches) {
             const researchArray = research || [];
-            document.getElementById('stat-entries').textContent = researchArray.length;
-            document.getElementById('stat-thoughts').textContent = (thoughts || []).length;
-            document.getElementById('stat-pitches').textContent = (pitches || []).length;
+            const thoughtsArray = thoughts || [];
+            const pitchesArray = pitches || [];
+            
+            // Update stats - handle 0 gracefully
+            document.getElementById('stat-entries').textContent = researchArray.length || 0;
+            document.getElementById('stat-thoughts').textContent = thoughtsArray.length || 0;
+            document.getElementById('stat-pitches').textContent = pitchesArray.length || 0;
             
             const categories = new Set(researchArray.map(r => r.category));
-            document.getElementById('stat-categories').textContent = categories.size;
+            document.getElementById('stat-categories').textContent = categories.size || 0;
         }
 
         function renderResearch(data) {
@@ -430,8 +439,13 @@
             container.innerHTML = html;
         }
 
-        // Initialize
-        loadData();
+        // Initialize - handle hash after data loads
+        loadData().then(() => {
+            handleHash();
+        });
+        
+        // Handle hash changes
+        window.addEventListener('hashchange', handleHash);
     </script>
     
     <!-- Scroll to Top Button -->
