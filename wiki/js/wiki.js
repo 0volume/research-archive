@@ -140,6 +140,7 @@ class WikiApp {
     main.innerHTML = `
       <div class="search-container">
         <input type="text" class="search-input" id="search" placeholder="Search topics, papers, or findings..." aria-label="Search topics">
+        <span class="search-hint">Press / to search</span>
       </div>
       
       <div class="filter-container">
