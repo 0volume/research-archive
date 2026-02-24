@@ -75,7 +75,7 @@ class WikiApp {
     this.activeFilter = 'all';
     // GitHub raw URL for data - with fallback to local
     this.baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
-    this.localDataUrl = './data/topics.json';
+    this.localDataUrl = '../data/topics.json';
     this.fetchTimeout = 10000; // 10 second timeout
     this.init();
   }
