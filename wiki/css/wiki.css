@@ -9,6 +9,7 @@
   --bg-panel: #12121a;
   --bg-card: #1a1a24;
   --bg-elevated: #22222e;
+  --bg-secondary: #15151f;
   
   /* Neon Accents */
   --neon-cyan: #00fff5;
@@ -38,6 +39,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -130,6 +135,14 @@ body::before {
   font-size: 1.2rem;
 }
 
+/* Wiki Title Gradient */
+.wiki-title h1 {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .wiki-nav {
   display: flex;
   gap: 8px;
@@ -146,7 +159,7 @@ body::before {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .wiki-nav a:hover {
@@ -356,7 +369,7 @@ body::before {
 }
 
 .topic-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) scale(1.01);
   border-color: var(--neon-cyan);
   box-shadow: var(--glow-cyan);
 }
@@ -732,6 +745,23 @@ body::before {
   .sidebar-stats {
     grid-template-columns: repeat(4, 1fr);
   }
+  
+  /* Mobile: Horizontal scroll for filters */
+  .filters-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 12px;
+  }
+  
+  .filter-group {
+    flex-wrap: nowrap;
+  }
+  
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 12px 20px; /* Better touch targets */
+  }
 }
 
 @media (max-width: 640px) {
@@ -739,6 +769,17 @@ body::before {
     flex-direction: column;
     gap: 16px;
     text-align: center;
+  }
+  
+  /* Mobile: Stacked navigation */
+  .wiki-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .wiki-nav a {
+    padding: 12px 16px; /* Larger touch targets */
   }
   
   .topics-grid {
@@ -829,7 +870,7 @@ body::before {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .archive-nav a:hover {
@@ -943,7 +984,7 @@ body::before {
 .entry-card:hover {
   border-color: var(--neon-cyan);
   box-shadow: var(--glow-cyan);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.01);
 }
 
 .entry-card:hover::before,
@@ -1051,7 +1092,7 @@ body::before {
   font-weight: 500;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: var(--radius-sm);
 }
 
@@ -1152,6 +1193,23 @@ body::before {
   .archive-sidebar {
     position: static;
   }
+  
+  /* Mobile: Horizontal scroll for filters */
+  .filters-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 12px;
+  }
+  
+  .filter-group {
+    flex-wrap: nowrap;
+  }
+  
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 12px 20px; /* Better touch targets */
+  }
 }
 
 @media (max-width: 640px) {
@@ -1161,8 +1219,14 @@ body::before {
     text-align: center;
   }
   
+  /* Mobile: Stacked navigation */
   .archive-nav {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 8px;
+  }
+  
+  .archive-nav a {
+    padding: 12px 16px; /* Larger touch targets */
   }
 }
