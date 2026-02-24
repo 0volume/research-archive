@@ -77,10 +77,10 @@
                 <div class="filters-row">
                     <div class="filter-group">
                         <span class="filter-label">//complexity</span>
-                        <button class="filter-btn active" data-filter="all">ALL</button>
-                        <button class="filter-btn" data-filter="beginner">BEGINNER</button>
-                        <button class="filter-btn" data-filter="intermediate">INTERMEDIATE</button>
-                        <button class="filter-btn" data-filter="advanced">ADVANCED</button>
+                        <button class="cyber-filter-btn active" data-filter="all">ALL</button>
+                        <button class="cyber-filter-btn" data-filter="beginner">BEGINNER</button>
+                        <button class="cyber-filter-btn" data-filter="intermediate">INTERMEDIATE</button>
+                        <button class="cyber-filter-btn" data-filter="advanced">ADVANCED</button>
                     </div>
                 </div>
                 <div id="research-list">
@@ -148,9 +148,9 @@
         });
 
         // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('.cyber-filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.cyber-filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 filterEntries(btn.dataset.filter);
             });
@@ -171,39 +171,56 @@
             const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
             
             try {
-                // Load research
-                const researchRes = await fetch(baseUrl + 'research.json');
-                const researchData = await researchRes.json();
-                renderResearch(researchData);
+                // Load research from data/ folder
+                const researchRes = await fetch(baseUrl + 'data/research.json');
+                if (!researchRes.ok) throw new Error('Failed to load research data');
+                const researchObj = await researchRes.json();
+                renderResearch(researchObj.entries || []);
                 
-                // Load thoughts
-                const thoughtsRes = await fetch(baseUrl + 'thoughts.json');
-                const thoughtsData = await thoughtsRes.json();
+                // Try to load thoughts (optional - may not exist)
+                let thoughtsData = [];
+                try {
+                    const thoughtsRes = await fetch(baseUrl + 'data/thoughts.json');
+                    if (thoughtsRes.ok) {
+                        thoughtsData = await thoughtsRes.json();
+                    }
+                } catch (e) {
+                    console.log('Thoughts data not available');
+                }
                 renderThoughts(thoughtsData);
                 
-                // Load pitches
-                const pitchesRes = await fetch(baseUrl + 'pitches.json');
-                const pitchesData = await pitchesRes.json();
+                // Try to load pitches (optional - may not exist)
+                let pitchesData = [];
+                try {
+                    const pitchesRes = await fetch(baseUrl + 'data/pitches.json');
+                    if (pitchesRes.ok) {
+                        pitchesData = await pitchesRes.json();
+                    }
+                } catch (e) {
+                    console.log('Pitches data not available');
+                }
                 renderPitches(pitchesData);
                 
                 // Update sidebar stats
-                updateStats(researchData, thoughtsData, pitchesData);
+                updateStats(researchObj.entries || [], thoughtsData, pitchesData);
                 
                 // Handle initial hash
                 handleHash();
                 window.addEventListener('hashchange', handleHash);
             } catch (err) {
                 console.error('Error loading data:', err);
-                document.getElementById('research-list').innerHTML = '<p style="color: var(--neon-orange);">Error loading data. Please refresh.</p>';
+                document.getElementById('research-list').innerHTML = 
+                    '<div class="error-state"><p style="color: var(--neon-orange);">⚠ Error loading data. Please refresh.</p></div>';
             }
         }
 
         function updateStats(research, thoughts, pitches) {
-            document.getElementById('stat-entries').textContent = research.length;
-            document.getElementById('stat-thoughts').textContent = thoughts.length;
-            document.getElementById('stat-pitches').textContent = pitches.length;
+            const researchArray = research || [];
+            document.getElementById('stat-entries').textContent = researchArray.length;
+            document.getElementById('stat-thoughts').textContent = (thoughts || []).length;
+            document.getElementById('stat-pitches').textContent = (pitches || []).length;
             
-            const categories = new Set(research.map(r => r.category));
+            const categories = new Set(researchArray.map(r => r.category));
             document.getElementById('stat-categories').textContent = categories.size;
         }
 
@@ -212,6 +229,11 @@
             const categories = new Set();
             const complexities = new Set();
             
+            if (!data || data.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted);">No research entries found.</p>';
+                return;
+            }
+            
             let html = '';
             data.forEach((item, i) => {
                 categories.add(item.category);
@@ -219,7 +241,7 @@
                 html += `
                     <div class="entry-card ${item.complexity}">
                         <h3>${item.title}</h3>
-                        <p>${item.description}</p>
+                        <p>${item.summary || item.description || ''}</p>
                         <div class="entry-meta">
                             <span class="complexity-badge ${item.complexity}">${item.complexity}</span>
                             <span class="entry-tag">${item.category}</span>
@@ -235,10 +257,16 @@
 
         function renderThoughts(data) {
             const container = document.getElementById('thoughts-list');
-            document.getElementById('thoughts-count').textContent = data.length;
+            const thoughtsArray = data || [];
+            document.getElementById('thoughts-count').textContent = thoughtsArray.length;
+            
+            if (thoughtsArray.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted);">No thoughts recorded yet.</p>';
+                return;
+            }
             
             let html = '';
-            data.slice(0, 10).forEach(item => {
+            thoughtsArray.slice(0, 10).forEach(item => {
                 html += `
                     <div class="entry-card">
                         <h3>${item.title}</h3>
@@ -250,14 +278,20 @@
                 `;
             });
             
-            container.innerHTML = html || '<p style="color: var(--text-muted);">No thoughts yet.</p>';
+            container.innerHTML = html;
         }
 
         function renderPitches(data) {
             const container = document.getElementById('pitches-list');
+            const pitchesArray = data || [];
+            
+            if (pitchesArray.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted);">No pitches yet. <a href="https://github.com/0volume/research-archive/tree/main" target="_blank" style="color: var(--neon-cyan);">View pitch files on GitHub →</a></p>';
+                return;
+            }
             
             let html = '';
-            data.forEach(item => {
+            pitchesArray.forEach(item => {
                 html += `
                     <div class="entry-card">
                         <h3>${item.title}</h3>
@@ -270,7 +304,7 @@
                 `;
             });
             
-            container.innerHTML = html || '<p style="color: var(--text-muted);">No pitches yet.</p>';
+            container.innerHTML = html;
         }
 
         // Initialize
