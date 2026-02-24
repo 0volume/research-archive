@@ -1934,3 +1934,28 @@ button:active {
   0% { transform: translateY(0); }
   100% { transform: translateY(100%); }
 }
+
+/* ===========================================
+   GENTLE TEXT SELECTION HIGHLIGHT
+   Cyberpunk-inspired subtle highlighting
+   =========================================== */
+
+::selection {
+  background: rgba(0, 255, 245, 0.25);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 255, 245, 0.5);
+}
+
+::-moz-selection {
+  background: rgba(0, 255, 245, 0.25);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 255, 245, 0.5);
+}
+
+/* Secondary selection variant */
+.secondary::selection,
+::selection.secondary {
+  background: rgba(255, 0, 255, 0.25);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+}
