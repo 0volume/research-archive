@@ -513,7 +513,7 @@
                 // Handle both summary and content fields
                 const content = item.summary || item.content || 'No content';
                 // Link to wiki thoughts section
-                const thoughtUrl = item.url || `wiki/#thoughts`;
+                const thoughtUrl = item.url || `./wiki/index.html`;
                 html += `
                     <a href="${thoughtUrl}" class="entry-card">
                         <h3>${item.title}</h3>
@@ -541,9 +541,9 @@
             let html = '';
             pitchesArray.forEach(item => {
                 // Link to rendered pitch HTML page (not GitHub blob)
-                const pitchUrl = item.url || `pitch-${item.id}.html`;
+                const pitchUrl = item.url || `https://github.com/0volume/research-archive/blob/main/pitch-${item.id}.html`;
                 html += `
-                    <a href="${pitchUrl}" class="entry-card">
+                    <a href="${pitchUrl}" target="_blank" rel="noopener" class="entry-card">
                         <h3>Pitch #${item.id}: ${item.title}</h3>
                         <p>Status: ${item.status || 'pending'}</p>
                         <div class="entry-meta">
