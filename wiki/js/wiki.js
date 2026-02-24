@@ -1,7 +1,20 @@
 /**
  * Research Wiki - Client-side JavaScript
- * Handles rendering, routing, and search
+ * Handles rendering, routing, search, and filtering
  */
+
+// Debounce utility
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 // Simple markdown to HTML converter
 function parseMarkdown(text) {
@@ -59,6 +72,7 @@ class WikiApp {
     this.data = null;
     this.currentTopic = null;
     this.searchQuery = '';
+    this.activeFilter = 'all';
     this.init();
   }
 
@@ -73,7 +87,7 @@ class WikiApp {
       await this.loadHomepage();
     }
     
-    // Setup search
+    // Setup search with debounce
     this.setupSearch();
     
     // Setup keyboard shortcuts
@@ -112,6 +126,7 @@ class WikiApp {
 
   renderHomepage() {
     const main = document.getElementById('main');
+    const totalTopics = this.data.topics.length;
     
     const topicsHTML = this.data.topics.map(topic => this.renderTopicCard(topic)).join('');
     
@@ -124,21 +139,64 @@ class WikiApp {
 
     main.innerHTML = `
       <div class="search-container">
-        <input type="text" class="search-input" id="search" placeholder="Search topics, papers, or findings...">
+        <input type="text" class="search-input" id="search" placeholder="Search topics, papers, or findings..." aria-label="Search topics">
+      </div>
+      
+      <div class="filter-container">
+        <div class="filter-buttons" role="group" aria-label="Filter by status">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" data-filter="research" aria-pressed="false">Research</button>
+          <button class="filter-btn" data-filter="complete" aria-pressed="false">Complete</button>
+          <button class="filter-btn" data-filter="implemented" aria-pressed="false">Implemented</button>
+        </div>
+        <div class="result-count" id="result-count">
+          Showing <span class="count">${totalTopics}</span> of <span class="total">${totalTopics}</span> topics
+        </div>
       </div>
       
       <h2 class="section-title">Research Topics</h2>
-      <p class="section-subtitle">${this.data.totalTopics} topics available</p>
+      <p class="section-subtitle">${totalTopics} topics available</p>
       
       <div class="topics-grid" id="topics-grid">
         ${topicsHTML}
       </div>
       
-      <h2 class="section-title">Recent Updates</h2>
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <div class="empty-state-icon">🔍</div>
+        <h3>No topics found</h3>
+        <p id="empty-state-message">Try adjusting your search or filter</p>
+      </div>
+      
+      <h2 class="section-title" style="margin-top: 48px;">Recent Updates</h2>
       <div class="recent-updates">
         ${recentUpdatesHTML}
       </div>
     `;
+    
+    // Update sidebar stats
+    if (this.data.topics) {
+      document.getElementById('stat-topics').textContent = this.data.topics.length;
+      const totalPapers = this.data.topics.reduce((sum, t) => sum + (t.papers?.length || 0), 0);
+      document.getElementById('stat-papers').textContent = totalPapers;
+      const complete = this.data.topics.filter(t => t.status === 'research-complete').length;
+      document.getElementById('stat-complete').textContent = complete;
+      const implemented = this.data.topics.filter(t => t.hasImplementation).length;
+      document.getElementById('stat-impl').textContent = implemented;
+    }
+    
+    // Update sidebar recent updates
+    const sidebarUpdates = document.getElementById('sidebar-updates');
+    if (sidebarUpdates && this.data.recentUpdates) {
+      sidebarUpdates.innerHTML = this.data.recentUpdates.slice(0, 3).map(update => `
+        <div class="update-item">
+          <div class="update-date">${this.formatDate(update.created)}</div>
+          <a href="?topic=${update.slug}" class="update-title">${update.name}</a>
+        </div>
+      `).join('');
+    }
+    
+    // Setup filter buttons
+    this.setupFilters();
     
     // Re-setup search after render
     this.setupSearch();
@@ -149,12 +207,24 @@ class WikiApp {
       `<span class="key-finding-tag">${this.truncate(f, 40)}</span>`
     ).join('');
     
+    // Determine status class
+    let statusClass = 'status-research';
+    let statusText = 'Research';
+    if (topic.status === 'research-complete') {
+      statusClass = 'status-complete';
+      statusText = '✓ Complete';
+    }
+    
+    // Build data attributes for filtering
+    const filterStatus = topic.status === 'research-complete' ? 'complete' : 'research';
+    const filterImplemented = topic.hasImplementation ? 'implemented' : '';
+    
     return `
-      <a href="?topic=${topic.slug}" class="topic-card">
+      <a href="?topic=${topic.slug}" class="topic-card" data-filter-status="${filterStatus}" data-filter-implemented="${filterImplemented}">
         <div class="topic-card-header">
           <h3 class="topic-name">${topic.name}</h3>
-          <span class="topic-status ${topic.status === 'research-complete' ? 'status-complete' : 'status-research'}">
-            ${topic.status === 'research-complete' ? '✓ Complete' : 'Research'}
+          <span class="topic-status ${statusClass}">
+            ${statusText}
           </span>
         </div>
         <p class="topic-description">${topic.description}</p>
@@ -302,29 +372,118 @@ class WikiApp {
     const searchInput = document.getElementById('search');
     if (!searchInput) return;
     
+    // Debounced search
+    const debouncedFilter = debounce(() => {
+      this.filterTopics();
+    }, 200);
+    
     searchInput.addEventListener('input', (e) => {
       this.searchQuery = e.target.value.toLowerCase();
-      this.filterTopics();
+      debouncedFilter();
+    });
+  }
+
+  setupFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        
+        // Set active filter
+        this.activeFilter = btn.dataset.filter;
+        
+        // Apply filter
+        this.filterTopics();
+      });
     });
   }
 
   filterTopics() {
     const grid = document.getElementById('topics-grid');
+    const emptyState = document.getElementById('empty-state');
+    const emptyMessage = document.getElementById('empty-state-message');
+    const resultCount = document.getElementById('result-count');
+    
     if (!grid || !this.data) return;
     
     const cards = grid.querySelectorAll('.topic-card');
+    let visibleCount = 0;
+    const totalTopics = this.data.topics.length;
     
     cards.forEach(card => {
       const name = card.querySelector('.topic-name').textContent.toLowerCase();
       const description = card.querySelector('.topic-description').textContent.toLowerCase();
-      const text = name + ' ' + description;
       
-      if (this.searchQuery === '' || text.includes(this.searchQuery)) {
-        card.style.display = '';
+      // Get papers for this topic
+      const topicSlug = card.getAttribute('href').split('=')[1];
+      const topic = this.data.topics.find(t => t.slug === topicSlug);
+      
+      // Build searchable text from papers and key findings
+      let papersText = '';
+      if (topic && topic.papers) {
+        papersText = topic.papers.map(p => 
+          (p.title || '') + ' ' + (p.authors || '') + ' ' + (p.keyInsight || '')
+        ).join(' ').toLowerCase();
+      }
+      
+      let findingsText = '';
+      if (topic && topic.keyFindings) {
+        findingsText = topic.keyFindings.join(' ').toLowerCase();
+      }
+      
+      const fullText = name + ' ' + description + ' ' + papersText + ' ' + findingsText;
+      
+      // Check filter
+      const filterStatus = card.dataset.filterStatus;
+      const filterImplemented = card.dataset.filterImplemented;
+      
+      let matchesFilter = true;
+      if (this.activeFilter === 'research') {
+        matchesFilter = filterStatus === 'research';
+      } else if (this.activeFilter === 'complete') {
+        matchesFilter = filterStatus === 'complete';
+      } else if (this.activeFilter === 'implemented') {
+        matchesFilter = filterImplemented === 'implemented';
+      }
+      
+      // Check search query
+      const matchesSearch = this.searchQuery === '' || fullText.includes(this.searchQuery);
+      
+      if (matchesFilter && matchesSearch) {
+        card.classList.remove('hidden');
+        visibleCount++;
       } else {
-        card.style.display = 'none';
+        card.classList.add('hidden');
       }
     });
+    
+    // Update result count
+    if (resultCount) {
+      resultCount.innerHTML = `Showing <span class="count">${visibleCount}</span> of <span class="total">${totalTopics}</span> topics`;
+    }
+    
+    // Show/hide empty state
+    if (emptyState && emptyMessage) {
+      if (visibleCount === 0) {
+        grid.style.display = 'none';
+        emptyState.style.display = 'block';
+        if (this.searchQuery) {
+          emptyMessage.textContent = `No topics found matching "${this.searchQuery}"`;
+        } else {
+          emptyMessage.textContent = 'No topics match the selected filter';
+        }
+      } else {
+        grid.style.display = 'grid';
+        emptyState.style.display = 'none';
+      }
+    }
   }
 
   setupKeyboard() {
@@ -379,9 +538,6 @@ class WikiApp {
         </button>
         <div class="impl-section-content" id="${id}">`;
     });
-    
-    // Close divs after h2 blocks
-    // We'll wrap content between h2s
     
     // Split by sections and rebuild
     const sections = html.split(/(<div class="impl-section">)/);
@@ -446,7 +602,8 @@ class WikiApp {
     const main = document.getElementById('main');
     main.innerHTML = `
       <div class="empty-state">
-        <h3>⚠️ ${message}</h3>
+        <div class="empty-state-icon">⚠️</div>
+        <h3>${message}</h3>
         <p><a href="./index.html" style="color: var(--accent-blue);">Return to homepage</a></p>
       </div>
     `;
