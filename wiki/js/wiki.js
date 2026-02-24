@@ -210,7 +210,7 @@ class WikiApp {
           <div class="section-header">
             <h2>🚀 Implementation Plan Available</h2>
           </div>
-          <a href="./topics/${topic.slug}/implementation-plan.md" class="implementation-link" target="_blank">
+          <a href="https://raw.githubusercontent.com/0volume/research-archive/main/research/topics/${topic.slug}/implementation-plan.md" class="implementation-link" target="_blank">
             📋 View Implementation Plan →
           </a>
         </div>
