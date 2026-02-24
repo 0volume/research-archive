@@ -257,10 +257,20 @@ body::before {
   font-weight: 700;
   color: var(--neon-cyan);
   text-shadow: var(--glow-cyan);
+  animation: statGlow 3s ease-in-out infinite;
 }
 
 .stat-number.counting {
   animation: countPulse 0.3s ease-out;
+}
+
+@keyframes statGlow {
+  0%, 100% { 
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+  }
+  50% { 
+    text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan), 0 0 45px var(--neon-magenta);
+  }
 }
 
 @keyframes countPulse {

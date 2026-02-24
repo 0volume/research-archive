@@ -589,7 +589,7 @@
 }
 
 /* ===========================================
-   LOADING SPINNER
+   LOADING SPINNER - Enhanced Cyberpunk
    =========================================== */
 
 .cyber-spinner {
@@ -621,6 +621,85 @@
   to { transform: rotate(360deg); }
 }
 
+/* Enhanced Loading Animation with Pulse Rings */
+.cyber-spinner-enhanced {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+}
+
+.cyber-spinner-enhanced .spinner-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid transparent;
+  border-top-color: var(--neon-cyan);
+  border-right-color: var(--neon-magenta);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.cyber-spinner-enhanced .spinner-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-top-color: var(--neon-cyan);
+  border-radius: 50%;
+  animation: spin 2s linear infinite reverse;
+  opacity: 0.5;
+}
+
+.cyber-spinner-enhanced .spinner-ring:nth-child(2) {
+  top: 8px;
+  left: 8px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  border-top-color: var(--neon-magenta);
+  animation-duration: 1.5s;
+}
+
+.cyber-spinner-enhanced::before {
+  content: '◈';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Loading Text Animation */
+.loading-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 255, 242, 0.5);
+  letter-spacing: 3px;
+  animation: textFlicker 2s ease-in-out infinite;
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+  52% { opacity: 1; }
+  54% { opacity: 0.5; }
+  56% { opacity: 1; }
+}
+
 /* Loading Overlay - Full screen with proper z-index */
 .loading-overlay {
   position: fixed;
@@ -650,6 +729,41 @@
   font-size: 0.9rem;
   letter-spacing: 2px;
   animation: textPulse 1.5s ease-in-out infinite;
+}
+
+/* Enhanced loading overlay with grid scan effect */
+.loading-overlay-enhanced {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 15, 0.98);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(15px);
+}
+
+.loading-overlay-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, transparent 49%, rgba(0, 255, 245, 0.03) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(0, 255, 245, 0.03) 50%, transparent 51%);
+  background-size: 60px 60px;
+  animation: gridScan 4s linear infinite;
+}
+
+@keyframes gridScan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(60px); }
 }
 
 @keyframes textPulse {
