@@ -37,24 +37,46 @@ function findTopics() {
     
     const topicData = JSON.parse(fs.readFileSync(indexJsonPath, 'utf-8'));
     
-    // Find papers
-    const papersPath = path.join(topicPath, 'papers');
-    const papers = [];
-    if (fs.existsSync(papersPath)) {
-      const paperFiles = fs.readdirSync(papersPath).filter(f => f.endsWith('.md'));
-      for (const paperFile of paperFiles) {
-        const paperContent = fs.readFileSync(path.join(papersPath, paperFile), 'utf-8');
-        const paperMeta = extractPaperMetadata(paperContent);
-        papers.push({
-          file: `papers/${paperFile}`,
-          ...paperMeta
-        });
+    // Use papers from index.json (has better metadata), supplement with file content if available
+    let papers = [];
+    if (topicData.papers && Array.isArray(topicData.papers)) {
+      // Use the papers data from index.json
+      papers = topicData.papers.map(p => ({
+        id: p.id,
+        title: p.title,
+        authors: p.authors,
+        date: p.date,
+        source: p.source,
+        url: p.url,
+        keyInsight: p.key_insight,
+        file: p.file
+      }));
+    } else {
+      // Fallback: scan papers directory
+      const papersPath = path.join(topicPath, 'papers');
+      if (fs.existsSync(papersPath)) {
+        const paperFiles = fs.readdirSync(papersPath).filter(f => f.endsWith('.md'));
+        for (const paperFile of paperFiles) {
+          const paperContent = fs.readFileSync(path.join(papersPath, paperFile), 'utf-8');
+          const paperMeta = extractPaperMetadata(paperContent);
+          papers.push({
+            file: `papers/${paperFile}`,
+            ...paperMeta
+          });
+        }
       }
     }
     
-    // Check for implementation plan
+    // Check for implementation plan and EMBED it
     const implPath = path.join(topicPath, 'implementation-plan.md');
-    const hasImplementation = fs.existsSync(implPath);
+    let implementationPlan = null;
+    let hasImplementation = false;
+    
+    if (fs.existsSync(implPath)) {
+      hasImplementation = true;
+      // Read and embed the full implementation plan
+      implementationPlan = fs.readFileSync(implPath, 'utf-8');
+    }
     
     // Determine agent attribution from topic data
     const agent = topicData.agent || 'research-agent';
@@ -67,7 +89,9 @@ function findTopics() {
       status: topicData.status || 'research-complete',
       keyFindings: topicData.key_findings || [],
       papers,
+      phases: topicData.phases || [],
       hasImplementation,
+      implementationPlan,
       agent
     });
   }

@@ -3,6 +3,57 @@
  * Handles rendering, routing, and search
  */
 
+// Simple markdown to HTML converter
+function parseMarkdown(text) {
+  if (!text) return '';
+  
+  let html = text
+    // Escape HTML
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    // Headers
+    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+    // Bold
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    // Code blocks (```lang)
+    .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
+    // Inline code
+    .replace(/`(.*?)`/g, '<code>$1</code>')
+    // Lists
+    .replace(/^- (.*$)/gm, '<li>$1</li>')
+    .replace(/^(\d+)\. (.*$)/gm, '<li>$2</li>')
+    // Wrap consecutive li in ul
+    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+    // Checkboxes
+    .replace(/- \[ \] (.*$)/gm, '<div class="checkbox"><span class="unchecked">☐</span> $1</div>')
+    .replace(/- \[x\] (.*$)/gm, '<div class="checkbox"><span class="checked">☑</span> $1</div>')
+    // Horizontal rule
+    .replace(/^---$/gm, '<hr>')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    // Paragraphs (double newline)
+    .replace(/\n\n/g, '</p><p>')
+    // Line breaks
+    .replace(/\n/g, '<br>');
+  
+  // Wrap in paragraph if not starting with HTML tag
+  if (!html.startsWith('<')) {
+    html = '<p>' + html + '</p>';
+  }
+  
+  // Clean up empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/g, '');
+  html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+  html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+  
+  return html;
+}
+
 class WikiApp {
   constructor() {
     this.data = null;
@@ -205,14 +256,15 @@ class WikiApp {
           </div>
         </div>
         
-        ${topic.hasImplementation ? `
+        ${topic.hasImplementation && topic.implementationPlan ? `
         <div class="content-section implementation-section">
           <div class="section-header">
-            <h2>🚀 Implementation Plan Available</h2>
+            <h2>🚀 Implementation Plan</h2>
+            <button class="expand-all-btn" onclick="wikiApp.toggleAllSections()">Expand All</button>
           </div>
-          <a href="https://raw.githubusercontent.com/0volume/research-archive/main/research/topics/${topic.slug}/implementation-plan.md" class="implementation-link" target="_blank">
-            📋 View Implementation Plan →
-          </a>
+          <div class="implementation-content">
+            ${this.renderImplementationPlan(topic.implementationPlan)}
+          </div>
         </div>
         ` : ''}
         
@@ -309,6 +361,85 @@ class WikiApp {
   truncate(str, length) {
     if (str.length <= length) return str;
     return str.slice(0, length) + '...';
+  }
+
+  renderImplementationPlan(markdown) {
+    if (!markdown) return '<p>No implementation plan available.</p>';
+    
+    // Parse markdown to HTML
+    let html = parseMarkdown(markdown);
+    
+    // Make headers collapsible
+    html = html.replace(/<h2>(.*?)<\/h2>/g, (match, title) => {
+      const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      return `<div class="impl-section">
+        <button class="impl-toggle" onclick="wikiApp.toggleSection('${id}')" aria-expanded="false">
+          <span class="toggle-icon">▶</span>
+          <span class="toggle-title">${title}</span>
+        </button>
+        <div class="impl-section-content" id="${id}">`;
+    });
+    
+    // Close divs after h2 blocks
+    // We'll wrap content between h2s
+    
+    // Split by sections and rebuild
+    const sections = html.split(/(<div class="impl-section">)/);
+    let result = '';
+    let inSection = false;
+    let sectionDepth = 0;
+    
+    for (const part of sections) {
+      if (part.includes('impl-section">')) {
+        result += part;
+        inSection = true;
+        sectionDepth++;
+      } else if (inSection && part.includes('</h2>')) {
+        result += part;
+      } else if (inSection && (part.includes('<h2>') || part.includes('<h3>') || part.includes('<hr>'))) {
+        // Close previous section and start new
+        result += '</div></div>' + part;
+      } else if (inSection && sectionDepth > 0) {
+        result += part;
+      } else {
+        result += part;
+      }
+    }
+    
+    // Close any open sections
+    if (inSection) {
+      result += '</div></div>'.repeat(sectionDepth);
+    }
+    
+    return result;
+  }
+
+  toggleSection(id) {
+    const content = document.getElementById(id);
+    const button = content.previousElementSibling;
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    
+    if (isExpanded) {
+      content.style.display = 'none';
+      button.setAttribute('aria-expanded', 'false');
+      button.querySelector('.toggle-icon').textContent = '▶';
+    } else {
+      content.style.display = 'block';
+      button.setAttribute('aria-expanded', 'true');
+      button.querySelector('.toggle-icon').textContent = '▼';
+    }
+  }
+
+  toggleAllSections() {
+    const allContents = document.querySelectorAll('.impl-section-content');
+    const allButtons = document.querySelectorAll('.impl-toggle');
+    const anyExpanded = Array.from(allContents).some(c => c.style.display !== 'none');
+    
+    allContents.forEach((content, i) => {
+      content.style.display = anyExpanded ? 'none' : 'block';
+      allButtons[i].setAttribute('aria-expanded', anyExpanded ? 'false' : 'true');
+      allButtons[i].querySelector('.toggle-icon').textContent = anyExpanded ? '▶' : '▼';
+    });
   }
 
   showError(message) {

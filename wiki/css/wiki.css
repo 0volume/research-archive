@@ -555,3 +555,158 @@ body {
     margin-left: 0;
   }
 }
+
+/* Embedded Implementation Plan Styles */
+.implementation-content {
+  margin-top: 16px;
+}
+
+.impl-section {
+  margin-bottom: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.impl-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-tertiary);
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.impl-toggle:hover {
+  background: var(--border-color);
+}
+
+.toggle-icon {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+.toggle-title {
+  flex: 1;
+}
+
+.impl-section-content {
+  padding: 16px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  display: none;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.impl-section-content h3 {
+  font-size: 1.1rem;
+  margin: 20px 0 12px;
+  color: var(--accent-blue);
+}
+
+.impl-section-content h3:first-child {
+  margin-top: 0;
+}
+
+.impl-section-content p {
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.impl-section-content ul {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.impl-section-content li {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.impl-section-content pre {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.impl-section-content code {
+  font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.impl-section-content hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 24px 0;
+}
+
+.impl-section-content .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.impl-section-content .checkbox .unchecked,
+.impl-section-content .checkbox .checked {
+  font-size: 1.1rem;
+}
+
+.impl-section-content .checkbox .checked {
+  color: var(--accent-green);
+}
+
+.impl-section-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.impl-section-content a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.impl-section-content a:hover {
+  text-decoration: underline;
+}
+
+.expand-all-btn {
+  padding: 6px 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.expand-all-btn:hover {
+  background: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Section header with button */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  margin: 0;
+}

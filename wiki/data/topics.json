@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-24T00:19:57.735Z",
+  "generated": "2026-02-24T00:37:18.765Z",
   "topics": [
     {
       "slug": "self-reflection",
@@ -15,36 +15,68 @@
       ],
       "papers": [
         {
-          "file": "papers/paper-2.md",
-          "title": "Paper #2: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
-          "authors": "** Yufei He, Juncheng Liu, Yue Liu, Yibo Li, Tri Cao, Zhiyuan Hu, Xinxing Xu, Bryan Hooi",
-          "date": "** October 2025",
-          "source": "** arXiv"
+          "id": 2,
+          "title": "EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+          "authors": "Yufei He, Juncheng Liu, et al.",
+          "date": "2025-10-17",
+          "source": "arXiv",
+          "url": "https://arxiv.org/html/2510.13220v1",
+          "keyInsight": "Actor + Evolver architecture for gradient-free whole-system evolution",
+          "file": "papers/paper-2.md"
         },
         {
-          "file": "papers/paper-22.md",
-          "title": "Paper #22: A Survey of Self-Evolving Agents",
-          "authors": "** Huan-ang Gao, Jiayi Geng, Wenyue Hua, et al. (27 authors)",
-          "date": "** January 2026 (v4)",
-          "source": "** arXiv"
+          "id": 22,
+          "title": "A Survey of Self-Evolving Agents: What, When, How, and Where to Evolve",
+          "authors": "Huan-ang Gao, Jiayi Geng, et al. (27 authors)",
+          "date": "2026-01-16",
+          "source": "arXiv",
+          "url": "https://arxiv.org/abs/2507.21046",
+          "keyInsight": "Taxonomy of self-evolution: what/when/how to evolve, intra vs inter-test-time",
+          "file": "papers/paper-22.md"
         },
         {
-          "file": "papers/paper-23.md",
-          "title": "Paper #23: Meta Context Engineering via Agentic Skill Evolution",
-          "authors": "** Haoran Ye, Xuning He, Vincent Arak, Haonan Dong, Guojie Song",
-          "date": "** January 2026",
-          "source": "** arXiv",
-          "keyInsight": "s for **Pitch"
+          "id": 23,
+          "title": "Meta Context Engineering via Agentic Skill Evolution",
+          "authors": "Haoran Ye, Xuning He, et al.",
+          "date": "2026-01-27",
+          "source": "arXiv",
+          "url": "https://arxiv.org/html/2601.21557",
+          "keyInsight": "Bi-level optimization: meta-level skill evolution + base-level context optimization",
+          "file": "papers/paper-23.md"
         },
         {
-          "file": "papers/paper-24.md",
-          "title": "Paper #24: Reflective Agentic AI - Workflows That Outperform GPT-4",
-          "authors": "** Landbase Team",
-          "date": "** February 2026",
-          "source": "** Landbase Blog"
+          "id": 24,
+          "title": "Reflective Agentic AI: Workflows That Outperform GPT-4",
+          "authors": "Landbase Team",
+          "date": "2026-02-18",
+          "source": "Landbase",
+          "url": "https://www.landbase.com/blog/how-reflective-agentic-ai-can-outperform-gpt-4-a-deep-dive-into-new-ai-workflows",
+          "keyInsight": "Plan → Execute → Self-Assess → Refine workflow pattern",
+          "file": "papers/paper-24.md"
+        }
+      ],
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Core Reflection Loop",
+          "weeks": "1-3",
+          "deliverable": "Plan → Execute → Self-Assess → Refine workflow"
+        },
+        {
+          "phase": 2,
+          "name": "Inter-Episode Learning",
+          "weeks": "4-6",
+          "deliverable": "EpisodeAnalyzer, PromptEvolver, ContextMemory"
+        },
+        {
+          "phase": 3,
+          "name": "Full Self-Evolving System",
+          "weeks": "7-10",
+          "deliverable": "SkillEvolver, ContextOptimizer, bi-level evolution"
         }
       ],
       "hasImplementation": true,
+      "implementationPlan": "# Implementation Plan: Self-Reflection & Improvement Loop\n\n## Overview\n\nBased on research from 4 key papers, this implementation plan outlines a 4-phase approach to building a self-reflection and improvement loop for our agentic AI system.\n\n### Research Foundation\n- **Paper #2 (EvoTest)**: Gradient-free whole-system evolution with Actor + Evolver architecture\n- **Paper #22 (Survey)**: Taxonomy of what/when/how to evolve\n- **Paper #23 (MCE)**: Bi-level optimization with meta-level skill evolution\n- **Paper #24 (Reflective AI)**: Plan → Execute → Self-Assess → Refine workflow\n\n### Stack\n- **Runtime**: Node.js (ES Modules)\n- **Storage**: File-based JSON documents (matching OpenClaw patterns)\n- **LLM**: Via existing OpenClaw message API\n\n---\n\n## Phase 0: Quick Win (Days 1-2)\n\n**Objective**: Ship a minimal reflection capability in 1-2 days that provides immediate value.\n\n### What We Ship\n\nA simple \"post-execution review\" that runs after every task completion:\n\n```javascript\n// src/agents/reflection/postReview.js\nexport class PostReviewAgent {\n  constructor(llmClient) {\n    this.llm = llmClient;\n  }\n\n  async review(task, output, context) {\n    const prompt = `You are reviewing an AI agent's output.\nTask: ${task}\nOutput: ${output}\nContext: ${JSON.stringify(context)}\n\nWas the output successful? Identify up to 3 issues if any.\nRespond as JSON: { \"success\": boolean, \"issues\": string[], \"score\": 1-10 }`;\n\n    const result = await this.llm.complete(prompt);\n    return JSON.parse(result);\n  }\n}\n```\n\n### Integration Point\n\nAdd to the main workflow after task execution:\n\n```javascript\n// In existing workflow, after executor.run()\nconst reviewer = new PostReviewAgent(llmClient);\nconst review = await reviewer.review(task, output, context);\n\n// Log to memory (OpenClaw pattern)\nawait memory.log('reflection', { task, output, review, timestamp: Date.now() });\n\n// If score < 5, flag for human review\nif (review.score < 5) {\n  await notification.alert(`Low quality output (${review.score}/10) for: ${task.slice(0, 50)}`);\n}\n```\n\n### Files to Create\n- `src/agents/reflection/postReview.js` - Review agent\n- `src/agents/reflection/index.js` - Module exports\n\n### Checkpoint\n- [ ] PostReviewAgent logs reviews to memory\n- [ ] Score < 5 triggers notification\n- [ ] No workflow changes required (non-blocking)\n\n---\n\n## Phase 1: Core Reflection Loop (Weeks 1-2)\n\n**Objective**: Implement the Plan → Execute → Self-Assess → Refine pattern as an active loop.\n\n### 1.1 Reflection Agent Module (Days 3-5)\n\n```javascript\n// src/agents/reflection/ReflectionAgent.js\nexport class ReflectionAgent {\n  constructor(llmClient) {\n    this.llm = llmClient;\n  }\n\n  async assess(task, output, context) {\n    const prompt = this.buildAssessmentPrompt(task, output, context);\n    const response = await this.llm.complete(prompt);\n    return this.parseAssessment(response);\n  }\n\n  async refine(task, output, reflection) {\n    const prompt = this.buildRefinePrompt(task, output, reflection);\n    const refined = await this.llm.complete(prompt);\n    return refined;\n  }\n\n  buildAssessmentPrompt(task, output, context) {\n    return `You are a self-critic. Evaluate this output.\nTask: ${task}\nOutput: ${output}\nContext: ${JSON.stringify(context)}\n\nRespond JSON: { \"acceptable\": boolean, \"issues\": string[], \"suggestions\": string[] }`;\n  }\n\n  buildRefinePrompt(task, output, reflection) {\n    return `Refine this output based on the feedback.\nOriginal Task: ${task}\nCurrent Output: ${output}\nIssues Found: ${reflection.issues.join(', ')}\nSuggestions: ${reflection.suggestions.join(', ')}\n\nProvide improved output:`;\n  }\n\n  parseAssessment(response) {\n    try {\n      return JSON.parse(response);\n    } catch {\n      return { acceptable: false, issues: ['Parse failed'], suggestions: [] };\n    }\n  }\n}\n```\n\n### 1.2 Reflective Workflow (Days 6-8)\n\n```javascript\n// src/workflows/ReflectiveWorkflow.js\nexport class ReflectiveWorkflow {\n  constructor(config = {}) {\n    this.maxIterations = config.maxIterations || 3;\n    this.executor = new TaskExecutor();\n    this.reflector = new ReflectionAgent(llmClient);\n  }\n\n  async run(task, context = {}) {\n    const iterations = [];\n    \n    // Plan & Execute (single pass)\n    const plan = await this.executor.createPlan(task);\n    let output = await this.executor.execute(plan);\n    \n    // Self-Assess → Refine loop\n    for (let i = 0; i < this.maxIterations; i++) {\n      const assessment = await this.reflector.assess(task, output, context);\n      \n      iterations.push({ iteration: i + 1, assessment, output });\n      \n      if (assessment.acceptable) {\n        break;\n      }\n      \n      // Refine\n      output = await this.reflector.refine(task, output, assessment);\n    }\n    \n    return {\n      output,\n      iterations,\n      improved: iterations.length > 1\n    };\n  }\n}\n```\n\n### 1.3 Data Persistence (Days 9-10)\n\n```javascript\n// src/agents/reflection/ReflectionStore.js\n// Stores reflection records in memory/ directory (OpenClaw pattern)\n\nexport class ReflectionStore {\n  constructor(storagePath = 'memory/reflections') {\n    this.storagePath = storagePath;\n    this.fs = require('fs/promises');\n  }\n\n  async save(record) {\n    const date = new Date().toISOString().split('T')[0];\n    const file = `${this.storagePath}/${date}.json`;\n    \n    const existing = await this.fs.readFile(file).catch(() => '[]');\n    const records = JSON.parse(existing);\n    records.push({ ...record, timestamp: Date.now() });\n    \n    await this.fs.writeFile(file, JSON.stringify(records, null, 2));\n  }\n\n  async getRecent(days = 7) {\n    // Load last N days of reflection records\n  }\n}\n```\n\n### Phase 1 Checkpoints\n- [ ] ReflectionAgent.assess() returns structured feedback\n- [ ] ReflectionAgent.refine() produces improved output\n- [ ] ReflectiveWorkflow runs up to 3 refinement iterations\n- [ ] Reflections saved to memory/ (searchable)\n- [ ] Latency overhead < 2x single-pass\n\n---\n\n## Phase 2: Inter-Episode Learning (Weeks 3-4)\n\n**Objective**: Learn across episodes to evolve prompts and strategies.\n\n### 2.1 Episode Analyzer (Days 11-13)\n\n```javascript\n// src/agents/evolution/EpisodeAnalyzer.js\nexport class EpisodeAnalyzer {\n  constructor(llmClient) {\n    this.llm = llmClient;\n  }\n\n  async analyze(episodes) {\n    const transcript = this.formatEpisodes(episodes);\n    \n    const prompt = `Analyze these episodes and suggest improvements.\n${transcript}\n\nConsider:\n1. What strategies worked/didn't work?\n2. What patterns lead to success?\n3. What prompts should evolve?\n\nRespond JSON: { \"promptModifications\": string[], \"strategyUpdates\": string[], \"patterns\": object[] }`;\n\n    const result = await this.llm.complete(prompt);\n    return JSON.parse(result);\n  }\n\n  formatEpisodes(episodes) {\n    return episodes.map((e, i) => `\nEpisode ${i + 1}:\nTask: ${e.task}\nSuccess: ${e.success}\nReflections: ${JSON.stringify(e.reflections)}\n`).join('\\n');\n  }\n}\n```\n\n### 2.2 Prompt Evolution System (Days 14-16)\n\n```javascript\n// src/agents/evolution/PromptEvolver.js\nexport class PromptEvolver {\n  constructor(config) {\n    this.version = 0;\n    this.history = [];\n    this.llm = config.llm;\n    this.systemPrompt = config.systemPrompt;\n  }\n\n  async evolve(suggestions) {\n    const prompt = `\nCurrent system prompt:\n${this.systemPrompt}\n\nSuggested improvements:\n${JSON.stringify(suggestions, null, 2)}\n\nGenerate improved version maintaining core identity:`;\n\n    const newPrompt = await this.llm.complete(prompt);\n    \n    this.version++;\n    this.history.push({\n      version: this.version,\n      prompt: newPrompt,\n      suggestions,\n      timestamp: Date.now()\n    });\n    \n    return newPrompt;\n  }\n\n  getVersion() {\n    return this.version;\n  }\n\n  getHistory() {\n    return this.history;\n  }\n}\n```\n\n### 2.3 Context Memory (Days 17-18)\n\n```javascript\n// src/memory/ContextMemory.js\n// Extends existing OpenClaw memory with pattern storage\n\nexport class ContextMemory {\n  constructor() {\n    this.store = {}; // In-memory for now\n  }\n\n  async addSuccessPattern(taskType, pattern) {\n    const key = `success:${taskType}`;\n    this.store[key] = this.store[key] || [];\n    this.store[key].push({ ...pattern, timestamp: Date.now() });\n  }\n\n  async addFailurePattern(taskType, failure) {\n    const key = `failure:${taskType}`;\n    this.store[key] = this.store[key] || [];\n    this.store[key].push({ ...failure, timestamp: Date.now() });\n  }\n\n  async getRelevant(task) {\n    // Simple keyword matching for now\n    const patterns = [];\n    for (const [key, value] of Object.entries(this.store)) {\n      if (task.toLowerCase().includes(key.split(':')[1])) {\n        patterns.push(...value);\n      }\n    }\n    return patterns.slice(0, 5);\n  }\n}\n```\n\n### Phase 2 Checkpoints\n- [ ] EpisodeAnalyzer identifies patterns across 5+ episodes\n- [ ] PromptEvolver generates new version with rationale\n- [ ] ContextMemory retrieves relevant patterns for new tasks\n- [ ] A/B test: evolved prompt vs baseline (target: 10% improvement)\n- [ ] Version history preserved for rollback\n\n---\n\n## Phase 3: Full Self-Evolving System (Weeks 5-6)\n\n**Objective**: Bi-level optimization with meta-level skill evolution.\n\n### 3.1 Skill Evolution Engine (Days 19-22)\n\n```javascript\n// src/agents/evolution/SkillEvolver.js\nexport class SkillEvolver {\n  constructor(config) {\n    this.llm = config.llm;\n    this.skills = config.skillLibrary || new SkillLibrary();\n  }\n\n  async evolveSkills(taskSpec, history) {\n    const relevantSkills = await this.skills.retrieve(taskSpec);\n    \n    const prompt = `\nGiven these skills and their executions:\n${JSON.stringify(relevantSkills, null, 2)}\n\nEvaluations:\n${JSON.stringify(history.evaluations, null, 2)}\n\nCreate improved skill through crossover.\nRespond JSON: { \"name\": string, \"instructions\": string, \"code\": string[] }`;\n\n    const newSkill = await this.llm.complete(prompt);\n    return JSON.parse(newSkill);\n  }\n}\n```\n\n### 3.2 Context Optimizer (Days 23-25)\n\n```javascript\n// src/agents/evolution/ContextOptimizer.js\nexport class ContextOptimizer {\n  constructor(config) {\n    this.codeInterpreter = config.codeInterpreter; // Sandboxed runner\n  }\n\n  async optimize(skill, task) {\n    // Skill may generate code to manipulate context\n    if (skill.code) {\n      const result = await this.codeInterpreter.run(skill.code, { task });\n      return {\n        content: result.output,\n        artifacts: result.artifacts\n      };\n    }\n    \n    return { content: skill.instructions, artifacts: [] };\n  }\n}\n```\n\n### 3.3 Evolution Controller (Days 26-28)\n\n```javascript\n// src/agents/evolution/EvolutionController.js\nexport class EvolutionController {\n  constructor(config) {\n    this.skillEvolver = new SkillEvolver(config);\n    this.contextOptimizer = new ContextOptimizer(config);\n    this.evaluator = config.evaluator;\n  }\n\n  async evolve(session) {\n    // 1. Collect episode data\n    const episodes = session.getEpisodes();\n    \n    // 2. Meta-level: Evolve skills\n    const newSkills = await this.skillEvolver.evolveSkills(\n      session.taskSpec,\n      episodes\n    );\n    \n    // 3. Base-level: Optimize context\n    const optimizedContext = await this.contextOptimizer.optimize(\n      newSkills,\n      session.task\n    );\n    \n    // 4. Evaluate\n    const evaluation = await this.evaluator.evaluate(\n      session.baseline,\n      optimizedContext\n    );\n    \n    return {\n      skills: newSkills,\n      context: optimizedContext,\n      evaluation,\n      improvement: evaluation.score - session.baseline.score\n    };\n  }\n}\n```\n\n### Phase 3 Checkpoints\n- [ ] SkillEvolver creates new skills via crossover\n- [ ] ContextOptimizer runs generated code safely\n- [ ] EvolutionController coordinates full pipeline\n- [ ] Target: 15%+ improvement over baseline\n- [ ] Safety: All evolved artifacts versioned + human-reviewable\n\n---\n\n## Summary Timeline\n\n| Phase | Duration | Focus | Key Components |\n|-------|----------|-------|----------------|\n| Phase 0 | Days 1-2 | Quick Win | PostReviewAgent (ship immediately) |\n| Phase 1 | Weeks 1-2 | Core Reflection Loop | ReflectionAgent, ReflectiveWorkflow, Store |\n| Phase 2 | Weeks 3-4 | Inter-Episode Learning | EpisodeAnalyzer, PromptEvolver, ContextMemory |\n| Phase 3 | Weeks 5-6 | Full Self-Evolving | SkillEvolver, ContextOptimizer, EvolutionController |\n\n## File Structure\n\n```\nsrc/\n├── agents/\n│   ├── reflection/\n│   │   ├── index.js\n│   │   ├── postReview.js       # Phase 0\n│   │   ├── ReflectionAgent.js  # Phase 1\n│   │   └── ReflectionStore.js  # Phase 1\n│   └── evolution/\n│       ├── EpisodeAnalyzer.js  # Phase 2\n│       ├── PromptEvolver.js    # Phase 2\n│       ├── SkillEvolver.js     # Phase 3\n│       └── EvolutionController.js # Phase 3\n├── workflows/\n│   └── ReflectiveWorkflow.js   # Phase 1\n├── memory/\n│   └── ContextMemory.js         # Phase 2\n└── index.js                      # Main exports\n```\n\n## Dependencies\n\n1. **Phase 0** → No dependencies (standalone)\n2. **Phase 1** → Requires Phase 0 (reuses LLM client)\n3. **Phase 2** → Requires Phase 1 (uses reflection data)\n4. **Phase 3** → Requires Phase 2 (uses episode analysis)\n\n## Risk Mitigation\n\n- **Start with Phase 0** — Immediate value, no risk\n- **Phase 1 is low-risk** — Self-improvement only, no system changes\n- **Phase 2** — A/B test evolved prompts before deployment\n- **Phase 3** — Human review gate for evolved skills\n- **Rollback** — All versions stored, instant revert possible\n",
       "agent": "research-agent"
     }
   ],
@@ -63,36 +95,68 @@
       ],
       "papers": [
         {
-          "file": "papers/paper-2.md",
-          "title": "Paper #2: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
-          "authors": "** Yufei He, Juncheng Liu, Yue Liu, Yibo Li, Tri Cao, Zhiyuan Hu, Xinxing Xu, Bryan Hooi",
-          "date": "** October 2025",
-          "source": "** arXiv"
+          "id": 2,
+          "title": "EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+          "authors": "Yufei He, Juncheng Liu, et al.",
+          "date": "2025-10-17",
+          "source": "arXiv",
+          "url": "https://arxiv.org/html/2510.13220v1",
+          "keyInsight": "Actor + Evolver architecture for gradient-free whole-system evolution",
+          "file": "papers/paper-2.md"
         },
         {
-          "file": "papers/paper-22.md",
-          "title": "Paper #22: A Survey of Self-Evolving Agents",
-          "authors": "** Huan-ang Gao, Jiayi Geng, Wenyue Hua, et al. (27 authors)",
-          "date": "** January 2026 (v4)",
-          "source": "** arXiv"
+          "id": 22,
+          "title": "A Survey of Self-Evolving Agents: What, When, How, and Where to Evolve",
+          "authors": "Huan-ang Gao, Jiayi Geng, et al. (27 authors)",
+          "date": "2026-01-16",
+          "source": "arXiv",
+          "url": "https://arxiv.org/abs/2507.21046",
+          "keyInsight": "Taxonomy of self-evolution: what/when/how to evolve, intra vs inter-test-time",
+          "file": "papers/paper-22.md"
         },
         {
-          "file": "papers/paper-23.md",
-          "title": "Paper #23: Meta Context Engineering via Agentic Skill Evolution",
-          "authors": "** Haoran Ye, Xuning He, Vincent Arak, Haonan Dong, Guojie Song",
-          "date": "** January 2026",
-          "source": "** arXiv",
-          "keyInsight": "s for **Pitch"
+          "id": 23,
+          "title": "Meta Context Engineering via Agentic Skill Evolution",
+          "authors": "Haoran Ye, Xuning He, et al.",
+          "date": "2026-01-27",
+          "source": "arXiv",
+          "url": "https://arxiv.org/html/2601.21557",
+          "keyInsight": "Bi-level optimization: meta-level skill evolution + base-level context optimization",
+          "file": "papers/paper-23.md"
         },
         {
-          "file": "papers/paper-24.md",
-          "title": "Paper #24: Reflective Agentic AI - Workflows That Outperform GPT-4",
-          "authors": "** Landbase Team",
-          "date": "** February 2026",
-          "source": "** Landbase Blog"
+          "id": 24,
+          "title": "Reflective Agentic AI: Workflows That Outperform GPT-4",
+          "authors": "Landbase Team",
+          "date": "2026-02-18",
+          "source": "Landbase",
+          "url": "https://www.landbase.com/blog/how-reflective-agentic-ai-can-outperform-gpt-4-a-deep-dive-into-new-ai-workflows",
+          "keyInsight": "Plan → Execute → Self-Assess → Refine workflow pattern",
+          "file": "papers/paper-24.md"
+        }
+      ],
+      "phases": [
+        {
+          "phase": 1,
+          "name": "Core Reflection Loop",
+          "weeks": "1-3",
+          "deliverable": "Plan → Execute → Self-Assess → Refine workflow"
+        },
+        {
+          "phase": 2,
+          "name": "Inter-Episode Learning",
+          "weeks": "4-6",
+          "deliverable": "EpisodeAnalyzer, PromptEvolver, ContextMemory"
+        },
+        {
+          "phase": 3,
+          "name": "Full Self-Evolving System",
+          "weeks": "7-10",
+          "deliverable": "SkillEvolver, ContextOptimizer, bi-level evolution"
         }
       ],
       "hasImplementation": true,
+      "implementationPlan": "# Implementation Plan: Self-Reflection & Improvement Loop\n\n## Overview\n\nBased on research from 4 key papers, this implementation plan outlines a 4-phase approach to building a self-reflection and improvement loop for our agentic AI system.\n\n### Research Foundation\n- **Paper #2 (EvoTest)**: Gradient-free whole-system evolution with Actor + Evolver architecture\n- **Paper #22 (Survey)**: Taxonomy of what/when/how to evolve\n- **Paper #23 (MCE)**: Bi-level optimization with meta-level skill evolution\n- **Paper #24 (Reflective AI)**: Plan → Execute → Self-Assess → Refine workflow\n\n### Stack\n- **Runtime**: Node.js (ES Modules)\n- **Storage**: File-based JSON documents (matching OpenClaw patterns)\n- **LLM**: Via existing OpenClaw message API\n\n---\n\n## Phase 0: Quick Win (Days 1-2)\n\n**Objective**: Ship a minimal reflection capability in 1-2 days that provides immediate value.\n\n### What We Ship\n\nA simple \"post-execution review\" that runs after every task completion:\n\n```javascript\n// src/agents/reflection/postReview.js\nexport class PostReviewAgent {\n  constructor(llmClient) {\n    this.llm = llmClient;\n  }\n\n  async review(task, output, context) {\n    const prompt = `You are reviewing an AI agent's output.\nTask: ${task}\nOutput: ${output}\nContext: ${JSON.stringify(context)}\n\nWas the output successful? Identify up to 3 issues if any.\nRespond as JSON: { \"success\": boolean, \"issues\": string[], \"score\": 1-10 }`;\n\n    const result = await this.llm.complete(prompt);\n    return JSON.parse(result);\n  }\n}\n```\n\n### Integration Point\n\nAdd to the main workflow after task execution:\n\n```javascript\n// In existing workflow, after executor.run()\nconst reviewer = new PostReviewAgent(llmClient);\nconst review = await reviewer.review(task, output, context);\n\n// Log to memory (OpenClaw pattern)\nawait memory.log('reflection', { task, output, review, timestamp: Date.now() });\n\n// If score < 5, flag for human review\nif (review.score < 5) {\n  await notification.alert(`Low quality output (${review.score}/10) for: ${task.slice(0, 50)}`);\n}\n```\n\n### Files to Create\n- `src/agents/reflection/postReview.js` - Review agent\n- `src/agents/reflection/index.js` - Module exports\n\n### Checkpoint\n- [ ] PostReviewAgent logs reviews to memory\n- [ ] Score < 5 triggers notification\n- [ ] No workflow changes required (non-blocking)\n\n---\n\n## Phase 1: Core Reflection Loop (Weeks 1-2)\n\n**Objective**: Implement the Plan → Execute → Self-Assess → Refine pattern as an active loop.\n\n### 1.1 Reflection Agent Module (Days 3-5)\n\n```javascript\n// src/agents/reflection/ReflectionAgent.js\nexport class ReflectionAgent {\n  constructor(llmClient) {\n    this.llm = llmClient;\n  }\n\n  async assess(task, output, context) {\n    const prompt = this.buildAssessmentPrompt(task, output, context);\n    const response = await this.llm.complete(prompt);\n    return this.parseAssessment(response);\n  }\n\n  async refine(task, output, reflection) {\n    const prompt = this.buildRefinePrompt(task, output, reflection);\n    const refined = await this.llm.complete(prompt);\n    return refined;\n  }\n\n  buildAssessmentPrompt(task, output, context) {\n    return `You are a self-critic. Evaluate this output.\nTask: ${task}\nOutput: ${output}\nContext: ${JSON.stringify(context)}\n\nRespond JSON: { \"acceptable\": boolean, \"issues\": string[], \"suggestions\": string[] }`;\n  }\n\n  buildRefinePrompt(task, output, reflection) {\n    return `Refine this output based on the feedback.\nOriginal Task: ${task}\nCurrent Output: ${output}\nIssues Found: ${reflection.issues.join(', ')}\nSuggestions: ${reflection.suggestions.join(', ')}\n\nProvide improved output:`;\n  }\n\n  parseAssessment(response) {\n    try {\n      return JSON.parse(response);\n    } catch {\n      return { acceptable: false, issues: ['Parse failed'], suggestions: [] };\n    }\n  }\n}\n```\n\n### 1.2 Reflective Workflow (Days 6-8)\n\n```javascript\n// src/workflows/ReflectiveWorkflow.js\nexport class ReflectiveWorkflow {\n  constructor(config = {}) {\n    this.maxIterations = config.maxIterations || 3;\n    this.executor = new TaskExecutor();\n    this.reflector = new ReflectionAgent(llmClient);\n  }\n\n  async run(task, context = {}) {\n    const iterations = [];\n    \n    // Plan & Execute (single pass)\n    const plan = await this.executor.createPlan(task);\n    let output = await this.executor.execute(plan);\n    \n    // Self-Assess → Refine loop\n    for (let i = 0; i < this.maxIterations; i++) {\n      const assessment = await this.reflector.assess(task, output, context);\n      \n      iterations.push({ iteration: i + 1, assessment, output });\n      \n      if (assessment.acceptable) {\n        break;\n      }\n      \n      // Refine\n      output = await this.reflector.refine(task, output, assessment);\n    }\n    \n    return {\n      output,\n      iterations,\n      improved: iterations.length > 1\n    };\n  }\n}\n```\n\n### 1.3 Data Persistence (Days 9-10)\n\n```javascript\n// src/agents/reflection/ReflectionStore.js\n// Stores reflection records in memory/ directory (OpenClaw pattern)\n\nexport class ReflectionStore {\n  constructor(storagePath = 'memory/reflections') {\n    this.storagePath = storagePath;\n    this.fs = require('fs/promises');\n  }\n\n  async save(record) {\n    const date = new Date().toISOString().split('T')[0];\n    const file = `${this.storagePath}/${date}.json`;\n    \n    const existing = await this.fs.readFile(file).catch(() => '[]');\n    const records = JSON.parse(existing);\n    records.push({ ...record, timestamp: Date.now() });\n    \n    await this.fs.writeFile(file, JSON.stringify(records, null, 2));\n  }\n\n  async getRecent(days = 7) {\n    // Load last N days of reflection records\n  }\n}\n```\n\n### Phase 1 Checkpoints\n- [ ] ReflectionAgent.assess() returns structured feedback\n- [ ] ReflectionAgent.refine() produces improved output\n- [ ] ReflectiveWorkflow runs up to 3 refinement iterations\n- [ ] Reflections saved to memory/ (searchable)\n- [ ] Latency overhead < 2x single-pass\n\n---\n\n## Phase 2: Inter-Episode Learning (Weeks 3-4)\n\n**Objective**: Learn across episodes to evolve prompts and strategies.\n\n### 2.1 Episode Analyzer (Days 11-13)\n\n```javascript\n// src/agents/evolution/EpisodeAnalyzer.js\nexport class EpisodeAnalyzer {\n  constructor(llmClient) {\n    this.llm = llmClient;\n  }\n\n  async analyze(episodes) {\n    const transcript = this.formatEpisodes(episodes);\n    \n    const prompt = `Analyze these episodes and suggest improvements.\n${transcript}\n\nConsider:\n1. What strategies worked/didn't work?\n2. What patterns lead to success?\n3. What prompts should evolve?\n\nRespond JSON: { \"promptModifications\": string[], \"strategyUpdates\": string[], \"patterns\": object[] }`;\n\n    const result = await this.llm.complete(prompt);\n    return JSON.parse(result);\n  }\n\n  formatEpisodes(episodes) {\n    return episodes.map((e, i) => `\nEpisode ${i + 1}:\nTask: ${e.task}\nSuccess: ${e.success}\nReflections: ${JSON.stringify(e.reflections)}\n`).join('\\n');\n  }\n}\n```\n\n### 2.2 Prompt Evolution System (Days 14-16)\n\n```javascript\n// src/agents/evolution/PromptEvolver.js\nexport class PromptEvolver {\n  constructor(config) {\n    this.version = 0;\n    this.history = [];\n    this.llm = config.llm;\n    this.systemPrompt = config.systemPrompt;\n  }\n\n  async evolve(suggestions) {\n    const prompt = `\nCurrent system prompt:\n${this.systemPrompt}\n\nSuggested improvements:\n${JSON.stringify(suggestions, null, 2)}\n\nGenerate improved version maintaining core identity:`;\n\n    const newPrompt = await this.llm.complete(prompt);\n    \n    this.version++;\n    this.history.push({\n      version: this.version,\n      prompt: newPrompt,\n      suggestions,\n      timestamp: Date.now()\n    });\n    \n    return newPrompt;\n  }\n\n  getVersion() {\n    return this.version;\n  }\n\n  getHistory() {\n    return this.history;\n  }\n}\n```\n\n### 2.3 Context Memory (Days 17-18)\n\n```javascript\n// src/memory/ContextMemory.js\n// Extends existing OpenClaw memory with pattern storage\n\nexport class ContextMemory {\n  constructor() {\n    this.store = {}; // In-memory for now\n  }\n\n  async addSuccessPattern(taskType, pattern) {\n    const key = `success:${taskType}`;\n    this.store[key] = this.store[key] || [];\n    this.store[key].push({ ...pattern, timestamp: Date.now() });\n  }\n\n  async addFailurePattern(taskType, failure) {\n    const key = `failure:${taskType}`;\n    this.store[key] = this.store[key] || [];\n    this.store[key].push({ ...failure, timestamp: Date.now() });\n  }\n\n  async getRelevant(task) {\n    // Simple keyword matching for now\n    const patterns = [];\n    for (const [key, value] of Object.entries(this.store)) {\n      if (task.toLowerCase().includes(key.split(':')[1])) {\n        patterns.push(...value);\n      }\n    }\n    return patterns.slice(0, 5);\n  }\n}\n```\n\n### Phase 2 Checkpoints\n- [ ] EpisodeAnalyzer identifies patterns across 5+ episodes\n- [ ] PromptEvolver generates new version with rationale\n- [ ] ContextMemory retrieves relevant patterns for new tasks\n- [ ] A/B test: evolved prompt vs baseline (target: 10% improvement)\n- [ ] Version history preserved for rollback\n\n---\n\n## Phase 3: Full Self-Evolving System (Weeks 5-6)\n\n**Objective**: Bi-level optimization with meta-level skill evolution.\n\n### 3.1 Skill Evolution Engine (Days 19-22)\n\n```javascript\n// src/agents/evolution/SkillEvolver.js\nexport class SkillEvolver {\n  constructor(config) {\n    this.llm = config.llm;\n    this.skills = config.skillLibrary || new SkillLibrary();\n  }\n\n  async evolveSkills(taskSpec, history) {\n    const relevantSkills = await this.skills.retrieve(taskSpec);\n    \n    const prompt = `\nGiven these skills and their executions:\n${JSON.stringify(relevantSkills, null, 2)}\n\nEvaluations:\n${JSON.stringify(history.evaluations, null, 2)}\n\nCreate improved skill through crossover.\nRespond JSON: { \"name\": string, \"instructions\": string, \"code\": string[] }`;\n\n    const newSkill = await this.llm.complete(prompt);\n    return JSON.parse(newSkill);\n  }\n}\n```\n\n### 3.2 Context Optimizer (Days 23-25)\n\n```javascript\n// src/agents/evolution/ContextOptimizer.js\nexport class ContextOptimizer {\n  constructor(config) {\n    this.codeInterpreter = config.codeInterpreter; // Sandboxed runner\n  }\n\n  async optimize(skill, task) {\n    // Skill may generate code to manipulate context\n    if (skill.code) {\n      const result = await this.codeInterpreter.run(skill.code, { task });\n      return {\n        content: result.output,\n        artifacts: result.artifacts\n      };\n    }\n    \n    return { content: skill.instructions, artifacts: [] };\n  }\n}\n```\n\n### 3.3 Evolution Controller (Days 26-28)\n\n```javascript\n// src/agents/evolution/EvolutionController.js\nexport class EvolutionController {\n  constructor(config) {\n    this.skillEvolver = new SkillEvolver(config);\n    this.contextOptimizer = new ContextOptimizer(config);\n    this.evaluator = config.evaluator;\n  }\n\n  async evolve(session) {\n    // 1. Collect episode data\n    const episodes = session.getEpisodes();\n    \n    // 2. Meta-level: Evolve skills\n    const newSkills = await this.skillEvolver.evolveSkills(\n      session.taskSpec,\n      episodes\n    );\n    \n    // 3. Base-level: Optimize context\n    const optimizedContext = await this.contextOptimizer.optimize(\n      newSkills,\n      session.task\n    );\n    \n    // 4. Evaluate\n    const evaluation = await this.evaluator.evaluate(\n      session.baseline,\n      optimizedContext\n    );\n    \n    return {\n      skills: newSkills,\n      context: optimizedContext,\n      evaluation,\n      improvement: evaluation.score - session.baseline.score\n    };\n  }\n}\n```\n\n### Phase 3 Checkpoints\n- [ ] SkillEvolver creates new skills via crossover\n- [ ] ContextOptimizer runs generated code safely\n- [ ] EvolutionController coordinates full pipeline\n- [ ] Target: 15%+ improvement over baseline\n- [ ] Safety: All evolved artifacts versioned + human-reviewable\n\n---\n\n## Summary Timeline\n\n| Phase | Duration | Focus | Key Components |\n|-------|----------|-------|----------------|\n| Phase 0 | Days 1-2 | Quick Win | PostReviewAgent (ship immediately) |\n| Phase 1 | Weeks 1-2 | Core Reflection Loop | ReflectionAgent, ReflectiveWorkflow, Store |\n| Phase 2 | Weeks 3-4 | Inter-Episode Learning | EpisodeAnalyzer, PromptEvolver, ContextMemory |\n| Phase 3 | Weeks 5-6 | Full Self-Evolving | SkillEvolver, ContextOptimizer, EvolutionController |\n\n## File Structure\n\n```\nsrc/\n├── agents/\n│   ├── reflection/\n│   │   ├── index.js\n│   │   ├── postReview.js       # Phase 0\n│   │   ├── ReflectionAgent.js  # Phase 1\n│   │   └── ReflectionStore.js  # Phase 1\n│   └── evolution/\n│       ├── EpisodeAnalyzer.js  # Phase 2\n│       ├── PromptEvolver.js    # Phase 2\n│       ├── SkillEvolver.js     # Phase 3\n│       └── EvolutionController.js # Phase 3\n├── workflows/\n│   └── ReflectiveWorkflow.js   # Phase 1\n├── memory/\n│   └── ContextMemory.js         # Phase 2\n└── index.js                      # Main exports\n```\n\n## Dependencies\n\n1. **Phase 0** → No dependencies (standalone)\n2. **Phase 1** → Requires Phase 0 (reuses LLM client)\n3. **Phase 2** → Requires Phase 1 (uses reflection data)\n4. **Phase 3** → Requires Phase 2 (uses episode analysis)\n\n## Risk Mitigation\n\n- **Start with Phase 0** — Immediate value, no risk\n- **Phase 1 is low-risk** — Self-improvement only, no system changes\n- **Phase 2** — A/B test evolved prompts before deployment\n- **Phase 3** — Human review gate for evolved skills\n- **Rollback** — All versions stored, instant revert possible\n",
       "agent": "research-agent"
     }
   ],
