@@ -161,12 +161,27 @@
         }
         
         function showSection(id) {
+            // Check if section exists
+            const targetSection = document.getElementById(id);
+            if (!targetSection) {
+                console.warn(`Section '${id}' not found`);
+                return;
+            }
+            
+            // Hide all sections and show target
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            targetSection.classList.add('active');
+            
+            // Update nav highlight
             document.querySelectorAll('.archive-nav a').forEach(a => a.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
             const navLink = document.querySelector(`.archive-nav a[href="#${id}"]`);
             if (navLink) navLink.classList.add('active');
+            
+            // Update URL hash
             window.location.hash = id;
+            
+            // Smooth scroll to section
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // Nav click handlers - main navigation

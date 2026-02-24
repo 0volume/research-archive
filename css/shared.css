@@ -1249,15 +1249,16 @@
 /* Clickable stat boxes */
 .stat-box.clickable {
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.2s, box-shadow 0.2s;
     text-decoration: none;
     display: block;
 }
 
 .stat-box.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
     background: rgba(0, 255, 136, 0.15);
     border-color: var(--neon-green);
-    transform: translateY(-2px);
 }
 
 .stat-box.clickable:active {
