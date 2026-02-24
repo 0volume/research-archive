@@ -429,31 +429,58 @@
         }
 
         // Fetch with timeout and CORS proxy fallback
-        async function fetchWithFallback(url, timeout = 5000) {
+        async function fetchWithFallback(url, timeout = 8000) {
+            console.log('[fetchWithFallback] Attempting to fetch:', url);
+            
             // Try direct fetch first (GitHub raw supports CORS)
             try {
+                console.log('[fetchWithFallback] Trying direct fetch...');
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), timeout);
                 const response = await fetch(url, { signal: controller.signal });
                 clearTimeout(id);
-                if (response.ok) return response;
+                if (response.ok) {
+                    console.log('[fetchWithFallback] Direct fetch succeeded');
+                    return response;
+                }
+                console.log('[fetchWithFallback] Direct fetch returned non-OK:', response.status);
             } catch (e) {
-                console.log('Direct fetch failed:', e.message);
+                console.log('[fetchWithFallback] Direct fetch failed:', e.message);
             }
             
             // Fallback to CORS proxy (slower but more compatible)
             try {
+                console.log('[fetchWithFallback] Trying CORS proxy...');
                 const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
                 const controller = new AbortController();
                 const id = setTimeout(() => controller.abort(), timeout);
                 const response = await fetch(proxyUrl, { signal: controller.signal });
                 clearTimeout(id);
-                if (response.ok) return response;
+                if (response.ok) {
+                    console.log('[fetchWithFallback] Proxy fetch succeeded');
+                    return response;
+                }
             } catch (e) {
-                console.log('Proxy fetch failed:', e.message);
+                console.log('[fetchWithFallback] Proxy fetch failed:', e.message);
             }
             
-            throw new Error('All fetch attempts failed');
+            // Last resort: try ghproxy CDN
+            try {
+                console.log('[fetchWithFallback] Trying ghproxy CDN...');
+                const cdnUrl = 'https://ghproxy.com/' + url;
+                const controller = new AbortController();
+                const id = setTimeout(() => controller.abort(), timeout);
+                const response = await fetch(cdnUrl, { signal: controller.signal });
+                clearTimeout(id);
+                if (response.ok) {
+                    console.log('[fetchWithFallback] CDN fetch succeeded');
+                    return response;
+                }
+            } catch (e) {
+                console.log('[fetchWithFallback] CDN fetch failed:', e.message);
+            }
+            
+            throw new Error('All fetch attempts failed for: ' + url);
         }
         
         // Data fallback - embedded minimal data if fetch fails
@@ -744,9 +771,14 @@
         }
 
         // Initialize - handle hash after data loads
-        loadData().then(() => {
-            handleHash();
-        });
+        loadData()
+            .then(() => {
+                console.log('[init] Data loaded successfully');
+                handleHash();
+            })
+            .catch((err) => {
+                console.error('[init] Data load failed:', err);
+            });
         
         // Handle hash changes
         window.addEventListener('hashchange', handleHash);
