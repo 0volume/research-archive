@@ -176,8 +176,19 @@
             window.location.hash = id;
         }
 
-        // Nav click handlers
+        // Nav click handlers - main navigation
         document.querySelectorAll('.archive-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    showSection(href.slice(1));
+                }
+            });
+        });
+
+        // Sidebar hash link handlers
+        document.querySelectorAll('.archive-sidebar a[href^="#"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
                 if (href.startsWith('#')) {
