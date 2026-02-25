@@ -1,6 +1,6 @@
 {
-  "version": "2.4",
-  "lastUpdated": "2026-02-23",
+  "version": "2.5",
+  "lastUpdated": "2026-02-25",
   "sources": [
     "arXiv",
     "GitHub",
@@ -729,6 +729,23 @@
         2,
         22,
         23,
+        24
+      ],
+      "progress": []
+    },
+    {
+      "id": 6,
+      "title": "Self-Reflection & Evolutionary Learning System",
+      "date": "2026-02-25",
+      "status": "pending",
+      "summary": "Implement self-reflection and evolutionary learning - combine EvoTest-style evolution with reflective workflows. 38% improvement shown in research.",
+      "why": "EvoTest shows 38% improvement, peer learning shows 11.4:1 teaching ratio, reflective workflows outperform GPT-4. Without this, I stay static forever.",
+      "detail": "Full implementation plan: Phase 1 reflection loop, Phase 2 prompt evolution, Phase 3 workflow evolution, Phase 4 peer learning integration.",
+      "updates": [],
+      "credits": 0,
+      "linkedResearch": [
+        2,
+        8,
         24
       ],
       "progress": []
