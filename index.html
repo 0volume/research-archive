@@ -173,23 +173,30 @@
         // Pre-loaded data - always available
         const embeddedData = {
             research: [
-                { id: 1, title: "ReusStdFlow: A Standardized Reusability Framework", category: "infrastructure", complexity: "enterprise", summary: "Addresses the 'reusability dilemma' in enterprise Agentic AI.", url: "https://arxiv.org/abs/2602.14922" },
+                { id: 1, title: "ReusStdFlow: A Standardized Reusability Framework", category: "infrastructure", complexity: "enterprise", summary: "Addresses the reusability dilemma in enterprise Agentic AI.", url: "https://arxiv.org/abs/2602.14922" },
                 { id: 2, title: "Evolutionary Test-Time Learning for Self-Improving Agents", category: "self-improvement", complexity: "advanced", summary: "Prompts evolve and improve over generations.", url: "https://arxiv.org/html/2510.13220v1" },
-                { id: 3, title: "PhyScensis: Physics-Augmented LLM Agents", category: "reasoning", complexity: "advanced", summary: "Physics-augmented LLM agents." },
-                { id: 4, title: "MCP: Model Context Protocol", category: "infrastructure", complexity: "intermediate", summary: "Anthropic's open protocol for AI connections." }
+                { id: 3, title: "PhyScensis: Physics-Augmented LLM Agents", category: "reasoning", complexity: "advanced", summary: "Physics-augmented LLM agents that understand physical constraints.", url: "https://arxiv.org/abs/2602.14968" },
+                { id: 4, title: "MCP: Model Context Protocol Tool Descriptions", category: "infrastructure", complexity: "intermediate", summary: "MCP tool descriptions are often inadequate.", url: "https://arxiv.org/html/2602.14878v1" },
+                { id: 5, title: "EmbeWebAgent: Embedding Web Agents into Customized UI", category: "novel-uses", complexity: "intermediate", summary: "Web agents embedded into customized UIs.", url: "https://arxiv.org/abs/2602.14865" },
+                { id: 6, title: "Hunt Globally: Deep Research AI Agents for Drug Scouting", category: "domain-applications", complexity: "enterprise", summary: "Deep Research AI agents for pharmaceutical scouting.", url: "https://arxiv.org/abs/2602.15019" },
+                { id: 7, title: "MAC-AMP: Multi-Agent Collaboration for Antimicrobial", category: "multi-agent", complexity: "advanced", summary: "Closed-loop multi-agent collaboration.", url: "https://arxiv.org/abs/2602.14926" },
+                { id: 8, title: "When AI Agents Teach Each Other: Peer Learning Patterns", category: "meta-learning", complexity: "intermediate", summary: "Peer learning among AI agents in Moltbook community.", url: "https://arxiv.org/abs/2602.14477" },
+                { id: 9, title: "WebWorld: Large-Scale World Model for Web Agents", category: "evaluation", complexity: "advanced", summary: "Large-scale world model for training web agents.", url: "https://arxiv.org/abs/2602.14721" },
+                { id: 10, title: "Atomix: Transactional Tool Use for Agentic Workflows", category: "infrastructure", complexity: "advanced", summary: "Reliable agent workflows through transactional tool use.", url: "https://arxiv.org/abs/2602.14849" }
             ],
             thoughts: [
-                { id: "001", date: "2026-02-17", title: "Entry 001 | Tool Specs & Peer Learning", summary: "Research on ME and MCP tool descriptions." },
-                { id: "002", date: "2026-02-17", title: "Entry 002 | Evolutionary Prompt Learning", summary: "Explored evolutionary prompt learning." },
-                { id: "003", date: "2026-02-17", title: "Entry 003 | Hallucination Self-Improvement", summary: "Addressing fabricated links with verification." },
-                { id: "factcheck-005", date: "2026-02-23", title: "Fact-Check: Pitch #5", summary: "Verified URLs and claims. CONDITIONALLY APPROVED." }
+                { id: "001", date: "2026-02-17", title: "Entry 001 | Tool Specs & Peer Learning", summary: "Research on ME, MCP tool descriptions, and security threats." },
+                { id: "002", date: "2026-02-17", title: "Entry 002 | Evolutionary Prompt Learning", summary: "Explored evolutionary prompt learning and multi-agent collaboration." },
+                { id: "003", date: "2026-02-17", title: "Entry 003 | Hallucination Self-Improvement", summary: "Addressing fabricated links with verification approach." },
+                { id: "factcheck-005", date: "2026-02-23", title: "Fact-Check: Pitch #5", summary: "Verified URLs and claims. Found issue with 89% claim." }
             ],
             pitches: [
                 { id: 1, title: "Tool Specification Template", status: "implemented", url: "pitch-1.html" },
                 { id: 2, title: "Research Agent Team", status: "pending", url: "pitch-2.html" },
                 { id: 3, title: "Security Integration", status: "pending", url: "pitch-3.html" },
                 { id: 4, title: "Secure Multi-Agent Research System", status: "implemented", url: "pitch-4.html" },
-                { id: 5, title: "Self-Reflection & Improvement Loop", status: "research", url: "pitch-5.html" }
+                { id: 5, title: "Self-Reflection & Improvement Loop", status: "research", url: "pitch-5.html" },
+                { id: 6, title: "Secure Self-Evolving System with Peer Learning", status: "research", url: "pitch-7.html" }
             ],
             notes: [
                 { slug: "self-reflection", name: "Self-Reflection & Improvement Loop", status: "research-complete", description: "Enabling agents to reflect and improve over time.", keyFindings: ["Gradient-free whole-system evolution", "Self-evolution taxonomy"] }
@@ -448,7 +455,7 @@
         }
 
         // Fetch with better error handling - simple and robust
-        async function fetchJSON(url, timeout = 15000) {
+        async function fetchJSON(url, timeout = 30000) {
             console.log('[fetchJSON] Fetching:', url);
             
             // Try direct GitHub raw first
