@@ -128,7 +128,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +487,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -762,7 +762,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -815,7 +815,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -861,7 +861,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1123,7 +1123,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1168,6 +1168,93 @@
       "myAnalysis": "Industry perspective on agentic AI adoption - useful for understanding market trends and enterprise readiness.",
       "practicalUse": "Medium",
       "connectsTo": []
+    },
+    {
+      "id": 58,
+      "title": "Agentic Reasoning for Large Language Models",
+      "date": "2026-01-22",
+      "source": "arXiv",
+      "authors": "Tianxin Wei, Ting-Wei Li, Zhining Liu, et al. (29 authors)",
+      "summary": "Comprehensive taxonomy of agentic reasoning covering foundational, self-evolving, and collective multi-agent reasoning layers.",
+      "url": "https://arxiv.org/abs/2601.12538",
+      "tags": [
+        "agentic reasoning",
+        "taxonomy",
+        "multi-agent",
+        "self-evolution"
+      ],
+      "category": "reasoning",
+      "complexity": "advanced",
+      "myAnalysis": "Three-layer framework: foundational (planning, tool use, search), self-evolving (feedback, memory, adaptation), and collective (coordination, knowledge sharing). Holy grail for building adaptive agents.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        2
+      ]
+    },
+    {
+      "id": 59,
+      "title": "AWM: Infinity Synthetic Environments for Agentic Reinforcement Learning",
+      "date": "2026-02-17",
+      "source": "arXiv",
+      "authors": "Canwen Xu, Boyi Liu, Yite Wang, Siwei Han, Zhewei Yao, Huaxiu Yao, Yuxiong He",
+      "summary": "Agent World Model (AWM) - synthetic environment generation pipeline with 1000 executable environments covering everyday scenarios with 35 tools each.",
+      "url": "https://arxiv.org/html/2602.10090v1",
+      "tags": [
+        "synthetic environments",
+        "RL",
+        "tool-use",
+        "training"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Code-driven, database-backed environments provide reliable state transitions. Enables large-scale RL training for multi-turn tool-use agents with out-of-distribution generalization.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 60,
+      "title": "CASTER: Breaking the Cost-Performance Barrier in Multi-Agent Orchestration",
+      "date": "2026-01-23",
+      "source": "arXiv",
+      "authors": "Various (from multi-institution)",
+      "summary": "Context-Aware Strategy for Task Efficient Routing - lightweight router for dynamic model selection in graph-based multi-agent systems.",
+      "url": "https://arxiv.org/abs/2601.19793",
+      "tags": [
+        "multi-agent",
+        "routing",
+        "cost optimization",
+        "inference"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Reduces inference cost by up to 72.4% while matching success rates. Combines semantic embeddings with structural meta-features and self-optimizes through on-policy feedback.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        4
+      ]
+    },
+    {
+      "id": 61,
+      "title": "MAS-Orchestra: Understanding and Improving Multi-Agent Reasoning Through Holistic Orchestration",
+      "date": "2026-01-24",
+      "source": "arXiv",
+      "authors": "Z Ke, Y Ming, A Xu, R Chin, XP Nguyen",
+      "summary": "Training-time framework formulating MAS orchestration as function-calling RL with holistic system-level reasoning. Introduces MASBENCH for controlled evaluation.",
+      "url": "https://arxiv.org/abs/2601.14652",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "RL",
+        "reasoning"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Centralized puppeteer dynamically selects and sequences agent activations. RL optimizes collaboration process. Key insight: uninitialized MAS lacks structure - needs training.",
+      "practicalUse": "High",
+      "connectsTo": [
+        2,
+        58
+      ]
     }
   ]
 }
