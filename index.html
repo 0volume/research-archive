@@ -344,7 +344,8 @@
         }
         
         // Apply initial active state after DOM is ready
-        setImmediate(() => setInitialActiveState());
+        // setImmediate is Node.js only, using setTimeout for browser compatibility
+        setTimeout(() => setInitialActiveState(), 0);
         
         // Nav click handlers - main navigation
         document.querySelectorAll('.archive-nav a').forEach(link => {
