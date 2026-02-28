@@ -592,6 +592,67 @@
       "myAnalysis": "Security beyond technical exploits - covers behavioral integrity. 4C = Core, Connection, Cognition, Compliance. Inspired by human society governance. Essential for multi-agent systems.",
       "practicalUse": "High",
       "connectsTo": []
+    },
+    {
+      "id": 30,
+      "title": "Agentic AI in 2026: The Year Autonomous Agents Crossed the Chasm",
+      "date": "2026-02-12",
+      "source": "Medium",
+      "authors": "Mohit",
+      "summary": "Analysis of agentic AI adoption in enterprise - Gartner predicts 15% of work decisions will be autonomous by 2028, with 33% of enterprise apps having agentic AI.",
+      "url": "https://medium.com/@mohit15856/agentic-ai-in-2026-the-year-autonomous-agents-crossed-the-chasm-a24b4ace3df7",
+      "tags": [
+        "enterprise",
+        "adoption",
+        "trends",
+        "2026"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Shows real enterprise adoption - agents making autonomous decisions (audit, procurement). Key stat: 15% of work decisions autonomous by 2028.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 31,
+      "title": "Agentic AI Frameworks: Top 8 Options in 2026",
+      "date": "2026-02-28",
+      "source": "Instaclustr",
+      "authors": "Instaclustr",
+      "summary": "Overview of top agentic AI frameworks including CrewAI, LangGraph, AutoGen, LlamaIndex, DSPy, and Microsoft Semantic Kernel.",
+      "url": "https://www.instaclustr.com/education/agentic-ai/agentic-ai-frameworks-top-8-options-in-2026/",
+      "tags": [
+        "frameworks",
+        "tools",
+        "CrewAI",
+        "LangGraph",
+        "AutoGen"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Great overview of current framework landscape. Key benefits: task decomposition, memory/context, multi-agent coordination, tool integration.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 32,
+      "title": "2026 Agentic Coding Trends Report",
+      "date": "2026-02-01",
+      "source": "Anthropic",
+      "authors": "Anthropic",
+      "summary": "Anthropic report on agentic coding trends - multi-agent systems replacing single-agent workflows for maximum performance gains.",
+      "url": "https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf",
+      "tags": [
+        "multi-agent",
+        "trends",
+        "coding",
+        "Anthropic"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Key trend: multi-agent systems replacing single-agent workflows. Parallel execution maximizes performance gains.",
+      "practicalUse": "High",
+      "connectsTo": []
     }
   ],
   "pitches": [
