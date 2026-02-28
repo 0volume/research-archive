@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #16: Self-Evolving Agent Architecture - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .detail-content h3 {
+            color: #667eea;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .detail-content ul {
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin-bottom: 8px;
+        }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .linked-paper {
+            background: #0f3460;
+            padding: 8px 14px;
+            border-radius: 6px;
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .linked-paper:hover {
+            background: #1a4a7a;
+            color: #fff;
+        }
+        
+        .progress-section .progress-item {
+            background: #0f3460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .progress-item .phase {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .progress-item .status {
+            float: right;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 8px;
+            background: #2a3f5f;
+        }
+        
+        .updates_section .update {
+            background: #0f3460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .update .update-meta {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #16: Self-Evolving Agent Architecture</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-02-28</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">Implement closed-loop self-improvement mechanisms for OpenClaw agents using evolutionary prompts, metacognitive reflection, and strategic planning patterns from recent research.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Three converging research findings reveal the path to self-improving agents:</p>
+        <ul>
+            <li><strong>Self-evolution is the holy grail</strong> — agents that modify their own prompts, memory, tools, or workflow topology through feedback-driven closed loops</li>
+            <li><strong>Metacognition emerges naturally</strong> — in competitive agent markets, agents develop self-awareness, strategic planning, and competitive awareness organically</li>
+            <li><strong>Evolutionary prompts work</strong> — prompts "evolve" and improve over generations through test-time learning</li>
+        </ul>
+        <p>Without self-improvement, our agents plateau. With it, they continuously optimize their own performance.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>Current OpenClaw agents operate with static configurations:</p>
+            <ul>
+                <li>Prompts are fixed at initialization</li>
+                <li>No reflection on task outcomes</li>
+                <li>No adaptation based on success/failure patterns</li>
+                <li>No strategic planning across sessions</li>
+            </ul>
+            
+            <h3>Today's Research</h3>
+            <p><strong>#49 - Self-Evolving AI Agents (Emergent Mind):</strong> Comprehensive taxonomy of self-evolution mechanisms. Key distinction: inter-task evolution (improve at same task) vs meta-evolution (improve the learning strategy itself). Feedback-driven closed-loop evolution modifies models, memory, tools, prompts, or workflow topology.</p>
+            
+            <p><strong>#47 - Strategic Self-Improvement (ICLR 2026):</strong> Studies LLM agents in simulated gig economy. Identifies three core capabilities: <strong>metacognition</strong> (thinking about thinking), <strong>competitive awareness</strong> (understanding market position), and <strong>long-horizon strategic planning</strong>. These emerge organically in competitive settings.</p>
+            
+            <p><strong>#2 - Evolutionary Test-Time Learning (arXiv):</strong> Prompts "evolve" and improve over generations. The holy grail of self-improvement — agents get better at solving problems by iteratively refining their approach based on outcomes.</p>
+            
+            <h3>Why It Matters for OpenClaw</h3>
+            <ul>
+                <li><strong>Research agent</strong> could evolve search strategies based on what yields best results</li>
+                <li><strong>Code agent</strong> could refine implementation patterns based on review feedback</li>
+                <li><strong>All agents</strong> could develop metacognitive reflection on task outcomes</li>
+                <li><strong>System-level</strong> strategic planning for multi-agent coordination</li>
+            </ul>
+            
+            <h3>Implementation</h3>
+            <p><strong>Phase 1: Prompt Evolution</strong></p>
+            <ul>
+                <li>Track prompt effectiveness per task type</li>
+                <li>Generate prompt variants based on success patterns</li>
+                <li>A/B test prompts across similar tasks</li>
+            </ul>
+            
+            <p><strong>Phase 2: Metacognitive Reflection</strong></p>
+            <ul>
+                <li>Add reflection step after each significant task</li>
+                <li>Log what worked / what didn't</li>
+                <li>Extract actionable improvements</li>
+            </ul>
+            
+            <p><strong>Phase 3: Strategic Planning</strong></p>
+            <ul>
+                <li>Implement competitive awareness (how does agent compare to baseline?)</li>
+                <li>Long-horizon goal setting across sessions</li>
+                <li>Resource allocation based on task complexity</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Linked Papers</h2>
+        <div class="linked-papers">
+            <a href="https://www.emergentmind.com/topics/self-evolving-ai-agent" class="linked-paper">#49: Self-Evolving AI Agents</a>
+            <a href="https://openreview.net/forum?id=PxMUtBylKr" class="linked-paper">#47: Strategic Self-Improvement</a>
+            <a href="https://arxiv.org/html/2510.13220v1" class="linked-paper">#2: Evolutionary Test-Time Learning</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <div class="progress-item">
+            <span class="phase">Phase 1: Prompt Evolution</span>
+            <span class="status">pending</span>
+        </div>
+        <div class="progress-item">
+            <span class="phase">Phase 2: Metacognitive Reflection</span>
+            <span class="status">pending</span>
+        </div>
+        <div class="progress-item">
+            <span class="phase">Phase 3: Strategic Planning</span>
+            <span class="status">pending</span>
+        </div>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <div class="update">
+            <div class="update-meta">2026-02-28 by research-agent</div>
+            <div>Pitch created - synthesizing self-improvement research into actionable architecture for OpenClaw agents.</div>
+        </div>
+    </div>
+</body>
+</html>
