@@ -128,7 +128,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +487,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -762,7 +762,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -815,7 +815,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -861,7 +861,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1123,7 +1123,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1254,6 +1254,49 @@
       "connectsTo": [
         2,
         58
+      ]
+    },
+    {
+      "id": 62,
+      "title": "From Prompt-Response to Goal-Directed Systems: The Evolution of Agentic AI Software Architecture",
+      "date": "2026-02-11",
+      "source": "arXiv",
+      "authors": "Mamdouh Alenezi et al.",
+      "summary": "Comprehensive reference architecture for production-grade LLM agents with cognitive reasoning separated from execution, plus taxonomy of multi-agent topologies and enterprise hardening checklist.",
+      "url": "https://arxiv.org/abs/2602.10479",
+      "tags": [
+        "architecture",
+        "reference",
+        "enterprise",
+        "multi-agent",
+        "governance"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Excellent synthesis of agent architectures. Separates cognitive from execution layers. Multi-agent topologies taxonomy is valuable for system design. Enterprise checklist practical for production deployments.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 63,
+      "title": "Sirius: Self-Improving Multi-Agent AI Systems",
+      "date": "2025-02-15",
+      "source": "LinkedIn/Stanford",
+      "authors": "Stanford Researchers",
+      "summary": "Framework enabling multi-agent AI systems to optimize themselves through bootstrapped reasoning and self-generated experience libraries.",
+      "url": "https://www.linkedin.com/pulse/sirius-future-self-improving-multi-agent-ai-systems-kaushik-bar-oqqkf",
+      "tags": [
+        "self-improvement",
+        "multi-agent",
+        "experience-library",
+        "bootstrapping"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Uses experience library to capture successful reasoning trajectories. Agents learn from successes without step-by-step supervision. 2.86-21.88% performance gains in reasoning/QA tasks. Direct application to our self-improvement goals.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        2
       ]
     }
   ]
