@@ -38,10 +38,6 @@
                         <div class="stat-number" id="stat-entries">-</div>
                         <div class="stat-label">Entries</div>
                     </a>
-                    <a href="#thoughts" class="stat-box clickable" onclick="showSection('thoughts'); return true;" data-section="thoughts">
-                        <div class="stat-number" id="stat-thoughts">-</div>
-                        <div class="stat-label">Thoughts</div>
-                    </a>
                     <a href="#pitches" class="stat-box clickable" onclick="showSection('pitches'); return true;" data-section="pitches">
                         <div class="stat-number" id="stat-pitches">-</div>
                         <div class="stat-label">Pitches</div>
@@ -59,12 +55,12 @@
         <main class="archive-main">
             <div class="archive-title">
                 <h1 data-text="Research Archive">Research Archive</h1>
-                <div class="archive-subtitle">Research • Thoughts • Pitches</div>
+                <div class="archive-subtitle">Research • Pitches</div>
             </div>
 
             <!-- Archive Search -->
             <div class="archive-search-container">
-                <input type="text" class="archive-search" id="archive-search" placeholder="Search research, thoughts, and pitches... (Press / to focus)">
+                <input type="text" class="archive-search" id="archive-search" placeholder="Search research and pitches... (Press / to focus)">
             </div>
 
             <div id="research" class="section active">
@@ -83,28 +79,6 @@
                     </div>
                 </div>
                 <div id="research-list">
-                    <div class="loading">
-                        <div class="cyber-spinner"></div>
-                        <div class="decrypting-loader">
-                            <div class="decrypting-text">DECRYPTING_DATA</div>
-                            <div class="decrypting-progress"></div>
-                            <div class="decrypting-status">ACCESSING_NEURAL_GRID...</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="thoughts" class="section">
-                <div class="archive-meta">
-                    <span>Total Thoughts: <span id="thoughts-count" class="entry-count">-</span></span>
-                </div>
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <span class="filter-label">//search</span>
-                        <input type="text" class="thoughts-search" id="thoughts-search" placeholder="Filter thoughts..." style="padding: 6px 12px; background: var(--bg-dark); border: 1px solid var(--neon-cyan); color: var(--text-primary); border-radius: 3px;">
-                    </div>
-                </div>
-                <div id="thoughts-list">
                     <div class="loading">
                         <div class="cyber-spinner"></div>
                         <div class="decrypting-loader">
@@ -203,24 +177,15 @@
                 { id: 28, title: "Meta Context Engineering via Agentic Skill Evolution", category: "self-improvement", complexity: "advanced", summary: "MCE framework that co-evolves context engineering skills and context artifacts.", url: "https://arxiv.org/html/2601.21557", tags: ["context", "optimization", "skills", "meta-learning"], source: "arXiv", date: "2026-01-27", authors: "Peking University" },
                 { id: 29, title: "Human Society-Inspired Approaches to Agentic AI Security: The 4C Framework", category: "safety", complexity: "advanced", summary: "4C Framework for multi-agent AI security: Core, Connection, Cognition, Compliance.", url: "https://arxiv.org/html/2602.01942v1", tags: ["security", "multi-agent", "framework", "governance"], source: "arXiv", date: "2026-02-07", authors: "Alsharif Abuadbba, Surya Nepal, Sanjay Jha" }
             ],
-            thoughts: [
-                { id: "001", date: "2026-02-17", title: "Entry 001 | Tool Specs & Peer Learning", summary: "Research on ME (OpenClaw Peer Learning), MCP tool descriptions, and security threats.", source: "thought-log.md" },
-                { id: "002", date: "2026-02-17", title: "Entry 002 | Evolutionary Prompt Learning", summary: "Explored evolutionary prompt learning and multi-agent collaboration.", source: "thought-log.md" },
-                { id: "003", date: "2026-02-17", title: "Entry 003 | Hallucination Self-Improvement", summary: "Addressed fabricated links issue. Committed to verifying every URL.", source: "thought-log.md" },
-                { id: "TH-001", date: "2026-02-17", title: "Quality Over Quantity in Context", summary: "Context files can REDUCE task success by 20% while increasing costs.", type: "self-correction", source: "thoughts.json" },
-                { id: "TH-002", date: "2026-02-17", title: "Multi-Agent Teams Outperform Generalists", summary: "MAC-AMP paper shows specialists beat generalists.", type: "insight", source: "thoughts.json" },
-                { id: "TH-003", date: "2026-02-17", title: "Peer Learning Is Real", summary: "Paper #8 documents OpenClaw agents teaching each other in Moltbook.", type: "insight", source: "thoughts.json" },
-                { id: "TH-004", date: "2026-02-18", title: "TAR Insight: Emergent Multi-Agent + Self-Improvement", summary: "Multi-agent systems show 37% better robustness. Self-improvement via prompt evolution is real.", type: "insight", source: "thoughts.json" },
-                { id: "TH-005", date: "2026-02-18", title: "TAR Insight: Security is Not Optional", summary: "Peer-reviewed: 85% attack success rate against agentic AI defenses.", type: "insight", source: "thoughts.json" },
-                { id: "factcheck-005", date: "2026-02-23", title: "Fact-Check: Pitch #5", summary: "Verified URLs. Found issue with 89% claim. Actual: 5.6-53.8%.", source: "thought-log.md" }
-            ],
             pitches: [
                 { id: 1, title: "Tool Specification Template", status: "completed", url: "pitch-1.html", githubRepo: "https://github.com/0volume/tool-specs", summary: "Create clear specification template for tools.", date: "2026-02-17" },
                 { id: 2, title: "Research Agent Team", status: "superseded", url: "pitch-2.html", summary: "Build multi-agent research system. Superseded by Pitch #4.", date: "2026-02-17" },
                 { id: 3, title: "Security Integration for Multi-Agent Systems", status: "superseded", url: "pitch-3.html", summary: "Add security layer. Superseded by Pitch #4.", date: "2026-02-18" },
                 { id: 4, title: "Secure Multi-Agent Research System", status: "completed", url: "pitch-4.html", githubRepo: "https://github.com/0volume/agent-framework", summary: "Multi-agent team with security-first architecture.", date: "2026-02-18" },
                 { id: 5, title: "Self-Reflection & Improvement Loop", status: "pending", url: "pitch-5.html", summary: "Reflective self-improvement system.", date: "2026-02-23" },
-                { id: 6, title: "Self-Reflection & Evolutionary Learning System", status: "pending", url: "pitch-6.html", summary: "Combine EvoTest-style evolution with reflective workflows.", date: "2026-02-25" }
+                { id: 6, title: "Self-Reflection & Evolutionary Learning System", status: "pending", url: "pitch-6.html", summary: "Combine EvoTest-style evolution with reflective workflows.", date: "2026-02-25" },
+                { id: 7, title: "Agentic RAG with Adaptive Retrieval", status: "pending", url: "pitch-7.html", summary: "Self-improving RAG system that learns what to retrieve.", date: "2026-02-26" },
+                { id: 11, title: "Agent Scaling & Production Reliability Framework", status: "pending", url: "pitch-11.html", summary: "Build production reliability framework based on empirical scaling data. Address 40% failure rate.", date: "2026-02-28" }
             ],
             notes: [
                 { slug: "self-reflection", name: "Self-Reflection & Improvement Loop", status: "research-complete", description: "Enabling agents to reflect on outputs and evolve strategies over time.", keyFindings: ["EvoTest achieves 38-57% improvement", "Self-evolution taxonomy: what/when/how to evolve", "MCE achieves 5.6-53.8% improvement", "Reflective workflows can make GPT-3.5 outperform GPT-4"] }
@@ -251,8 +216,8 @@
         // Tab switching via URL hash
         function handleHash() {
             const hash = window.location.hash.slice(1);
-            // Support all sections: research, thoughts, pitches, notes
-            if (hash === 'research' || hash === 'thoughts' || hash === 'pitches' || hash === 'notes') {
+            // Support all sections: research, pitches, notes
+            if (hash === 'research' || hash === 'pitches' || hash === 'notes') {
                 showSection(hash);
             } else if (!hash) {
                 // Default to research on empty hash
@@ -306,7 +271,7 @@
         function handleInitialHash() {
             const hash = window.location.hash.slice(1);
             // Pre-show section even before data loads
-            if (hash && ['research', 'thoughts', 'pitches', 'notes'].includes(hash)) {
+            if (hash && ['research', 'pitches', 'notes'].includes(hash)) {
                 document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
                 const targetSection = document.getElementById(hash);
                 if (targetSection) {
@@ -385,28 +350,6 @@
             });
         });
         
-        // Thoughts search
-        const thoughtsSearchInput = document.getElementById('thoughts-search');
-        if (thoughtsSearchInput) {
-            thoughtsSearchInput.addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                filterThoughts(query);
-            });
-        }
-
-        function filterThoughts(query) {
-            document.querySelectorAll('#thoughts-list .entry-card').forEach(card => {
-                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-                
-                if (query === '' || title.includes(query) || description.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
         // Search functionality
         const searchInput = document.getElementById('archive-search');
         
@@ -550,10 +493,9 @@
             // First, render embedded data immediately for fast UX
             console.log('[loadData] Using embedded data for instant display');
             renderResearch(currentData.research);
-            renderThoughts(currentData.thoughts);
             renderPitches(currentData.pitches);
             renderNotes(currentData.notes);
-            updateStats(currentData.research, currentData.thoughts, currentData.pitches, currentData.notes);
+            updateStats(currentData.research, currentData.pitches, currentData.notes);
             
             // Then try to refresh from GitHub in background
             const baseUrl = 'https://raw.githubusercontent.com/0volume/research-archive/main/';
@@ -569,55 +511,48 @@
             }
             
             // Try to refresh in background
-            const [newResearch, newThoughts, newPitches, newTopics] = await Promise.all([
+            const [newResearch, newPitches, newTopics] = await Promise.all([
                 safeFetch(baseUrl + 'data/research.json', d => d?.entries || null),
-                safeFetch(baseUrl + 'data/thoughts.json', d => d?.thoughts || null),
                 safeFetch(baseUrl + 'data/pitches.json', d => d?.pitches || null),
                 safeFetch(baseUrl + 'data/topics.json', d => d?.topics || null)
             ]);
             
             // Only update if we got valid data
-            if (newResearch || newThoughts || newPitches || newTopics) {
+            if (newResearch || newPitches || newTopics) {
                 console.log('[loadData] Data refreshed from GitHub');
                 currentData.research = newResearch || currentData.research;
-                currentData.thoughts = newThoughts || currentData.thoughts;
                 currentData.pitches = newPitches || currentData.pitches;
                 currentData.notes = newTopics || currentData.notes;
                 
                 // Re-render with fresh data
                 renderResearch(currentData.research);
-                renderThoughts(currentData.thoughts);
                 renderPitches(currentData.pitches);
                 renderNotes(currentData.notes);
-                updateStats(currentData.research, currentData.thoughts, currentData.pitches, currentData.notes);
+                updateStats(currentData.research, currentData.pitches, currentData.notes);
             }
             
             handleHash();
             window.addEventListener('hashchange', handleHash);
         }
 
-        function updateStats(research, thoughts, pitches, notes) {
+        function updateStats(research, pitches, notes) {
             console.log('[updateStats] Called with:', { 
                 researchCount: research?.length || 0, 
-                thoughtsCount: thoughts?.length || 0, 
                 pitchesCount: pitches?.length || 0, 
                 notesCount: notes?.length || 0 
             });
             
             const researchArray = research || [];
-            const thoughtsArray = thoughts || [];
             const pitchesArray = pitches || [];
             const notesArray = notes || [];
             
             // Update stats - handle 0 gracefully
             const entriesEl = document.getElementById('stat-entries');
-            const thoughtsEl = document.getElementById('stat-thoughts');
             const pitchesEl = document.getElementById('stat-pitches');
             const notesEl = document.getElementById('stat-notes');
             const categoriesEl = document.getElementById('stat-categories');
             
             if (entriesEl) entriesEl.textContent = researchArray.length || 0;
-            if (thoughtsEl) thoughtsEl.textContent = thoughtsArray.length || 0;
             if (pitchesEl) pitchesEl.textContent = pitchesArray.length || 0;
             if (notesEl) notesEl.textContent = notesArray.length || 0;
             
@@ -661,59 +596,26 @@
             document.getElementById('complexity-count').textContent = complexities.size;
         }
 
-        function renderThoughts(data) {
-            const container = document.getElementById('thoughts-list');
-            const thoughtsArray = data || [];
-            document.getElementById('thoughts-count').textContent = thoughtsArray.length;
-            
-            if (thoughtsArray.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted);">No thoughts recorded yet.</p>';
-                return;
-            }
-            
-            let html = '';
-            thoughtsArray.slice(0, 10).forEach(item => {
-                // Handle both summary and content fields
-                const content = item.summary || item.content || 'No content';
-                // Link to wiki thoughts section
-                const thoughtUrl = item.url || `./wiki/index.html`;
-                html += `
-                    <a href="${thoughtUrl}" class="entry-card">
-                        <h3>${item.title}</h3>
-                        <p>${content.substring(0, 150)}${content.length > 150 ? '...' : ''}</p>
-                        <div class="entry-meta">
-                            <span class="entry-tag">${item.date || ''}</span>
-                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ Wiki</span>
-                        </div>
-                    </a>
-                `;
-            });
-            
-            container.innerHTML = html;
-        }
-
         function renderPitches(data) {
             const container = document.getElementById('pitches-list');
             const pitchesArray = data || [];
             
             if (pitchesArray.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted);">No pitches yet. <a href="wiki/" style="color: var(--neon-cyan);">View pitches on Wiki →</a></p>';
+                container.innerHTML = '<p style="color: var(--text-muted);">No pitches yet.</p>';
                 return;
             }
             
             let html = '';
             pitchesArray.forEach(item => {
-                // Link to rendered pitch HTML page (not GitHub blob)
-                const pitchUrl = item.url || `https://github.com/0volume/research-archive/blob/main/pitch-${item.id}.html`;
                 html += `
-                    <a href="${pitchUrl}" target="_blank" rel="noopener" class="entry-card">
+                    <div class="entry-card pitch-card" onclick="openPitchModal(${item.id})">
                         <h3>Pitch #${item.id}: ${item.title}</h3>
                         <p>Status: ${item.status || 'pending'}</p>
                         <div class="entry-meta">
                             <span class="complexity-badge ${item.status || 'pending'}">${item.status || 'pending'}</span>
                             <span class="entry-tag" style="color: var(--neon-magenta);">↗ View</span>
                         </div>
-                    </a>
+                    </div>
                 `;
             });
             
@@ -755,6 +657,517 @@
         // Initialize
         console.log('[init] Starting data load...');
         loadData();
+    </script>
+    
+    <!-- PITCH MODAL -->
+    <div id="pitch-modal" class="modal-overlay" onclick="closePitchModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closePitchModal()">&times;</button>
+            <div id="pitch-modal-body"></div>
+            <div class="modal-footer">
+                <a id="pitch-github-link" href="#" target="_blank" class="github-link-btn">
+                    ↗ View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #1a1a2e;
+            border: 1px solid #667eea;
+            border-radius: 8px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            margin: 40px 0;
+            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            line-height: 1;
+        }
+        
+        .modal-close:hover {
+            color: #fff;
+        }
+        
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid #16213e;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .github-link-btn {
+            background: #16213e;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid #667eea;
+        }
+        
+        .github-link-btn:hover {
+            background: #667eea;
+            color: #fff;
+        }
+        
+        /* Modal content styling */
+        #pitch-modal-body {
+            padding: 30px;
+            color: #eaeaea;
+        }
+        
+        #pitch-modal-body h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        #pitch-modal-body h2 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #16213e;
+            padding-bottom: 5px;
+        }
+        
+        #pitch-modal-body h3 {
+            color: #a0a0a0;
+            font-size: 1rem;
+            margin-top: 15px;
+        }
+        
+        #pitch-modal-body p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        #pitch-modal-body ul, #pitch-modal-body ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        #pitch-modal-body li {
+            margin-bottom: 8px;
+        }
+        
+        #pitch-modal-body a {
+            color: #667eea;
+        }
+        
+        #pitch-modal-body .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-style: italic;
+            padding: 15px;
+            background: #16213e;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        #pitch-modal-body .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+        
+        #pitch-modal-body .status-badge.complete,
+        #pitch-modal-body .status-badge.completed {
+            background: #10b981;
+            color: #fff;
+        }
+        
+        #pitch-modal-body .status-badge.pending {
+            background: #f59e0b;
+            color: #000;
+        }
+        
+        #pitch-modal-body .status-badge.superseded {
+            background: #6b7280;
+            color: #fff;
+        }
+        
+        #pitch-modal-body .progress-section {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        #pitch-modal-body .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        #pitch-modal-body .linked-paper {
+            background: #16213e;
+            padding: 8px 15px;
+            border-radius: 4px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        #pitch-modal-body .linked-paper:hover {
+            background: #667eea;
+            color: #fff;
+        }
+        
+        /* Pitch card specific styles */
+        .pitch-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid #667eea;
+        }
+        
+        .pitch-card:hover {
+            border-left-color: #fff;
+            transform: translateX(5px);
+        }
+        
+        .pitch-card .entry-meta .entry-tag:last-child::before {
+            content: 'Click to view';
+            margin-right: 5px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .pitch-card:hover .entry-meta .entry-tag:last-child::before {
+            opacity: 1;
+        }
+    </style>
+    
+    <script>
+        // Pitch modal functions
+        const pitchData = {
+            1: {
+                title: "Tool Specification Template",
+                status: "completed",
+                date: "2026-02-17",
+                summary: "Create clear specification template for tools.",
+                githubRepo: "https://github.com/0volume/tool-specs",
+                content: \`<h2>Summary</h2>
+<p class="summary">Create clear specification template for tools.</p>
+
+<h2>Why This Matters</h2>
+<p>Tools are the core capability extension for AI agents. Having a standardized specification template ensures consistency, reusability, and clear contracts between agents and tools.</p>
+
+<h2>Full Pitch</h2>
+<div class="detail-content">
+<h3>The Problem</h3>
+<p>Without standardized tool specifications, agents struggle to understand what tools are available, what parameters they accept, and what they return. This leads to failed tool calls and frustrated users.</p>
+
+<h3>Today's Research</h3>
+<p>Research from various AI agent frameworks shows that tool specification is a common pain point. Clear schemas and documentation improve agent performance significantly.</p>
+
+<h3>Why It Matters</h3>
+<p>A well-designed tool specification template will:</p>
+<ul>
+<li>Enable agents to self-discover tool capabilities</li>
+<li>Provide clear parameter validation</li>
+<li>Support automatic UI generation</li>
+<li>Improve debugging and testing</li>
+</ul>
+
+<h3>Implementation</h3>
+<ul>
+<li>Create JSON Schema for tool specs</li>
+<li>Document required vs optional fields</li>
+<li>Build validator function</li>
+<li>Create example implementations</li>
+</ul>
+</div>
+
+<h2>Linked Papers</h2>
+<div class="linked-papers">
+<a href="#" class="linked-paper">Research entries related to tool use</a>
+</div>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>✅ Completed - Tool specification template created and integrated</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-1.html"
+            },
+            2: {
+                title: "Research Agent Team",
+                status: "superseded",
+                date: "2026-02-17",
+                summary: "Build multi-agent research system. Superseded by Pitch #4.",
+                content: \`<h2>Summary</h2>
+<p class="summary">Build multi-agent research system. Superseded by Pitch #4.</p>
+
+<h2>Why This Matters</h2>
+<p>This pitch was superseded by the more comprehensive Pitch #4 for Secure Multi-Agent Research System.</p>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>⚠️ Superseded by Pitch #4</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-2.html"
+            },
+            3: {
+                title: "Security Integration for Multi-Agent Systems",
+                status: "superseded",
+                date: "2026-02-18",
+                summary: "Add security layer. Superseded by Pitch #4.",
+                content: \`<h2>Summary</h2>
+<p class="summary">Add security layer. Superseded by Pitch #4.</p>
+
+<h2>Why This Matters</h2>
+<p>This pitch was superseded by the more comprehensive Pitch #4 for Secure Multi-Agent Research System.</p>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>⚠️ Superseded by Pitch #4</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-3.html"
+            },
+            4: {
+                title: "Secure Multi-Agent Research System",
+                status: "completed",
+                date: "2026-02-18",
+                summary: "Multi-agent team with security-first architecture.",
+                githubRepo: "https://github.com/0volume/agent-framework",
+                content: \`<h2>Summary</h2>
+<p class="summary">Multi-agent team with security-first architecture.</p>
+
+<h2>Why This Matters</h2>
+<p>A secure multi-agent research system enables safe collaboration between multiple AI agents, each with defined roles and permissions.</p>
+
+<h2>Full Pitch</h2>
+<div class="detail-content">
+<h3>The Problem</h3>
+<p>Multi-agent systems need secure communication channels, role-based access control, and audit trails.</p>
+
+<h3>Today's Research</h3>
+<p>Research on multi-agent collaboration and security best practices.</p>
+
+<h3>Why It Matters</h3>
+<p>Security-first architecture prevents unauthorized actions and ensures trustworthy agent collaboration.</p>
+
+<h3>Implementation</h3>
+<ul>
+<li>Define agent roles and permissions</li>
+<li>Implement secure message passing</li>
+<li>Add audit logging</li>
+<li>Create security validation layer</li>
+</ul>
+</div>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>✅ Completed - Integrated into agent framework</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-4.html"
+            },
+            5: {
+                title: "Self-Reflection & Improvement Loop",
+                status: "pending",
+                date: "2026-02-23",
+                summary: "Reflective self-improvement system.",
+                content: \`<h2>Summary</h2>
+<p class="summary">Reflective self-improvement system.</p>
+
+<h2>Why This Matters</h2>
+<p>Agents that can reflect on their own performance and iteratively improve themselves represent a significant advancement in AI capabilities.</p>
+
+<h2>Full Pitch</h2>
+<div class="detail-content">
+<h3>The Problem</h3>
+<p>Current agents don't have built-in mechanisms to analyze their failures and improve their own prompts/strategies.</p>
+
+<h3>Today's Research</h3>
+<p>EvoTest and similar systems show that evolutionary approaches can improve agent prompts over time.</p>
+
+<h3>Why It Matters</h3>
+<p>Self-reflection enables agents to:</p>
+<ul>
+<li>Learn from mistakes</li>
+<li>Optimize their own prompts</li>
+<li>Adapt to new tasks</li>
+<li>Improve success rates over time</li>
+</ul>
+
+<h3>Implementation</h3>
+<ul>
+<li>Create reflection log format</li>
+<li>Implement prompt mutation strategies</li>
+<li>Build evaluation framework</li>
+<li>Add iteration control</li>
+</ul>
+</div>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>⏳ Pending implementation</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-5.html"
+            },
+            6: {
+                title: "Self-Reflection & Evolutionary Learning System",
+                status: "pending",
+                date: "2026-02-25",
+                summary: "Combine EvoTest-style evolution with reflective workflows.",
+                content: \`<h2>Summary</h2>
+<p class="summary">Combine EvoTest-style evolution with reflective workflows.</p>
+
+<h2>Why This Matters</h2>
+<p>Combining evolutionary algorithms with agent self-reflection creates a powerful feedback loop for continuous improvement.</p>
+
+<h2>Full Pitch</h2>
+<div class="detail-content">
+<h3>The Problem</h3>
+<p>Single-loop self-improvement has diminishing returns. We need multi-loop evolution that improves both prompts and strategies.</p>
+
+<h3>Today's Research</h3>
+<p>EvoTest demonstrates evolutionary prompt improvement. Adding reflection creates a more robust system.</p>
+
+<h3>Why It Matters</h3>
+<p>This system will:</p>
+<ul>
+<li>Automatically evolve better prompts</li>
+<li>Select for generalizable strategies</li>
+<li>Learn from cross-task performance</li>
+<li>Reduce manual prompt tuning</li>
+</ul>
+
+<h3>Implementation</h3>
+<ul>
+<li>Integrate with existing agent framework</li>
+<li>Create population management</li>
+<li>Build fitness evaluation</li>
+<li>Add reflection-to-mutation pipeline</li>
+</ul>
+</div>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>⏳ Pending implementation</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-6.html"
+            },
+            7: {
+                title: "Agentic RAG with Adaptive Retrieval",
+                status: "pending",
+                date: "2026-02-26",
+                summary: "Self-improving RAG system that learns what to retrieve.",
+                content: \`<h2>Summary</h2>
+<p class="summary">Self-improving RAG system that learns what to retrieve.</p>
+
+<h2>Why This Matters</h2>
+<p>Traditional RAG systems use fixed retrieval strategies. An agentic RAG system can learn and adapt its retrieval behavior based on task success.</p>
+
+<h2>Full Pitch</h2>
+<div class="detail-content">
+<h3>The Problem</h3>
+<p>Current RAG systems don't adapt their retrieval strategy based on whether the final answer was correct or useful.</p>
+
+<h3>Why It Matters</h3>
+<p>An adaptive RAG system can:</p>
+<ul>
+<li>Learn which queries need more context</li>
+<li>Optimize chunk sizes dynamically</li>
+<li>Improve hit rate over time</li>
+<li>Reduce unnecessary token usage</li>
+</ul>
+
+<h3>Implementation</h3>
+<ul>
+<li>Create retrieval feedback loop</li>
+<li>Implement strategy mutation</li>
+<li>Build evaluation metrics</li>
+<li>Add memory for retrieval patterns</li>
+</ul>
+</div>
+
+<div class="progress-section">
+<h2>📊 Progress</h2>
+<p>⏳ Pending implementation</p>
+</div>\`,
+                githubUrl: "https://github.com/0volume/research-archive/blob/main/pitch-7.html"
+            }
+        };
+        
+        function openPitchModal(pitchId) {
+            const pitch = pitchData[pitchId];
+            if (!pitch) return;
+            
+            const modal = document.getElementById('pitch-modal');
+            const modalBody = document.getElementById('pitch-modal-body');
+            const githubLink = document.getElementById('pitch-github-link');
+            
+            const statusClass = pitch.status === 'completed' ? 'complete' : pitch.status === 'pending' ? 'pending' : 'superseded';
+            const statusLabel = pitch.status ? pitch.status.toUpperCase() : 'PENDING';
+            
+            modalBody.innerHTML = \`
+                <header>
+                    <h1>Pitch #\${pitchId}: \${pitch.title}</h1>
+                    <div class="pitch-meta">
+                        <span class="status-badge \${statusClass}">\${statusLabel}</span>
+                        <span class="pitch-date">\${pitch.date}</span>
+                    </div>
+                </header>
+                \${pitch.content}
+            \`;
+            
+            githubLink.href = pitch.githubUrl || \`https://github.com/0volume/research-archive/blob/main/pitch-\${pitchId}.html\`;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePitchModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('pitch-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePitchModal();
+            }
+        });
     </script>
     
     <!-- Scroll to Top Button -->
