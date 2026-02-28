@@ -128,7 +128,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +487,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -762,7 +762,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -815,7 +815,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -861,7 +861,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1084,6 +1084,89 @@
       "complexity": "intermediate",
       "myAnalysis": "Key stat: 40% failure rate without governance. Multi-agent coordination is the 2026 breakthrough. Essential reading for our system design.",
       "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 54,
+      "title": "Agentifying Agentic AI",
+      "date": "2026-02-28",
+      "source": "arXiv",
+      "authors": "Various (WMAC 2026 / AAAI 2026 Bridge Program)",
+      "summary": "Bridges AAMAS research with Agentic AI - argues for combining large-scale learning with structured models of reasoning, communication, and institutional modelling.",
+      "url": "https://arxiv.org/html/2511.17332v2",
+      "tags": [
+        "AAMAS",
+        "multi-agent",
+        "reasoning",
+        "governance",
+        "BDI"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Key insight: modern agentic AI lacks explicit architectures that AAMAS provides. This paper bridges that gap - critical for building accountable, transparent agents.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 55,
+      "title": "Self-Improving AI Agents: Architecture Deep Dive",
+      "date": "2026-02-28",
+      "source": "Blockchain Council",
+      "authors": "Blockchain Council",
+      "summary": "Explores feedback loops, memory systems, and promotion gates in self-improving autonomous agents. Covers Reflection-Reinforced Self-Training (Re-ReST).",
+      "url": "https://www.blockchain-council.org/ai/self-improving-ai-agents/",
+      "tags": [
+        "self-improvement",
+        "feedback loops",
+        "Re-ReST",
+        "architecture"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
+      "practicalUse": "High",
+      "connectsTo": [
+        2
+      ]
+    },
+    {
+      "id": 56,
+      "title": "What is Agentic AI: A Comprehensive 2026 Guide",
+      "date": "2026-02-28",
+      "source": "TileDB",
+      "authors": "TileDB Team",
+      "summary": "Comprehensive guide explaining PRA (Perception-Reasoning-Action) loops, memory architectures, and multi-modal integration for enterprise agentic systems.",
+      "url": "https://www.tiledb.com/blog/what-is-agentic-ai",
+      "tags": [
+        "PRA loop",
+        "memory",
+        "enterprise",
+        "multi-modal"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Good overview for understanding the fundamental architecture of agentic systems - PRA loops, feedback mechanisms, and enterprise integration patterns.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 57,
+      "title": "Agentic AI in 2026: The Year Autonomous Agents Crossed the Chasm",
+      "date": "2026-02-28",
+      "source": "Medium",
+      "authors": "Mohit",
+      "summary": "Analysis of how autonomous AI evolved from experimental pilots to billion-dollar acquisitions, reshaping industries.",
+      "url": "https://medium.com/@mohit15856/agentic-ai-in-2026-the-year-autonomous-agents-crossed-the-chasm-a24b4ace3df7",
+      "tags": [
+        "industry",
+        "trends",
+        "autonomy",
+        "enterprise"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Industry perspective on agentic AI adoption - useful for understanding market trends and enterprise readiness.",
+      "practicalUse": "Medium",
       "connectsTo": []
     }
   ]
