@@ -715,6 +715,46 @@
       "myAnalysis": "Valuable market context. Key insight: governance determines success, not technology. 40% failure rate warning is critical for our system design - need robust oversight mechanisms.",
       "practicalUse": "Very High",
       "connectsTo": []
+    },
+    {
+      "id": 36,
+      "title": "Guided Collaboration in Heterogeneous LLM-Based Multi-Agent Systems via Entropy-Based Understanding Assessment and Experience Retrieval",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Addresses heterogeneous LLM-based multi-agent collaboration using entropy-based understanding assessment and experience retrieval.",
+      "url": "https://arxiv.org/abs/2602.13639",
+      "tags": [
+        "multi-agent",
+        "collaboration",
+        "heterogeneous",
+        "entropy"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Shows how agents can assess understanding and retrieve relevant experience for better collaboration. Relevant for multi-agent coordination in our system.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 37,
+      "title": "ICLR 2026 Workshop on AI with Recursive Self-Improvement",
+      "date": "2026-02-28",
+      "source": "ICLR",
+      "authors": "Various (DeepMind, Google, Yale NLP Lab, etc.)",
+      "summary": "First workshop dedicated to recursive self-improvement. LLM agents now rewrite codebases, prompts, and scientific discovery pipelines.",
+      "url": "https://iclr.cc/virtual/2026/workshop/10000796",
+      "tags": [
+        "recursive",
+        "self-improvement",
+        "ICLR",
+        "RSI"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "RSI is moving from thought experiments to deployed systems. This workshop covers the algorithmic foundations for reliable self-improving AI. Critical for our self-improvement research.",
+      "practicalUse": "Very High",
+      "connectsTo": []
     }
   ],
   "pitches": [
