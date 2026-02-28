@@ -35,6 +35,50 @@
       "title": "Secure Self-Evolving System with Peer Learning",
       "file": "pitch-7.html",
       "status": "research"
+    },
+    {
+      "id": 12,
+      "title": "Domain-Specific Research Agents",
+      "file": "pitch-12.html",
+      "status": "pending",
+      "summary": "Apply research agent pattern to specialized domains: drug discovery, cybersecurity, and peer learning.",
+      "date": "2026-02-28"
+    },
+    {
+      "id": 13,
+      "title": "Agent Memory Architecture",
+      "file": "pitch-13.html",
+      "status": "pending",
+      "date": "2026-02-28"
+    },
+    {
+      "id": 14,
+      "title": "Multi-Modal Research Agents",
+      "file": "pitch-14.html",
+      "status": "pending",
+      "date": "2026-02-28"
+    },
+    {
+      "id": 15,
+      "title": "Agentic AI Security Framework",
+      "file": "pitch-15.html",
+      "status": "pending",
+      "date": "2026-02-28"
+    },
+    {
+      "id": 16,
+      "title": "Self-Evolving Agent Architecture",
+      "file": "pitch-16.html",
+      "status": "pending",
+      "date": "2026-02-28"
+    },
+    {
+      "id": 17,
+      "title": "Enterprise Multi-Agent Orchestration: From Pilot to Production",
+      "file": "pitch-17.html",
+      "status": "pending",
+      "summary": "Bridge the 40% multi-agent failure gap by implementing enterprise-grade orchestration with governance, coordination patterns, and structured institutional modeling.",
+      "date": "2026-02-28"
     }
   ]
 }
