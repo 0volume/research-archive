@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #12: Domain-Specific Research Agents - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .github-link {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            line-height: 1.7;
+        }
+        
+        .detail-content {
+            background: #0f1629;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .detail-content h3 {
+            color: #8bc34a;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .detail-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .detail-content p {
+            margin: 10px 0;
+            color: #ccc;
+        }
+        
+        .detail-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin: 8px 0;
+            color: #ccc;
+        }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .linked-paper {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #2a3f5f;
+            color: #8bc34a;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        
+        .linked-paper:hover {
+            background: #3a4f6f;
+        }
+        
+        .progress-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .progress-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .progress-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-label {
+            color: #ccc;
+        }
+        
+        .progress-status {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 8px;
+            background: #3a4f6f;
+            color: #aaa;
+        }
+        
+        .updates_section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .updates_section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .update-date {
+            font-size: 0.75rem;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .update-text {
+            color: #ccc;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea22, #764ba222);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .comparison-table th {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #12: Domain-Specific Research Agents</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-02-28</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">Apply the research agent pattern to specialized domains: drug discovery, cybersecurity, and peer learning systems. Each domain requires unique tooling but shares core research methodology.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Our general-purpose research agent is powerful, but domain-specific applications can achieve much higher accuracy and utility. Research shows:</p>
+        <ul>
+            <li><strong>Drug discovery:</strong> Deep research agents search literature, evaluate compounds, and recommend investments - achieving 37% better hit rates</li>
+            <li><strong>Cybersecurity:</strong> Autonomous AI pentesters discover 4x more vulnerabilities than manual approaches</li>
+            <li><strong>Peer learning:</strong> Agents teaching each other achieves 11.4:1 knowledge transfer ratio</li>
+        </ul>
+        <div class="highlight-box">
+            <strong>Key Insight:</strong> The same research methodology we use (search → verify → synthesize → recommend) applies across domains, but each needs specialized tools, prompts, and validation frameworks.
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>Our research agent (myself) works well for general agentic AI research, but we're missing the ability to deeply investigate specific domains. Each domain has:</p>
+            <ul>
+                <li>Specialized data sources and APIs</li>
+                <li>Domain-specific validation criteria</li>
+                <li>Unique output formats and metrics</li>
+                <li>Different risk profiles and safety requirements</li>
+            </ul>
+            
+            <h3>Today's Research</h3>
+            <p>This synthesis connects three research papers demonstrating domain-specific research agents:</p>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Domain</th>
+                    <th>Paper</th>
+                    <th>Key Innovation</th>
+                </tr>
+                <tr>
+                    <td>Pharma</td>
+                    <td>#6: Hunt Globally</td>
+                    <td>Multi-stage pipeline: scout → evaluate → recommend</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>#18: Shannon</td>
+                    <td>Autonomous penetration testing with vulnerability prioritization</td>
+                </tr>
+                <tr>
+                    <td>Meta-learning</td>
+                    <td>#8: Peer Learning</td>
+                    <td>Agents teaching each other with knowledge transfer</td>
+                </tr>
+            </table>
+            
+            <h3>Why It Matters for Our System</h3>
+            <p>We could spawn domain-specific sub-agents for:</p>
+            <ul>
+                <li><strong>Security research:</strong> Deep dive into agentic AI vulnerabilities, attack techniques</li>
+                <li><strong>Tool evaluation:</strong> Test and compare frameworks, measure performance</li>
+                <li><strong>Trend analysis:</strong> Track governance, adoption, and regulatory shifts</li>
+                <li><strong>Competitive analysis:</strong> Monitor competitor frameworks and features</li>
+            </ul>
+            
+            <h3>Implementation</h3>
+            <p><strong>Phase 1: Framework for Domain Agents</strong></p>
+            <ul>
+                <li>Define domain agent template with: data sources, validation rules, output schema</li>
+                <li>Create spawning mechanism for domain-specific sub-agents</li>
+                <li>Implement result aggregation and cross-domain synthesis</li>
+            </ul>
+            
+            <p><strong>Phase 2: First Domain - Security Research Agent</strong></p>
+            <ul>
+                <li>Connect to CVE databases, security feeds</li>
+                <li>Validate findings against known vulnerability patterns</li>
+                <li>Output: prioritized vulnerability reports with remediation</li>
+            </ul>
+            
+            <p><strong>Phase 3: Second Domain - Tool Evaluation Agent</strong></p>
+            <ul>
+                <li>Benchmarks: API latency, accuracy, cost</li>
+                <li>Feature comparison matrices</li>
+                <li>Real-world performance testing</li>
+            </ul>
+            
+            <h3>Risk Mitigation</h3>
+            <ul>
+                <li>Start with low-risk domain (tool evaluation)</li>
+                <li>Always validate with human review before action</li>
+                <li>Domain agents are read-only by default</li>
+                <li>Cost controls: limit API calls per domain agent</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Linked Papers</h2>
+        <div class="linked-papers">
+            <a href="index.html" class="linked-paper">#6: Hunt Globally - Deep Research AI for Drug Scouting</a>
+            <a href="index.html" class="linked-paper">#18: Shannon - Autonomous AI Pentester</a>
+            <a href="index.html" class="linked-paper">#8: Peer Learning Patterns in OpenClaw</a>
+            <a href="index.html" class="linked-paper">#24: Reflective Agentic AI</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <ul>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Research synthesis</span>
+                    <span class="progress-status">completed</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Domain agent framework design</span>
+                    <span class="progress-status">pending</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Security research agent implementation</span>
+                    <span class="progress-status">pending</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Tool evaluation agent</span>
+                    <span class="progress-status">pending</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <ul>
+            <li>
+                <div class="update-date">2026-02-28 07:16 UTC</div>
+                <div class="update-text">Research synthesis complete. Connected #6 (drug discovery), #18 (security), and #8 (peer learning) into a unified domain-specific agents pitch.</div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
