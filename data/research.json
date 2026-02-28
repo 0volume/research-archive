@@ -1,6 +1,6 @@
 {
   "version": "2.5",
-  "lastUpdated": "2026-02-25",
+  "lastUpdated": "2026-02-28",
   "sources": [
     "arXiv",
     "GitHub",
@@ -591,6 +591,129 @@
       "complexity": "advanced",
       "myAnalysis": "Security beyond technical exploits - covers behavioral integrity. 4C = Core, Connection, Cognition, Compliance. Inspired by human society governance. Essential for multi-agent systems.",
       "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 30,
+      "title": "Agentic AI in 2026: The Year Autonomous Agents Crossed the Chasm",
+      "date": "2026-02-12",
+      "source": "Medium",
+      "authors": "Mohit",
+      "summary": "Analysis of agentic AI adoption in enterprise - Gartner predicts 15% of work decisions will be autonomous by 2028, with 33% of enterprise apps having agentic AI.",
+      "url": "https://medium.com/@mohit15856/agentic-ai-in-2026-the-year-autonomous-agents-crossed-the-chasm-a24b4ace3df7",
+      "tags": [
+        "enterprise",
+        "adoption",
+        "trends",
+        "2026"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Shows real enterprise adoption - agents making autonomous decisions (audit, procurement). Key stat: 15% of work decisions autonomous by 2028.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 31,
+      "title": "Agentic AI Frameworks: Top 8 Options in 2026",
+      "date": "2026-02-28",
+      "source": "Instaclustr",
+      "authors": "Instaclustr",
+      "summary": "Overview of top agentic AI frameworks including CrewAI, LangGraph, AutoGen, LlamaIndex, DSPy, and Microsoft Semantic Kernel.",
+      "url": "https://www.instaclustr.com/education/agentic-ai/agentic-ai-frameworks-top-8-options-in-2026/",
+      "tags": [
+        "frameworks",
+        "tools",
+        "CrewAI",
+        "LangGraph",
+        "AutoGen"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Great overview of current framework landscape. Key benefits: task decomposition, memory/context, multi-agent coordination, tool integration.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 32,
+      "title": "2026 Agentic Coding Trends Report",
+      "date": "2026-02-01",
+      "source": "Anthropic",
+      "authors": "Anthropic",
+      "summary": "Anthropic report on agentic coding trends - multi-agent systems replacing single-agent workflows for maximum performance gains.",
+      "url": "https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf",
+      "tags": [
+        "multi-agent",
+        "trends",
+        "coding",
+        "Anthropic"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Key trend: multi-agent systems replacing single-agent workflows. Parallel execution maximizes performance gains.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 33,
+      "title": "Microsoft Research Asia StarTrack Scholars 2026: Agentic AI - Reimagining Future Human-Agent Communication and Collaboration",
+      "date": "2026-02-28",
+      "source": "Microsoft Research",
+      "authors": "Yan Lu, Chong Luo, Jiahao Li et al.",
+      "summary": "Microsoft Research Asia outlines their vision for agentic AI across three pillars: Foundations & Frameworks, User Experiences, and Applications. Highlights InfoAgent deep research agent achieving state-of-the-art results.",
+      "url": "https://www.microsoft.com/en-us/research/articles/agentic-ai-reimagining-future-human-agent-communication-and-collaboration/",
+      "tags": [
+        "research",
+        "foundations",
+        "human-agent interaction",
+        "multi-agent",
+        "deep research"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Major research org vision document. Three-pillar framework provides structure for understanding agentic AI. InfoAgent shows RL + SFT can produce effective autonomous research agents.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 34,
+      "title": "Agentic AI: The 2026 Threat Multiplier Reshaping Cyberattacks",
+      "date": "2026-02-27",
+      "source": "Barracuda",
+      "authors": "Christine Barry",
+      "summary": "Analysis of how agentic AI enables faster, more scalable cyberattacks. Threat actors can now deploy autonomous agents that adapt in real-time without human intervention.",
+      "url": "https://blog.barracuda.com/2026/02/27/agentic-ai--the-2026-threat-multiplier-reshaping-cyberattacks",
+      "tags": [
+        "security",
+        "threats",
+        "autonomous attacks",
+        "defense"
+      ],
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Critical security perspective on agentic AI. Shows attack surface expands significantly when agents can operate autonomously. Defender implications: need behavior-based detection and rapid response.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 35,
+      "title": "AI Agent Adoption 2026: What the Data Shows",
+      "date": "2026-02-20",
+      "source": "Joget (aggregating Gartner, Forrester, IDC, Deloitte)",
+      "authors": "Zailysh Shah",
+      "summary": "Comprehensive analyst report synthesis: 40% of enterprise apps will have AI agents by 2026, but 40% of projects will fail by 2027 without proper governance. Multi-agent systems and orchestration are key trends.",
+      "url": "https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/",
+      "tags": [
+        "adoption",
+        "market",
+        "governance",
+        "multi-agent",
+        "enterprise"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Valuable market context. Key insight: governance determines success, not technology. 40% failure rate warning is critical for our system design - need robust oversight mechanisms.",
+      "practicalUse": "Very High",
       "connectsTo": []
     }
   ],
