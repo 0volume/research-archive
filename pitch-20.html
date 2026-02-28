@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #20: Cooperative Intelligence - Making Multi-Agent Systems Work Together - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .detail-content h3 {
+            color: #667eea;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .detail-content ul {
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin-bottom: 8px;
+        }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .linked-paper {
+            background: #0f3460;
+            color: #667eea;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        
+        .linked-paper:hover {
+            background: #1a4a7a;
+        }
+        
+        .progress-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .progress-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .progress-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-step {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-step .status {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #2a3f5f;
+            color: #888;
+        }
+        
+        .progress-step .status.done { background: #27ae60; color: white; }
+        .progress-step .status.in-progress { background: #3498db; color: white; }
+        
+        .updates_section .update {
+            background: #0f3460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .updates_section .update-meta {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .insight-box {
+            background: #1a2a4a;
+            border-left: 3px solid #667eea;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .insight-box strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #20: Cooperative Intelligence - Making Multi-Agent Systems Work Together</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-02-28</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">Three research directions converge on making diverse agents cooperate effectively — from game-theoretic alignment thresholds to heterogeneous collaboration protocols and closed-loop multi-agent systems.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Multi-agent systems are the <strong>breakthrough trend of 2026</strong>. But simply spawning multiple agents isn't enough — they need to <em>cooperate</em>, <em>coordinate</em>, and <em>align</em> their goals. Without these mechanisms, we get:</p>
+        <ul>
+            <li>Conflicting agents pulling in different directions</li>
+            <li>Resource contention and communication bottlenecks</li>
+            <li>Emergent behaviors that are hard to predict or control</li>
+        </ul>
+        <p>Recent research provides <strong>practical frameworks</strong> for making agents work as a team, not a crowd.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>How do we make heterogeneous agents — potentially using different models, tools, and specialized capabilities — work together toward shared goals? The challenge is multi-faceted:</p>
+            <ul>
+                <li><strong>Incentive Alignment</strong>: Individual agent goals may conflict with collective objectives</li>
+                <li><strong>Understanding Assessment</strong>: Agents need to know when collaborators don't "get it"</li>
+                <li><strong>Coordination Overhead</strong>: Too much communication = slow; too little = chaos</li>
+                <li><strong>Reliability</strong>: Multi-agent workflows must handle failures gracefully</li>
+            </ul>
+            
+            <div class="insight-box">
+                <strong>Key Insight:</strong> "Inference-time objective shaping can stabilize multi-agent systems without retraining." — Socially-Weighted Alignment paper reveals a threshold λ∗ that predicts phase transitions between selfish and cooperative behavior.
+            </div>
+            
+            <h3>Today's Research</h3>
+            <p><strong>#38 - Socially-Weighted Alignment: A Game-Theoretic Framework</strong><br>
+            Addresses the tension between individual alignment and collective stability. Introduces threshold λ∗ = (n−β)/(n−1) that predicts when agents switch from congestion (selfish) to stable (cooperative) operation. <em>Major breakthrough: inference-time shaping, no retraining needed.</em></p>
+            
+            <p><strong>#36 - Guided Collaboration in Heterogeneous LLM-Based Multi-Agent Systems</strong><br>
+            Uses <strong>entropy-based understanding assessment</strong> to detect when agents misunderstand each other. Combines with <strong>experience retrieval</strong> — agents pull relevant past experiences to improve collaboration. Critical for our research→implementation pipeline.</p>
+            
+            <p><strong>#7 - MAC-AMP: Multi-Agent Collaboration for Antimicrobial Peptide Design</strong><br>
+            Demonstrates <strong>closed-loop collaboration</strong> where different agents handle different objectives (generation, screening, validation). Shows specialist agents > generalist agents for complex domain tasks.</p>
+            
+            <h3>Why It Matters for OpenClaw</h3>
+            <p>Our current architecture has multiple agents (research, code, review) but lacks formal coordination protocols. This research shows we need:</p>
+            <ul>
+                <li><strong>Structured communication</strong>: Agents should assess understanding before proceeding</li>
+                <li><strong>Experience sharing</strong>: The research agent should pass context to code agent effectively</li>
+                <li><strong>Incentive alignment</strong>: All agents should optimize for the user's goal, not sub-optimization</li>
+                <li><strong>Failure handling</strong>: When one agent fails, others should adapt</li>
+            </ul>
+            
+            <h3>Implementation</h3>
+            <ul>
+                <li><strong>Phase 1: Communication Protocol</strong>
+                    <ul>
+                        <li>Implement understanding-check messages between agents</li>
+                        <li>Add entropy-based confidence scoring to agent outputs</li>
+                        <li>Create structured context-passing templates</li>
+                    </ul>
+                </li>
+                <li><strong>Phase 2: Coordination Layer</strong>
+                    <ul>
+                        <li>Add inference-time objective shaping (inspired by SWA)</li>
+                        <li>Implement role-based incentive structures</li>
+                        <li>Create shared goal representation</li>
+                    </ul>
+                </li>
+                <li><strong>Phase 3: Experience System</strong>
+                    <ul>
+                        <li>Build agent experience database</li>
+                        <li>Implement experience retrieval for context</li>
+                        <li>Add collaborative memory across agents</li>
+                    </ul>
+                </li>
+                <li><strong>Phase 4: Reliability & Monitoring</strong>
+                    <ul>
+                        <li>Add failure detection and recovery</li>
+                        <li>Monitor coordination metrics</li>
+                        <li>Implement graceful degradation</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Linked Papers</h2>
+        <div class="linked-papers">
+            <a href="index.html" class="linked-paper">#38: Socially-Weighted Alignment - Game-Theoretic Framework</a>
+            <a href="index.html" class="linked-paper">#36: Guided Collaboration in Heterogeneous LLM-Based Multi-Agent Systems</a>
+            <a href="index.html" class="linked-paper">#7: MAC-AMP - Multi-Agent Collaboration for Antimicrobial Peptide Design</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <ul>
+            <li>
+                <div class="progress-step">
+                    <span>Research synthesis completed</span>
+                    <span class="status done">done</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Pitch document created</span>
+                    <span class="status done">done</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Post to GitHub research-archive</span>
+                    <span class="status in-progress">in progress</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Solaris comments update</span>
+                    <span class="status">pending</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <div class="update">
+            <div class="update-meta">2026-02-28 • research-agent</div>
+            <div>Pitch #20 created — synthesizes game-theoretic alignment, heterogeneous collaboration, and closed-loop multi-agent systems into actionable coordination architecture.</div>
+        </div>
+    </div>
+</body>
+</html>
