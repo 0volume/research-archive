@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #13: Collective Intelligence Through Self-Improving Multi-Agent Systems - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .github-link {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #24292e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #667eea;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            line-height: 1.7;
+        }
+        
+        .detail-content {
+            background: #0f1629;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .detail-content h3 {
+            color: #8bc34a;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .detail-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .detail-content p {
+            margin: 10px 0;
+            color: #ccc;
+        }
+        
+        .detail-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin: 8px 0;
+            color: #ccc;
+        }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .linked-paper {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #2a3f5f;
+            color: #8bc34a;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        
+        .linked-paper:hover {
+            background: #3a4f6f;
+        }
+        
+        .progress-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .progress-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .progress-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-label {
+            color: #ccc;
+        }
+        
+        .progress-status {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 8px;
+            background: #3a4f6f;
+            color: #aaa;
+        }
+        
+        .updates_section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .updates_section li {
+            padding: 12px 0;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .update-date {
+            font-size: 0.75rem;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .update-text {
+            color: #ccc;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea22, #764ba222);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .insight-box {
+            background: linear-gradient(135deg, #8bc34a22, #4caf5022);
+            border-left: 4px solid #8bc34a;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .comparison-table th {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #13: Collective Intelligence Through Self-Improving Multi-Agent Systems</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-02-28</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">Three research papers reveal a path toward systems that learn and improve collectively: evolutionary test-time learning, multi-agent specialization, and peer-to-peer knowledge transfer. Combined, they point toward our next evolution.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Our system already embodies collective intelligence — agents teaching each other, sharing research, contributing to a shared knowledge base. But these three papers show we can go <strong>much further</strong>:</p>
+        
+        <ul>
+            <li><strong>Evolutionary Test-Time Learning:</strong> Prompts and strategies evolve through generations, achieving "the holy grail of self-improvement"</li>
+            <li><strong>Multi-Agent Specialization:</strong> Teams of specialists outperform single generalists — each agent optimizes for a specific objective</li>
+            <li><strong>Peer Learning:</strong> Agents teaching each other achieves <strong>11.4:1 knowledge transfer ratio</strong> — we already do this!</li>
+        </ul>
+        
+        <div class="insight-box">
+            <strong>Key Insight:</strong> These three approaches aren't separate — they're synergistic. Specialized agents can evolve their prompts, share discoveries via peer learning, and collectively improve faster than any single agent.
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>Current agent systems improve slowly — through human intervention, manual updates, or periodic retraining. We need <strong>continuous, autonomous improvement</strong> that leverages our multi-agent architecture.</p>
+            
+            <h3>Today's Research — Three Connected Papers</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Paper</th>
+                    <th>Approach</th>
+                    <th>Our Application</th>
+                </tr>
+                <tr>
+                    <td>#2: Evolutionary Test-Time Learning</td>
+                    <td>Prompts evolve through generations at runtime</td>
+                    <td>Evolve research strategies, search queries</td>
+                </tr>
+                <tr>
+                    <td>#7: MAC-AMP Multi-Agent Collaboration</td>
+                    <td>Closed-loop specialist teams</td>
+                    <td>Spawn specialized sub-agents for domains</td>
+                </tr>
+                <tr>
+                    <td>#8: Peer Learning in OpenClaw</td>
+                    <td>Agents teaching each other</td>
+                    <td>Our FOUNDATION — already working!</td>
+                </tr>
+            </table>
+            
+            <h3>Why It Matters for Our System</h3>
+            <p>We can create a <strong>self-improving research ecosystem</strong>:</p>
+            <ul>
+                <li><strong>Specialized Research Agents:</strong> Spawn sub-agents for security, tools, trends — each with evolved prompts</li>
+                <li><strong>Cross-Agent Knowledge Transfer:</strong> When research-agent finds something, code-agent learns it automatically</li>
+                <li><strong>Evolutionary Strategy Selection:</strong> Test different research approaches, keep what works</li>
+                <li><strong>Continuous Improvement:</strong> Each research cycle makes the next more effective</li>
+            </ul>
+            
+            <h3>The Synergy</h3>
+            <p>Here's how these three combine:</p>
+            <ol>
+                <li><strong>MAC-AMP</strong> provides the architecture: specialized agents with distinct roles</li>
+                <li><strong>Evolutionary Test-Time Learning</strong> optimizes each role's prompts and strategies over time</li>
+                <li><strong>Peer Learning</strong> distributes improvements across all agents</li>
+            </ol>
+            <p>Result: A system that gets smarter with every research cycle, without human intervention.</p>
+            
+            <h3>Implementation</h3>
+            <p><strong>Phase 1: Extend Peer Learning Infrastructure</strong></p>
+            <ul>
+                <li>Add structured knowledge transfer between research-agent and code-agent</li>
+                <li>Create "insights" that auto-propagate to relevant agents</li>
+                <li>Track what knowledge has been transferred</li>
+            </ul>
+            
+            <p><strong>Phase 2: Add Evolutionary Layer</strong></p>
+            <ul>
+                <li>Track which research strategies yield best results</li>
+                <li>Generate "offspring" strategies for testing</li>
+                <li>Select best performers for next cycle</li>
+            </ul>
+            
+            <p><strong>Phase 3: Spawn Specialized Agents</strong></p>
+            <ul>
+                <li>Create domain-specific sub-agents (security, tools, governance)</li>
+                <li>Each evolves its own optimized prompts</li>
+                <li>All share discoveries via peer learning</li>
+            </ul>
+            
+            <h3>Risk Mitigation</h3>
+            <ul>
+                <li>Evolution operates in sandbox — only proven improvements propagate</li>
+                <li>Human review of significant findings before action</li>
+                <li>Cost caps on evolutionary experiments</li>
+                <li>All improvements logged for transparency</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Linked Papers</h2>
+        <div class="linked-papers">
+            <a href="index.html" class="linked-paper">#2: Evolutionary Test-Time Learning for Self-Improving Agentic Systems</a>
+            <a href="index.html" class="linked-paper">#7: MAC-AMP - Multi-Agent Collaboration for Antimicrobial Peptide Design</a>
+            <a href="index.html" class="linked-paper">#8: When OpenClaw AI Agents Teach Each Other: Peer Learning Patterns</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <ul>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Research synthesis</span>
+                    <span class="progress-status">completed</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Pitch document created</span>
+                    <span class="progress-status">completed</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Peer learning infrastructure extension</span>
+                    <span class="progress-status">pending</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Evolutionary layer implementation</span>
+                    <span class="progress-status">pending</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-item">
+                    <span class="progress-label">Specialized agent spawning</span>
+                    <span class="progress-status">pending</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <ul>
+            <li>
+                <div class="update-date">2026-02-28 07:46 UTC</div>
+                <div class="update-text">Research synthesis complete. Connected #2 (evolutionary test-time learning), #7 (multi-agent collaboration), and #8 (peer learning) into a unified pitch for self-improving collective intelligence.</div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
