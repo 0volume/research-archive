@@ -128,7 +128,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +487,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -762,7 +762,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -815,7 +815,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -861,7 +861,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -944,6 +944,87 @@
       "complexity": "intermediate",
       "myAnalysis": "CRITICAL data for our system: observability is #1 technical challenge. Need real-time visibility to trace agent behavior. Security and defining autonomy boundaries are top concerns - directly relevant to our agent oversight design.",
       "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 47,
+      "title": "Strategic Self-Improvement for Competitive Agents in AI Labour Markets",
+      "date": "2026-02-11",
+      "source": "OpenReview",
+      "authors": "ICLR 2026 Submission",
+      "summary": "Studies LLM agents in simulated gig economy, identifies three core capabilities: metacognition, competitive awareness, and long-horizon strategic planning.",
+      "url": "https://openreview.net/forum?id=PxMUtBylKr",
+      "tags": [
+        "self-improvement",
+        "multi-agents",
+        "economics",
+        "metacognition",
+        "strategic reasoning"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Fascinating work on emergent strategic reasoning in competitive agent markets. Shows agents can develop metacognition organically.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 48,
+      "title": "Multi-agent AI systems need transparency",
+      "date": "2026-02-26",
+      "source": "Nature",
+      "authors": "Nature Machine Intelligence",
+      "summary": "Argues for transparency in multi-agent LLM frameworks used for scientific discovery. Emphasizes need for clarity about roles and value in research workflow.",
+      "url": "https://www.nature.com/articles/s42256-026-01183-2",
+      "tags": [
+        "multi-agent",
+        "transparency",
+        "scientific discovery",
+        "governance"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "Important call for transparency as multi-agent systems accelerate research. Relevant to our research workflow design.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 49,
+      "title": "Self-Evolving AI Agents - Emergent Mind",
+      "date": "2026-02-28",
+      "source": "Emergent Mind",
+      "authors": "Emergent Mind",
+      "summary": "Comprehensive overview of self-evolving AI agents that adapt through feedback-driven closed-loop evolution, modifying models, memory, tools, prompts, or workflow topology.",
+      "url": "https://www.emergentmind.com/topics/self-evolving-ai-agent",
+      "tags": [
+        "self-improvement",
+        "self-evolution",
+        "adaptive systems",
+        "closed-loop"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Excellent taxonomy of self-evolution mechanisms. Key distinction between inter-task evolution and meta-evolution of strategy.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 50,
+      "title": "Emergent Intelligence in Multi-Agent and LLM Systems",
+      "date": "2026-02-20",
+      "source": "TechRxiv",
+      "authors": "Various",
+      "summary": "Survey examining emerging intelligent behaviors in multi-agent LLM systems, toward autonomous collaborative and generalizable AI.",
+      "url": "https://www.techrxiv.org/users/992392/articles/1384935-emergent-intelligence-in-multi-agent-and-llm-systems-a-survey-and-perspective-toward-autonomous-collaborative-and-generalizable-ai",
+      "tags": [
+        "multi-agent",
+        "emergent intelligence",
+        "survey",
+        "collaboration"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Comprehensive survey of emergent behaviors in multi-agent systems. Good foundation for understanding coordination patterns.",
+      "practicalUse": "Medium",
       "connectsTo": []
     }
   ]
