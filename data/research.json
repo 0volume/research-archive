@@ -128,7 +128,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +487,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -762,7 +762,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -815,7 +815,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -861,7 +861,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -876,6 +876,74 @@
       "complexity": "beginner",
       "myAnalysis": "Good for understanding enterprise agent landscape and where industry is heading.",
       "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 44,
+      "title": "VoltAgent/awesome-ai-agent-papers: Curated 2026 AI Agent Research Collection",
+      "date": "2026-02-28",
+      "source": "GitHub",
+      "authors": "VoltAgent Community",
+      "summary": "Curated collection of 50+ AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, autonomous systems, and self-improvement.",
+      "url": "https://github.com/VoltAgent/awesome-ai-agent-papers",
+      "tags": [
+        "research-collection",
+        "2026",
+        "agent-engineering",
+        "memory",
+        "evaluation",
+        "workflows",
+        "autonomous-systems"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Essential resource for staying current. Papers cover TraceCoder (debugging), ProAct (lookahead), Autonomous Question Formation, World Models, MEnvAgent (polyglot environments), ToolTok (GUI agents), and more. Excellent source for identifying papers to study in depth.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 45,
+      "title": "10+ Agentic AI Trends and Examples for 2026",
+      "date": "2026-02-28",
+      "source": "AIMultiple",
+      "authors": "AIMultiple Research Team",
+      "summary": "Industry analysis aggregating major reports on agentic AI trends: autonomous self-healing data pipelines, vertical agents, open-source shift, agent frameworks (CrewAI, LangChain, AutoGen), synthetic data, and human-AI collaboration.",
+      "url": "https://aimultiple.com/agentic-ai-trends",
+      "tags": [
+        "trends",
+        "2026",
+        "industry",
+        "self-healing",
+        "vertical-agents",
+        "open-source",
+        "frameworks"
+      ],
+      "category": "domain-applications",
+      "complexity": "beginner",
+      "myAnalysis": "Good overview of enterprise trends. Key insight: agentic AI shifts from tool to co-worker. Self-healing data pipelines, vertical agents in healthcare/QA, and human-AI collaboration are key themes. Valuable for understanding market direction.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 46,
+      "title": "The Pulse of Agentic AI 2026: Enterprise Adoption Study",
+      "date": "2026-02-28",
+      "source": "Dynatrace",
+      "authors": "Dynatrace Research",
+      "summary": "Study of 919 global leaders on agentic AI adoption. 72% use in ITOps/DevOps, 74% expect budget increases. Top blockers: security (52%), technical challenges (51%), autonomy boundaries (45%), observability gaps (42%).",
+      "url": "https://www.dynatrace.com/news/blog/agentic-ai-report-reliable-autonomous-operations/",
+      "tags": [
+        "adoption",
+        "enterprise",
+        "survey",
+        "observability",
+        "security",
+        "governance"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL data for our system: observability is #1 technical challenge. Need real-time visibility to trace agent behavior. Security and defining autonomy boundaries are top concerns - directly relevant to our agent oversight design.",
+      "practicalUse": "Very High",
       "connectsTo": []
     }
   ]
