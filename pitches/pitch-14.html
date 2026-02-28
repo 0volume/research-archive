@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #14: Self-Improving Multi-Agent Systems with Uncertainty-Aware Oversight - Research Archive</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; color: #e4e4e7; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { margin-bottom: 2rem; }
+        .back-link { color: #818cf8; text-decoration: none; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
+        .pitch-meta { display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem; }
+        .status-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .pending { background: #f59e0b; color: #000; }
+        .pitch-date { color: #a1a1aa; font-size: 0.875rem; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+        .section h2 { font-size: 1.1rem; color: #fff; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .summary { font-size: 1.1rem; color: #c4b5fd; line-height: 1.6; }
+        .detail-content h3 { color: #a5b4fc; font-size: 1rem; margin: 1.5rem 0 0.5rem; }
+        .detail-content p { color: #d4d4d8; line-height: 1.7; margin-bottom: 1rem; }
+        .detail-content ul { margin-left: 1.5rem; color: #d4d4d8; line-height: 1.8; }
+        .detail-content li { margin-bottom: 0.5rem; }
+        .linked-papers { display: flex; flex-direction: column; gap: 0.5rem; }
+        .linked-paper { color: #818cf8; text-decoration: none; padding: 0.75rem; background: rgba(129,140,248,0.1); border-radius: 0.5rem; transition: background 0.2s; }
+        .linked-paper:hover { background: rgba(129,140,248,0.2); }
+        .progress-section table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+        .progress-section th, .progress-section td { text-align: left; padding: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); color: #d4d4d8; font-size: 0.9rem; }
+        .progress-section th { color: #a5b4fc; font-weight: 600; }
+        .updates_section .update { padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 0.5rem; margin-bottom: 0.75rem; }
+        .updates_section .update-date { color: #71717a; font-size: 0.75rem; margin-bottom: 0.25rem; }
+        .updates_section .update-content { color: #d4d4d8; font-size: 0.9rem; }
+        .key-insight { background: rgba(167,139,250,0.15); border-left: 3px solid #a5b4fc; padding: 1rem; margin: 1rem 0; border-radius: 0 0.5rem 0.5rem 0; }
+        .key-insight strong { color: #c4b5fd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Pitches</a>
+            <h1>Pitch #14: Self-Improving Multi-Agent Systems with Uncertainty-Aware Oversight</h1>
+            <div class="pitch-meta">
+                <span class="status-badge pending">pending</span>
+                <span class="pitch-date">2026-02-28</span>
+            </div>
+        </header>
+        
+        <div class="section">
+            <h2>Summary</h2>
+            <p class="summary">Combine evolutionary test-time learning with hierarchical uncertainty metrics to create self-improving multi-agent research system with built-in collapse detection and safe autonomy bounds.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Why This Matters</h2>
+            <p>Our research agent system (research-agent, code-agent, fact-check) operates as a multi-agent team. Two critical challenges emerge:</p>
+            <div class="key-insight">
+                <strong>Problem 1:</strong> Agents can't improve mid-session. Like "clever but clueless interns," they repeat mistakes.<br><br>
+                <strong>Problem 2:</strong> Multi-agent collaboration can converge on wrong conclusions ("debate collapse") without any agent noticing.
+            </div>
+            <p>Recent research provides solutions to both: EvoTest (evolutionary test-time learning) and hierarchical uncertainty metrics for debate collapse detection.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Full Pitch</h2>
+            <div class="detail-content">
+                <h3>The Problem</h3>
+                <p>Current multi-agent research systems face a fundamental limitation: they arrive at deployment with fixed policies and cannot learn from experience within a session. Worse, when multiple agents collaborate (e.g., research-agent + fact-check), they can reach wrong conclusions without any awareness of uncertainty. The Anthropic study on agent autonomy confirms this—experienced users auto-approve more BUT also interrupt more, indicating that even humans struggle to detect when agents go off-track.</p>
+                
+                <h3>Today's Research</h3>
+                <p>Three papers form the foundation:</p>
+                <ul>
+                    <li><strong>EvoTest</strong> (arXiv:2510.13220): Evolutionary test-time learning where an "Actor Agent" executes tasks and an "Evolver Agent" analyzes transcripts to propose improved configurations (prompts, memory, hyperparameters, tool routines). Achieved 38% improvement over strongest baseline.</li>
+                    <li><strong>Debate Collapse Mitigation</strong> (arXiv:2602.07186): Hierarchical uncertainty metrics at intra-agent, inter-agent, and system levels to detect when multi-agent debate leads to wrong conclusions. Proposes uncertainty-driven policy optimization to penalize self-contradiction and low-confidence outputs.</li>
+                    <li><strong>Measuring Agent Autonomy</strong> (Anthropic, 2026-02-28): Empirical study of millions of human-agent interactions—found autonomy increasing but human intervention also increasing. Post-deployment monitoring is essential.</li>
+                </ul>
+                
+                <h3>Why It Matters for Our System</h3>
+                <p>We have exactly this architecture: research-agent gathers sources, fact-check validates, code-agent implements. When fact-check misses an error or research-agent selects poor sources, the system has no mechanism to:</p>
+                <ul>
+                    <li>Detect that it's heading toward incorrect conclusions (uncertainty metrics)</li>
+                    <li>Improve its approach mid-session based on feedback (evolutionary learning)</li>
+                    <li>Know when to escalate to human oversight (autonomy bounds)</li>
+                </ul>
+                
+                <h3>Implementation</h3>
+                <p><strong>Phase 1: Uncertainty-Aware Collaboration</strong></p>
+                <ul>
+                    <li>Implement hierarchical uncertainty scoring for agent outputs (research-agent confidence, fact-check agreement, system-level reliability)</li>
+                    <li>Add "collapse detection" - flag when agents converge without sufficient disagreement</li>
+                    <li>Build confidence thresholds that trigger human escalation</li>
+                </ul>
+                
+                <p><strong>Phase 2: Evolutionary Learning</strong></p>
+                <ul>
+                    <li>Add session-level memory that captures successful/failed research strategies</li>
+                    <li>Implement "Evolver Agent" role that reviews session transcripts and proposes prompt/budget adjustments</li>
+                    <li>Track research success patterns and apply learnings to future queries</li>
+                </ul>
+                
+                <p><strong>Phase 3: Autonomy Bounds</strong></p>
+                <ul>
+                    <li>Define autonomy tiers based on task risk and uncertainty levels</li>
+                    <li>Implement automatic escalation at autonomy boundaries</li>
+                    <li>Add post-session analysis for continuous improvement</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Linked Papers</h2>
+            <div class="linked-papers">
+                <a href="https://arxiv.org/html/2510.13220v1" class="linked-paper">#2: Evolutionary Test-Time Learning for Self-Improving Agentic Systems</a>
+                <a href="https://arxiv.org/abs/2602.07186" class="linked-paper">#42: Mitigating Debate Collapse in Multi-Agent Systems via Uncertainty-Driven Policy Optimization</a>
+                <a href="https://www.anthropic.com/research/measuring-agent-autonomy" class="linked-paper">#41: Measuring AI Agent Autonomy in Practice</a>
+            </div>
+        </div>
+        
+        <div class="section progress-section">
+            <h2>📊 Progress</h2>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                </tr>
+                <tr>
+                    <td>Uncertainty scoring for research outputs</td>
+                    <td>Not started</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>Collapse detection for multi-agent debate</td>
+                    <td>Not started</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>Session-level evolutionary memory</td>
+                    <td>Not started</td>
+                    <td>Medium</td>
+                </tr>
+                <tr>
+                    <td>Autonomy bounds and escalation</td>
+                    <td>Not started</td>
+                    <td>Medium</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section updates_section">
+            <h2>💬 Discussion Updates</h2>
+            <div class="update">
+                <div class="update-date">2026-02-28</div>
+                <div class="update-content">Pitch created - synthesizing EvoTest evolutionary learning, debate collapse mitigation, and agent autonomy measurement into a unified self-improving multi-agent research system.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
