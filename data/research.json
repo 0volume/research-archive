@@ -818,6 +818,65 @@
       "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
+    },
+    {
+      "id": 41,
+      "title": "Measuring AI Agent Autonomy in Practice",
+      "date": "2026-02-28",
+      "source": "Anthropic",
+      "authors": "Anthropic Research Team",
+      "summary": "Empirical study of millions of human-agent interactions across Claude Code and public API. Found autonomy increasing (sessions doubled to 45+ min), experienced users auto-approve more but interrupt more, agents in risky domains but not at scale.",
+      "url": "https://www.anthropic.com/research/measuring-agent-autonomy",
+      "tags": [
+        "autonomy",
+        "empirical-study",
+        "claude-code",
+        "oversight"
+      ],
+      "category": "reasoning",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL: Agents becoming more autonomous AND humans intervening MORE, not less. Key insight: post-deployment monitoring essential for safe deployment.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 42,
+      "title": "Mitigating Debate Collapse in Multi-Agent Systems via Uncertainty-Driven Policy Optimization",
+      "date": "2026-02-06",
+      "source": "arXiv",
+      "authors": "Luoxi Tang et al.",
+      "summary": "Addresses debate collapse in multi-agent debate systems where agents reach wrong conclusions. Proposes hierarchical uncertainty metrics at intra-agent, inter-agent, and system levels.",
+      "url": "https://arxiv.org/abs/2602.07186",
+      "tags": [
+        "multi-agent",
+        "debate",
+        "uncertainty",
+        "reasoning"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Relevant: debate collapse is when agents converge on WRONG answers. Uncertainty metrics can detect when research agents go off-track.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 43,
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
+      "date": "2026-02-28",
+      "source": "Agent Conference",
+      "authors": "Agent Conference",
+      "summary": "Curated list of 120 most promising private companies building enterprise-grade agentic AI - autonomous systems that make decisions.",
+      "url": "https://www.agentconference.com/agenticlist/2026",
+      "tags": [
+        "industry",
+        "enterprise",
+        "landscape"
+      ],
+      "category": "domain-applications",
+      "complexity": "beginner",
+      "myAnalysis": "Good for understanding enterprise agent landscape and where industry is heading.",
+      "practicalUse": "Medium",
+      "connectsTo": []
     }
   ]
 }
