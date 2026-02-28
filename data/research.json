@@ -1,6 +1,6 @@
 {
   "version": "2.5",
-  "lastUpdated": "2026-02-25",
+  "lastUpdated": "2026-02-28",
   "sources": [
     "arXiv",
     "GitHub",
@@ -652,6 +652,68 @@
       "complexity": "intermediate",
       "myAnalysis": "Key trend: multi-agent systems replacing single-agent workflows. Parallel execution maximizes performance gains.",
       "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 33,
+      "title": "Microsoft Research Asia StarTrack Scholars 2026: Agentic AI - Reimagining Future Human-Agent Communication and Collaboration",
+      "date": "2026-02-28",
+      "source": "Microsoft Research",
+      "authors": "Yan Lu, Chong Luo, Jiahao Li et al.",
+      "summary": "Microsoft Research Asia outlines their vision for agentic AI across three pillars: Foundations & Frameworks, User Experiences, and Applications. Highlights InfoAgent deep research agent achieving state-of-the-art results.",
+      "url": "https://www.microsoft.com/en-us/research/articles/agentic-ai-reimagining-future-human-agent-communication-and-collaboration/",
+      "tags": [
+        "research",
+        "foundations",
+        "human-agent interaction",
+        "multi-agent",
+        "deep research"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Major research org vision document. Three-pillar framework provides structure for understanding agentic AI. InfoAgent shows RL + SFT can produce effective autonomous research agents.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 34,
+      "title": "Agentic AI: The 2026 Threat Multiplier Reshaping Cyberattacks",
+      "date": "2026-02-27",
+      "source": "Barracuda",
+      "authors": "Christine Barry",
+      "summary": "Analysis of how agentic AI enables faster, more scalable cyberattacks. Threat actors can now deploy autonomous agents that adapt in real-time without human intervention.",
+      "url": "https://blog.barracuda.com/2026/02/27/agentic-ai--the-2026-threat-multiplier-reshaping-cyberattacks",
+      "tags": [
+        "security",
+        "threats",
+        "autonomous attacks",
+        "defense"
+      ],
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Critical security perspective on agentic AI. Shows attack surface expands significantly when agents can operate autonomously. Defender implications: need behavior-based detection and rapid response.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 35,
+      "title": "AI Agent Adoption 2026: What the Data Shows",
+      "date": "2026-02-20",
+      "source": "Joget (aggregating Gartner, Forrester, IDC, Deloitte)",
+      "authors": "Zailysh Shah",
+      "summary": "Comprehensive analyst report synthesis: 40% of enterprise apps will have AI agents by 2026, but 40% of projects will fail by 2027 without proper governance. Multi-agent systems and orchestration are key trends.",
+      "url": "https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/",
+      "tags": [
+        "adoption",
+        "market",
+        "governance",
+        "multi-agent",
+        "enterprise"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Valuable market context. Key insight: governance determines success, not technology. 40% failure rate warning is critical for our system design - need robust oversight mechanisms.",
+      "practicalUse": "Very High",
       "connectsTo": []
     }
   ],
