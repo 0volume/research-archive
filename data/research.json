@@ -1,6 +1,6 @@
 {
   "version": "2.5",
-  "lastUpdated": "2026-02-28",
+  "lastUpdated": "2026-03-03",
   "sources": [
     "arXiv",
     "GitHub",
@@ -9,7 +9,11 @@
     "OECD",
     "Microsoft",
     "MIT Sloan",
-    "IBM"
+    "IBM",
+    "Anthropic",
+    "Blog",
+    "Hatchworks",
+    "Substack"
   ],
   "entries": [
     {
@@ -1367,6 +1371,147 @@
       "connectsTo": [
         2
       ]
+    },
+    {
+      "id": 67,
+      "title": "Effective Context Engineering for AI Agents",
+      "date": "2025-12-01",
+      "source": "Anthropic",
+      "authors": "Anthropic Engineering Team",
+      "summary": "Best practices for managing context in AI agent systems. Covers state carrying, context budgeting, bounded iteration, and deterministic transitions.",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "tags": [
+        "context",
+        "engineering",
+        "best-practices",
+        "state-management"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL for our multi-agent workflow problems. Key insight: explicit > implicit. Every handoff must carry full state. Never use open-ended waits.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 68,
+      "title": "AI Agent Design Patterns Guide",
+      "date": "2025-11-15",
+      "source": "Microsoft",
+      "authors": "Microsoft Azure AI Team",
+      "summary": "Comprehensive guide to AI agent design patterns including supervisor-mediated pipelines, review-first architecture, and explicit handoff protocols.",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns",
+      "tags": [
+        "design-patterns",
+        "orchestration",
+        "workflow",
+        "microsoft"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Production-ready patterns for multi-agent systems. Supervisor architecture and review gates directly applicable to our workflow.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 69,
+      "title": "Hooks - OpenClaw Automation",
+      "date": "2026-03-01",
+      "source": "OpenClaw",
+      "authors": "OpenClaw Documentation",
+      "summary": "Event-driven hooks system for OpenClaw. Enables automation on agent lifecycle events, tool results, and command execution.",
+      "url": "https://docs.openclaw.ai/automation/hooks",
+      "tags": [
+        "hooks",
+        "automation",
+        "events",
+        "openclaw"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL for workflow automation. Hooks can validate syntax, enforce constraints, manage handoffs, and prevent infinite waits.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 70,
+      "title": "How I Built a Deterministic Multi-Agent Dev Pipeline Inside OpenClaw",
+      "date": "2026-02-28",
+      "source": "Dev.to",
+      "authors": "Gabriel Gondim",
+      "summary": "Building deterministic multi-agent pipelines using OpenClaw Lobster workflow engine with sub-workflow steps and loop support.",
+      "url": "https://dev.to/ggondim/how-i-built-a-deterministic-multi-agent-dev-pipeline-inside-openclaw-and-contributed-a-missing-4ool",
+      "tags": [
+        "openclaw",
+        "lobster",
+        "workflow",
+        "deterministic",
+        "pipeline"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Real-world implementation of deterministic pipelines in OpenClaw. Shows how to use sessions_spawn and Lobster for structured workflows.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 71,
+      "title": "AI Agent Error Handling Patterns",
+      "date": "2025-10-20",
+      "source": "Blog",
+      "authors": "JosephZTan",
+      "summary": "Patterns for handling errors in AI agent systems. Covers retry logic, fallback strategies, and graceful degradation.",
+      "url": "https://blog.jztan.org/ai-agent-error-handling-patterns/",
+      "tags": [
+        "error-handling",
+        "patterns",
+        "resilience",
+        "retry"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Practical error handling patterns. Essential for preventing agents from getting stuck or failing silently.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 72,
+      "title": "Orchestrating AI Agents: A Comprehensive Guide",
+      "date": "2025-12-10",
+      "source": "Hatchworks",
+      "authors": "Hatchworks Team",
+      "summary": "Guide to orchestrating multiple AI agents. Covers coordination patterns, communication protocols, and workflow design.",
+      "url": "https://hatchworks.com/blog/ai-agents/orchestrating-ai-agents/",
+      "tags": [
+        "orchestration",
+        "coordination",
+        "multi-agent",
+        "workflow"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Good overview of orchestration patterns. Complements Microsoft patterns with additional coordination strategies.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 73,
+      "title": "OpenClaw Design Patterns (Part 1-7)",
+      "date": "2026-02-01",
+      "source": "Substack",
+      "authors": "Ken Huang",
+      "summary": "Series on OpenClaw design patterns covering heartbeat system, hooks, interceptors, and agent coordination.",
+      "url": "https://kenhuangus.substack.com/p/openclaw-design-patterns-part-1-of",
+      "tags": [
+        "openclaw",
+        "design-patterns",
+        "heartbeat",
+        "hooks"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Deep dive into OpenClaw internals. Essential for understanding event-driven architecture and agent lifecycle.",
+      "practicalUse": "Very High",
+      "connectsTo": []
     }
   ]
 }
