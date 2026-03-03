@@ -6,101 +6,47 @@
     <title>Pitch #21: Multi-Agent Workflow Foundation - Explicit Context Protocol - Research Archive</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px;
-            background: #fafafa;
-        }
-        .header { 
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
-            color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background: #fafafa; }
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; }
         .header h1 { font-size: 2em; margin-bottom: 10px; }
         .pitch-meta { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
-        .status-badge { 
-            padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600;
-        }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600; }
         .pending { background: #ffd93d; color: #333; }
         .in-progress { background: #6bcb77; color: #fff; }
-        .completed { background: #4d96ff; color: #fff; }
         .section { background: white; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .section h2 { color: #1a1a2e; border-bottom: 2px solid #4d96ff; padding-bottom: 10px; margin-bottom: 20px; }
         .section h3 { color: #16213e; margin: 20px 0 10px; }
-        .summary { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; padding: 20px; border-radius: 8px; font-size: 1.1em; margin-bottom: 20px;
-        }
-        .detail-content h3 { color: #e94560; margin-top: 25 .detail-content hpx; }
-       4 { color: #16213e; margin-top: 20px; }
-        .detail-content ul, .detail-content ol { margin-left: 25px; margin-bottom: 15px; }
-        .detail-content li { margin-bottom: 8px; }
-        code { 
-            background: #1a1a2e; color: #a8ff60; padding: 2px 8px; border-radius: 4px; 
-            font-family: 'Fira Code', 'Monaco', monospace; font-size: 0.9em;
-        }
-        pre { 
-            background: #1a1a2e; color: #f8f8f2; padding: 20px; border-radius: 8px; 
-            overflow-x: auto; margin: 15px 0; font-size: 0.85em;
-        }
+        .section h4 { color: #e94560; margin: 20px 0 10px; }
+        .summary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; font-size: 1.1em; margin-bottom: 20px; }
+        code { background: #1a1a2e; color: #a8ff60; padding: 2px 8px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.9em; }
+        pre { background: #1a1a2e; color: #f8f8f2; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 15px 0; font-size: 0.85em; }
         pre code { background: none; color: inherit; padding: 0; }
-        .phase { 
-            border-left: 4px solid #4d96ff; padding-left: 20px; margin: 20px 0;
-        }
-        .phase-header { 
-            background: #e8f4ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;
-        }
+        .phase { border-left: 4px solid #4d96ff; padding-left: 20px; margin: 20px 0; }
+        .phase-header { background: #e8f4ff; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
         .phase-header h3 { margin: 0; color: #1a1a2e; }
-        .phase-number { 
-            display: inline-block; background: #4d96ff; color: white; 
-            width: 28px; height: 28px; border-radius: 50%; 
-            text-align: center; line-height: 28px; margin-right: 10px;
-        }
-        .deliverable { 
-            background: #f0fdf4; border: 1px solid #22c55e; 
-            padding: 15px; border-radius: 8px; margin: 10px 0;
-        }
+        .phase-number { display: inline-block; background: #4d96ff; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; margin-right: 10px; }
+        .deliverable { background: #f0fdf4; border: 1px solid #22c55e; padding: 15px; border-radius: 8px; margin: 10px 0; }
         .deliverable h4 { color: #166534; margin-bottom: 8px; }
-        .tool-call { 
-            background: #fef3c7; border-left: 4px solid #f59e0b; 
-            padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0;
-        }
-        .warning { 
-            background: #fef2f2; border-left: 4px solid #ef4444; 
-            padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0;
-        }
-        .success { 
-            background: #f0fdf4; border-left: 4px solid #22c55e; 
-            padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0;
-        }
+        .tool-call { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+        .warning { background: #fef2f2; border-left: 4px solid #ef4444; padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+        .success { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+        .step { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; margin: 15px 0; border-radius: 8px; }
+        .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .step-number { background: #4d96ff; color: white; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 0.85em; font-weight: bold; }
+        .step-title { font-weight: 600; color: #1a1a2e; }
+        .checkpoint { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 12px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+        .checkpoint-icon { font-size: 1.2em; margin-right: 8px; }
         .linked-papers { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
-        .linked-paper { 
-            background: #f1f5f9; padding: 8px 15px; border-radius: 20px; 
-            text-decoration: none; color: #334155; font-size: 0.9em;
-        }
-        .linked-paper:hover { background: #e2e8f0; }
-        .progress-section { background: #f8fafc; }
-        .progress-item { 
-            display: flex; align-items: center; margin: 10px 0; gap: 10px;
-        }
-        .progress-check { 
-            width: 24px; height: 24px; border-radius: 50%; 
-            background: #e2e8f0; display: flex; align-items: center; justify-content: center;
-        }
-        .progress-check.done { background: #22c55e; color: white; }
-        .diagram {
-            background: white; border: 2px solid #e2e8f0; border-radius: 12px;
-            padding: 20px; margin: 20px 0; text-align: center;
-        }
-        .diagram img, .diagram svg { max-width: 100%; height: auto; }
+        .linked-paper { background: #f1f5f9; padding: 8px 15px; border-radius: 20px; text-decoration: none; color: #334155; font-size: 0.9em; }
         table { width: 100%; border-collapse: collapse; margin: 15px 0; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
         th { background: #f8fafc; font-weight: 600; }
-        .back-link { 
-            display: inline-block; color: #4d96ff; text-decoration: none; 
-            margin-bottom: 20px; font-weight: 500;
-        }
-        .back-link:hover { text-decoration: underline; }
-        .updates_section { background: #fffbeb; }
+        .back-link { display: inline-block; color: #4d96ff; text-decoration: none; margin-bottom: 20px; font-weight: 500; }
+        .implementation-note { background: #e0f2fe; border: 1px solid #0284c7; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .review-block { background: #fdf4ff; border: 2px solid #d946ef; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .review-block h4 { color: #d946ef; margin-bottom: 10px; }
+        ul, ol { margin-left: 25px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
@@ -120,44 +66,33 @@
     <div class="section">
         <h2>Summary</h2>
         <p class="summary">
-            <strong>Core Insight:</strong> The single most effective change we can make to our multi-agent system is replacing 
-            <strong>implicit context passing</strong> with <strong>explicit, structured context objects</strong>. This addresses 
-            80% of our workflow problems: agents not waking up, getting stuck waiting, missing syntax errors, and tripping over each other.
+            <strong>Core Insight:</strong> The single most effective change we can make is replacing 
+            <strong>implicit context passing</strong> with <strong>explicit, structured context objects</strong>. 
+            This pitch includes <strong>actual hooks to create</strong>, <strong>self-review checkpoints</strong>, 
+            and <strong>mandatory code-review gates</strong>.
         </p>
     </div>
     
     <div class="section">
         <h2>Why This Matters</h2>
-        <p>Based on research from Anthropic, Microsoft Azure, and real OpenClaw implementations, the pattern is clear:</p>
-        
         <ul>
-            <li><strong>Anthropic's Context Engineering</strong>: "Every agent handoff must explicitly carry necessary state. Not implicit: 'continue from where you left off'. Explicit: 'Here is the current file state, test results, and pending decisions'"</li>
+            <li><strong>Anthropic's Context Engineering</strong>: "Every agent handoff must explicitly carry necessary state"</li>
             <li><strong>Microsoft Design Patterns</strong>: "Use supervisor-mediated pipelines with explicit handoff protocols"</li>
-            <li><strong>Our Problems</strong>: Agents not waking up, getting stuck waiting for feedback, missing syntax errors, restoring from backups when told not to</li>
+            <li><strong>Our Problems</strong>: Agents not waking up, getting stuck waiting, missing syntax errors, restoring from backups</li>
         </ul>
-        
         <div class="warning">
-            <strong>Root Cause:</strong> All these problems stem from <strong>implicit assumptions</strong>. When we tell an agent "continue" or "fix this bug" without explicitly passing context, the agent makes assumptions that are often wrong.
+            <strong>Root Cause:</strong> All problems stem from <strong>implicit assumptions</strong>. This pitch fixes that.
         </div>
     </div>
     
     <div class="section">
-        <h2>The Implementation Plan</h2>
-        <p>This pitch implements <strong>Phase 1</strong> of a 5-phase plan. Phase 1 is the foundation - everything else builds on this.</p>
+        <h2>Implementation Phases</h2>
         
         <div class="phase">
             <div class="phase-header">
-                <h3><span class="phase-number">1</span> Explicit Context Protocol (THIS PITCH)</h3>
+                <h3><span class="phase-number">1</span> Explicit Context Protocol</h3>
             </div>
-            <p><strong>Goal:</strong> Create structured context passing so every agent spawn includes full context</p>
-            <div class="deliverable">
-                <h4>📦 Deliverables</h4>
-                <ul>
-                    <li>Context Protocol Template (context-protocol.md)</li>
-                    <li>Standardized spawn calls across all agents</li>
-                    <li>Context validation hook</li>
-                </ul>
-            </div>
+            <p><strong>Goal:</strong> Structured context passing with self-review checkpoints</p>
         </div>
         
         <div class="phase">
@@ -169,35 +104,24 @@
         
         <div class="phase">
             <div class="phase-header">
-                <h3><span class="phase-number">3</span> Constraint Enforcement System</h3>
+                <h3><span class="phase-number">3</span> Constraint Enforcement</h3>
             </div>
-            <p><strong>Goal:</strong> Block forbidden operations (backup restoration, git operations)</p>
-        </div>
-        
-        <div class="phase">
-            <div class="phase-header">
-                <h3><span class="phase-number">4</span> Handoff Management</h3>
-            </div>
-            <p><strong>Goal:</strong> Explicit state transitions with timeouts</p>
-        </div>
-        
-        <div class="phase">
-            <div class="phase-header">
-                <h3><span class="phase-number">5</span> Timeout Supervision</h3>
-            </div>
-            <p><strong>Goal:</strong> Prevent infinite waits with automatic escalation</p>
+            <p><strong>Goal:</strong> Block forbidden operations</p>
         </div>
     </div>
     
     <div class="section">
-        <h2>Full Implementation Guide</h2>
-        <div class="detail-content">
-            
-            <h3>Step 1: Create the Context Protocol Template</h3>
-            
-            <p>Every agent spawn must use a structured context object. Create this file in your workspace:</p>
-            
-            <pre><code># Location: ~/.openclaw/workspace-research-agent/templates/context-protocol.md
+        <h2>Step-by-Step Implementation</h2>
+        <p>Each step includes a <strong>self-review checkpoint</strong> and <strong>code-review gate</strong>.</p>
+        
+        <!-- STEP 1 -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">1</span>
+                <span class="step-title">Create Context Protocol Template</span>
+            </div>
+            <p>Create the standardized template file:</p>
+            <pre><code># File: ~/.openclaw/workspace-research-agent/templates/context-protocol.md
 
 ---
 name: context-protocol
@@ -207,42 +131,27 @@ version: 1.0.0
 
 # Explicit Context Protocol
 
-## Why This Exists
-
-Every problem in our multi-agent system stems from implicit context:
-- "Continue from where you left off" → Agent assumes wrong state
-- "Fix this bug" → Agent doesn't know what's already been tried
-- "Let me know when done" → Agent waits forever
-
-## The Solution: Explicit Context Objects
-
 Every agent spawn MUST include:
+
+## Required Structure
 
 ```typescript
 interface AgentContext {
-  // REQUIRED: What the agent should do
-  task: string;
-  
-  // REQUIRED: Current state of work
-  context: {
+  task: string;           // What to do
+  context: {              // Current state
     workspace: string;
     relevantFiles: string[];
     currentState: string;
     whatAlreadyTried: string[];
     testResults?: string;
-    errors?: string[];
   };
-  
-  // REQUIRED: Constraints on how to work
-  constraints: {
+  constraints: {           // Rules to follow
     DO_NOT: string[];
     MUST_VERIFY: string[];
     MAX_ITERATIONS: number;
     FEEDBACK_TIMEOUT_MS: number;
   };
-  
-  // REQUIRED: How to signal completion
-  onComplete: {
+  onComplete: {           // What happens next
     action: "handoff" | "respond" | "escalate";
     nextAgent?: string;
     successCriteria: string[];
@@ -250,187 +159,233 @@ interface AgentContext {
   };
 }
 ```
-
-## Example: Good vs Bad Spawns
-
-### BAD - Implicit (Don't Do This)
-```javascript
-// This is what we do now - it's problematic
-sessions_spawn({
-  agentId: "code-agent",
-  task: "fix the auth bug"
-})
-```
-
-### GOOD - Explicit (Do This Instead)
-```javascript
-sessions_spawn({
-  agentId: "code-agent",
-  task: "fix authentication token undefined error",
-  context: {
-    workspace: "/root/.openclaw/workspace-code-agent",
-    relevantFiles: ["/workspace/src/auth.ts", "/workspace/tests/auth.test.ts"],
-    currentState: "User login returns 500 error - Cannot read property 'token' of undefined",
-    whatAlreadyTried: [
-      "Checked line 42 - token object exists",
-      "Verified database connection works",
-      "Added console.log at line 15 - not reaching"
-    ],
-    testResults: "2/5 tests passing: login fails, logout passes, token refresh passes, session passes, validate fails"
-  },
-  constraints: {
-    DO_NOT: [
-      "DO NOT use git restore, checkout, or reset",
-      "DO NOT modify .git directory",
-      "DO NOT use any backup files (backup/*, *.bak, *.orig)",
-      "DO NOT ask for clarification - proceed with best effort"
-    ],
-    MUST_VERIFY: [
-      "MUST run: node --check after any file change",
-      "MUST ensure existing tests still pass"
-    ],
-    MAX_ITERATIONS: 3,
-    FEEDBACK_TIMEOUT_MS: 60000
-  },
-  onComplete: {
-    action: "handoff",
-    nextAgent: "code-review",
-    successCriteria: [
-      "All 5 auth tests passing",
-      "node --check passes on modified files",
-      "No console.log statements added"
-    ],
-    timeoutMs: 120000
-  }
-})
-```
 </code></pre>
             
-            <h3>Step 2: Create Agent Identity Files</h3>
+            <div class="checkpoint">
+                <span class="checkpoint-icon">🔍</span>
+                <strong>SELF-REVIEW CHECKPOINT 1:</strong>
+                <ul>
+                    <li>Template file exists at correct path</li>
+                    <li>All required fields are documented</li>
+                    <li>Example shows explicit vs implicit comparison</li>
+                </ul>
+            </div>
             
-            <p>Each agent needs an identity file that defines how it receives and passes context:</p>
-            
-            <pre><code># Location: ~/.openclaw/workspace-code-agent/IDENTITY.md
+            <div class="review-block">
+                <h4>📋 CODE-REVIEW GATE 1</h4>
+                <p>Before proceeding, verify template is complete by checking:</p>
+                <ul>
+                    <li>All 4 required sections: task, context, constraints, onComplete</li>
+                    <li>Good vs bad examples included</li>
+                    <li>File is readable and properly formatted</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- STEP 2 -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">2</span>
+                <span class="step-title">Create Agent Identity Files</span>
+            </div>
+            <p>Update each agent's IDENTITY.md to enforce the protocol:</p>
+            <pre><code># File: ~/.openclaw/workspace-code-agent/IDENTITY.md
 
 # Code Agent Identity
 
 ## Role
-Primary code implementation agent. Receives tasks from supervisor, produces code, hands off to review.
+Primary code implementation agent.
 
-## Responsibilities
-- Implement features based on explicit requirements
-- Run syntax validation before handoff
-- Follow constraints strictly
-- Report completion with full context
+## Protocol Requirements
 
-## Context Expectations
+### MUST DO When Receiving Task
+1. If context is incomplete, RESPOND asking for explicit context
+2. NEVER assume what hasn't been told to you
 
-### Receives
-- task: Clear description of what to implement
-- context.workspace: Path to working directory
-- context.relevantFiles: Files to work with
-- context.currentState: Current state of the system
-- context.whatAlreadyTried: Previous attempts (avoid redundancy)
-- constraints: DO_NOT and MUST_VERIFY rules
+### MUST DO Before Handoff
+1. Run syntax validation: `node --check [file]` or `python -m py_compile [file]`
+2. Run existing tests to ensure nothing broke
+3. Verify all constraints were followed
 
-### Produces
-- Modified files with syntax validated
-- Test results
-- Any errors encountered
-- What was changed
-
-## Handoff Protocol
-
-When complete, must invoke next agent with:
-1. Full summary of what was done
-2. Test results
-3. Any issues that need attention
-4. Explicit next action
+### MUST DO When Handing Off
+Provide full context to next agent including:
+- What was accomplished
+- Current state of the system
+- Any issues encountered
+- Explicit next action
 
 ## Constraints (Always Enforced)
-
 - NEVER modify .git directory
 - NEVER use backup files
-- ALWAYS run syntax check before reporting complete
-- NEVER leave console.log statements in production code
+- ALWAYS verify syntax before handoff
 </code></pre>
             
-            <h3>Step 3: Update Each Agent's BOOT.md or System Prompt</h3>
+            <div class="checkpoint">
+                <span class="checkpoint-icon">🔍</span>
+                <strong>SELF-REVIEW CHECKPOINT 2:</strong>
+                <ul>
+                    <li>code-agent IDENTITY.md updated</li>
+                    <li>review-agent IDENTITY.md updated</li>
+                    <li>Both mention self-review before handoff</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- STEP 3 -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">3</span>
+                <span class="step-title">Create Self-Review Checklist</span>
+            </div>
+            <p>Add to each agent's BOOT.md - this is what agents run BEFORE handoff:</p>
+            <pre><code># SELF-REVIEW CHECKLIST - Run this before completing any task
+
+## Pre-Handoff Verification
+
+- [ ] I have run syntax validation on ALL modified files
+- [ ] I have run existing tests - all pass
+- [ ] I have NOT used any git commands
+- [ ] I have NOT used any backup files
+- [ ] I have NOT left console.log statements
+- [ ] My constraints were followed
+- [ ] I can explain what was accomplished in 2 sentences
+- [ ] I know what happens next (who receives handoff)
+
+## If ANY check fails:
+STOP. Fix the issue. Then re-run checklist.
+</code></pre>
+        </div>
+        
+        <!-- STEP 4 - THE HOOKS -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">4</span>
+                <span class="step-title">CREATE ACTUAL HOOKS (Not Just Describe)</span>
+            </div>
+            <p>This is critical - we are creating REAL working hooks:</p>
             
-            <p>Add this section to each agent's bootstrap file:</p>
-            
-            <pre><code># EXPLICIT CONTEXT PROTOCOL - READ THIS
+            <h4>Hook 1: Syntax Validator</h4>
+            <pre><code># File: ~/.openclaw/hooks/syntax-validator/HOOK.md
+---
+name: syntax-validator
+description: Validates code syntax after tool execution
+emoji: "✅"
+events: ["tool-result"]
+metadata:
+  openclaw:
+    events: ["tool-result"]
+---
 
-You must enforce explicit context passing in ALL your work.
+# Syntax Validator Hook
 
-## The Golden Rule
-
-**Never assume implicit context. Always require explicit context objects.**
-
-### When Receiving a Task
-
-If you receive a task WITHOUT the full context object, RESPOND with:
-
-```
-I need explicit context to work effectively. Please provide:
-
-1. TASK: What specifically should I do?
-2. CONTEXT:
-   - workspace: (file path)
-   - relevantFiles: (files to work with)
-   - currentState: (what's the current situation)
-   - whatAlreadyTried: (what has been attempted)
-3. CONSTRAINTS:
-   - DO_NOT: (what NOT to do)
-   - MUST_VERIFY: (what to check)
-4. ON_COMPLETE:
-   - action: (what happens next)
-   - successCriteria: (how to measure success)
-```
-
-### When Handing Off to Another Agent
-
-NEVER just say "when done, continue" or "let me know when finished".
-
-You MUST provide:
-- Summary of what you accomplished
-- Current state of the system
-- What still needs doing
-- Explicit handoff with full context
-
-## Example Correct Handoff
-
-```
-I'm handing off to code-review agent with the following context:
-
-TASK: Review authentication implementation
-
-CONTEXT:
-- workspace: /root/.openclaw/workspace-code-agent
-- relevantFiles: ["src/auth.ts", "tests/auth.test.ts"]
-- currentState: All 5 auth tests now passing
-- whatAlreadyTried: ["Fixed token undefined by adding null check at line 42"]
-
-CONSTRAINTS:
-- DO_NOT: ["Don't modify the code", "Don't run git commands"]
-- MUST_VERIFY: ["Verify syntax with node --check", "Verify tests pass"]
-
-ON_COMPLETE:
-- action: handoff
-- nextAgent: main
-- successCriteria: ["Code is clean", "No syntax errors", "Tests pass"]
-```
+Runs after exec tool to validate syntax of modified files.
 </code></pre>
             
-            <h3>Step 4: Create a Context Validation Hook (Optional but Recommended)</h3>
+            <pre><code># File: ~/.openclaw/hooks/syntax-validator/handler.ts
+import { HookContext } from "@openclaw/hooks";
+
+export default async function validateSyntax(context: HookContext) {
+  const { payload, sessionId } = context;
+  
+  // Only run after exec tool
+  const toolResult = payload?.result;
+  if (!toolResult?.stdout && !toolResult?.stderr) {
+    return { allowed: true };
+  }
+  
+  // Check if any code files were modified
+  const output = toolResult.stdout + toolResult.stderr;
+  const codeExtensions = ['.js', '.ts', '.py', '.go', '.rs'];
+  const modifiedFiles = output.match(/\/workspace\/[^\s]+\.(js|ts|py|go|rs)/g) || [];
+  
+  if (modifiedFiles.length === 0) {
+    return { allowed: true };
+  }
+  
+  // Run syntax check on each modified file
+  const errors: string[] = [];
+  for (const file of modifiedFiles) {
+    const ext = file.split('.').pop();
+    let result;
+    
+    if (ext === 'js' || ext === 'ts') {
+      result = await exec(`node --check ${file} 2>&1`);
+    } else if (ext === 'py') {
+      result = await exec(`python -m py_compile ${file} 2>&1`);
+    }
+    
+    if (result.exitCode !== 0) {
+      errors.push(`Syntax error in ${file}: ${result.stderr}`);
+    }
+  }
+  
+  if (errors.length > 0) {
+    return {
+      allowed: false,
+      error: "Syntax validation failed",
+      details: errors,
+      suggestion: "Fix syntax errors before proceeding"
+    };
+  }
+  
+  return { allowed: true };
+}
+</code></pre>
             
-            <p>This hook validates that spawned agents receive proper context:</p>
+            <h4>Hook 2: Constraint Enforcer</h4>
+            <pre><code># File: ~/.openclaw/hooks/constraint-enforcer/HOOK.md
+---
+name: constraint-enforcer
+description: Blocks forbidden operations
+emoji: "🚫"
+events: ["exec"]
+metadata:
+  openclaw:
+    events: ["exec"]
+---
+
+# Constraint Enforcer Hook
+
+Prevents agents from using forbidden commands.
+</code></pre>
             
-            <pre><code>// Location: ~/.openclaw/hooks/context-validator/HOOK.md
+            <pre><code># File: ~/.openclaw/hooks/constraint-enforcer/handler.ts
+import { HookContext } from "@openclaw/hooks";
+
+const FORBIDDEN_PATTERNS = [
+  /git\s+(restore|checkout|reset|revert)/i,
+  /\.git\//,
+  /backup/i,
+  /\.bak$/,
+  /\.orig$/,
+  /git\s+stash/i
+];
+
+export default async function enforceConstraints(context: HookContext) {
+  const { payload, sessionId } = context;
+  
+  const command = payload?.command || payload?.cmd || "";
+  
+  for (const pattern of FORBIDDEN_PATTERNS) {
+    if (pattern.test(command)) {
+      return {
+        allowed: false,
+        error: "Forbidden command detected",
+        suggestion: "Do not use git restore, backup files, or modify .git directory"
+      };
+    }
+  }
+  
+  return { allowed: true };
+}
+</code></pre>
+            
+            <h4>Hook 3: Context Validator (for spawn)</h4>
+            <pre><code># File: ~/.openclaw/hooks/context-validator/HOOK.md
 ---
 name: context-validator
-description: Validates agent spawns include proper context
-emoji: "✅"
+description: Validates explicit context in agent spawns
+emoji: "📋"
 events: ["agent:spawn"]
 metadata:
   openclaw:
@@ -439,40 +394,23 @@ metadata:
 
 # Context Validator Hook
 
-Ensures every agent spawn includes required context fields.
-
-## What It Checks
-
-1. Task is not empty
-2. Context object exists
-3. Workspace is specified
-4. Constraints are defined
-5. onComplete action is specified
-
-## Response
-
-If context is incomplete, the hook returns:
-```json
-{
-  "allowed": false,
-  "error": "Missing required context fields: constraints.DO_NOT, onComplete.action"
-}
-```
+Ensures spawned agents receive explicit context.
 </code></pre>
             
-            <pre><code>// Location: ~/.openclaw/hooks/context-validator/handler.ts
+            <pre><code># File: ~/.openclaw/hooks/context-validator/handler.ts
+import { HookContext } from "@openclaw/hooks";
+
+const REQUIRED_CONTEXT_FIELDS = ['task', 'context', 'constraints', 'onComplete'];
+const REQUIRED_SUBCONTEXT = ['workspace', 'relevantFiles', 'currentState'];
 
 export default async function validateContext(context: HookContext) {
-  const { agentId, sessionId, payload } = context;
+  const { payload } = context;
   
-  // Extract the message or spawn payload
+  // Handle both direct payload and nested message
   const message = payload?.message || payload;
   
-  // Check for explicit context structure
-  const requiredFields = ['task', 'context', 'constraints', 'onComplete'];
   const missing: string[] = [];
-  
-  for (const field of requiredFields) {
+  for (const field of REQUIRED_CONTEXT_FIELDS) {
     if (!message[field]) {
       missing.push(field);
     }
@@ -482,24 +420,22 @@ export default async function validateContext(context: HookContext) {
     return {
       allowed: false,
       error: `Missing required context fields: ${missing.join(', ')}`,
-      suggestion: 'Include explicit context with task, context, constraints, and onComplete'
+      suggestion: 'Provide task, context, constraints, and onComplete explicitly'
     };
   }
   
-  // Validate context subfields
-  const contextFields = ['workspace', 'relevantFiles', 'currentState'];
-  const missingContext: string[] = [];
-  
-  for (const field of contextFields) {
-    if (!message.context[field]) {
-      missingContext.push(field);
+  // Check subcontext
+  const missingSub: string[] = [];
+  for (const field of REQUIRED_SUBCONTEXT) {
+    if (!message.context?.[field]) {
+      missingSub.push(field);
     }
   }
   
-  if (missingContext.length > 0) {
+  if (missingSub.length > 0) {
     return {
       allowed: false,
-      error: `Missing context subfields: ${missingContext.join(', ')}`,
+      error: `Missing context details: ${missingSub.join(', ')}`,
       suggestion: 'Provide workspace, relevantFiles, and currentState in context'
     };
   }
@@ -508,147 +444,187 @@ export default async function validateContext(context: HookContext) {
 }
 </code></pre>
             
-            <h3>Step 5: Test the Protocol</h3>
+            <div class="implementation-note">
+                <strong>📦 HOOKS TO CREATE:</strong>
+                <ul>
+                    <li><code>~/.openclaw/hooks/syntax-validator/HOOK.md + handler.ts</code></li>
+                    <li><code>~/.openclaw/hooks/constraint-enforcer/HOOK.md + handler.ts</code></li>
+                    <li><code>~/.openclaw/hooks/context-validator/HOOK.md + handler.ts</code></li>
+                </ul>
+            </div>
             
-            <p>Create a test to verify the protocol works:</p>
+            <div class="checkpoint">
+                <span class="checkpoint-icon">🔍</span>
+                <strong>SELF-REVIEW CHECKPOINT 4:</strong>
+                <ul>
+                    <li>All 3 hooks created with HOOK.md files</li>
+                    <li>All 3 hooks have handler.ts files</li>
+                    <li>Handlers compile without errors</li>
+                </ul>
+            </div>
             
-            <pre><code># Test: Verify explicit context is passed
+            <div class="review-block">
+                <h4>📋 CODE-REVIEW GATE 4</h4>
+                <p>Code-review agent must verify:</p>
+                <ul>
+                    <li>All hooks have valid HOOK.md with correct event types</li>
+                    <li>Handler code is syntactically correct</li>
+                    <li>Hook logic matches intended behavior</li>
+                    <li>Enable hooks: <code>openclaw hooks enable syntax-validator</code></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- STEP 5 -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">5</span>
+                <span class="step-title">Enable and Test Hooks</span>
+            </div>
+            <pre><code># Enable the hooks
+openclaw hooks enable syntax-validator
+openclaw hooks enable constraint-enforcer
+openclaw hooks enable context-validator
 
-# 1. Spawn code-agent with EXPLICIT context
+# Verify they're running
+openclaw hooks check
+
+# Test syntax validator by running code with error
+echo "const x = ;" > /tmp/broken.js
+node --check /tmp/broken.js  # Should fail
+
+# Test constraint enforcer
+git restore file.js  # Should be blocked
+</code></pre>
+            
+            <div class="checkpoint">
+                <span class="checkpoint-icon">🔍</span>
+                <strong>SELF-REVIEW CHECKPOINT 5:</strong>
+                <ul>
+                    <li>All hooks show as enabled</li>
+                    <li>Syntax errors are caught</li>
+                    <li>Forbidden commands are blocked</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- STEP 6 -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">6</span>
+                <span class="step-title">Test Full Protocol</span>
+            </div>
+            <pre><code># Test 1: Spawn WITH explicit context (should work)
 sessions_spawn({
   agentId: "code-agent",
-  task: "Add a simple greeting function to test.js",
+  task: "Create hello function in /tmp/test.js",
   context: {
-    workspace: "/root/.openclaw/workspace-code-agent",
-    relevantFiles: ["/workspace/test.js"],
-    currentState: "test.js exists but has no functions",
+    workspace: "/tmp",
+    relevantFiles: ["/tmp/test.js"],
+    currentState: "test.js is empty",
     whatAlreadyTried: []
   },
   constraints: {
-    DO_NOT: ["DO NOT use git commands", "DO NOT create backup files"],
-    MUST_VERIFY: ["MUST run node --check"],
-    MAX_ITERATIONS: 1,
-    FEEDBACK_TIMEOUT_MS: 30000
+    DO_NOT: ["DO NOT use git", "DO NOT create backups"],
+    MUST_VERIFY: ["MUST run node --check"]
   },
   onComplete: {
     action: "respond",
-    successCriteria: ["Function exists", "Syntax valid"]
+    successCriteria: ["Function created", "Syntax valid"]
   }
 })
 
-# 2. Verify the agent:
-#    a) Received and used the workspace path
-#    b) Did NOT try git operations
-#    c) Ran node --check
-#    d) Reported completion with proper context
-
-# 3. Spawn with IMPLICIT context (should fail or warn)
+# Test 2: Spawn WITHOUT context (should be blocked by hook)
 sessions_spawn({
-  agentId: "code-agent", 
-  task: "Add a function"
+  agentId: "code-agent",
+  task: "Do something"
 })
-
-#    Expected: Agent should ask for explicit context
+# Expected: Hook blocks or agent asks for context
 </code></pre>
             
+            <div class="review-block">
+                <h4>📋 FINAL CODE-REVIEW GATE</h4>
+                <p>Before marking complete, verify:</p>
+                <ul>
+                    <li>Explicit context spawns work correctly</li>
+                    <li>Implicit context spawns are caught</li>
+                    <li>Syntax validation runs automatically</li>
+                    <li>Constraint violations are blocked</li>
+                    <li>All files created as specified</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>How the Hooks Work</h2>
+        <table>
+            <tr>
+                <th>Hook</th>
+                <th>When It Runs</th>
+                <th>What It Does</th>
+            </tr>
+            <tr>
+                <td><code>syntax-validator</code></td>
+                <td>After any exec tool</td>
+                <td>Checks modified files for syntax errors</td>
+            </tr>
+            <tr>
+                <td><code>constraint-enforcer</code></td>
+                <td>Before any exec command</td>
+                <td>Blocks git/backup commands</td>
+            </tr>
+            <tr>
+                <td><code>context-validator</code></td>
+                <td>Before agent spawn</td>
+                <td>Requires explicit context object</td>
+            </tr>
+        </table>
+        
+        <div class="warning">
+            <strong>Note:</strong> Hooks run AUTOMATICALLY. You don't need to call them. Once enabled:
+            <ul>
+                <li>Agents can't spawn without explicit context</li>
+                <li>Agents can't run forbidden commands</li>
+                <li>Syntax errors are caught automatically</li>
+            </ul>
         </div>
     </div>
     
     <div class="section">
         <h2>Technical Stack</h2>
-        
         <table>
-            <tr>
-                <th>Component</th>
-                <th>Technology</th>
-                <th>Purpose</th>
-            </tr>
-            <tr>
-                <td>Context Template</td>
-                <td>Markdown + TypeScript interfaces</td>
-                <td>Standardize spawn calls</td>
-            </tr>
-            <tr>
-                <td>Agent Identity</td>
-                <td>IDENTITY.md files per agent</td>
-                <td>Define roles and protocols</td>
-            </tr>
-            <tr>
-                <td>Bootstrap Update</td>
-                <td>BOOT.md or system prompt</td>
-                <td>Enforce protocol at runtime</td>
-            </tr>
-            <tr>
-                <td>Validation Hook</td>
-                <td>OpenClaw hooks system</td>
-                <td>Block malformed spawns (optional)</td>
-            </tr>
+            <tr><th>Component</th><th>Purpose</th></tr>
+            <tr><td>Context Protocol</td><td>Standardizes how agents pass work</td></tr>
+            <tr><td>IDENTITY.md files</td><td>Defines agent responsibilities</td></tr>
+            <tr><td>Self-Review Checklist</td><td>What agents do before handoff</td></tr>
+            <tr><td>OpenClaw Hooks</td><td>Automatic enforcement at runtime</td></tr>
         </table>
     </div>
     
     <div class="section">
-        <h2>Key Sources & References</h2>
-        
+        <h2>Key Sources</h2>
         <div class="linked-papers">
-            <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" class="linked-paper" target="_blank">
-                #67: Anthropic - Effective Context Engineering
-            </a>
-            <a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" class="linked-paper" target="_blank">
-                #68: Microsoft - AI Agent Design Patterns
-            </a>
-            <a href="https://docs.openclaw.ai/automation/hooks" class="linked-paper" target="_blank">
-                #69: OpenClaw - Hooks Documentation
-            </a>
-            <a href="https://dev.to/ggondim/how-i-built-a-deterministic-multi-agent-dev-pipeline-inside-openclaw-and-contributed-a-missing-4ool" class="linked-paper" target="_blank">
-                #70: Dev.to - Deterministic Pipeline
-            </a>
-            <a href="research/daily/2026-03-02-multi-agent-workflows.md" class="linked-paper">
-                Full Research Document
-            </a>
+            <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" class="linked-paper" target="_blank">#67: Anthropic</a>
+            <a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" class="linked-paper" target="_blank">#68: Microsoft</a>
+            <a href="https://docs.openclaw.ai/automation/hooks" class="linked-paper" target="_blank">#69: OpenClaw Hooks</a>
+            <a href="research/daily/2026-03-02-multi-agent-workflows.md" class="linked-paper">Full Research</a>
         </div>
     </div>
     
-    <div class="section progress-section">
+    <div class="section">
         <h2>Progress</h2>
-        
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Create context-protocol.md template</span>
-        </div>
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Update code-agent IDENTITY.md</span>
-        </div>
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Update review-agent IDENTITY.md</span>
-        </div>
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Add explicit context section to BOOT.md</span>
-        </div>
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Create context validation hook (optional)</span>
-        </div>
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Test protocol with sample spawn</span>
-        </div>
-        <div class="progress-item">
-            <div class="progress-check"></div>
-            <span>Document results and lessons learned</span>
-        </div>
-    </div>
-    
-    <div class="section updates_section">
-        <h2>Discussion Updates</h2>
-        <p><em>Track implementation progress and findings here.</em></p>
-        
-        <div class="deliverable">
-            <h4>2026-03-03 - Initial Draft</h4>
-            <p>Pitch created based on research from IDs 67-73 in the research archive.</p>
-        </div>
+        <ul>
+            <li>☐ Create context-protocol.md template</li>
+            <li>☐ Update agent IDENTITY.md files</li>
+            <li>☐ Add self-review checklist to BOOT.md</li>
+            <li>☐ Create syntax-validator hook</li>
+            <li>☐ Create constraint-enforcer hook</li>
+            <li>☐ Create context-validator hook</li>
+            <li>☐ Enable and test hooks</li>
+            <li>☐ Run full protocol test</li>
+            <li>☐ Code-review each step</li>
+        </ul>
     </div>
 </body>
 </html>
