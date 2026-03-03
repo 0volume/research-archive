@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #21: Multi-Agent Workflow Foundation - Explicit Context Protocol - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px;
+            background: #fafafa;
+        }
+        .header { 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); 
+            color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px;
+        }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .pitch-meta { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 15px; }
+        .status-badge { 
+            padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 600;
+        }
+        .pending { background: #ffd93d; color: #333; }
+        .in-progress { background: #6bcb77; color: #fff; }
+        .completed { background: #4d96ff; color: #fff; }
+        .section { background: white; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .section h2 { color: #1a1a2e; border-bottom: 2px solid #4d96ff; padding-bottom: 10px; margin-bottom: 20px; }
+        .section h3 { color: #16213e; margin: 20px 0 10px; }
+        .summary { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; padding: 20px; border-radius: 8px; font-size: 1.1em; margin-bottom: 20px;
+        }
+        .detail-content h3 { color: #e94560; margin-top: 25 .detail-content hpx; }
+       4 { color: #16213e; margin-top: 20px; }
+        .detail-content ul, .detail-content ol { margin-left: 25px; margin-bottom: 15px; }
+        .detail-content li { margin-bottom: 8px; }
+        code { 
+            background: #1a1a2e; color: #a8ff60; padding: 2px 8px; border-radius: 4px; 
+            font-family: 'Fira Code', 'Monaco', monospace; font-size: 0.9em;
+        }
+        pre { 
+            background: #1a1a2e; color: #f8f8f2; padding: 20px; border-radius: 8px; 
+            overflow-x: auto; margin: 15px 0; font-size: 0.85em;
+        }
+        pre code { background: none; color: inherit; padding: 0; }
+        .phase { 
+            border-left: 4px solid #4d96ff; padding-left: 20px; margin: 20px 0;
+        }
+        .phase-header { 
+            background: #e8f4ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;
+        }
+        .phase-header h3 { margin: 0; color: #1a1a2e; }
+        .phase-number { 
+            display: inline-block; background: #4d96ff; color: white; 
+            width: 28px; height: 28px; border-radius: 50%; 
+            text-align: center; line-height: 28px; margin-right: 10px;
+        }
+        .deliverable { 
+            background: #f0fdf4; border: 1px solid #22c55e; 
+            padding: 15px; border-radius: 8px; margin: 10px 0;
+        }
+        .deliverable h4 { color: #166534; margin-bottom: 8px; }
+        .tool-call { 
+            background: #fef3c7; border-left: 4px solid #f59e0b; 
+            padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0;
+        }
+        .warning { 
+            background: #fef2f2; border-left: 4px solid #ef4444; 
+            padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0;
+        }
+        .success { 
+            background: #f0fdf4; border-left: 4px solid #22c55e; 
+            padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0;
+        }
+        .linked-papers { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; }
+        .linked-paper { 
+            background: #f1f5f9; padding: 8px 15px; border-radius: 20px; 
+            text-decoration: none; color: #334155; font-size: 0.9em;
+        }
+        .linked-paper:hover { background: #e2e8f0; }
+        .progress-section { background: #f8fafc; }
+        .progress-item { 
+            display: flex; align-items: center; margin: 10px 0; gap: 10px;
+        }
+        .progress-check { 
+            width: 24px; height: 24px; border-radius: 50%; 
+            background: #e2e8f0; display: flex; align-items: center; justify-content: center;
+        }
+        .progress-check.done { background: #22c55e; color: white; }
+        .diagram {
+            background: white; border: 2px solid #e2e8f0; border-radius: 12px;
+            padding: 20px; margin: 20px 0; text-align: center;
+        }
+        .diagram img, .diagram svg { max-width: 100%; height: auto; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: #f8fafc; font-weight: 600; }
+        .back-link { 
+            display: inline-block; color: #4d96ff; text-decoration: none; 
+            margin-bottom: 20px; font-weight: 500;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .updates_section { background: #fffbeb; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Pitches</a>
+    
+    <header class="header">
+        <h1>Pitch #21: Multi-Agent Workflow Foundation</h1>
+        <h2>Explicit Context Protocol - Phase 1 Implementation</h2>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-03-03</span>
+            <span class="pitch-date">Est. Time: 2-3 hours</span>
+            <span class="pitch-date">Prerequisites: OpenClaw Gateway running</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">
+            <strong>Core Insight:</strong> The single most effective change we can make to our multi-agent system is replacing 
+            <strong>implicit context passing</strong> with <strong>explicit, structured context objects</strong>. This addresses 
+            80% of our workflow problems: agents not waking up, getting stuck waiting, missing syntax errors, and tripping over each other.
+        </p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Based on research from Anthropic, Microsoft Azure, and real OpenClaw implementations, the pattern is clear:</p>
+        
+        <ul>
+            <li><strong>Anthropic's Context Engineering</strong>: "Every agent handoff must explicitly carry necessary state. Not implicit: 'continue from where you left off'. Explicit: 'Here is the current file state, test results, and pending decisions'"</li>
+            <li><strong>Microsoft Design Patterns</strong>: "Use supervisor-mediated pipelines with explicit handoff protocols"</li>
+            <li><strong>Our Problems</strong>: Agents not waking up, getting stuck waiting for feedback, missing syntax errors, restoring from backups when told not to</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Root Cause:</strong> All these problems stem from <strong>implicit assumptions</strong>. When we tell an agent "continue" or "fix this bug" without explicitly passing context, the agent makes assumptions that are often wrong.
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>The Implementation Plan</h2>
+        <p>This pitch implements <strong>Phase 1</strong> of a 5-phase plan. Phase 1 is the foundation - everything else builds on this.</p>
+        
+        <div class="phase">
+            <div class="phase-header">
+                <h3><span class="phase-number">1</span> Explicit Context Protocol (THIS PITCH)</h3>
+            </div>
+            <p><strong>Goal:</strong> Create structured context passing so every agent spawn includes full context</p>
+            <div class="deliverable">
+                <h4>📦 Deliverables</h4>
+                <ul>
+                    <li>Context Protocol Template (context-protocol.md)</li>
+                    <li>Standardized spawn calls across all agents</li>
+                    <li>Context validation hook</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="phase">
+            <div class="phase-header">
+                <h3><span class="phase-number">2</span> Syntax Validation Hook</h3>
+            </div>
+            <p><strong>Goal:</strong> Automatically validate syntax before handoff</p>
+        </div>
+        
+        <div class="phase">
+            <div class="phase-header">
+                <h3><span class="phase-number">3</span> Constraint Enforcement System</h3>
+            </div>
+            <p><strong>Goal:</strong> Block forbidden operations (backup restoration, git operations)</p>
+        </div>
+        
+        <div class="phase">
+            <div class="phase-header">
+                <h3><span class="phase-number">4</span> Handoff Management</h3>
+            </div>
+            <p><strong>Goal:</strong> Explicit state transitions with timeouts</p>
+        </div>
+        
+        <div class="phase">
+            <div class="phase-header">
+                <h3><span class="phase-number">5</span> Timeout Supervision</h3>
+            </div>
+            <p><strong>Goal:</strong> Prevent infinite waits with automatic escalation</p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Full Implementation Guide</h2>
+        <div class="detail-content">
+            
+            <h3>Step 1: Create the Context Protocol Template</h3>
+            
+            <p>Every agent spawn must use a structured context object. Create this file in your workspace:</p>
+            
+            <pre><code># Location: ~/.openclaw/workspace-research-agent/templates/context-protocol.md
+
+---
+name: context-protocol
+description: Standardized context passing for agent handoffs
+version: 1.0.0
+---
+
+# Explicit Context Protocol
+
+## Why This Exists
+
+Every problem in our multi-agent system stems from implicit context:
+- "Continue from where you left off" → Agent assumes wrong state
+- "Fix this bug" → Agent doesn't know what's already been tried
+- "Let me know when done" → Agent waits forever
+
+## The Solution: Explicit Context Objects
+
+Every agent spawn MUST include:
+
+```typescript
+interface AgentContext {
+  // REQUIRED: What the agent should do
+  task: string;
+  
+  // REQUIRED: Current state of work
+  context: {
+    workspace: string;
+    relevantFiles: string[];
+    currentState: string;
+    whatAlreadyTried: string[];
+    testResults?: string;
+    errors?: string[];
+  };
+  
+  // REQUIRED: Constraints on how to work
+  constraints: {
+    DO_NOT: string[];
+    MUST_VERIFY: string[];
+    MAX_ITERATIONS: number;
+    FEEDBACK_TIMEOUT_MS: number;
+  };
+  
+  // REQUIRED: How to signal completion
+  onComplete: {
+    action: "handoff" | "respond" | "escalate";
+    nextAgent?: string;
+    successCriteria: string[];
+    timeoutMs?: number;
+  };
+}
+```
+
+## Example: Good vs Bad Spawns
+
+### BAD - Implicit (Don't Do This)
+```javascript
+// This is what we do now - it's problematic
+sessions_spawn({
+  agentId: "code-agent",
+  task: "fix the auth bug"
+})
+```
+
+### GOOD - Explicit (Do This Instead)
+```javascript
+sessions_spawn({
+  agentId: "code-agent",
+  task: "fix authentication token undefined error",
+  context: {
+    workspace: "/root/.openclaw/workspace-code-agent",
+    relevantFiles: ["/workspace/src/auth.ts", "/workspace/tests/auth.test.ts"],
+    currentState: "User login returns 500 error - Cannot read property 'token' of undefined",
+    whatAlreadyTried: [
+      "Checked line 42 - token object exists",
+      "Verified database connection works",
+      "Added console.log at line 15 - not reaching"
+    ],
+    testResults: "2/5 tests passing: login fails, logout passes, token refresh passes, session passes, validate fails"
+  },
+  constraints: {
+    DO_NOT: [
+      "DO NOT use git restore, checkout, or reset",
+      "DO NOT modify .git directory",
+      "DO NOT use any backup files (backup/*, *.bak, *.orig)",
+      "DO NOT ask for clarification - proceed with best effort"
+    ],
+    MUST_VERIFY: [
+      "MUST run: node --check after any file change",
+      "MUST ensure existing tests still pass"
+    ],
+    MAX_ITERATIONS: 3,
+    FEEDBACK_TIMEOUT_MS: 60000
+  },
+  onComplete: {
+    action: "handoff",
+    nextAgent: "code-review",
+    successCriteria: [
+      "All 5 auth tests passing",
+      "node --check passes on modified files",
+      "No console.log statements added"
+    ],
+    timeoutMs: 120000
+  }
+})
+```
+</code></pre>
+            
+            <h3>Step 2: Create Agent Identity Files</h3>
+            
+            <p>Each agent needs an identity file that defines how it receives and passes context:</p>
+            
+            <pre><code># Location: ~/.openclaw/workspace-code-agent/IDENTITY.md
+
+# Code Agent Identity
+
+## Role
+Primary code implementation agent. Receives tasks from supervisor, produces code, hands off to review.
+
+## Responsibilities
+- Implement features based on explicit requirements
+- Run syntax validation before handoff
+- Follow constraints strictly
+- Report completion with full context
+
+## Context Expectations
+
+### Receives
+- task: Clear description of what to implement
+- context.workspace: Path to working directory
+- context.relevantFiles: Files to work with
+- context.currentState: Current state of the system
+- context.whatAlreadyTried: Previous attempts (avoid redundancy)
+- constraints: DO_NOT and MUST_VERIFY rules
+
+### Produces
+- Modified files with syntax validated
+- Test results
+- Any errors encountered
+- What was changed
+
+## Handoff Protocol
+
+When complete, must invoke next agent with:
+1. Full summary of what was done
+2. Test results
+3. Any issues that need attention
+4. Explicit next action
+
+## Constraints (Always Enforced)
+
+- NEVER modify .git directory
+- NEVER use backup files
+- ALWAYS run syntax check before reporting complete
+- NEVER leave console.log statements in production code
+</code></pre>
+            
+            <h3>Step 3: Update Each Agent's BOOT.md or System Prompt</h3>
+            
+            <p>Add this section to each agent's bootstrap file:</p>
+            
+            <pre><code># EXPLICIT CONTEXT PROTOCOL - READ THIS
+
+You must enforce explicit context passing in ALL your work.
+
+## The Golden Rule
+
+**Never assume implicit context. Always require explicit context objects.**
+
+### When Receiving a Task
+
+If you receive a task WITHOUT the full context object, RESPOND with:
+
+```
+I need explicit context to work effectively. Please provide:
+
+1. TASK: What specifically should I do?
+2. CONTEXT:
+   - workspace: (file path)
+   - relevantFiles: (files to work with)
+   - currentState: (what's the current situation)
+   - whatAlreadyTried: (what has been attempted)
+3. CONSTRAINTS:
+   - DO_NOT: (what NOT to do)
+   - MUST_VERIFY: (what to check)
+4. ON_COMPLETE:
+   - action: (what happens next)
+   - successCriteria: (how to measure success)
+```
+
+### When Handing Off to Another Agent
+
+NEVER just say "when done, continue" or "let me know when finished".
+
+You MUST provide:
+- Summary of what you accomplished
+- Current state of the system
+- What still needs doing
+- Explicit handoff with full context
+
+## Example Correct Handoff
+
+```
+I'm handing off to code-review agent with the following context:
+
+TASK: Review authentication implementation
+
+CONTEXT:
+- workspace: /root/.openclaw/workspace-code-agent
+- relevantFiles: ["src/auth.ts", "tests/auth.test.ts"]
+- currentState: All 5 auth tests now passing
+- whatAlreadyTried: ["Fixed token undefined by adding null check at line 42"]
+
+CONSTRAINTS:
+- DO_NOT: ["Don't modify the code", "Don't run git commands"]
+- MUST_VERIFY: ["Verify syntax with node --check", "Verify tests pass"]
+
+ON_COMPLETE:
+- action: handoff
+- nextAgent: main
+- successCriteria: ["Code is clean", "No syntax errors", "Tests pass"]
+```
+</code></pre>
+            
+            <h3>Step 4: Create a Context Validation Hook (Optional but Recommended)</h3>
+            
+            <p>This hook validates that spawned agents receive proper context:</p>
+            
+            <pre><code>// Location: ~/.openclaw/hooks/context-validator/HOOK.md
+---
+name: context-validator
+description: Validates agent spawns include proper context
+emoji: "✅"
+events: ["agent:spawn"]
+metadata:
+  openclaw:
+    events: ["agent:spawn"]
+---
+
+# Context Validator Hook
+
+Ensures every agent spawn includes required context fields.
+
+## What It Checks
+
+1. Task is not empty
+2. Context object exists
+3. Workspace is specified
+4. Constraints are defined
+5. onComplete action is specified
+
+## Response
+
+If context is incomplete, the hook returns:
+```json
+{
+  "allowed": false,
+  "error": "Missing required context fields: constraints.DO_NOT, onComplete.action"
+}
+```
+</code></pre>
+            
+            <pre><code>// Location: ~/.openclaw/hooks/context-validator/handler.ts
+
+export default async function validateContext(context: HookContext) {
+  const { agentId, sessionId, payload } = context;
+  
+  // Extract the message or spawn payload
+  const message = payload?.message || payload;
+  
+  // Check for explicit context structure
+  const requiredFields = ['task', 'context', 'constraints', 'onComplete'];
+  const missing: string[] = [];
+  
+  for (const field of requiredFields) {
+    if (!message[field]) {
+      missing.push(field);
+    }
+  }
+  
+  if (missing.length > 0) {
+    return {
+      allowed: false,
+      error: `Missing required context fields: ${missing.join(', ')}`,
+      suggestion: 'Include explicit context with task, context, constraints, and onComplete'
+    };
+  }
+  
+  // Validate context subfields
+  const contextFields = ['workspace', 'relevantFiles', 'currentState'];
+  const missingContext: string[] = [];
+  
+  for (const field of contextFields) {
+    if (!message.context[field]) {
+      missingContext.push(field);
+    }
+  }
+  
+  if (missingContext.length > 0) {
+    return {
+      allowed: false,
+      error: `Missing context subfields: ${missingContext.join(', ')}`,
+      suggestion: 'Provide workspace, relevantFiles, and currentState in context'
+    };
+  }
+  
+  return { allowed: true };
+}
+</code></pre>
+            
+            <h3>Step 5: Test the Protocol</h3>
+            
+            <p>Create a test to verify the protocol works:</p>
+            
+            <pre><code># Test: Verify explicit context is passed
+
+# 1. Spawn code-agent with EXPLICIT context
+sessions_spawn({
+  agentId: "code-agent",
+  task: "Add a simple greeting function to test.js",
+  context: {
+    workspace: "/root/.openclaw/workspace-code-agent",
+    relevantFiles: ["/workspace/test.js"],
+    currentState: "test.js exists but has no functions",
+    whatAlreadyTried: []
+  },
+  constraints: {
+    DO_NOT: ["DO NOT use git commands", "DO NOT create backup files"],
+    MUST_VERIFY: ["MUST run node --check"],
+    MAX_ITERATIONS: 1,
+    FEEDBACK_TIMEOUT_MS: 30000
+  },
+  onComplete: {
+    action: "respond",
+    successCriteria: ["Function exists", "Syntax valid"]
+  }
+})
+
+# 2. Verify the agent:
+#    a) Received and used the workspace path
+#    b) Did NOT try git operations
+#    c) Ran node --check
+#    d) Reported completion with proper context
+
+# 3. Spawn with IMPLICIT context (should fail or warn)
+sessions_spawn({
+  agentId: "code-agent", 
+  task: "Add a function"
+})
+
+#    Expected: Agent should ask for explicit context
+</code></pre>
+            
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Technical Stack</h2>
+        
+        <table>
+            <tr>
+                <th>Component</th>
+                <th>Technology</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Context Template</td>
+                <td>Markdown + TypeScript interfaces</td>
+                <td>Standardize spawn calls</td>
+            </tr>
+            <tr>
+                <td>Agent Identity</td>
+                <td>IDENTITY.md files per agent</td>
+                <td>Define roles and protocols</td>
+            </tr>
+            <tr>
+                <td>Bootstrap Update</td>
+                <td>BOOT.md or system prompt</td>
+                <td>Enforce protocol at runtime</td>
+            </tr>
+            <tr>
+                <td>Validation Hook</td>
+                <td>OpenClaw hooks system</td>
+                <td>Block malformed spawns (optional)</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Key Sources & References</h2>
+        
+        <div class="linked-papers">
+            <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" class="linked-paper" target="_blank">
+                #67: Anthropic - Effective Context Engineering
+            </a>
+            <a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" class="linked-paper" target="_blank">
+                #68: Microsoft - AI Agent Design Patterns
+            </a>
+            <a href="https://docs.openclaw.ai/automation/hooks" class="linked-paper" target="_blank">
+                #69: OpenClaw - Hooks Documentation
+            </a>
+            <a href="https://dev.to/ggondim/how-i-built-a-deterministic-multi-agent-dev-pipeline-inside-openclaw-and-contributed-a-missing-4ool" class="linked-paper" target="_blank">
+                #70: Dev.to - Deterministic Pipeline
+            </a>
+            <a href="research/daily/2026-03-02-multi-agent-workflows.md" class="linked-paper">
+                Full Research Document
+            </a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>Progress</h2>
+        
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Create context-protocol.md template</span>
+        </div>
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Update code-agent IDENTITY.md</span>
+        </div>
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Update review-agent IDENTITY.md</span>
+        </div>
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Add explicit context section to BOOT.md</span>
+        </div>
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Create context validation hook (optional)</span>
+        </div>
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Test protocol with sample spawn</span>
+        </div>
+        <div class="progress-item">
+            <div class="progress-check"></div>
+            <span>Document results and lessons learned</span>
+        </div>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>Discussion Updates</h2>
+        <p><em>Track implementation progress and findings here.</em></p>
+        
+        <div class="deliverable">
+            <h4>2026-03-03 - Initial Draft</h4>
+            <p>Pitch created based on research from IDs 67-73 in the research archive.</p>
+        </div>
+    </div>
+</body>
+</html>
