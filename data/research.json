@@ -13,7 +13,27 @@
     "Anthropic",
     "Blog",
     "Hatchworks",
-    "Substack"
+    "Substack",
+    {
+      "id": 1,
+      "title": "Best JavaScript Graph Visualization Libraries 2026",
+      "date": "2026-03-04",
+      "source": "Research",
+      "authors": "research-agent",
+      "summary": "Comparison of Cytoscape.js, Sigma.js, D3.js for node graph visualization. Recommends Cytoscape.js for 100-500 nodes with fcose layout.",
+      "url": "file:///root/.openclaw/workspace-research-agent/research/topics/graph-visualization-libraries-2026.md",
+      "tags": [
+        "visualization",
+        "graphs",
+        "cytoscape",
+        "javascript"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Directly applicable to user's node graph visualization project. Cytoscape.js + fcose is recommended approach.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    }
   ],
   "entries": [
     {
@@ -132,7 +152,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -491,7 +511,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -766,7 +786,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -819,7 +839,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -865,7 +885,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1127,7 +1147,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1531,7 +1551,10 @@
       "complexity": "intermediate",
       "myAnalysis": "CRITICAL for our workspace standardization. Key insight: explicit > implicit. Every agent handoff must carry full context. Never use open-ended waits.",
       "practicalUse": "Very High",
-      "connectsTo": [67, 68]
+      "connectsTo": [
+        67,
+        68
+      ]
     },
     {
       "id": 75,
@@ -1551,7 +1574,9 @@
       "complexity": "advanced",
       "myAnalysis": "Key for memory architecture: active curation outperforms passive retrieval. Enables persistent working states across sessions.",
       "practicalUse": "Very High",
-      "connectsTo": [74]
+      "connectsTo": [
+        74
+      ]
     },
     {
       "id": 76,
@@ -1611,7 +1636,9 @@
       "complexity": "advanced",
       "myAnalysis": "Implementation pattern for our research archive: extract entities from documents, build relationship graph, enable multi-hop queries.",
       "practicalUse": "High",
-      "connectsTo": [77]
+      "connectsTo": [
+        77
+      ]
     },
     {
       "id": 79,
@@ -1651,7 +1678,9 @@
       "complexity": "intermediate",
       "myAnalysis": "Essential for knowledge base setup. Key: chunk by content type (code=150-300 tokens, docs=500-800, research=1000+). Use hybrid search for production.",
       "practicalUse": "Very High",
-      "connectsTo": [78]
+      "connectsTo": [
+        78
+      ]
     }
   ]
 }
