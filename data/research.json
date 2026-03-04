@@ -1,6 +1,6 @@
 {
   "version": "2.5",
-  "lastUpdated": "2026-03-03",
+  "lastUpdated": "2026-03-04",
   "sources": [
     "arXiv",
     "GitHub",
@@ -1512,6 +1512,146 @@
       "myAnalysis": "Deep dive into OpenClaw internals. Essential for understanding event-driven architecture and agent lifecycle.",
       "practicalUse": "Very High",
       "connectsTo": []
+    },
+    {
+      "id": 74,
+      "title": "Context Engineering: The Foundation of Reliable AI Agents",
+      "date": "2026-03-04",
+      "source": "Weaviate",
+      "authors": "Weaviate Engineering Team",
+      "summary": "Comprehensive guide on context engineering for AI agents. Covers six pillars: agents, query augmentation, retrieval, prompting, memory, and tools. Identifies four critical failure modes: context poisoning, distraction, confusion, and clash.",
+      "url": "https://weaviate.io/blog/context-engineering",
+      "tags": [
+        "context-engineering",
+        "memory",
+        "retrieval",
+        "best-practices"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL for our workspace standardization. Key insight: explicit > implicit. Every agent handoff must carry full context. Never use open-ended waits.",
+      "practicalUse": "Very High",
+      "connectsTo": [67, 68]
+    },
+    {
+      "id": 75,
+      "title": "Cognitive Workspace: Active Memory Management for AI Agents",
+      "date": "2025-08-22",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Research on active memory management in agentic AI systems. Shows 50%+ reuse rates from first interaction through hierarchical cognitive buffers and task-driven context optimization.",
+      "url": "https://arxiv.org/abs/2508.13171",
+      "tags": [
+        "memory-management",
+        "active-memory",
+        "context-optimization",
+        "cognitive-buffers"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Key for memory architecture: active curation outperforms passive retrieval. Enables persistent working states across sessions.",
+      "practicalUse": "Very High",
+      "connectsTo": [74]
+    },
+    {
+      "id": 76,
+      "title": "Organizing Files for Agentic AI Systems",
+      "date": "2026-03-04",
+      "source": "Medium",
+      "authors": "@sathee12",
+      "summary": "Practical guide to organizing files and directories for agentic AI systems. Covers workspace structure, naming conventions, and agent-readable metadata.",
+      "url": "https://medium.com/@sathee12/organizing-files-for-agentic-ai-systems-my-rough-draft-e413dbe241d7",
+      "tags": [
+        "file-organization",
+        "workspace-structure",
+        "naming-conventions",
+        "metadata"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Directly applicable to our workspace standardization. Provides folder structure patterns and naming conventions for agent systems.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 77,
+      "title": "Knowledge Graphs for Enterprise AI: Context Graphs vs Knowledge Graphs",
+      "date": "2026-02-01",
+      "source": "Atlan",
+      "authors": "Atlan Research Team",
+      "summary": "Analysis of knowledge graphs vs context graphs for AI agents. Context graphs track operational relationships, lineage, and temporal context beyond semantic entities.",
+      "url": "https://atlan.com/knowledge-graph-vs-context-graph/",
+      "tags": [
+        "knowledge-graph",
+        "context-graph",
+        "enterprise",
+        "data-lineage"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Key distinction: knowledge graphs = 'what things are', context graphs = 'how things work'. For OpenClaw, we need context graphs for agent decision-making.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 78,
+      "title": "GraphRAG Implementation Guide",
+      "date": "2026-02-15",
+      "source": "Meilisearch",
+      "authors": "Meilisearch Team",
+      "summary": "Guide to implementing GraphRAG combining knowledge graphs with RAG for richer retrieval. Covers entity extraction, relationship building, and graph-augmented generation.",
+      "url": "https://www.meilisearch.com/blog/graphrag",
+      "tags": [
+        "graphrag",
+        "rag",
+        "knowledge-graph",
+        "retrieval"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Implementation pattern for our research archive: extract entities from documents, build relationship graph, enable multi-hop queries.",
+      "practicalUse": "High",
+      "connectsTo": [77]
+    },
+    {
+      "id": 79,
+      "title": "AgentFS: SQLite-Based Agent Filesystem",
+      "date": "2026-02-20",
+      "source": "Turso",
+      "authors": "Turso Team",
+      "summary": "AgentFS approach using SQLite for agent filesystem. Provides unified state, instant reproducibility via database snapshot, and SQL-based debugging.",
+      "url": "https://turso.tech/agentfs",
+      "tags": [
+        "sqlite",
+        "filesystem",
+        "state-management",
+        "reproducibility"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Alternative approach for agent state: SQLite instead of file-based. Enables queryable, auditable state with instant reproducibility.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 80,
+      "title": "Vector Database Best Practices for AI Agents 2026",
+      "date": "2026-03-01",
+      "source": "Brolly AI",
+      "authors": "Brolly AI Research",
+      "summary": "Comprehensive guide to vector databases for AI agents. Covers chunking strategies, embedding selection, hybrid search, and when to use vs not use vector stores.",
+      "url": "https://brolly.ai/vector-database-guide",
+      "tags": [
+        "vector-database",
+        "embeddings",
+        "chunking",
+        "rag"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Essential for knowledge base setup. Key: chunk by content type (code=150-300 tokens, docs=500-800, research=1000+). Use hybrid search for production.",
+      "practicalUse": "Very High",
+      "connectsTo": [78]
     }
   ]
 }
