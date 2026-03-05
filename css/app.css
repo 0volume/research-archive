@@ -18,6 +18,7 @@
 
   /* Status Colors */
   --status-pending: #f59e0b;
+  --status-research: #3b82f6;
   --status-approved: #10b981;
   --status-implemented: #8b5cf6;
   --status-completed: #06b6d4;

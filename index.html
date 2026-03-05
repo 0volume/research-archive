@@ -129,9 +129,11 @@
                     <div class="filter-group">
                         <span class="filter-label">//status</span>
                         <button class="cyber-filter-btn active" data-filter="all" data-section="pitches">ALL</button>
-                        <button class="cyber-filter-btn" data-filter="research" data-section="pitches">RESEARCH</button>
                         <button class="cyber-filter-btn" data-filter="pending" data-section="pitches">PENDING</button>
+                        <button class="cyber-filter-btn" data-filter="research" data-section="pitches">RESEARCH</button>
+                        <button class="cyber-filter-btn" data-filter="approved" data-section="pitches">APPROVED</button>
                         <button class="cyber-filter-btn" data-filter="implemented" data-section="pitches">IMPLEMENTED</button>
+                        <button class="cyber-filter-btn" data-filter="completed" data-section="pitches">COMPLETED</button>
                     </div>
                 </div>
                 <div id="pitches-list">
@@ -208,16 +210,26 @@
                 { id: 29, title: "Human Society-Inspired Approaches to Agentic AI Security: The 4C Framework", category: "safety", complexity: "advanced", summary: "4C Framework for multi-agent AI security: Core, Connection, Cognition, Compliance.", url: "https://arxiv.org/html/2602.01942v1", tags: ["security", "multi-agent", "framework", "governance"], source: "arXiv", date: "2026-02-07", authors: "Alsharif Abuadbba, Surya Nepal, Sanjay Jha" }
             ],
             pitches: [
-                { id: 1, title: "Tool Specification Template", status: "completed", url: "pitch-1.html", githubRepo: "https://github.com/0volume/tool-specs", summary: "Create clear specification template for tools.", date: "2026-02-17" },
-                { id: 2, title: "Research Agent Team", status: "superseded", url: "pitch-2.html", summary: "Build multi-agent research system. Superseded by Pitch #4.", date: "2026-02-17" },
-                { id: 3, title: "Security Integration for Multi-Agent Systems", status: "superseded", url: "pitch-3.html", summary: "Add security layer. Superseded by Pitch #4.", date: "2026-02-18" },
-                { id: 4, title: "Secure Multi-Agent Research System", status: "completed", url: "pitch-4.html", githubRepo: "https://github.com/0volume/agent-framework", summary: "Multi-agent team with security-first architecture.", date: "2026-02-18" },
-                { id: 5, title: "Self-Reflection & Improvement Loop", status: "pending", url: "pitch-5.html", summary: "Reflective self-improvement system.", date: "2026-02-23" },
-                { id: 6, title: "Self-Reflection & Evolutionary Learning System", status: "pending", url: "pitch-6.html", summary: "Combine EvoTest-style evolution with reflective workflows.", date: "2026-02-25" },
-                { id: 7, title: "Agentic RAG with Adaptive Retrieval", status: "pending", url: "pitch-7.html", summary: "Self-improving RAG system that learns what to retrieve.", date: "2026-02-26" },
-                { id: 11, title: "Agent Scaling & Production Reliability Framework", status: "pending", url: "pitch-11.html", summary: "Build production reliability framework based on empirical scaling data. Address 40% failure rate.", date: "2026-02-28" },
-                { id: 12, title: "Domain-Specific Research Agents", status: "pending", url: "pitches/pitch-12.html", summary: "Apply research agent pattern to specialized domains: drug discovery, cybersecurity, and peer learning.", date: "2026-02-28" },
-                { id: 23, title: "Production-Grade Multi-Agent System Framework", status: "pending", url: "pitches/pitch-23.html", summary: "Build unified framework for evaluation, context engineering, and collaborative reasoning in production multi-agent systems.", date: "2026-03-05" }
+                { id: 1, title: "Tool Specification Template", status: "completed", url: "pitch-1.html", githubRepo: "https://github.com/0volume/tool-specs", summary: "Create clear specification template for tools.", date: "2026-02-17", researchCount: 0 },
+                { id: 2, title: "Research Agent Team", status: "superseded", url: "pitch-2.html", summary: "Build multi-agent research system. Superseded by Pitch #4.", date: "2026-02-17", researchCount: 0 },
+                { id: 3, title: "Security Integration for Multi-Agent Systems", status: "superseded", url: "pitch-3.html", summary: "Add security layer. Superseded by Pitch #4.", date: "2026-02-18", researchCount: 0 },
+                { id: 4, title: "Secure Multi-Agent Research System", status: "completed", url: "pitch-4.html", githubRepo: "https://github.com/0volume/agent-framework", summary: "Multi-agent team with security-first architecture.", date: "2026-02-18", researchCount: 0 },
+                { id: 5, title: "Self-Reflection & Improvement Loop", status: "pending", url: "pitch-5.html", summary: "Reflective self-improvement system.", date: "2026-02-23", researchCount: 4 },
+                { id: 6, title: "Self-Reflection & Evolutionary Learning System", status: "pending", url: "pitch-6.html", summary: "Combine EvoTest-style evolution with reflective workflows.", date: "2026-02-25", researchCount: 4 },
+                { id: 7, title: "Agentic RAG with Adaptive Retrieval", status: "pending", url: "pitch-7.html", summary: "Self-improving RAG system that learns what to retrieve.", date: "2026-02-26", researchCount: 2 },
+                { id: 11, title: "Agent Scaling & Production Reliability Framework", status: "pending", url: "pitch-11.html", summary: "Build production reliability framework based on empirical scaling data. Address 40% failure rate.", date: "2026-02-28", researchCount: 3 },
+                { id: 12, title: "Domain-Specific Research Agents", status: "pending", url: "pitches/pitch-12.html", summary: "Apply research agent pattern to specialized domains: drug discovery, cybersecurity, and peer learning.", date: "2026-02-28", researchCount: 4 },
+                { id: 13, title: "Agent Memory Architecture", status: "pending", url: "pitches/pitch-13.html", summary: "Design memory architecture for agents: episodic, semantic, and working memory systems.", date: "2026-02-28", researchCount: 2 },
+                { id: 14, title: "Multi-Modal Research Agents", status: "pending", url: "pitches/pitch-14.html", summary: "Extend research agents to handle images, video, and audio data sources.", date: "2026-02-28", researchCount: 1 },
+                { id: 15, title: "Agentic AI Security Framework", status: "pending", url: "pitches/pitch-15.html", summary: "Security framework for agentic AI systems: threat modeling, defense strategies.", date: "2026-02-28", researchCount: 2 },
+                { id: 16, title: "Self-Evolving Agent Architecture", status: "pending", url: "pitches/pitch-16.html", summary: "Architecture enabling agents to modify their own prompts and strategies.", date: "2026-02-28", researchCount: 3 },
+                { id: 17, title: "Enterprise Multi-Agent Orchestration", status: "pending", url: "pitches/pitch-17.html", summary: "Bridge the 40% multi-agent failure gap with enterprise-grade orchestration.", date: "2026-02-28", researchCount: 2 },
+                { id: 18, title: "Autonomous AI Pentester (Shannon)", status: "pending", url: "pitches/pitch-18.html", summary: "Build autonomous AI pentester that discovers and prioritizes vulnerabilities.", date: "2026-02-28", researchCount: 1 },
+                { id: 19, title: "Context-Aware Multi-Agent Systems", status: "pending", url: "pitches/pitch-19.html", summary: "Enable agents to maintain and reason over conversation context.", date: "2026-02-28", researchCount: 2 },
+                { id: 20, title: "Peer Learning in Multi-Agent Systems", status: "research", url: "pitches/pitch-20.html", summary: "Agents teaching each other - knowledge transfer patterns and efficiency gains.", date: "2026-03-01", researchCount: 3 },
+                { id: 21, title: "Closing the Production Readiness Gap", status: "pending", url: "pitches/pitch-21.html", summary: "Bridge the gap between framework selection and production deployment.", date: "2026-03-05", researchCount: 4 },
+                { id: 22, title: "Agent Production Evaluation Framework", status: "pending", url: "pitches/pitch-22.html", summary: "Standardized evaluation framework for production agent systems.", date: "2026-03-05", researchCount: 2 },
+                { id: 23, title: "Production-Grade Multi-Agent System Framework", status: "pending", url: "pitches/pitch-23.html", summary: "Build unified framework for evaluation, context engineering, and collaborative reasoning.", date: "2026-03-05", researchCount: 3 }
             ],
             notes: [
                 { slug: "self-reflection", name: "Self-Reflection & Improvement Loop", status: "research-complete", description: "Enabling agents to reflect on outputs and evolve strategies over time.", keyFindings: ["EvoTest achieves 38-57% improvement", "Self-evolution taxonomy: what/when/how to evolve", "MCE achieves 5.6-53.8% improvement", "Reflective workflows can make GPT-3.5 outperform GPT-4"] }
@@ -433,7 +445,7 @@
                 }
                 // For pitches section: filter by status
                 else if (section === 'pitches') {
-                    const statusBadge = entry.querySelector('.complexity-badge');
+                    const statusBadge = entry.querySelector('.pitch-status-badge');
                     const status = statusBadge?.textContent?.trim().toLowerCase() || '';
                     if (status === level || level === 'all') {
                         entry.style.display = 'block';
@@ -909,13 +921,21 @@
             
             let html = '';
             pitchesArray.forEach(item => {
+                const status = item.status || 'pending';
+                const truncatedSummary = item.summary && item.summary.length > 120 
+                    ? item.summary.substring(0, 120) + '...' 
+                    : (item.summary || 'No description available.');
+                const researchCount = item.researchCount || 0;
+                const formattedDate = item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'N/A';
+                
                 html += `
                     <div class="entry-card pitch-card" onclick="openPitchModal(${item.id})">
                         <h3>Pitch #${item.id}: ${item.title}</h3>
-                        <p>Status: ${item.status || 'pending'}</p>
+                        <p style="color: var(--text-secondary); margin: 8px 0;">${truncatedSummary}</p>
                         <div class="entry-meta">
-                            <span class="complexity-badge ${item.status || 'pending'}">${item.status || 'pending'}</span>
-                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ View</span>
+                            <span class="pitch-status-badge ${status}">${status}</span>
+                            <span class="entry-tag">📅 ${formattedDate}</span>
+                            <span class="entry-tag">📚 ${researchCount} research</span>
                         </div>
                     </div>
                 `;
@@ -1197,6 +1217,47 @@
             color: #fff;
         }
         
+        /* Pitch status badges - color coded */
+        .pitch-status-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .pitch-status-badge.pending {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        
+        .pitch-status-badge.research {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+        
+        .pitch-status-badge.approved {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        
+        .pitch-status-badge.implemented {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+        }
+        
+        .pitch-status-badge.completed {
+            background: rgba(6, 182, 212, 0.2);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.4);
+        }
+        
         /* Pitch card specific styles */
         .pitch-card {
             cursor: pointer;
@@ -1474,28 +1535,73 @@
         };
         
         function openPitchModal(pitchId) {
-            const pitch = pitchData[pitchId];
+            // Find pitch in currentData.pitches
+            const pitch = currentData.pitches.find(p => p.id === pitchId);
             if (!pitch) return;
             
             const modal = document.getElementById('pitch-modal');
             const modalBody = document.getElementById('pitch-modal-body');
             const githubLink = document.getElementById('pitch-github-link');
             
-            const statusClass = pitch.status === 'completed' ? 'complete' : pitch.status === 'pending' ? 'pending' : 'superseded';
-            const statusLabel = pitch.status ? pitch.status.toUpperCase() : 'PENDING';
+            const status = pitch.status || 'pending';
+            const statusClass = status;
+            const statusLabel = status.toUpperCase();
             
-            modalBody.innerHTML = \`
+            // Generate linked papers section if we have research count
+            const researchCount = pitch.researchCount || 0;
+            const linkedPapersHtml = researchCount > 0 
+                ? `<div class="linked-papers">
+                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Connected Research (${researchCount}):</p>
+                    <a href="#research" class="linked-paper" onclick="closePitchModal(); showSection('research');">View Related Research →</a>
+                   </div>`
+                : '<p style="color: var(--text-tertiary);">No connected research yet.</p>';
+            
+            // Build the modal content
+            modalBody.innerHTML = `
                 <header>
-                    <h1>Pitch #\${pitchId}: \${pitch.title}</h1>
+                    <h1>Pitch #${pitchId}: ${pitch.title}</h1>
                     <div class="pitch-meta">
-                        <span class="status-badge \${statusClass}">\${statusLabel}</span>
-                        <span class="pitch-date">\${pitch.date}</span>
+                        <span class="pitch-status-badge ${status}">${statusLabel}</span>
+                        <span class="pitch-date">📅 ${pitch.date || 'N/A'}</span>
                     </div>
                 </header>
-                \${pitch.content}
-            \`;
+                
+                <h2>Summary</h2>
+                <p class="summary">${pitch.summary || 'No summary available.'}</p>
+                
+                <h2>Why This Matters</h2>
+                <p>This pitch addresses key challenges in agentic AI research and development. Click the GitHub link below to view the full pitch details.</p>
+                
+                <h2>Connected Research</h2>
+                ${linkedPapersHtml}
+                
+                ${pitch.githubRepo ? `
+                <h2>Related Projects</h2>
+                <div class="linked-papers">
+                    <a href="${pitch.githubRepo}" target="_blank" class="linked-paper">🔗 View Related Project →</a>
+                </div>
+                ` : ''}
+                
+                <div class="progress-section">
+                    <h2>📊 Progress</h2>
+                    <ul>
+                        <li>
+                            <div class="progress-item">
+                                <span class="progress-label">Status</span>
+                                <span class="progress-status">${statusLabel}</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="progress-item">
+                                <span class="progress-label">Connected Research</span>
+                                <span class="progress-status">${researchCount} entries</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            `;
             
-            githubLink.href = pitch.githubUrl || \`https://github.com/0volume/research-archive/blob/main/pitch-\${pitchId}.html\`;
+            githubLink.href = pitch.url || `https://github.com/0volume/research-archive/blob/main/pitch-${pitchId}.html`;
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
