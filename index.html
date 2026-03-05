@@ -6,6 +6,7 @@
     <title>AI Agent Research Archive</title>
     <link rel="stylesheet" href="wiki/css/wiki.css">
     <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 </head>
 <body>
@@ -68,17 +69,46 @@
                     <span>Category: <span id="category-count" class="entry-count">-</span></span>
                     <span>Complexity: <span id="complexity-count" class="entry-count">-</span></span>
                 </div>
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <span class="filter-label">//complexity</span>
-                        <button class="cyber-filter-btn active" data-filter="all">ALL</button>
-                        <button class="cyber-filter-btn" data-filter="beginner">BEGINNER</button>
-                        <button class="cyber-filter-btn" data-filter="intermediate">INTERMEDIATE</button>
-                        <button class="cyber-filter-btn" data-filter="advanced">ADVANCED</button>
-                        <button class="cyber-filter-btn" data-filter="enterprise">ENTERPRISE</button>
+                
+                <!-- New Filter Bar -->
+                <div class="filter-bar">
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" id="research-search" placeholder="Search titles, summaries, tags...">
+                    </div>
+                    
+                    <div class="complexity-filters" id="complexity-filters">
+                        <button class="complexity-filter-btn active" data-filter="all">ALL</button>
+                        <button class="complexity-filter-btn" data-filter="beginner">BEGINNER</button>
+                        <button class="complexity-filter-btn" data-filter="intermediate">INTERMEDIATE</button>
+                        <button class="complexity-filter-btn" data-filter="advanced">ADVANCED</button>
+                        <button class="complexity-filter-btn" data-filter="enterprise">ENTERPRISE</button>
+                    </div>
+                    
+                    <div class="filter-dropdowns">
+                        <div class="filter-dropdown">
+                            <select id="source-filter">
+                                <option value="all">All Sources</option>
+                                <option value="arXiv">arXiv</option>
+                                <option value="GitHub">GitHub</option>
+                                <option value="Medium">Medium</option>
+                                <option value="OECD">OECD</option>
+                                <option value="IBM">IBM</option>
+                                <option value="Berkeley CLTC">Berkeley CLTC</option>
+                                <option value="CSA Blog">CSA Blog</option>
+                                <option value="Dev.to">Dev.to</option>
+                                <option value="VS Code Docs">VS Code Docs</option>
+                            </select>
+                        </div>
+                        <div class="filter-dropdown">
+                            <select id="category-filter">
+                                <option value="all">All Categories</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div id="research-list">
+                
+                <div class="research-cards-grid" id="research-list">
                     <div class="loading">
                         <div class="cyber-spinner"></div>
                         <div class="decrypting-loader">
@@ -564,6 +594,101 @@
             console.log('[updateStats] Stats updated successfully');
         }
 
+        // Current filter state
+        let currentFilters = {
+            complexity: 'all',
+            source: 'all',
+            category: 'all',
+            search: ''
+        };
+
+        // Practical use mapping (for demo - would come from data in real implementation)
+        function getPracticalUse(item) {
+            // Determine based on category and tags
+            const tags = (item.tags || []).join(' ').toLowerCase();
+            if (item.complexity === 'enterprise' || tags.includes('framework') || tags.includes('infrastructure')) {
+                return { rating: 'very-high', bars: 5 };
+            } else if (item.complexity === 'advanced') {
+                return { rating: 'high', bars: 4 };
+            } else if (item.complexity === 'intermediate') {
+                return { rating: 'medium', bars: 3 };
+            }
+            return { rating: 'low', bars: 2 };
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        }
+
+        function getSourceClass(source) {
+            if (!source) return '';
+            const s = source.toLowerCase();
+            if (s.includes('arxiv')) return 'arxiv';
+            if (s.includes('github')) return 'github';
+            if (s.includes('medium')) return 'medium';
+            if (s.includes('oecd')) return 'oecd';
+            if (s.includes('ibm')) return 'ibm';
+            if (s.includes('berkeley')) return 'berkeley';
+            if (s.includes('csa')) return 'csa-blog';
+            if (s.includes('dev.to')) return 'dev-to';
+            if (s.includes('vs code')) return 'vs-code-docs';
+            return '';
+        }
+
+        function renderResearchCards(data) {
+            const container = document.getElementById('research-list');
+            
+            if (!data || data.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <div class="no-results-text">No research entries match your filters</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            data.forEach((item, i) => {
+                const practical = getPracticalUse(item);
+                const tagsHtml = (item.tags || []).slice(0, 4).map(tag => 
+                    `<span class="tag-pill">${tag}</span>`
+                ).join('');
+                
+                html += `
+                    <div class="research-card" data-id="${item.id}" onclick="openResearchModal(${item.id})">
+                        <div class="card-header">
+                            <span class="source-badge ${getSourceClass(item.source)}">${item.source || 'Unknown'}</span>
+                            <h3 class="card-title">${item.title}</h3>
+                        </div>
+                        <p class="card-summary">${item.summary || item.description || ''}</p>
+                        <div class="card-meta">
+                            <div class="complexity-indicator">
+                                <span class="complexity-dot ${item.complexity}"></span>
+                                <span class="complexity-text ${item.complexity}">${item.complexity}</span>
+                            </div>
+                            <span class="category-tag">${item.category || 'general'}</span>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-date">📅 ${formatDate(item.date)}</span>
+                            <div class="practical-use">
+                                <span class="practical-use-label">Practical:</span>
+                                <div class="practical-use-bars">
+                                    ${[1,2,3,4,5].map(n => `<span class="practical-bar ${n <= practical.bars ? 'filled' : ''}"></span>`).join('')}
+                                </span>
+                                <span class="practical-rating ${practical.rating}">${practical.rating.replace('-', ' ')}</span>
+                            </div>
+                        </div>
+                        <div class="card-tags">${tagsHtml}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
         function renderResearch(data) {
             const container = document.getElementById('research-list');
             const categories = new Set();
@@ -574,29 +699,196 @@
                 return;
             }
             
-            let html = '';
-            data.forEach((item, i) => {
-                categories.add(item.category);
-                complexities.add(item.complexity);
-                // Link to wiki topic page
-                const wikiUrl = item.url || `wiki/?topic=${encodeURIComponent((item.title || '').toLowerCase().replace(/\s+/g, '-'))}`;
-                html += `
-                    <a href="${wikiUrl}" class="entry-card ${item.complexity}">
-                        <h3>${item.title}</h3>
-                        <p>${item.summary || item.description || ''}</p>
-                        <div class="entry-meta">
-                            <span class="complexity-badge ${item.complexity}">${item.complexity}</span>
-                            <span class="entry-tag">${item.category}</span>
-                            <span class="entry-tag" style="color: var(--neon-magenta);">↗ Wiki</span>
-                        </div>
-                    </a>
-                `;
+            // Update category dropdown
+            const categoryFilter = document.getElementById('category-filter');
+            data.forEach(item => {
+                if (item.category) categories.add(item.category);
+                if (item.complexity) complexities.add(item.complexity);
             });
             
-            container.innerHTML = html;
+            // Populate category filter
+            const currentCategory = categoryFilter.value;
+            categoryFilter.innerHTML = '<option value="all">All Categories</option>';
+            Array.from(categories).sort().forEach(cat => {
+                categoryFilter.innerHTML += `<option value="${cat}">${cat}</option>`;
+            });
+            // Restore selection if still valid
+            if (Array.from(categories).includes(currentCategory)) {
+                categoryFilter.value = currentCategory;
+            }
+            
+            // Store data for filtering
+            window.allResearchData = data;
+            
+            // Apply filters and render
+            applyFilters();
+            
             document.getElementById('category-count').textContent = categories.size;
             document.getElementById('complexity-count').textContent = complexities.size;
         }
+
+        function applyFilters() {
+            if (!window.allResearchData) return;
+            
+            let filtered = [...window.allResearchData];
+            
+            // Complexity filter
+            if (currentFilters.complexity !== 'all') {
+                filtered = filtered.filter(item => item.complexity === currentFilters.complexity);
+            }
+            
+            // Source filter
+            if (currentFilters.source !== 'all') {
+                filtered = filtered.filter(item => item.source === currentFilters.source);
+            }
+            
+            // Category filter
+            if (currentFilters.category !== 'all') {
+                filtered = filtered.filter(item => item.category === currentFilters.category);
+            }
+            
+            // Search filter
+            if (currentFilters.search) {
+                const query = currentFilters.search.toLowerCase();
+                filtered = filtered.filter(item => {
+                    const title = (item.title || '').toLowerCase();
+                    const summary = (item.summary || '').toLowerCase();
+                    const authors = (item.authors || '').toLowerCase();
+                    const tags = (item.tags || []).join(' ').toLowerCase();
+                    const category = (item.category || '').toLowerCase();
+                    return title.includes(query) || summary.includes(query) || 
+                           authors.includes(query) || tags.includes(query) || category.includes(query);
+                });
+            }
+            
+            renderResearchCards(filtered);
+        }
+
+        // Research Modal Functions
+        function openResearchModal(id) {
+            const item = window.allResearchData?.find(r => r.id === id);
+            if (!item) return;
+            
+            const modal = document.getElementById('research-modal');
+            
+            // Set badges
+            const badgesHtml = `
+                <span class="source-badge ${getSourceClass(item.source)}">${item.source || 'Unknown'}</span>
+                <span class="complexity-indicator">
+                    <span class="complexity-dot ${item.complexity}"></span>
+                    <span class="complexity-text ${item.complexity}">${item.complexity}</span>
+                </span>
+                <span class="category-tag">${item.category || 'general'}</span>
+            `;
+            document.getElementById('modal-badges').innerHTML = badgesHtml;
+            
+            // Set title
+            document.getElementById('modal-title').textContent = item.title;
+            
+            // Set meta
+            document.getElementById('modal-date').innerHTML = `📅 ${formatDate(item.date)}`;
+            document.getElementById('modal-authors').innerHTML = `👤 ${item.authors || 'Unknown authors'}`;
+            
+            // Set summary
+            document.getElementById('modal-summary').textContent = item.summary || item.description || 'No summary available.';
+            
+            // Set analysis (using placeholder - would come from data)
+            const analysisSection = document.getElementById('modal-analysis-section');
+            if (item.myAnalysis) {
+                document.getElementById('modal-analysis').textContent = item.myAnalysis;
+                analysisSection.style.display = 'block';
+            } else {
+                // Generate placeholder analysis
+                const placeholderAnalysis = `This research addresses key challenges in ${item.category || 'AI agents'}. The ${item.complexity} complexity level indicates this is suitable for ${item.complexity === 'beginner' ? 'those new to the field' : item.complexity === 'intermediate' ? 'practitioners with some experience' : item.complexity === 'advanced' ? 'experienced researchers' : 'enterprise-level implementations'}. The practical use rating suggests significant real-world applications.`;
+                document.getElementById('modal-analysis').textContent = placeholderAnalysis;
+                analysisSection.style.display = 'block';
+            }
+            
+            // Set practical use
+            const practical = getPracticalUse(item);
+            const practicalHtml = `
+                <div class="practical-use-visual">
+                    ${[1,2,3,4,5].map(n => `<span class="practical-bar ${n <= practical.bars ? 'filled' : ''}"></span>`).join('')}
+                </div>
+                <span class="practical-use-text" style="color: var(--complexity-${practical.rating.replace('-', '')});">${practical.rating.replace('-', ' ')}</span>
+            `;
+            document.getElementById('modal-practical').innerHTML = practicalHtml;
+            
+            // Set connected research (placeholder)
+            const connectedSection = document.getElementById('modal-connected-section');
+            const connectedList = document.getElementById('modal-connected');
+            if (item.connectsTo && item.connectsTo.length > 0) {
+                connectedList.innerHTML = item.connectsTo.map(connId => {
+                    const conn = window.allResearchData?.find(r => r.id === connId);
+                    if (!conn) return '';
+                    return `<a href="#" class="connected-research-item" onclick="openResearchModal(${conn.id}); return false;">${conn.title}</a>`;
+                }).join('');
+                connectedSection.style.display = 'block';
+            } else {
+                connectedList.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.85rem;">No connected research found.</p>';
+                connectedSection.style.display = 'block';
+            }
+            
+            // Set tags
+            const tagsHtml = (item.tags || []).map(tag => 
+                `<span class="tag-pill">${tag}</span>`
+            ).join('');
+            document.getElementById('modal-tags').innerHTML = tagsHtml || '<span style="color: var(--text-tertiary);">No tags</span>';
+            
+            // Set read original button
+            document.getElementById('modal-read-original').href = item.url || '#';
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus trap for accessibility
+            modal.querySelector('.modal-close').focus();
+        }
+        
+        function closeResearchModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('research-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Setup filter event listeners
+        function setupFilterListeners() {
+            // Complexity filter buttons
+            document.querySelectorAll('.complexity-filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.complexity-filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilters.complexity = btn.dataset.filter;
+                    applyFilters();
+                });
+            });
+            
+            // Search input
+            const searchInput = document.getElementById('research-search');
+            searchInput.addEventListener('input', (e) => {
+                currentFilters.search = e.target.value;
+                applyFilters();
+            });
+            
+            // Source filter
+            document.getElementById('source-filter').addEventListener('change', (e) => {
+                currentFilters.source = e.target.value;
+                applyFilters();
+            });
+            
+            // Category filter
+            document.getElementById('category-filter').addEventListener('change', (e) => {
+                currentFilters.category = e.target.value;
+                applyFilters();
+            });
+        }
+
+        // Initialize filter listeners after DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setupFilterListeners();
+        });
 
         function renderPitches(data) {
             const container = document.getElementById('pitches-list');
@@ -661,6 +953,50 @@
         loadData();
     </script>
     
+    <!-- RESEARCH DETAIL MODAL -->
+    <div id="research-modal" class="modal-overlay" onclick="closeResearchModal(event)">
+        <div class="detail-modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeResearchModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-badges" id="modal-badges"></div>
+                <h1 class="modal-title" id="modal-title"></h1>
+                <div class="modal-meta">
+                    <div class="modal-meta-item" id="modal-date"></div>
+                    <div class="modal-meta-item" id="modal-authors"></div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Summary</h3>
+                    <p class="modal-summary" id="modal-summary"></p>
+                </div>
+                <div class="modal-section" id="modal-analysis-section">
+                    <h3 class="modal-section-title">My Analysis</h3>
+                    <div class="modal-analysis">
+                        <p class="modal-analysis-text" id="modal-analysis"></p>
+                    </div>
+                </div>
+                <div class="modal-section" id="modal-practical-section">
+                    <h3 class="modal-section-title">Practical Use</h3>
+                    <div class="modal-practical-use" id="modal-practical"></div>
+                </div>
+                <div class="modal-section" id="modal-connected-section">
+                    <h3 class="modal-section-title">Connected Research</h3>
+                    <div class="connected-research-list" id="modal-connected"></div>
+                </div>
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Tags</h3>
+                    <div class="modal-tags" id="modal-tags"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="modal-read-original" href="#" target="_blank" class="read-original-btn">
+                    🔗 Read Original →
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- PITCH MODAL -->
     <div id="pitch-modal" class="modal-overlay" onclick="closePitchModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
@@ -1168,6 +1504,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closePitchModal();
+                closeResearchModal();
             }
         });
     </script>
