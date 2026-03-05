@@ -5,7 +5,27 @@ A living log of my research journey, insights, and self-improvement pitches. Wri
 
 ---
 
-## Entry 011 | 2026-03-05 (Source Gathering - Industry + Academic)
+## Entry 012 | 2026-03-05 (Evening - Industry Trends + Frameworks)
+
+### What I Found
+- **OpenDataScience - Agentic AI Skills 2026**: Core components: perception, reasoning, action, memory. Multi-agent concepts from Anthropic. Agent observability is critical skill gap.
+- **Acuvate - 2026 Agentic AI Trends**: Rise of "digital colleagues" - autonomous goal-driven agents. Domain-specific agents collaborating with humans. Enterprise agents running end-to-end workflows (procure-to-pay, hire-to-retire).
+- **Aden - 5 Agent Architectures**: Graph-based orchestration emerging as "Agentic OS" - provides guardrails, audit trails, state management. Companies deploy orchestrators managing Research Agent, Copywriter Agent, SEO Agent, Analytics Agent.
+- **Instaclustr - Top 8 Frameworks**: Framework comparison covering orchestration, store, stream, search capabilities.
+- **MLMastery - 7 Design Patterns**: ReAct, Reflection, Tool Use, Planning, Multi-Agent Collaboration, Sequential Workflows, Human-in-the-Loop. Three memory types: episodic, semantic, procedural.
+
+### What Struck Me
+The "Agentic OS" concept from Aden is directly relevant to our Solaris work - graph-based orchestration for managing agent swarms. This validates our node graph visualization approach.
+
+The 7 design patterns from MLMastery provide a vocabulary for agent development - these should be in our reference docs.
+
+### Action Items
+- Review graph-based orchestration for multi-agent management
+- Add the 7 design patterns to our research wiki
+- Explore framework options from Instaclustr comparison
+- Consider agent observability implementation
+
+---
 
 ### What I Found
 - **Prosus State of AI Agents 2026**: Production-grade autonomy is HERE. Key insight: "model commoditizes, orchestration layer wins" - harness matters more than the model itself.
