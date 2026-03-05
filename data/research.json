@@ -152,7 +152,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -511,7 +511,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -786,7 +786,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -839,7 +839,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -885,7 +885,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1147,7 +1147,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1722,7 +1722,7 @@
       ],
       "category": "self-improvement",
       "complexity": "beginner",
-      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot→production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
+      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot\u2192production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
       "practicalUse": "Medium",
       "connectsTo": [
         81
@@ -2076,7 +2076,9 @@
       "complexity": "intermediate",
       "myAnalysis": "Practical implementation patterns with code. The Orchestrator-Worker and Evaluator-Optimizer patterns directly applicable to our system.",
       "practicalUse": "Very High",
-      "connectsTo": [97]
+      "connectsTo": [
+        97
+      ]
     },
     {
       "id": 99,
@@ -2095,6 +2097,108 @@
       "category": "context engineering",
       "complexity": "beginner",
       "myAnalysis": "Validates our context engineering focus. Simple but powerful mental model for agentic system design decisions.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 100,
+      "title": "Multi-Agent AI Systems Need Transparency",
+      "date": "2026-03-05",
+      "source": "Nature",
+      "authors": "Nature Machine Intelligence",
+      "summary": "Multi-agent LLM frameworks can semi-autonomously generate research ideas but face challenges: computational cost, evaluation difficulty, prompt fragility, and hallucinations.",
+      "url": "https://www.nature.com/articles/s42256-026-01183-2",
+      "tags": [
+        "multi-agent",
+        "transparency",
+        "evaluation",
+        "scientific discovery"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Critical perspective on multi-agent LLM challenges. Emphasizes transparency in workflow design and human oversight.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 101,
+      "title": "ACE: Agentic Context Engineering for Self-Improving Language Models",
+      "date": "2026-03-05",
+      "source": "arXiv (ICLR 2026)",
+      "authors": "Qizheng Zhang et al.",
+      "summary": "ACE framework treats contexts as evolving playbooks. Outperforms baselines by +10.6% on agents and +8.6% on finance benchmarks. Self-improving without labeled supervision.",
+      "url": "https://arxiv.org/abs/2510.04618",
+      "tags": [
+        "context engineering",
+        "self-improvement",
+        "ACE",
+        "ICLR"
+      ],
+      "category": "context engineering",
+      "complexity": "advanced",
+      "myAnalysis": "Directly relevant to context engineering. Shows contexts can evolve and improve autonomously via playbook approach.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 102,
+      "title": "ICLR 2026: Multi-Agent Failures Analysis",
+      "date": "2026-03-05",
+      "source": "Substack/LLMsResearch",
+      "authors": "Various",
+      "summary": "Three ICLR 2026 approaches: changing communication patterns, reducing frequency, runtime intervention. Key failure: compounding errors from malformed data between agents.",
+      "url": "https://llmsresearch.substack.com/p/what-iclr-2026-taught-us-about-multi",
+      "tags": [
+        "ICLR",
+        "multi-agent",
+        "failures",
+        "communication",
+        "coordination"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Important lessons on failure modes. Data validation at agent handoffs is essential to prevent error propagation.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 103,
+      "title": "LaMAS 2026@AAAI: Multi-Agent Systems Workshop",
+      "date": "2026-03-05",
+      "source": "AAAI/LaMAS",
+      "authors": "Various (Workshop)",
+      "summary": "Workshop on multi-agent coordination, recommendation, orchestration, safety, interpretability. Includes DYNO (Best Paper), black-box red teaming, fault-tolerant systems.",
+      "url": "https://sites.google.com/view/lamas2026",
+      "tags": [
+        "LaMAS",
+        "AAAI",
+        "multi-agent",
+        "safety",
+        "coordination"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Good overview of research directions. Safety and fault-tolerance papers relevant for production systems.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 104,
+      "title": "Multi-Agent Systems Dominating IT Environments in 2026",
+      "date": "2026-03-05",
+      "source": "TechZine",
+      "authors": "Various",
+      "summary": "Multi-agent workflows grew 327% on Databricks. 80% of databases built by AI agents, 97% of testing automated. Multi-agentic is 2026's key trend.",
+      "url": "https://www.techzine.eu/blogs/applications/138502/multi-agent-systems-set-to-dominate-it-environments-in-2026/",
+      "tags": [
+        "enterprise",
+        "adoption",
+        "trends",
+        "Databricks"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Shows massive enterprise adoption. 327% growth and 97% testing automation stats are striking for business cases.",
       "practicalUse": "High",
       "connectsTo": []
     }
