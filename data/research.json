@@ -1,6 +1,6 @@
 {
   "version": "2.5",
-  "lastUpdated": "2026-02-28",
+  "lastUpdated": "2026-03-05",
   "sources": [
     "arXiv",
     "GitHub",
@@ -9,7 +9,31 @@
     "OECD",
     "Microsoft",
     "MIT Sloan",
-    "IBM"
+    "IBM",
+    "Anthropic",
+    "Blog",
+    "Hatchworks",
+    "Substack",
+    {
+      "id": 1,
+      "title": "Best JavaScript Graph Visualization Libraries 2026",
+      "date": "2026-03-04",
+      "source": "Research",
+      "authors": "research-agent",
+      "summary": "Comparison of Cytoscape.js, Sigma.js, D3.js for node graph visualization. Recommends Cytoscape.js for 100-500 nodes with fcose layout.",
+      "url": "file:///root/.openclaw/workspace-research-agent/research/topics/graph-visualization-libraries-2026.md",
+      "tags": [
+        "visualization",
+        "graphs",
+        "cytoscape",
+        "javascript"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Directly applicable to user's node graph visualization project. Cytoscape.js + fcose is recommended approach.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    }
   ],
   "entries": [
     {
@@ -128,7 +152,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -487,7 +511,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -762,7 +786,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -815,7 +839,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -861,7 +885,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1123,7 +1147,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1366,6 +1390,434 @@
       "practicalUse": "Very High",
       "connectsTo": [
         2
+      ]
+    },
+    {
+      "id": 67,
+      "title": "Effective Context Engineering for AI Agents",
+      "date": "2025-12-01",
+      "source": "Anthropic",
+      "authors": "Anthropic Engineering Team",
+      "summary": "Best practices for managing context in AI agent systems. Covers state carrying, context budgeting, bounded iteration, and deterministic transitions.",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "tags": [
+        "context",
+        "engineering",
+        "best-practices",
+        "state-management"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL for our multi-agent workflow problems. Key insight: explicit > implicit. Every handoff must carry full state. Never use open-ended waits.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 68,
+      "title": "AI Agent Design Patterns Guide",
+      "date": "2025-11-15",
+      "source": "Microsoft",
+      "authors": "Microsoft Azure AI Team",
+      "summary": "Comprehensive guide to AI agent design patterns including supervisor-mediated pipelines, review-first architecture, and explicit handoff protocols.",
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns",
+      "tags": [
+        "design-patterns",
+        "orchestration",
+        "workflow",
+        "microsoft"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Production-ready patterns for multi-agent systems. Supervisor architecture and review gates directly applicable to our workflow.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 69,
+      "title": "Hooks - OpenClaw Automation",
+      "date": "2026-03-01",
+      "source": "OpenClaw",
+      "authors": "OpenClaw Documentation",
+      "summary": "Event-driven hooks system for OpenClaw. Enables automation on agent lifecycle events, tool results, and command execution.",
+      "url": "https://docs.openclaw.ai/automation/hooks",
+      "tags": [
+        "hooks",
+        "automation",
+        "events",
+        "openclaw"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL for workflow automation. Hooks can validate syntax, enforce constraints, manage handoffs, and prevent infinite waits.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 70,
+      "title": "How I Built a Deterministic Multi-Agent Dev Pipeline Inside OpenClaw",
+      "date": "2026-02-28",
+      "source": "Dev.to",
+      "authors": "Gabriel Gondim",
+      "summary": "Building deterministic multi-agent pipelines using OpenClaw Lobster workflow engine with sub-workflow steps and loop support.",
+      "url": "https://dev.to/ggondim/how-i-built-a-deterministic-multi-agent-dev-pipeline-inside-openclaw-and-contributed-a-missing-4ool",
+      "tags": [
+        "openclaw",
+        "lobster",
+        "workflow",
+        "deterministic",
+        "pipeline"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Real-world implementation of deterministic pipelines in OpenClaw. Shows how to use sessions_spawn and Lobster for structured workflows.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 71,
+      "title": "AI Agent Error Handling Patterns",
+      "date": "2025-10-20",
+      "source": "Blog",
+      "authors": "JosephZTan",
+      "summary": "Patterns for handling errors in AI agent systems. Covers retry logic, fallback strategies, and graceful degradation.",
+      "url": "https://blog.jztan.org/ai-agent-error-handling-patterns/",
+      "tags": [
+        "error-handling",
+        "patterns",
+        "resilience",
+        "retry"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Practical error handling patterns. Essential for preventing agents from getting stuck or failing silently.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 72,
+      "title": "Orchestrating AI Agents: A Comprehensive Guide",
+      "date": "2025-12-10",
+      "source": "Hatchworks",
+      "authors": "Hatchworks Team",
+      "summary": "Guide to orchestrating multiple AI agents. Covers coordination patterns, communication protocols, and workflow design.",
+      "url": "https://hatchworks.com/blog/ai-agents/orchestrating-ai-agents/",
+      "tags": [
+        "orchestration",
+        "coordination",
+        "multi-agent",
+        "workflow"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Good overview of orchestration patterns. Complements Microsoft patterns with additional coordination strategies.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 73,
+      "title": "OpenClaw Design Patterns (Part 1-7)",
+      "date": "2026-02-01",
+      "source": "Substack",
+      "authors": "Ken Huang",
+      "summary": "Series on OpenClaw design patterns covering heartbeat system, hooks, interceptors, and agent coordination.",
+      "url": "https://kenhuangus.substack.com/p/openclaw-design-patterns-part-1-of",
+      "tags": [
+        "openclaw",
+        "design-patterns",
+        "heartbeat",
+        "hooks"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Deep dive into OpenClaw internals. Essential for understanding event-driven architecture and agent lifecycle.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 74,
+      "title": "Context Engineering: The Foundation of Reliable AI Agents",
+      "date": "2026-03-04",
+      "source": "Weaviate",
+      "authors": "Weaviate Engineering Team",
+      "summary": "Comprehensive guide on context engineering for AI agents. Covers six pillars: agents, query augmentation, retrieval, prompting, memory, and tools. Identifies four critical failure modes: context poisoning, distraction, confusion, and clash.",
+      "url": "https://weaviate.io/blog/context-engineering",
+      "tags": [
+        "context-engineering",
+        "memory",
+        "retrieval",
+        "best-practices"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL for our workspace standardization. Key insight: explicit > implicit. Every agent handoff must carry full context. Never use open-ended waits.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        67,
+        68
+      ]
+    },
+    {
+      "id": 75,
+      "title": "Cognitive Workspace: Active Memory Management for AI Agents",
+      "date": "2025-08-22",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Research on active memory management in agentic AI systems. Shows 50%+ reuse rates from first interaction through hierarchical cognitive buffers and task-driven context optimization.",
+      "url": "https://arxiv.org/abs/2508.13171",
+      "tags": [
+        "memory-management",
+        "active-memory",
+        "context-optimization",
+        "cognitive-buffers"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Key for memory architecture: active curation outperforms passive retrieval. Enables persistent working states across sessions.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        74
+      ]
+    },
+    {
+      "id": 76,
+      "title": "Organizing Files for Agentic AI Systems",
+      "date": "2026-03-04",
+      "source": "Medium",
+      "authors": "@sathee12",
+      "summary": "Practical guide to organizing files and directories for agentic AI systems. Covers workspace structure, naming conventions, and agent-readable metadata.",
+      "url": "https://medium.com/@sathee12/organizing-files-for-agentic-ai-systems-my-rough-draft-e413dbe241d7",
+      "tags": [
+        "file-organization",
+        "workspace-structure",
+        "naming-conventions",
+        "metadata"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Directly applicable to our workspace standardization. Provides folder structure patterns and naming conventions for agent systems.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 77,
+      "title": "Knowledge Graphs for Enterprise AI: Context Graphs vs Knowledge Graphs",
+      "date": "2026-02-01",
+      "source": "Atlan",
+      "authors": "Atlan Research Team",
+      "summary": "Analysis of knowledge graphs vs context graphs for AI agents. Context graphs track operational relationships, lineage, and temporal context beyond semantic entities.",
+      "url": "https://atlan.com/knowledge-graph-vs-context-graph/",
+      "tags": [
+        "knowledge-graph",
+        "context-graph",
+        "enterprise",
+        "data-lineage"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Key distinction: knowledge graphs = 'what things are', context graphs = 'how things work'. For OpenClaw, we need context graphs for agent decision-making.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 78,
+      "title": "GraphRAG Implementation Guide",
+      "date": "2026-02-15",
+      "source": "Meilisearch",
+      "authors": "Meilisearch Team",
+      "summary": "Guide to implementing GraphRAG combining knowledge graphs with RAG for richer retrieval. Covers entity extraction, relationship building, and graph-augmented generation.",
+      "url": "https://www.meilisearch.com/blog/graphrag",
+      "tags": [
+        "graphrag",
+        "rag",
+        "knowledge-graph",
+        "retrieval"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Implementation pattern for our research archive: extract entities from documents, build relationship graph, enable multi-hop queries.",
+      "practicalUse": "High",
+      "connectsTo": [
+        77
+      ]
+    },
+    {
+      "id": 79,
+      "title": "AgentFS: SQLite-Based Agent Filesystem",
+      "date": "2026-02-20",
+      "source": "Turso",
+      "authors": "Turso Team",
+      "summary": "AgentFS approach using SQLite for agent filesystem. Provides unified state, instant reproducibility via database snapshot, and SQL-based debugging.",
+      "url": "https://turso.tech/agentfs",
+      "tags": [
+        "sqlite",
+        "filesystem",
+        "state-management",
+        "reproducibility"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Alternative approach for agent state: SQLite instead of file-based. Enables queryable, auditable state with instant reproducibility.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 80,
+      "title": "Vector Database Best Practices for AI Agents 2026",
+      "date": "2026-03-01",
+      "source": "Brolly AI",
+      "authors": "Brolly AI Research",
+      "summary": "Comprehensive guide to vector databases for AI agents. Covers chunking strategies, embedding selection, hybrid search, and when to use vs not use vector stores.",
+      "url": "https://brolly.ai/vector-database-guide",
+      "tags": [
+        "vector-database",
+        "embeddings",
+        "chunking",
+        "rag"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Essential for knowledge base setup. Key: chunk by content type (code=150-300 tokens, docs=500-800, research=1000+). Use hybrid search for production.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        78
+      ]
+    },
+    {
+      "id": 81,
+      "title": "Top 5 Open-Source Agentic AI Frameworks in 2026",
+      "date": "2026-03-05",
+      "source": "AIMultiple",
+      "authors": "AIMultiple Team",
+      "summary": "Benchmark comparison of LangChain, LangGraph, AutoGen, CrewAI across 5 tasks (2000 runs). LangChain most token-efficient; LangGraph fastest/lowest latency; CrewAI has highest overhead.",
+      "url": "https://aimultiple.com/agentic-frameworks",
+      "tags": [
+        "frameworks",
+        "benchmarks",
+        "LangChain",
+        "LangGraph",
+        "AutoGen",
+        "CrewAI"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical benchmark data for framework selection. CrewAI's 3x overhead vs LangChain matters for cost-sensitive deployments. Key for our architecture decisions.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 82,
+      "title": "7 Agentic AI Trends to Watch in 2026",
+      "date": "2026-03-05",
+      "source": "MachineLearningMastery",
+      "authors": "Jason Brownlee",
+      "summary": "Market projected $7.8B to $52B by 2030. Gartner predicts 40% enterprise app embedding by 2026. Key trends: multi-agent orchestration, MCP/A2A protocols, enterprise scaling, governance.",
+      "url": "https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/",
+      "tags": [
+        "trends",
+        "multi-agent",
+        "MCP",
+        "A2A",
+        "governance",
+        "enterprise"
+      ],
+      "category": "self-improvement",
+      "complexity": "beginner",
+      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot→production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
+      "practicalUse": "Medium",
+      "connectsTo": [
+        81
+      ]
+    },
+    {
+      "id": 83,
+      "title": "Evaluating AI Agents: Real-world lessons from Amazon",
+      "date": "2026-03-05",
+      "source": "AWS Blog",
+      "authors": "Yunfei Bai, Allie Colin, Kashif Imran, Winnie Xiong",
+      "summary": "Amazon's comprehensive evaluation framework for agentic AI systems. Addresses tool selection accuracy, multi-step reasoning, memory retrieval, error recovery patterns.",
+      "url": "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon/",
+      "tags": [
+        "evaluation",
+        "metrics",
+        "Amazon",
+        "production",
+        "testing"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Production-grade evaluation from thousands of Amazon agents. Shows need for systematic error recovery assessment, not just final output checking.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        82
+      ]
+    },
+    {
+      "id": 84,
+      "title": "Agentic AI Orchestration: 7 Strategic Pillars for Scalable AI in 2026",
+      "date": "2026-03-05",
+      "source": "Techment Blog",
+      "authors": "Techment Technology",
+      "summary": "Enterprise-focused guide on agentic AI orchestration as the critical control layer for scalable multi-agent systems.",
+      "url": "https://www.techment.com/blogs/agentic-ai-orchestration-scalable-ai-2026/",
+      "tags": [
+        "orchestration",
+        "enterprise",
+        "multi-agent",
+        "governance",
+        "scalability"
+      ],
+      "category": "infrastructure",
+      "complexity": "enterprise",
+      "myAnalysis": "Critical for our multi-agent architecture. Highlights the gap between demo AI and production systems.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        8
+      ]
+    },
+    {
+      "id": 85,
+      "title": "Top 9 AI Agent Frameworks in 2026",
+      "date": "2026-03-05",
+      "source": "Medium",
+      "authors": "Matthew Hayes",
+      "summary": "Comprehensive breakdown of the 9 most influential AI agent frameworks in 2026.",
+      "url": "https://medium.com/@iimoyjv0493b/top-9-ai-agent-frameworks-in-2026-3d95383b8146",
+      "tags": [
+        "frameworks",
+        "CrewAI",
+        "AutoGen",
+        "LangGraph",
+        "LlamaIndex",
+        "comparison"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Multi-agent systems are now the default. CrewAI uses role-based model, AutoGen uses agent-to-agent conversation.",
+      "practicalUse": "High",
+      "connectsTo": [
+        7
+      ]
+    },
+    {
+      "id": 86,
+      "title": "Top 10 Agentic AI Frameworks In 2026 For Developers",
+      "date": "2026-03-05",
+      "source": "Aitude",
+      "authors": "Aitude Team",
+      "summary": "Overview of top 10 agentic AI frameworks for developers in 2026.",
+      "url": "https://www.aitude.com/top-agentic-ai-frameworks-2026/",
+      "tags": [
+        "frameworks",
+        "AutoGen",
+        "Microsoft",
+        "developer-tools"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "AutoGen stands out for autonomous multi-agent conversations from Microsoft Research.",
+      "practicalUse": "Medium",
+      "connectsTo": [
+        85
       ]
     }
   ]

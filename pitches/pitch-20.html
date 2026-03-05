@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #20: Agent Memory Architecture - Building Persistent Context - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .detail-content h3 {
+            color: #667eea;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .detail-content ul {
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin-bottom: 8px;
+        }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .linked-paper {
+            background: #0f3460;
+            color: #667eea;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        
+        .linked-paper:hover {
+            background: #1a4a7a;
+        }
+        
+        .progress-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .progress-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid #2a3f5f;
+        }
+        
+        .progress-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .progress-step {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-step .status {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: #2a3f5f;
+            color: #888;
+        }
+        
+        .progress-step .status.done { background: #27ae60; color: white; }
+        .progress-step .status.in-progress { background: #3498db; color: white; }
+        
+        .updates_section .update {
+            background: #0f3460;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .updates_section .update-meta {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .key-insight {
+            background: #0f3460;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #20: Agent Memory Architecture - Building Persistent Context</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-03-05</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">Three connected research papers establish a foundational architecture for agent memory: explicit context engineering, active memory management with 50%+ reuse rates, and context graphs for operational reasoning — critical for building reliable research agents.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Without proper memory architecture, research agents suffer from <strong>context poisoning</strong>, <strong>distraction</strong>, <strong>confusion</strong>, and <strong>clash</strong> — the four critical failure modes identified in Weaviate's context engineering framework. Our research agent needs a robust memory system to:</p>
+        <ul>
+            <li>Maintain coherent context across sessions</li>
+            <li>Reuse learned information (50%+ reuse rates demonstrated)</li>
+            <li>Track operational relationships between research topics</li>
+            <li>Enable multi-hop queries across the knowledge base</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Full Pitch</h2>
+        <div class="detail-content">
+            <h3>The Problem</h3>
+            <p>Current research agents face critical memory limitations:</p>
+            <ul>
+                <li><strong>Context loss</strong>: Each session starts fresh, losing previous insights</li>
+                <li><strong>Information overload</strong>: Without active curation, context windows get cluttered</li>
+                <li><strong>Poor retrieval</strong>: Can't find relevant past research efficiently</li>
+                <li><strong>No operational awareness</strong>: Don't understand how topics connect</li>
+            </ul>
+            
+            <h3>Research Summary</h3>
+            
+            <p><strong>1. Context Engineering: The Foundation of Reliable AI Agents (Weaviate, 2026-03-04)</strong><br>
+            <em>Source: Weaviate Engineering Team</em></p>
+            <p>Comprehensive framework covering six pillars: agents, query augmentation, retrieval, prompting, memory, and tools. Identifies four critical failure modes that destroy agent reliability:</p>
+            <ul>
+                <li><strong>Context poisoning</strong>: Corrupted or irrelevant data in context</li>
+                <li><strong>Distraction</strong>: Irrelevant information pulls focus</li>
+                <li><strong>Confusion</strong>: Contradictory information causes errors</li>
+                <li><strong>Clash</strong>: Mismatched context between agent handoffs</li>
+            </ul>
+            <div class="key-insight">
+                <strong>Key insight</strong>: "Explicit > implicit. Every agent handoff must carry full context. Never use open-ended waits."
+            </div>
+            
+            <p><strong>2. Cognitive Workspace: Active Memory Management for AI Agents (arXiv, 2025-08-22)</strong><br>
+            <em>Source: Academic research on active memory management</em></p>
+            <p>Demonstrates <strong>50%+ reuse rates</strong> from first interaction through hierarchical cognitive buffers and task-driven context optimization. Shows active curation outperforms passive retrieval.</p>
+            <div class="key-insight">
+                <strong>Key insight</strong>: Active memory management enables persistent working states across sessions — critical for multi-session research workflows.
+            </div>
+            
+            <p><strong>3. Knowledge Graphs for Enterprise AI: Context Graphs vs Knowledge Graphs (Atlan, 2026-02-01)</strong><br>
+            <em>Source: Atlan Research Team</em></p>
+            <p>Key distinction for our system:</p>
+            <ul>
+                <li><strong>Knowledge graphs</strong> = "what things are" (semantic entities)</li>
+                <li><strong>Context graphs</strong> = "how things work" (operational relationships, lineage, temporal context)</li>
+            </ul>
+            <div class="key-insight">
+                <strong>Key insight</strong>: For OpenClaw research agents, we need context graphs for agent decision-making, not just knowledge graphs.
+            </div>
+            
+            <h3>Why It Matters for Our System</h3>
+            <p>Our research agent needs to implement these patterns to become more effective:</p>
+            <ul>
+                <li>Use <strong>explicit context passing</strong> between sub-agents (fixes "clash" failure mode)</li>
+                <li>Implement <strong>active memory curation</strong> — not just store everything, actively prune</li>
+                <li>Build <strong>context graphs</strong> linking research topics, sources, and findings</li>
+                <li>Enable <strong>multi-hop retrieval</strong> across the research archive</li>
+            </ul>
+            
+            <h3>Implementation Steps</h3>
+            <ul>
+                <li><strong>Phase 1: Context Engineering Foundation</strong>
+                    <ul>
+                        <li>Implement structured context passing between sessions</li>
+                        <li>Add context validation to detect poisoning/distraction</li>
+                        <li>Create explicit handoff protocols for sub-agents</li>
+                    </ul>
+                </li>
+                <li><strong>Phase 2: Active Memory Management</strong>
+                    <ul>
+                        <li>Build hierarchical cognitive buffers</li>
+                        <li>Implement task-driven context optimization</li>
+                        <li>Track reuse rates and optimize retrieval</li>
+                    </ul>
+                </li>
+                <li><strong>Phase 3: Context Graph Layer</strong>
+                    <ul>
+                        <li>Create operational relationship tracking</li>
+                        <li>Implement temporal context (when information was learned)</li>
+                        <li>Build multi-hop query capability</li>
+                    </ul>
+                </li>
+                <li><strong>Phase 4: Integration</strong>
+                    <ul>
+                        <li>Connect with vector DB (ID 80) for hybrid retrieval</li>
+                        <li>Integrate GraphRAG patterns (ID 78) for richer queries</li>
+                        <li>Add workspace file organization (ID 76) for persistence</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Connected Research</h2>
+        <div class="linked-papers">
+            <a href="index.html" class="linked-paper">#74: Context Engineering: The Foundation of Reliable AI Agents</a>
+            <a href="index.html" class="linked-paper">#75: Cognitive Workspace: Active Memory Management for AI Agents</a>
+            <a href="index.html" class="linked-paper">#77: Knowledge Graphs for Enterprise AI: Context Graphs vs Knowledge Graphs</a>
+            <a href="index.html" class="linked-paper">#78: GraphRAG Implementation Guide</a>
+            <a href="index.html" class="linked-paper">#80: Vector Database Best Practices for AI Agents 2026</a>
+            <a href="index.html" class="linked-paper">#76: Organizing Files for Agentic AI Systems</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <ul>
+            <li>
+                <div class="progress-step">
+                    <span>Research synthesis completed</span>
+                    <span class="status done">done</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Tavily deep research (1 credit)</span>
+                    <span class="status done">done</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Pitch document created</span>
+                    <span class="status done">done</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Post to GitHub research-archive</span>
+                    <span class="status in-progress">in progress</span>
+                </div>
+            </li>
+            <li>
+                <div class="progress-step">
+                    <span>Solaris comments update</span>
+                    <span class="status">pending</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <div class="update">
+            <div class="update-meta">2026-03-05 • research-agent</div>
+            <div>Pitch #20 created — synthesizes Context Engineering, Active Memory Management, and Context Graphs into actionable architecture for persistent research agent memory.</div>
+        </div>
+    </div>
+</body>
+</html>

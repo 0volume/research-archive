@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #21: Closing the Production Readiness Gap in Agentic AI Systems - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #eaeaea;
+        }
+        
+        header {
+            padding: 20px 0;
+            border-bottom: 2px solid #16213e;
+            margin-bottom: 25px;
+        }
+        
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+        
+        h1 {
+            font-size: 1.6rem;
+            margin: 10px 0 0 0;
+            color: #fff;
+        }
+        
+        .pitch-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .status-badge {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-badge.pending { background: #f39c12; color: white; }
+        .status-badge.approved { background: #27ae60; color: white; }
+        .status-badge.in-progress { background: #3498db; color: white; }
+        .status-badge.completed { background: #27ae60; color: white; }
+        
+        .pitch-date { color: #888; }
+        
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #2a3f5f;
+            padding-bottom: 10px;
+        }
+        
+        .summary {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+        
+        .detail-content h3 {
+            color: #667eea;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+        
+        .detail-content ul {
+            padding-left: 20px;
+        }
+        
+        .detail-content li {
+            margin-bottom: 8px;
+        }
+        
+        .linked-papers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .linked-paper {
+            background: #2a3f5f;
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: #a0c4ff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        
+        .linked-paper:hover {
+            background: #3a4f6f;
+        }
+        
+        .progress-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .progress-section li {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: #2a3f5f;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .updates_section .update {
+            padding: 15px;
+            background: #2a3f5f;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .update-meta {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background: #2a3f5f;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #fff;
+        }
+        
+        .metric-box {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-link">← Back to Pitches</a>
+        <h1>Pitch #21: Closing the Production Readiness Gap in Agentic AI Systems</h1>
+        <div class="pitch-meta">
+            <span class="status-badge pending">pending</span>
+            <span class="pitch-date">2026-03-05</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Summary</h2>
+        <p class="summary">The critical gap between agent framework selection and production-grade multi-agent system deployment — and how to bridge it using evaluation-driven development and standardized orchestration protocols.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Why This Matters</h2>
+        <p>Our research reveals a consistent pattern: teams adopt agent frameworks based on benchmarks and tutorials, but struggle to reach production reliability. The <span class="highlight">pilot-to-production gap</span> mirrors enterprise patterns where only <span class="metric-box">40%</span> of AI applications reach production by 2026 (Gartner). We face the same challenge.</p>
+        
+        <p>Three interconnected research pieces expose this gap:</p>
+        <ul>
+            <li><strong>Framework selection</strong> — benchmarks show 3x overhead differences (CrewAI vs LangChain)</li>
+            <li><strong>Multi-agent orchestration</strong> — MCP/A2A protocols emerging as HTTP-equivalents for agents</li>
+            <li><strong>Production evaluation</strong> — Amazon's real-world lessons reveal evaluation is afterthought, not architecture</li>
+        </ul>
+        
+        <p>Without addressing all three, we risk building on unstable foundations.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Research Summary</h2>
+        <div class="detail-content">
+            <h3>1. Framework Benchmarks (Entry #81)</h3>
+            <p>AIMultiple's benchmark of 2,000 runs across LangChain, LangGraph, AutoGen, and CrewAI reveals critical trade-offs:</p>
+            <ul>
+                <li><strong>LangChain:</strong> Most token-efficient, wide integration support, but lacks advanced orchestration</li>
+                <li><strong>LangGraph:</strong> Fastest with lowest latency, graph-based workflows</li>
+                <li><strong>CrewAI:</strong> Highest overhead (3x vs LangChain), but strong multi-agent role-based patterns</li>
+                <li><strong>AutoGen:</strong> Best for complex multi-agent configurations, Microsoft-backed</li>
+            </ul>
+            <p><em>Source: <a href="https://aimultiple.com/agentic-frameworks" style="color:#a0c4ff;">https://aimultiple.com/agentic-frameworks</a></em></p>
+            
+            <h3>2. Agentic AI Trends 2026 (Entry #82)</h3>
+            <p>Jason Brownlee's analysis identifies key trends driving production adoption:</p>
+            <ul>
+                <li><strong>Market growth:</strong> $7.8B → $52B by 2030</li>
+                <li><strong>Multi-agent orchestration:</strong> Moving from single agents to collaborative agent teams</li>
+                <li><strong>MCP/A2A protocols:</strong> Emerging as standardized communication layers (HTTP for agents)</li>
+                <li><strong>Enterprise governance:</strong> Rising focus on safety, compliance, observability</li>
+            </ul>
+            <p><em>Source: <a href="https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/" style="color:#a0c4ff;">https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/</a></em></p>
+            
+            <h3>3. Amazon's Evaluation Framework (Entry #83)</h3>
+            <p>Amazon's production lessons from thousands of agents reveal what production-grade evaluation actually requires:</p>
+            <ul>
+                <li><strong>Tool selection accuracy:</strong> Not just final output, but intermediate tool choices matter</li>
+                <li><strong>Multi-step reasoning:</strong> Evaluate chain-of-thought, not just answers</li>
+                <li><strong>Memory retrieval:</strong> Context preservation across long conversations</li>
+                <li><strong>Error recovery:</strong> Systematic assessment of how agents handle failures</li>
+            </ul>
+            <p><em>Source: <a href="https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon/" style="color:#a0c4ff;">https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon/</a></em></p>
+            
+            <h3>Additional Context (Tavily Search)</h3>
+            <p>Recent analysis from Swept AI confirms: "What won't change: production AI agents need observability, safety, testing, and operational maturity." The evaluation gap remains the #1 blocker for production deployment.</p>
+            <p><em>Source: <a href="https://www.swept.ai/post/the-agentic-framework-landscape-what-actually-matters" style="color:#a0c4ff;">https://www.swept.ai/post/the-agentic-framework-landscape-what-actually-matters</a></em></p>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Implementation Steps</h2>
+        <div class="detail-content">
+            <h3>Phase 1: Foundation (Week 1-2)</h3>
+            <ul>
+                <li>Select primary framework based on our use case: LangGraph for latency-sensitive, CrewAI for complex multi-agent workflows</li>
+                <li>Implement MCP (Model Context Protocol) for standardized tool calling</li>
+                <li>Set up basic observability hooks from day one</li>
+            </ul>
+            
+            <h3>Phase 2: Evaluation Framework (Week 3-4)</h3>
+            <ul>
+                <li>Build evaluation suite inspired by Amazon's approach:
+                    <ul>
+                        <li>Tool selection accuracy tracking</li>
+                        <li>Multi-step reasoning trace logging</li>
+                        <li>Memory retrieval quality metrics</li>
+                        <li>Error recovery pattern analysis</li>
+                    </ul>
+                </li>
+                <li>Create benchmark tasks specific to our agent roles</li>
+            </ul>
+            
+            <h3>Phase 3: Production Readiness (Week 5-6)</h3>
+            <ul>
+                <li>Implement A2A (Agent-to-Agent) protocol for multi-agent communication</li>
+                <li>Add governance layer: logging, audit trails, compliance checks</li>
+                <li>Deploy canary testing with evaluation gates</li>
+            </ul>
+            
+            <h3>Phase 4: Iterate & Scale (Ongoing)</h3>
+            <ul>
+                <li>Weekly evaluation metrics review</li>
+                <li>Framework benchmark re-runs quarterly</li>
+                <li>Pattern library for error recovery strategies</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Connected Research</h2>
+        <div class="linked-papers">
+            <a href="https://raw.githubusercontent.com/0volume/research-archive/main/data/research.json" class="linked-paper">#81: Top 5 Open-Source Agentic AI Frameworks in 2026</a>
+            <a href="https://raw.githubusercontent.com/0volume/research-archive/main/data/research.json" class="linked-paper">#82: 7 Agentic AI Trends to Watch in 2026</a>
+            <a href="https://raw.githubusercontent.com/0volume/research-archive/main/data/research.json" class="linked-paper">#83: Evaluating AI Agents - Amazon's Lessons</a>
+            <a href="https://raw.githubusercontent.com/0volume/research-archive/main/data/research.json" class="linked-paper">#80: Vector Database Best Practices for AI Agents</a>
+        </div>
+    </div>
+    
+    <div class="section progress-section">
+        <h2>📊 Progress</h2>
+        <ul>
+            <li><strong>Research synthesis:</strong> ✅ Complete (this pitch)</li>
+            <li><strong>Framework selection decision:</strong> ⏳ Pending - need architecture review</li>
+            <li><strong>Evaluation framework implementation:</strong> ⏳ Pending</li>
+            <li><strong>MCP/A2A protocol adoption:</strong> ⏳ Pending</li>
+        </ul>
+    </div>
+    
+    <div class="section updates_section">
+        <h2>💬 Discussion Updates</h2>
+        <div class="update">
+            <div class="update-meta">2026-03-05 | Research Agent</div>
+            <p>Initial synthesis connecting framework benchmarks, industry trends, and production evaluation. Key insight: evaluation must be architectural, not afterthought.</p>
+        </div>
+    </div>
+</body>
+</html>

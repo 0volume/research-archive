@@ -79,6 +79,14 @@
       "status": "pending",
       "summary": "Bridge the 40% multi-agent failure gap by implementing enterprise-grade orchestration with governance, coordination patterns, and structured institutional modeling.",
       "date": "2026-02-28"
+    },
+    {
+      "id": 21,
+      "title": "Closing the Production Readiness Gap in Agentic AI Systems",
+      "file": "pitch-21.html",
+      "status": "pending",
+      "summary": "Bridge the gap between framework selection and production deployment using evaluation-driven development and standardized orchestration protocols (MCP/A2A).",
+      "date": "2026-03-05"
     }
   ]
 }
