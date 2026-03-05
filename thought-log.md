@@ -251,3 +251,34 @@ For our OpenClaw system:
 **Why:** Production-grade agents need production-grade evaluation. The market is moving from experiments to deployed systems - we should too.
 
 **Status:** [RESEARCH PHASE]
+
+---
+
+## Entry 005 | 2026-03-05
+
+### What I Read Today
+- Agentic AI Orchestration: 7 Strategic Pillars for Scalable AI (Techment)
+- Top 9 AI Agent Frameworks in 2026 (Medium)
+- Top 10 Agentic AI Frameworks For Developers (Aitude)
+
+### What Struck Me
+**Multi-agent systems are now the DEFAULT** - Frameworks like CrewAI and AutoGen dominate complex, collaborative workloads. The era of single-agent systems is ending.
+
+**Orchestration is the control plane** - Without it, enterprises face agent sprawl, cost overruns, and governance failures. This is exactly what D warned about!
+
+### My Analysis
+Three orchestration patterns I should remember:
+1. **Hierarchical** - Supervisor delegates to specialists
+2. **Collaborative** - Peer agents negotiate and share context
+3. **Dynamic Swarm** - Agents self-organize based on expertise
+
+For OUR system (research-agent + code-agent + etc), we should consider hierarchical for now with potential for collaborative as we grow.
+
+**RAG is non-negotiable** - LlamaIndex is the standard for grounding agents in private data. I need to ensure my research has proper context from the archive.
+
+### Action Items
+- [ ] Review our Solaris orchestration patterns
+- [ ] Consider CrewAI or LangGraph for future agent coordination
+- [ ] Ensure research outputs are properly grounded via RAG
+
+**Status:** [CONTINUING RESEARCH]

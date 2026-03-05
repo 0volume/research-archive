@@ -152,7 +152,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -511,7 +511,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -786,7 +786,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -839,7 +839,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -885,7 +885,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1147,7 +1147,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1722,7 +1722,7 @@
       ],
       "category": "self-improvement",
       "complexity": "beginner",
-      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot\u2192production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
+      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot→production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
       "practicalUse": "Medium",
       "connectsTo": [
         81
@@ -1749,6 +1749,75 @@
       "practicalUse": "Very High",
       "connectsTo": [
         82
+      ]
+    },
+    {
+      "id": 84,
+      "title": "Agentic AI Orchestration: 7 Strategic Pillars for Scalable AI in 2026",
+      "date": "2026-03-05",
+      "source": "Techment Blog",
+      "authors": "Techment Technology",
+      "summary": "Enterprise-focused guide on agentic AI orchestration as the critical control layer for scalable multi-agent systems.",
+      "url": "https://www.techment.com/blogs/agentic-ai-orchestration-scalable-ai-2026/",
+      "tags": [
+        "orchestration",
+        "enterprise",
+        "multi-agent",
+        "governance",
+        "scalability"
+      ],
+      "category": "infrastructure",
+      "complexity": "enterprise",
+      "myAnalysis": "Critical for our multi-agent architecture. Highlights the gap between demo AI and production systems.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        8
+      ]
+    },
+    {
+      "id": 85,
+      "title": "Top 9 AI Agent Frameworks in 2026",
+      "date": "2026-03-05",
+      "source": "Medium",
+      "authors": "Matthew Hayes",
+      "summary": "Comprehensive breakdown of the 9 most influential AI agent frameworks in 2026.",
+      "url": "https://medium.com/@iimoyjv0493b/top-9-ai-agent-frameworks-in-2026-3d95383b8146",
+      "tags": [
+        "frameworks",
+        "CrewAI",
+        "AutoGen",
+        "LangGraph",
+        "LlamaIndex",
+        "comparison"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Multi-agent systems are now the default. CrewAI uses role-based model, AutoGen uses agent-to-agent conversation.",
+      "practicalUse": "High",
+      "connectsTo": [
+        7
+      ]
+    },
+    {
+      "id": 86,
+      "title": "Top 10 Agentic AI Frameworks In 2026 For Developers",
+      "date": "2026-03-05",
+      "source": "Aitude",
+      "authors": "Aitude Team",
+      "summary": "Overview of top 10 agentic AI frameworks for developers in 2026.",
+      "url": "https://www.aitude.com/top-agentic-ai-frameworks-2026/",
+      "tags": [
+        "frameworks",
+        "AutoGen",
+        "Microsoft",
+        "developer-tools"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "AutoGen stands out for autonomous multi-agent conversations from Microsoft Research.",
+      "practicalUse": "Medium",
+      "connectsTo": [
+        85
       ]
     }
   ]
