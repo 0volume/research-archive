@@ -1899,6 +1899,103 @@
       "myAnalysis": "Good reference for understanding the landscape of agent frameworks. AutoGen for multi-agent orchestration, LangGraph for stateful workflows.",
       "practicalUse": "Medium",
       "connectsTo": []
+    },
+    {
+      "id": 91,
+      "title": "LLM Collaboration With Multi-Agent Reinforcement Learning",
+      "date": "2026-03-05",
+      "source": "AAAI",
+      "authors": "Shuo Liu, Tianle Chen, Zeyu Liang, Xueguang Lyu, Christopher Amato",
+      "summary": "Models LLM collaboration as cooperative MARL problem. Develops MAGRPO for multi-turn collaboration.",
+      "url": "https://xue-guang.com/publication/liu-2026-llm/",
+      "tags": [
+        "multi-agent",
+        "RL",
+        "collaboration",
+        "MAGRPO"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Critical for multi-agent coordination. Shows how agents can learn to collaborate via RL.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        60,
+        61
+      ]
+    },
+    {
+      "id": 92,
+      "title": "Context Engineering vs Prompt Engineering for AI Agents",
+      "date": "2026-03-05",
+      "source": "Firecrawl",
+      "authors": "Firecrawl Team",
+      "summary": "Context engineering is designing dynamic systems that provide right info/tools at right time.",
+      "url": "https://www.firecrawl.dev/blog/context-engineering",
+      "tags": [
+        "context-engineering",
+        "prompt-engineering",
+        "memory",
+        "retrieval"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Complements Weaviate context engineering. Agents should retrieve context on demand.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        67,
+        74,
+        75
+      ]
+    },
+    {
+      "id": 93,
+      "title": "WMAC 2026 - AAAI 2026 Bridge Program on Advancing LLM-Based Multi-Agent Collaboration",
+      "date": "2026-03-05",
+      "source": "Multiagents.org",
+      "authors": "Various researchers",
+      "summary": "AAAI 2026 Bridge Program covering task decomposition, collaborative reward design, group-level influence.",
+      "url": "https://multiagents.org/2026/",
+      "tags": [
+        "multi-agent",
+        "LLM",
+        "collaboration",
+        "AAAI",
+        "reasoning"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Overview of current research directions in multi-agent LLM systems.",
+      "practicalUse": "High",
+      "connectsTo": [
+        38,
+        58
+      ]
+    },
+    {
+      "id": 94,
+      "title": "LaMAS 2026@AAAI26 - Large Language Models with Multi-Agent Systems Workshop",
+      "date": "2026-03-05",
+      "source": "OpenReview",
+      "authors": "Various researchers",
+      "summary": "Workshop on multi-agent systems covering safety, scientific discovery, interpretability, market-making.",
+      "url": "https://sites.google.com/view/lamas2026",
+      "tags": [
+        "multi-agent",
+        "safety",
+        "LLM",
+        "workshop",
+        "AAAI",
+        "interpretability"
+      ],
+      "category": "safety",
+      "complexity": "advanced",
+      "myAnalysis": "Critical safety perspective. Shows research community actively addressing multi-agent safety.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        21,
+        34,
+        52
+      ]
     }
   ]
 }

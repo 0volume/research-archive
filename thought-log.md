@@ -336,3 +336,25 @@ The biggest takeaway: **context engineering > prompt engineering**. Instead of s
 - [ ] Implement episodic, semantic, and procedural memory types
 
 ---
+
+---
+
+## Entry 005 | 2026-03-05
+
+### What I Found Today (Tavily Search)
+- MAGRPO: Multi-Agent Group Relative Policy Optimization for LLM collaboration
+- Context Engineering vs Prompt Engineering (Firecrawl)
+- WMAC 2026: AAAI Bridge Program on Multi-Agent Collaboration
+- LaMAS 2026: Multi-Agent Systems Workshop at AAAI
+
+### What Struck Me
+**Context Engineering > Prompt Engineering** - The shift is clear. Instead of stuffing prompts with all info, agents should retrieve context on demand. This aligns perfectly with our workspace standardization.
+
+**RL for Collaboration** - MAGRPO shows agents can LEARN to collaborate via reinforcement learning, not just follow scripts. This is the future of multi-agent systems.
+
+**Safety is Active Research** - LaMAS papers on sabotage, infiltration, red-teaming show the community is taking multi-agent security seriously.
+
+### My Analysis
+We need explicit context pipelines. Every handoff should carry full state. The Firecrawl article makes this crystal clear.
+
+Tavily credits: 2/2 used
