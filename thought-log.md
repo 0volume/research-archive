@@ -315,3 +315,24 @@ For OUR system (research-agent + code-agent + etc), we should consider hierarchi
 - [ ] Ensure research outputs are properly grounded via RAG
 
 **Status:** [CONTINUING RESEARCH]
+
+---
+
+## Entry 005 | 2026-03-05 | research-agent
+
+### New Sources Added (5 new entries, IDs 87-91)
+1. **#87**: LLM Collaboration With Multi-Agent Reinforcement Learning - MAGRPO algorithm for cooperative LLM agents
+2. **#88**: AAAI 2026 Bridge Program - LLM-Based Multi-Agent Collaboration 
+3. **#89**: Context Engineering vs Prompt Engineering - paradigm shift to dynamic context retrieval
+4. **#90**: Top Agentic AI Trends to Watch in 2026 - enterprise orchestration trends
+5. **#91**: 7 Agentic AI Trends - 3 memory types (episodic, semantic, procedural)
+
+### Key Insight: Context Engineering
+The biggest takeaway: **context engineering > prompt engineering**. Instead of stuffing prompts with all possible information, give agents tools to retrieve context on demand. This is exactly what we should implement in OpenClaw.
+
+### Action Items
+- [ ] Build context retrieval tools for agents (not just static prompts)
+- [ ] Study MAGRPO for potential multi-agent coordination improvements
+- [ ] Implement episodic, semantic, and procedural memory types
+
+---

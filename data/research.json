@@ -1819,6 +1819,106 @@
       "connectsTo": [
         85
       ]
+    },
+    {
+      "id": 87,
+      "title": "LLM Collaboration With Multi-Agent Reinforcement Learning",
+      "date": "2026-01",
+      "source": "AAAI",
+      "authors": "Shuo Liu, Tianle Chen, Zeyu Liang, Xueguang Lyu, Christopher Amato",
+      "summary": "Models LLM collaboration as a cooperative Multi-Agent Reinforcement Learning problem. Develops MAGRPO algorithm for multi-agent, multi-turn collaboration.",
+      "url": "https://xue-guang.com/publication/liu-2026-llm/",
+      "tags": [
+        "multi-agent",
+        "reinforcement learning",
+        "collaboration",
+        "MAGRPO"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Key insight: treating LLMs as collaborative agents with MARL enables them to coordinate effectively. Relevant for multi-agent system design.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 88,
+      "title": "AAAI 2026 Bridge Program - LLM-Based Multi-Agent Collaboration",
+      "date": "2026-01",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Bridge program covering advancing LLM-based multi-agent collaboration. Papers on task decomposition, reward design, social awareness, and safety.",
+      "url": "https://arxiv.org/html/2511.17332",
+      "tags": [
+        "multi-agent",
+        "LLM",
+        "coordination",
+        "AAAI 2026"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Comprehensive view of current multi-agent research frontier. Key theme: combining adaptive learning with formal coordination frameworks.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 89,
+      "title": "Context Engineering vs Prompt Engineering for AI Agents",
+      "date": "2026-03",
+      "source": "Firecrawl",
+      "authors": "Firecrawl Team",
+      "summary": "Context Engineering is designing dynamic systems that provide the right info/tools at the right time. Focuses on entire information environment.",
+      "url": "https://www.firecrawl.dev/blog/context-engineering",
+      "tags": [
+        "context engineering",
+        "prompt engineering",
+        "memory",
+        "RAG"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Critical insight: context engineering > prompt engineering for agents. Give agents tools to retrieve context on demand.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 90,
+      "title": "Top Agentic AI Trends to Watch in 2026",
+      "date": "2026-03",
+      "source": "CloudKeeper",
+      "authors": "CloudKeeper Research",
+      "summary": "Enterprise trends: multi-agent orchestration, governance, identity security, FinOps. 2026 marks shift from experimentation to execution.",
+      "url": "https://www.cloudkeeper.com/insights/blog/top-agentic-ai-trends-watch-2026-how-ai-agents-are-redefining-enterprise-automation",
+      "tags": [
+        "agentic AI",
+        "trends",
+        "enterprise",
+        "2026"
+      ],
+      "category": "self-improvement",
+      "complexity": "beginner",
+      "myAnalysis": "Good overview of enterprise agentic AI landscape. Key insight: orchestrated multi-agent systems gaining traction.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 91,
+      "title": "7 Agentic AI Trends to Watch in 2026",
+      "date": "2026-01",
+      "source": "MachineLearningMastery",
+      "authors": "Vinod Chugani",
+      "summary": "7 design patterns (ReAct, Reflection, Tool Use, Planning, Multi-Agent Collaboration, Sequential Workflows, Human-in-the-Loop) and 3 memory types.",
+      "url": "https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/",
+      "tags": [
+        "agentic AI",
+        "design patterns",
+        "memory",
+        "trends"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "Excellent summary of agentic AI patterns. The 3 memory types (episodic, semantic, procedural) directly relevant to our agent memory design.",
+      "practicalUse": "Very High",
+      "connectsTo": []
     }
   ]
 }
