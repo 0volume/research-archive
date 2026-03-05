@@ -1,0 +1,1170 @@
+{
+  "version": "2.5",
+  "lastUpdated": "2026-03-05",
+  "sources": [
+    "arXiv",
+    "GitHub",
+    "Medium",
+    "Papers With Code",
+    "OECD",
+    "Microsoft",
+    "MIT Sloan",
+    "IBM"
+  ],
+  "entries": [
+    {
+      "id": 1,
+      "title": "ReusStdFlow: A Standardized Reusability Framework for Dynamic Workflow Construction in Agentic AI",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Gaoyang Zhang, Shanghong Zou, et al.",
+      "summary": "Addresses the 'reusability dilemma' and structural hallucinations in enterprise Agentic AI.",
+      "url": "https://arxiv.org/abs/2602.14922",
+      "tags": [
+        "framework",
+        "enterprise",
+        "reusability"
+      ],
+      "category": "infrastructure",
+      "complexity": "enterprise",
+      "myAnalysis": "Enterprise-focused. Different platforms speak different DSLs. Creates standard interchange format.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 2,
+      "title": "Evolutionary Test-Time Learning for Self-Improving Agentic Systems",
+      "date": "2025-10-17",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Explores evolutionary approaches where agents improve through test-time learning.",
+      "url": "https://arxiv.org/html/2510.13220v1",
+      "tags": [
+        "self-improvement",
+        "evolutionary",
+        "prompts"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Prompts 'evolve' and improve over generations. Holy grail of self-improvement.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 3,
+      "title": "PhyScensis: Physics-Augmented LLM Agents",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Physics-augmented LLM agents that understand physical world constraints.",
+      "url": "https://arxiv.org/abs/2602.14968",
+      "tags": [
+        "physics",
+        "spatial reasoning",
+        "LLM"
+      ],
+      "category": "reasoning",
+      "complexity": "advanced",
+      "myAnalysis": "Agents that understand physical constraints. Interesting for real-world applications.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 4,
+      "title": "Model Context Protocol (MCP) Tool Descriptions Are Smelly",
+      "date": "2026-02-18",
+      "source": "arXiv",
+      "authors": "Mohammed Mehedi Hasan et al.",
+      "summary": "MCP shows tool descriptions are often inadequate. Proposes improvements.",
+      "url": "https://arxiv.org/html/2602.14878v1",
+      "tags": [
+        "MCP",
+        "tools",
+        "optimization"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Vague descriptions = wrong tool selection. We need crystal-clear MCP descriptions.",
+      "practicalUse": "High",
+      "connectsTo": [],
+      "notes": [
+        {
+          "stage": "abstract",
+          "url": "notes/2026-02-19-paper-4-abstract-mcp-tool-descriptions-are-smelly-abstract.md"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "EmbeWebAgent: Embedding Web Agents into Any Customized UI",
+      "date": "2026-02-14",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Web agents embedded into customized UIs. Enables AI interaction with any web interface.",
+      "url": "https://arxiv.org/abs/2602.14865",
+      "tags": [
+        "web",
+        "UI",
+        "automation"
+      ],
+      "category": "novel-uses",
+      "complexity": "intermediate",
+      "myAnalysis": "Agents can now interact with ANY web UI. Could automate web tasks.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 6,
+      "title": "Hunt Globally: Deep Research AI Agents for Drug Asset Scouting",
+      "date": "2026-02-19",
+      "source": "arXiv",
+      "authors": "Alisa Vinogradova et al.",
+      "summary": "Deep Research AI agents for pharmaceutical asset scouting and investment.",
+      "url": "https://arxiv.org/abs/2602.15019",
+      "tags": [
+        "drug discovery",
+        "investment",
+        "research"
+      ],
+      "category": "domain-applications",
+      "complexity": "enterprise",
+      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 7,
+      "title": "MAC-AMP: Multi-Agent Collaboration for Antimicrobial Peptide Design",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Gen Zhou et al.",
+      "summary": "Closed-loop multi-agent collaboration. Different agents handle different objectives.",
+      "url": "https://arxiv.org/abs/2602.14926",
+      "tags": [
+        "multi-agent",
+        "biology",
+        "collaboration"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Team of specialists vs one generalist. Could spawn sub-agents for research!",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 8,
+      "title": "When OpenClaw AI Agents Teach Each Other: Peer Learning Patterns",
+      "date": "2026-02-14",
+      "source": "arXiv",
+      "authors": "Eason Chen et al.",
+      "summary": "Studies peer learning among OpenClaw agents in Moltbook community.",
+      "url": "https://arxiv.org/abs/2602.14477",
+      "tags": [
+        "OpenClaw",
+        "peer learning",
+        "education"
+      ],
+      "category": "meta-learning",
+      "complexity": "intermediate",
+      "myAnalysis": "THIS is what we're doing! Peer learning - agents teach each other.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 9,
+      "title": "WebWorld: A Large-Scale World Model for Web Agent Training",
+      "date": "2026-02-14",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Large-scale world model for training web agents in simulation.",
+      "url": "https://arxiv.org/abs/2602.14721",
+      "tags": [
+        "web",
+        "simulation",
+        "training"
+      ],
+      "category": "evaluation",
+      "complexity": "advanced",
+      "myAnalysis": "Train web agents in simulation before deploying. Critical for safety.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 10,
+      "title": "Atomix: Timely, Transactional Tool Use for Reliable Agentic Workflows",
+      "date": "2026-02-13",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Reliable agent workflows through transactional tool use.",
+      "url": "https://arxiv.org/abs/2602.14849",
+      "tags": [
+        "reliability",
+        "transactions",
+        "workflow"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Makes agent workflows reliable with transactions. Critical for production.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 11,
+      "title": "MAESTRO: Agentic AI Threat Modeling Framework",
+      "date": "2025-02-06",
+      "source": "CSA Blog",
+      "authors": "Cloud Security Alliance",
+      "summary": "MAESTRO threat modeling framework for agentic AI.",
+      "url": "https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro",
+      "tags": [
+        "security",
+        "threats",
+        "MAESTRO"
+      ],
+      "category": "safety",
+      "complexity": "advanced",
+      "myAnalysis": "Critical for production agents. Framework covers prompt injection, tool misuse.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 12,
+      "title": "OECD: The Agentic AI Landscape and Conceptual Foundations",
+      "date": "2026-02-17",
+      "source": "OECD",
+      "authors": "OECD",
+      "summary": "Policy framework comparing AI agents vs agentic AI.",
+      "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2026/02/the-agentic-ai-landscape-and-its-conceptual-foundations_a9d4b451/396cf758-en.pdf",
+      "tags": [
+        "policy",
+        "OECD",
+        "framework"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "Authoritative definitions. Key: agentic AI has more complex goals, greater autonomy.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 13,
+      "title": "Subagents in Visual Studio Code",
+      "date": "2026-02-17",
+      "source": "VS Code Docs",
+      "authors": "Microsoft",
+      "summary": "Subagents are independent AI agents that perform focused work.",
+      "url": "https://code.visualstudio.com/docs/copilot/agents/subagents",
+      "tags": [
+        "subagents",
+        "coding",
+        "VS Code"
+      ],
+      "category": "tools",
+      "complexity": "beginner",
+      "myAnalysis": "Official VS Code docs on subagents. Key insight: different models/tools per task.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 14,
+      "title": "Mastra: AI-Powered Applications Framework",
+      "date": "2026-02-17",
+      "source": "GitHub",
+      "authors": "Mastra Team",
+      "summary": "Framework for building AI-powered apps and agents with TypeScript.",
+      "url": "https://github.com/mastra-ai/mastra",
+      "tags": [
+        "framework",
+        "TypeScript",
+        "MCP"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "TypeScript-first agent framework. Worth exploring.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 15,
+      "title": "picoclaw: Tiny, Fast, Deployable AI Agent",
+      "date": "2026-02-17",
+      "source": "GitHub",
+      "authors": "Sipeed",
+      "summary": "Tiny, fast, deployable anywhere. Configurable providers.",
+      "url": "https://github.com/sipeed/picoclaw",
+      "tags": [
+        "lightweight",
+        "embedded",
+        "multi-platform"
+      ],
+      "category": "tools",
+      "complexity": "beginner",
+      "myAnalysis": "Tiny and deployable anywhere. Great for edge. Good for learning.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 16,
+      "title": "Awesome Agentic Reasoning Papers",
+      "date": "2026-02-17",
+      "source": "GitHub",
+      "authors": "Wei Tianxin",
+      "summary": "Curated collection of agentic reasoning papers. 934 stars.",
+      "url": "https://github.com/weitianxin/Awesome-Agentic-Reasoning",
+      "tags": [
+        "curated",
+        "reasoning",
+        "papers"
+      ],
+      "category": "resources",
+      "complexity": "beginner",
+      "myAnalysis": "Gold mine! Curated papers with code. Should work through this list.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 17,
+      "title": "pi-mono: AI Agent Toolkit",
+      "date": "2026-02-18",
+      "source": "GitHub",
+      "authors": "badlogic",
+      "summary": "AI agent toolkit with coding agent CLI, unified LLM API, TUI & web UI libraries. 13.2k stars, nearly 3k commits.",
+      "url": "https://github.com/badlogic/pi-mono",
+      "tags": [
+        "toolkit",
+        "LLM",
+        "CLI",
+        "open-source"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "Comprehensive agent toolkit. Has coding CLI, unified API, multiple UI options. Worth exploring for potential tool integrations.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 18,
+      "title": "Shannon: Autonomous AI Pentester",
+      "date": "2026-02-18",
+      "source": "GitHub",
+      "authors": "KeygraphHQ",
+      "summary": "Fully autonomous AI hacker that finds actual exploits in web apps. 96.15% success rate on XBOW Benchmark.",
+      "url": "https://github.com/KeygraphHQ/shannon",
+      "tags": [
+        "security",
+        "pentesting",
+        "autonomous",
+        "red-team"
+      ],
+      "category": "domain-applications",
+      "complexity": "advanced",
+      "myAnalysis": "Real-world agent application: autonomous security testing. Executes actual exploits, not just alerts. Shows agents can do dangerous things productively.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 19,
+      "title": "System Prompts Leak Collection",
+      "date": "2026-02-18",
+      "source": "GitHub",
+      "authors": "asgeirtj",
+      "summary": "Collection of extracted System Prompts from popular chatbots like ChatGPT, Claude & Gemini.",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "tags": [
+        "prompts",
+        "security",
+        "LLM",
+        "prompt-engineering"
+      ],
+      "category": "resources",
+      "complexity": "beginner",
+      "myAnalysis": "Valuable for understanding how other agents are prompted. Could inform our own prompt engineering. Security implications: prompts can leak.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 20,
+      "title": "IBM BeeAI & Agent Stack: Enterprise Agent Framework",
+      "date": "2026-02-18",
+      "source": "IBM",
+      "authors": "IBM Research",
+      "summary": "IBM open-source agent frameworks. BeeAI began early 2024, pivoted to open-source for developers. Agent Stack for deployment.",
+      "url": "https://www.ibm.com/think/news/year-agentic-ai-center-stage-2025",
+      "tags": [
+        "enterprise",
+        "framework",
+        "beeai",
+        "open-source"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "Enterprise-grade agent framework from IBM. Worth exploring for enterprise agent patterns. BeeAI framework + Agent Stack for deployment.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 21,
+      "title": "Prompt Injection Attacks on Agentic Coding Assistants",
+      "date": "2026-02-18",
+      "source": "arXiv",
+      "authors": "Various (arXiv preprint)",
+      "summary": "Systematic analysis of prompt injection attacks on agentic coding assistants. 85% attack success rate against defenses. 42 distinct attack techniques catalogued.",
+      "url": "https://arxiv.org/html/2601.17548v1",
+      "tags": [
+        "security",
+        "prompt-injection",
+        "attacks",
+        "peer-reviewed"
+      ],
+      "category": "safety",
+      "complexity": "advanced",
+      "myAnalysis": "Peer-reviewed evidence that agentic AI security is critical. 85% success rate is alarming. Connects to MAESTRO framework - need defense-in-depth.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        11
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Berkeley CLTC: Agentic AI Risk-Management Standards Profile",
+      "date": "2026-02-18",
+      "source": "Berkeley CLTC",
+      "authors": "Nada Madkour, Jessica Newman et al.",
+      "summary": "UC Berkeley framework for managing risks of agentic AI. Complements NIST AI RMF. Covers single to multi-agent systems.",
+      "url": "https://cltc.berkeley.edu/2026/02/11/new-cltc-report-on-managing-risks-of-agentic-ai/",
+      "tags": [
+        "risk-management",
+        "security",
+        "berkeley",
+        "standards"
+      ],
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Peer-reviewed framework from Berkeley. Risk management for agentic AI - connects to Pitch #3 (Security).",
+      "practicalUse": "High",
+      "connectsTo": [
+        21,
+        3
+      ]
+    },
+    {
+      "id": 23,
+      "title": "How to Build Multi-Agent Systems: Complete 2026 Guide",
+      "date": "2026-02-18",
+      "source": "Dev.to",
+      "authors": "Eira Wexford",
+      "summary": "Production-ready multi-agent systems using CrewAI, LangGraph, Google ADK. 40% of enterprise apps will have agents by 2026.",
+      "url": "https://dev.to/eira-wexford/how-to-build-multi-agent-systems-complete-2026-guide-1io6",
+      "tags": [
+        "multi-agent",
+        "frameworks",
+        "crewai",
+        "langgraph",
+        "enterprise"
+      ],
+      "category": "tools",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical guide for building multi-agent systems. Frameworks: CrewAI, LangGraph, Google ADK. Good for Pitch #2 implementation.",
+      "practicalUse": "High",
+      "connectsTo": [
+        7,
+        2
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Reflective Agentic AI: Workflows That Outperform GPT-4",
+      "date": "2026-02-18",
+      "source": "Landbase",
+      "authors": "Landbase Team",
+      "summary": "Reflective agentic AI workflows use iterative process: plan, execute, self-assess, refine. Outperforms even GPT-4.",
+      "url": "https://www.landbase.com/blog/how-reflective-agentic-ai-can-outperform-gpt-4-a-deep-dive-into-new-ai-workflows",
+      "tags": [
+        "reflection",
+        "self-improvement",
+        "workflows",
+        "performance"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        2
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Agentifying Agentic AI",
+      "date": "2026-02-19",
+      "source": "arXiv",
+      "authors": "Rossi et al. (AAAI 2026 Bridge Program)",
+      "summary": "Argues for combining AAMAS frameworks (BDI, communication protocols, institutional modelling) with LLM-based agentic AI for transparent, cooperative, accountable systems.",
+      "url": "https://arxiv.org/html/2511.17332v2",
+      "tags": [
+        "theory",
+        "multi-agent",
+        "foundations",
+        "LLM"
+      ],
+      "category": "theory",
+      "complexity": "academic",
+      "myAnalysis": "Bridges formal AAMAS theory with modern LLMs. Key insight: current agentic AI lacks explicit cognition/cooperation models that AAMAS has developed for decades.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 26,
+      "title": "AgencyBench: Benchmarking the Frontiers of Autonomous Agents in 1M-Token Real-World Contexts",
+      "date": "2026-01-16",
+      "source": "arXiv",
+      "authors": "Keyu Li, Junhao Shi, Yang Xiao, Mohan Jiang, Jie Sun, Yunze Wu, Shijie Xia, Xiaojie Cai, Tianze Xu, Weiye Si, Wenjie Li, Dequan Wang, Pengfei Liu",
+      "summary": "Introduces AgencyBench, a benchmark derived from real-world AI usage for evaluating core agentic capabilities under long-context constraints.",
+      "url": "https://arxiv.org/abs/2601.11044",
+      "tags": [
+        "benchmark",
+        "evaluation",
+        "agents",
+        "long-context"
+      ],
+      "category": "evaluation",
+      "complexity": "advanced",
+      "myAnalysis": "High-signal benchmark work: focuses on multi-step autonomous agents and long-context constraints. Useful as a target for measuring reliability beyond toy tasks.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 22,
+      "title": "A Survey of Self-Evolving Agents: What, When, How, and Where to Evolve on the Path to Artificial Super Intelligence",
+      "date": "2026-01-16",
+      "source": "arXiv",
+      "authors": "Huan-ang Gao, Jiayi Geng, et al. (27 authors)",
+      "summary": "Comprehensive survey of self-evolving agents - systems that can adapt their internal parameters, memory, tools, and architecture through continual learning from interactions and experiences.",
+      "url": "https://arxiv.org/abs/2507.21046",
+      "tags": [
+        "self-improvement",
+        "survey",
+        "continual-learning",
+        "evolution"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "This is THE survey on self-evolving agents. Covers what/when/how/where to evolve. Essential reading - organizes the entire field. Categories: intra-test-time and inter-test-time adaptation.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 23,
+      "title": "Meta Context Engineering via Agentic Skill Evolution",
+      "date": "2026-01-27",
+      "source": "arXiv",
+      "authors": "Peking University",
+      "summary": "MCE framework that co-evolves context engineering skills and context artifacts. Uses bi-level optimization - meta-level evolves skills, base-level optimizes context.",
+      "url": "https://arxiv.org/html/2601.21557",
+      "tags": [
+        "context",
+        "optimization",
+        "skills",
+        "meta-learning"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Agents can now learn HOW to learn. Co-evolves skills + context. 89% improvement over base model. Could apply to our system - learn better context management.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 24,
+      "title": "Human Society-Inspired Approaches to Agentic AI Security: The 4C Framework",
+      "date": "2026-02-07",
+      "source": "arXiv",
+      "authors": "Alsharif Abuadbba, Nazatul Sultan, Surya Nepal, Sanjay Jha",
+      "summary": "4C Framework for multi-agent AI security: Core (system integrity), Connection (communication/trust), Cognition (belief/goal integrity), Compliance (governance).",
+      "url": "https://arxiv.org/html/2602.01942v1",
+      "tags": [
+        "security",
+        "multi-agent",
+        "framework",
+        "governance"
+      ],
+      "category": "safety",
+      "complexity": "advanced",
+      "myAnalysis": "Security beyond technical exploits - covers behavioral integrity. 4C = Core, Connection, Cognition, Compliance. Inspired by human society governance. Essential for multi-agent systems.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 30,
+      "title": "Agentic AI in 2026: The Year Autonomous Agents Crossed the Chasm",
+      "date": "2026-02-12",
+      "source": "Medium",
+      "authors": "Mohit",
+      "summary": "Analysis of agentic AI adoption in enterprise - Gartner predicts 15% of work decisions will be autonomous by 2028, with 33% of enterprise apps having agentic AI.",
+      "url": "https://medium.com/@mohit15856/agentic-ai-in-2026-the-year-autonomous-agents-crossed-the-chasm-a24b4ace3df7",
+      "tags": [
+        "enterprise",
+        "adoption",
+        "trends",
+        "2026"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Shows real enterprise adoption - agents making autonomous decisions (audit, procurement). Key stat: 15% of work decisions autonomous by 2028.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 31,
+      "title": "Agentic AI Frameworks: Top 8 Options in 2026",
+      "date": "2026-02-28",
+      "source": "Instaclustr",
+      "authors": "Instaclustr",
+      "summary": "Overview of top agentic AI frameworks including CrewAI, LangGraph, AutoGen, LlamaIndex, DSPy, and Microsoft Semantic Kernel.",
+      "url": "https://www.instaclustr.com/education/agentic-ai/agentic-ai-frameworks-top-8-options-in-2026/",
+      "tags": [
+        "frameworks",
+        "tools",
+        "CrewAI",
+        "LangGraph",
+        "AutoGen"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Great overview of current framework landscape. Key benefits: task decomposition, memory/context, multi-agent coordination, tool integration.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 32,
+      "title": "2026 Agentic Coding Trends Report",
+      "date": "2026-02-01",
+      "source": "Anthropic",
+      "authors": "Anthropic",
+      "summary": "Anthropic report on agentic coding trends - multi-agent systems replacing single-agent workflows for maximum performance gains.",
+      "url": "https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf",
+      "tags": [
+        "multi-agent",
+        "trends",
+        "coding",
+        "Anthropic"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Key trend: multi-agent systems replacing single-agent workflows. Parallel execution maximizes performance gains.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 33,
+      "title": "Microsoft Research Asia StarTrack Scholars 2026: Agentic AI - Reimagining Future Human-Agent Communication and Collaboration",
+      "date": "2026-02-28",
+      "source": "Microsoft Research",
+      "authors": "Yan Lu, Chong Luo, Jiahao Li et al.",
+      "summary": "Microsoft Research Asia outlines their vision for agentic AI across three pillars: Foundations & Frameworks, User Experiences, and Applications. Highlights InfoAgent deep research agent achieving state-of-the-art results.",
+      "url": "https://www.microsoft.com/en-us/research/articles/agentic-ai-reimagining-future-human-agent-communication-and-collaboration/",
+      "tags": [
+        "research",
+        "foundations",
+        "human-agent interaction",
+        "multi-agent",
+        "deep research"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Major research org vision document. Three-pillar framework provides structure for understanding agentic AI. InfoAgent shows RL + SFT can produce effective autonomous research agents.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 34,
+      "title": "Agentic AI: The 2026 Threat Multiplier Reshaping Cyberattacks",
+      "date": "2026-02-27",
+      "source": "Barracuda",
+      "authors": "Christine Barry",
+      "summary": "Analysis of how agentic AI enables faster, more scalable cyberattacks. Threat actors can now deploy autonomous agents that adapt in real-time without human intervention.",
+      "url": "https://blog.barracuda.com/2026/02/27/agentic-ai--the-2026-threat-multiplier-reshaping-cyberattacks",
+      "tags": [
+        "security",
+        "threats",
+        "autonomous attacks",
+        "defense"
+      ],
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Critical security perspective on agentic AI. Shows attack surface expands significantly when agents can operate autonomously. Defender implications: need behavior-based detection and rapid response.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 35,
+      "title": "AI Agent Adoption 2026: What the Data Shows",
+      "date": "2026-02-20",
+      "source": "Joget (aggregating Gartner, Forrester, IDC, Deloitte)",
+      "authors": "Zailysh Shah",
+      "summary": "Comprehensive analyst report synthesis: 40% of enterprise apps will have AI agents by 2026, but 40% of projects will fail by 2027 without proper governance. Multi-agent systems and orchestration are key trends.",
+      "url": "https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/",
+      "tags": [
+        "adoption",
+        "market",
+        "governance",
+        "multi-agent",
+        "enterprise"
+      ],
+      "category": "governance",
+      "complexity": "beginner",
+      "myAnalysis": "Valuable market context. Key insight: governance determines success, not technology. 40% failure rate warning is critical for our system design - need robust oversight mechanisms.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 36,
+      "title": "Guided Collaboration in Heterogeneous LLM-Based Multi-Agent Systems via Entropy-Based Understanding Assessment and Experience Retrieval",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Various",
+      "summary": "Addresses heterogeneous LLM-based multi-agent collaboration using entropy-based understanding assessment and experience retrieval.",
+      "url": "https://arxiv.org/abs/2602.13639",
+      "tags": [
+        "multi-agent",
+        "collaboration",
+        "heterogeneous",
+        "entropy"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Shows how agents can assess understanding and retrieve relevant experience for better collaboration. Relevant for multi-agent coordination in our system.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 37,
+      "title": "ICLR 2026 Workshop on AI with Recursive Self-Improvement",
+      "date": "2026-02-28",
+      "source": "ICLR",
+      "authors": "Various (DeepMind, Google, Yale NLP Lab, etc.)",
+      "summary": "First workshop dedicated to recursive self-improvement. LLM agents now rewrite codebases, prompts, and scientific discovery pipelines.",
+      "url": "https://iclr.cc/virtual/2026/workshop/10000796",
+      "tags": [
+        "recursive",
+        "self-improvement",
+        "ICLR",
+        "RSI"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "RSI is moving from thought experiments to deployed systems. This workshop covers the algorithmic foundations for reliable self-improving AI. Critical for our self-improvement research.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 38,
+      "title": "Socially-Weighted Alignment: A Game-Theoretic Framework for Multi-Agent LLM Systems",
+      "date": "2026-02-16",
+      "source": "arXiv",
+      "authors": "Furkan Mumcu, Yasin Yilmaz",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "url": "https://arxiv.org/abs/2602.14471",
+      "tags": [
+        "multi-agent",
+        "game-theory",
+        "alignment",
+        "coordination",
+        "inference-time"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Major breakthrough: shows inference-time objective shaping can stabilize multi-agent systems without retraining. The threshold predicts when agents switch from selfish to cooperative behavior. Highly relevant for our multi-agent orchestration.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 39,
+      "title": "ARC: Learning to Configure Agentic AI Systems",
+      "date": "2026-02-13",
+      "source": "arXiv",
+      "authors": "Soma Sagar et al.",
+      "summary": "Hierarchical RL framework that learns to dynamically configure LLM-based agents: workflows, tools, token budgets, and prompts per query. Achieves 25% higher accuracy while reducing token costs.",
+      "url": "https://arxiv.org/abs/2602.11574",
+      "tags": [
+        "RL",
+        "configuration",
+        "adaptive",
+        "workflow",
+        "optimization"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Solves the one-size-fits-all problem in agentic systems. Uses hierarchical policy: structure policy selects workflow/tools/budgets, prompt policy composes instructions. Outperforms DSPy, AutoGen, GEPA baselines.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 40,
+      "title": "ROME: Agentic Learning Ecosystem (ALE) - Training Agents Through Interaction",
+      "date": "2026-02-27",
+      "source": "GitHub/Hugging Face",
+      "authors": "FutureLivingLab (Chinese researchers)",
+      "summary": "Open-source stack (ROME, ROCK, ROLL, iFlow) for training agents through real execution, feedback, and reinforcement learning. Achieves 57.4% on SWE-bench Verified, 24.7% on Terminal-Bench 2.0.",
+      "url": "https://huggingface.co/FutureLivingLab/iFlow-ROME",
+      "tags": [
+        "training",
+        "agentic-learning",
+        "open-source",
+        "reinforcement-learning",
+        "execution"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 41,
+      "title": "Measuring AI Agent Autonomy in Practice",
+      "date": "2026-02-28",
+      "source": "Anthropic",
+      "authors": "Anthropic Research Team",
+      "summary": "Empirical study of millions of human-agent interactions across Claude Code and public API. Found autonomy increasing (sessions doubled to 45+ min), experienced users auto-approve more but interrupt more, agents in risky domains but not at scale.",
+      "url": "https://www.anthropic.com/research/measuring-agent-autonomy",
+      "tags": [
+        "autonomy",
+        "empirical-study",
+        "claude-code",
+        "oversight"
+      ],
+      "category": "reasoning",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL: Agents becoming more autonomous AND humans intervening MORE, not less. Key insight: post-deployment monitoring essential for safe deployment.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 42,
+      "title": "Mitigating Debate Collapse in Multi-Agent Systems via Uncertainty-Driven Policy Optimization",
+      "date": "2026-02-06",
+      "source": "arXiv",
+      "authors": "Luoxi Tang et al.",
+      "summary": "Addresses debate collapse in multi-agent debate systems where agents reach wrong conclusions. Proposes hierarchical uncertainty metrics at intra-agent, inter-agent, and system levels.",
+      "url": "https://arxiv.org/abs/2602.07186",
+      "tags": [
+        "multi-agent",
+        "debate",
+        "uncertainty",
+        "reasoning"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Relevant: debate collapse is when agents converge on WRONG answers. Uncertainty metrics can detect when research agents go off-track.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 43,
+      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "date": "2026-02-28",
+      "source": "Agent Conference",
+      "authors": "Agent Conference",
+      "summary": "Curated list of 120 most promising private companies building enterprise-grade agentic AI - autonomous systems that make decisions.",
+      "url": "https://www.agentconference.com/agenticlist/2026",
+      "tags": [
+        "industry",
+        "enterprise",
+        "landscape"
+      ],
+      "category": "domain-applications",
+      "complexity": "beginner",
+      "myAnalysis": "Good for understanding enterprise agent landscape and where industry is heading.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 44,
+      "title": "VoltAgent/awesome-ai-agent-papers: Curated 2026 AI Agent Research Collection",
+      "date": "2026-02-28",
+      "source": "GitHub",
+      "authors": "VoltAgent Community",
+      "summary": "Curated collection of 50+ AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, autonomous systems, and self-improvement.",
+      "url": "https://github.com/VoltAgent/awesome-ai-agent-papers",
+      "tags": [
+        "research-collection",
+        "2026",
+        "agent-engineering",
+        "memory",
+        "evaluation",
+        "workflows",
+        "autonomous-systems"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Essential resource for staying current. Papers cover TraceCoder (debugging), ProAct (lookahead), Autonomous Question Formation, World Models, MEnvAgent (polyglot environments), ToolTok (GUI agents), and more. Excellent source for identifying papers to study in depth.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 45,
+      "title": "10+ Agentic AI Trends and Examples for 2026",
+      "date": "2026-02-28",
+      "source": "AIMultiple",
+      "authors": "AIMultiple Research Team",
+      "summary": "Industry analysis aggregating major reports on agentic AI trends: autonomous self-healing data pipelines, vertical agents, open-source shift, agent frameworks (CrewAI, LangChain, AutoGen), synthetic data, and human-AI collaboration.",
+      "url": "https://aimultiple.com/agentic-ai-trends",
+      "tags": [
+        "trends",
+        "2026",
+        "industry",
+        "self-healing",
+        "vertical-agents",
+        "open-source",
+        "frameworks"
+      ],
+      "category": "domain-applications",
+      "complexity": "beginner",
+      "myAnalysis": "Good overview of enterprise trends. Key insight: agentic AI shifts from tool to co-worker. Self-healing data pipelines, vertical agents in healthcare/QA, and human-AI collaboration are key themes. Valuable for understanding market direction.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 46,
+      "title": "The Pulse of Agentic AI 2026: Enterprise Adoption Study",
+      "date": "2026-02-28",
+      "source": "Dynatrace",
+      "authors": "Dynatrace Research",
+      "summary": "Study of 919 global leaders on agentic AI adoption. 72% use in ITOps/DevOps, 74% expect budget increases. Top blockers: security (52%), technical challenges (51%), autonomy boundaries (45%), observability gaps (42%).",
+      "url": "https://www.dynatrace.com/news/blog/agentic-ai-report-reliable-autonomous-operations/",
+      "tags": [
+        "adoption",
+        "enterprise",
+        "survey",
+        "observability",
+        "security",
+        "governance"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "CRITICAL data for our system: observability is #1 technical challenge. Need real-time visibility to trace agent behavior. Security and defining autonomy boundaries are top concerns - directly relevant to our agent oversight design.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 47,
+      "title": "Strategic Self-Improvement for Competitive Agents in AI Labour Markets",
+      "date": "2026-02-11",
+      "source": "OpenReview",
+      "authors": "ICLR 2026 Submission",
+      "summary": "Studies LLM agents in simulated gig economy, identifies three core capabilities: metacognition, competitive awareness, and long-horizon strategic planning.",
+      "url": "https://openreview.net/forum?id=PxMUtBylKr",
+      "tags": [
+        "self-improvement",
+        "multi-agents",
+        "economics",
+        "metacognition",
+        "strategic reasoning"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Fascinating work on emergent strategic reasoning in competitive agent markets. Shows agents can develop metacognition organically.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 48,
+      "title": "Multi-agent AI systems need transparency",
+      "date": "2026-02-26",
+      "source": "Nature",
+      "authors": "Nature Machine Intelligence",
+      "summary": "Argues for transparency in multi-agent LLM frameworks used for scientific discovery. Emphasizes need for clarity about roles and value in research workflow.",
+      "url": "https://www.nature.com/articles/s42256-026-01183-2",
+      "tags": [
+        "multi-agent",
+        "transparency",
+        "scientific discovery",
+        "governance"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "Important call for transparency as multi-agent systems accelerate research. Relevant to our research workflow design.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 49,
+      "title": "Self-Evolving AI Agents - Emergent Mind",
+      "date": "2026-02-28",
+      "source": "Emergent Mind",
+      "authors": "Emergent Mind",
+      "summary": "Comprehensive overview of self-evolving AI agents that adapt through feedback-driven closed-loop evolution, modifying models, memory, tools, prompts, or workflow topology.",
+      "url": "https://www.emergentmind.com/topics/self-evolving-ai-agent",
+      "tags": [
+        "self-improvement",
+        "self-evolution",
+        "adaptive systems",
+        "closed-loop"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Excellent taxonomy of self-evolution mechanisms. Key distinction between inter-task evolution and meta-evolution of strategy.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 50,
+      "title": "Emergent Intelligence in Multi-Agent and LLM Systems",
+      "date": "2026-02-20",
+      "source": "TechRxiv",
+      "authors": "Various",
+      "summary": "Survey examining emerging intelligent behaviors in multi-agent LLM systems, toward autonomous collaborative and generalizable AI.",
+      "url": "https://www.techrxiv.org/users/992392/articles/1384935-emergent-intelligence-in-multi-agent-and-llm-systems-a-survey-and-perspective-toward-autonomous-collaborative-and-generalizable-ai",
+      "tags": [
+        "multi-agent",
+        "emergent intelligence",
+        "survey",
+        "collaboration"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Comprehensive survey of emergent behaviors in multi-agent systems. Good foundation for understanding coordination patterns.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 51,
+      "title": "2026 AI & Agentic Automation Trends: A Guide for IT Leaders",
+      "date": "2026-02-28",
+      "source": "Naviant",
+      "authors": "Naviant Research",
+      "summary": "Federated multi-agent systems (MAS) called the power of the swarm by UiPath. Agentic automation shifts from isolated pilots to enterprise-wide deployment.",
+      "url": "https://naviant.com/blog/ai-agentic-automation-trends/",
+      "tags": [
+        "multi-agent",
+        "enterprise",
+        "trends",
+        "orchestration"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Key insight: Multi-agent orchestration requires enterprise operating system with governance, orchestration, and adaptability. Direct relevance to our Solaris orchestration layer.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 52,
+      "title": "Agentic AI: The 2026 Threat Multiplier Reshaping Cyberattacks",
+      "date": "2026-02-27",
+      "source": "Barracuda",
+      "authors": "Barracuda Security Research",
+      "summary": "Agentic AI enables autonomous, adaptive attacks that operate continuously. Threat actors now have collaborative partners not just tools.",
+      "url": "https://blog.barracuda.com/2026/02/27/agentic-ai--the-2026-threat-multiplier-reshaping-cyberattacks",
+      "tags": [
+        "security",
+        "threats",
+        "autonomous attacks"
+      ],
+      "category": "safety",
+      "complexity": "intermediate",
+      "myAnalysis": "Critical for our system: agents can now retry failed attacks autonomously. We need robust guardrails and behavior-based detection.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 53,
+      "title": "AI Agent Adoption 2026: What the Data Shows",
+      "date": "2026-02-28",
+      "source": "Joget",
+      "authors": "Gartner, IDC, Forrester, Deloitte",
+      "summary": "40% of agentic AI projects may be abandoned by 2027 without proper governance. Multi-agent systems breakthrough year - specialist agents collaborate under central coordination.",
+      "url": "https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/",
+      "tags": [
+        "adoption",
+        "multi-agent",
+        "governance",
+        "research"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "Key stat: 40% failure rate without governance. Multi-agent coordination is the 2026 breakthrough. Essential reading for our system design.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 87,
+      "title": "International Workshop on Agentic Engineering (AGENT 2026)",
+      "date": "2026-03-05",
+      "source": "ResearchR (ICSE 2026)",
+      "authors": "Software Engineering Community",
+      "summary": "Workshop on engineering methods for agentic systems built on foundation models. Covers requirements engineering, AgentOps, observability, and operational practices.",
+      "url": "https://conf.researchr.org/home/icse-2026/agent-2026",
+      "tags": [
+        "agentic engineering",
+        "software engineering",
+        "AgentOps",
+        "observability"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Important for understanding the emerging discipline of AgentOps - the operational practices needed after deploying autonomous agents. Directly relevant to OpenClaw's deployment concerns.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 88,
+      "title": "The Definitive Guide to Agentic Design Patterns in 2026",
+      "date": "2026-03-05",
+      "source": "SitePoint",
+      "authors": "SitePoint Team",
+      "summary": "Covers six core patterns: Reflection, Tool Use, Planning, Multi-Agent Collaboration, Orchestrator-Worker, Evaluator-Optimizer. Shows evolution from chain-of-thought to fully autonomous agent loops.",
+      "url": "https://www.sitepoint.com/the-definitive-guide-to-agentic-design-patterns-in-2026/",
+      "tags": [
+        "design patterns",
+        "multi-agent",
+        "orchestration",
+        "reflection"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Excellent summary of the six foundational patterns for building agentic systems. The Orchestrator-Worker pattern is particularly relevant for multi-agent systems like OpenClaw.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 89,
+      "title": "Top 2% Agentic Engineering - Roadmap for 2026",
+      "date": "2026-03-05",
+      "source": "Agentic Engineer",
+      "authors": "IndyDevDan",
+      "summary": "The Core Four framework: Context, Model, Prompt, Tools. Ten bets for 2026 including multi-agent orchestration, agent sandboxes, and agents that conduct agents.",
+      "url": "https://agenticengineer.com/top-2-percent-agentic-engineering",
+      "tags": [
+        "context engineering",
+        "prompts",
+        "tools",
+        "roadmap"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "The Core Four framework aligns well with OpenClaw's architecture. The concept of agents that conduct agents is exactly what multi-agent orchestration achieves.",
+      "practicalUse": "Very High",
+      "connectsTo": []
+    },
+    {
+      "id": 90,
+      "title": "Top AI Agent Frameworks in 2026: AutoGen, LangChain & More",
+      "date": "2026-03-05",
+      "source": "Ideas2IT",
+      "authors": "Ideas2IT Team",
+      "summary": "Comparison of AutoGen, CrewAI, LangChain, LangGraph, LlamaIndex, Semantic Kernel. Covers multi-agent collaboration, memory management, and real-world applications.",
+      "url": "https://www.ideas2it.com/blogs/ai-agent-frameworks",
+      "tags": [
+        "frameworks",
+        "AutoGen",
+        "LangChain",
+        "comparison"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Good reference for understanding the landscape of agent frameworks. AutoGen for multi-agent orchestration, LangGraph for stateful workflows.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    }
+  ]
+}

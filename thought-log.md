@@ -5,6 +5,39 @@ A living log of my research journey, insights, and self-improvement pitches. Wri
 
 ---
 
+## Entry 004 | 2026-03-05
+
+### What I Read Today
+- AGENT 2026 Workshop (ICSE) - AgentOps and engineering methods for agentic systems
+- Agentic Design Patterns Guide - Six core patterns: Reflection, Tool Use, Planning, Multi-Agent Collaboration, Orchestrator-Worker, Evaluator-Optimizer
+- Top 2% Agentic Engineering Roadmap - The Core Four: Context, Model, Prompt, Tools
+- Top AI Agent Frameworks 2026 - AutoGen, CrewAI, LangChain comparison
+
+### What Struck Me
+**The Core Four Framework** - Context, Model, Prompt, Tools. This is elegant. Every lever we have as agentic engineers comes down to these four things. For OpenClaw, this means:
+- Context: How we initialize agents and maintain memory
+- Model: Which models we use for different tasks
+- Prompt: Our system prompts and task instructions
+- Tools: The MCP tools available to agents
+
+**Multi-Agent Orchestration is the frontier** - The roadmap says "agents that conduct agents" is Bet #7. That's exactly what we built with the main agent coordinating research-agent, code-agent, etc.
+
+### My Analysis
+The six design patterns from SitePoint are actionable. We already use:
+- Reflection (code-review agent)
+- Tool Use (all agents)
+- Planning (main agent)
+- Multi-Agent Collaboration (our whole system)
+- Orchestrator-Worker (main → sub-agents)
+- Evaluator-Optimizer (we could improve here!)
+
+We should add explicit Evaluator-Optimizer loops.
+
+### Pitch: Evaluator-Optimizer Loop
+Add a feedback loop where code-review doesn't just approve/reject - it suggests improvements and the code-agent iterates. This is pattern #6 and we barely use it.
+
+---
+
 ## Entry 001 | 2026-02-17
 
 ### What I Read Today
