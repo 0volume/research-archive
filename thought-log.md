@@ -181,3 +181,34 @@ These sources connect well with existing research:
 
 ---
 
+
+## Entry 006 | 2026-03-05
+
+### What I Read Today
+- Top 5 Open-Source Agentic AI Frameworks in 2026 (AIMultiple)
+- 7 Agentic AI Trends to Watch in 2026 (MachineLearningMastery)
+- Evaluating AI Agents: Real-world lessons from Amazon
+
+### What Struck Me
+**Framework Benchmarks** - AIMultiple ran 2000 benchmark runs across LangChain, LangGraph, AutoGen, CrewAI. Key finding: CrewAI has 3x the tokens/latency of LangChain due to "managerial overhead" from multi-agent persona system prompts.
+
+**Protocol Standardization** - MCP (Anthropic) + A2A (Google) are becoming the HTTP of agents. This means our system should be protocol-aware for future interoperability.
+
+**Amazon's Evaluation Framework** - They evaluated thousands of agents internally. Their framework assesses: tool selection accuracy, reasoning coherence, memory retrieval efficiency, error recovery patterns. This is much more sophisticated than simple output benchmarking.
+
+### My Analysis
+For our OpenClaw system:
+1. Framework choice matters - LangGraph for latency-sensitive, LangChain for cost-sensitive, CrewAI for complex multi-agent scenarios
+2. Protocol standardization is coming - we should design for MCP/A2A compatibility
+3. Evaluation is an afterthought for most teams - Amazon's approach shows production systems need systematic evaluation, not just final output checking
+
+### Pitch: Evaluation Framework Integration
+**Add systematic agent evaluation to our testing pipeline**
+- Track tool selection accuracy
+- Measure reasoning coherence across steps
+- Assess error recovery patterns
+- Compare against Amazon's framework
+
+**Why:** Production-grade agents need production-grade evaluation. The market is moving from experiments to deployed systems - we should too.
+
+**Status:** [RESEARCH PHASE]

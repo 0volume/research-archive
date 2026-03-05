@@ -1,6 +1,6 @@
 {
   "version": "2.5",
-  "lastUpdated": "2026-03-04",
+  "lastUpdated": "2026-03-05",
   "sources": [
     "arXiv",
     "GitHub",
@@ -152,7 +152,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -511,7 +511,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -786,7 +786,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -839,7 +839,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -885,7 +885,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1147,7 +1147,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1680,6 +1680,75 @@
       "practicalUse": "Very High",
       "connectsTo": [
         78
+      ]
+    },
+    {
+      "id": 81,
+      "title": "Top 5 Open-Source Agentic AI Frameworks in 2026",
+      "date": "2026-03-05",
+      "source": "AIMultiple",
+      "authors": "AIMultiple Team",
+      "summary": "Benchmark comparison of LangChain, LangGraph, AutoGen, CrewAI across 5 tasks (2000 runs). LangChain most token-efficient; LangGraph fastest/lowest latency; CrewAI has highest overhead.",
+      "url": "https://aimultiple.com/agentic-frameworks",
+      "tags": [
+        "frameworks",
+        "benchmarks",
+        "LangChain",
+        "LangGraph",
+        "AutoGen",
+        "CrewAI"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical benchmark data for framework selection. CrewAI's 3x overhead vs LangChain matters for cost-sensitive deployments. Key for our architecture decisions.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 82,
+      "title": "7 Agentic AI Trends to Watch in 2026",
+      "date": "2026-03-05",
+      "source": "MachineLearningMastery",
+      "authors": "Jason Brownlee",
+      "summary": "Market projected $7.8B to $52B by 2030. Gartner predicts 40% enterprise app embedding by 2026. Key trends: multi-agent orchestration, MCP/A2A protocols, enterprise scaling, governance.",
+      "url": "https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/",
+      "tags": [
+        "trends",
+        "multi-agent",
+        "MCP",
+        "A2A",
+        "governance",
+        "enterprise"
+      ],
+      "category": "self-improvement",
+      "complexity": "beginner",
+      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot\u2192production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
+      "practicalUse": "Medium",
+      "connectsTo": [
+        81
+      ]
+    },
+    {
+      "id": 83,
+      "title": "Evaluating AI Agents: Real-world lessons from Amazon",
+      "date": "2026-03-05",
+      "source": "AWS Blog",
+      "authors": "Yunfei Bai, Allie Colin, Kashif Imran, Winnie Xiong",
+      "summary": "Amazon's comprehensive evaluation framework for agentic AI systems. Addresses tool selection accuracy, multi-step reasoning, memory retrieval, error recovery patterns.",
+      "url": "https://aws.amazon.com/blogs/machine-learning/evaluating-ai-agents-real-world-lessons-from-building-agentic-systems-at-amazon/",
+      "tags": [
+        "evaluation",
+        "metrics",
+        "Amazon",
+        "production",
+        "testing"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Production-grade evaluation from thousands of Amazon agents. Shows need for systematic error recovery assessment, not just final output checking.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        82
       ]
     }
   ]
