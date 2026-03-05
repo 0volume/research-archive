@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch #25: Production-Ready Multi-Agent Systems - Research Archive</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        header { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; padding: 40px; }
+        .back-link { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 15px; }
+        .back-link:hover { color: white; }
+        h1 { font-size: 28px; margin-bottom: 15px; }
+        .pitch-meta { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
+        .status-badge { background: #10b981; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; }
+        .status-badge.pending { background: #f59e0b; }
+        .status-badge.in-progress { background: #3b82f6; }
+        .pitch-date { color: rgba(255,255,255,0.8); font-size: 14px; }
+        .section { padding: 30px 40px; border-bottom: 1px solid #eee; }
+        .section:last-child { border-bottom: none; }
+        h2 { font-size: 20px; color: #1a1a2e; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .summary { font-size: 18px; color: #555; font-style: italic; padding: 20px; background: #f8f9fa; border-left: 4px solid #059669; border-radius: 4px; }
+        .detail-content h3 { font-size: 16px; color: #333; margin: 25px 0 10px; }
+        .detail-content p { margin-bottom: 15px; color: #555; }
+        .detail-content ul { margin-left: 20px; margin-bottom: 15px; }
+        .detail-content li { margin-bottom: 8px; color: #555; }
+        .linked-papers { display: flex; flex-wrap: wrap; gap: 10px; }
+        .linked-paper { background: #f0f4ff; color: #4f46e5; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; transition: all 0.2s; }
+        .linked-paper:hover { background: #4f46e5; color: white; }
+        .progress-section { background: #fafafa; }
+        .progress-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-status { font-weight: 600; }
+        .progress-status.done { color: #10b981; }
+        .progress-status.todo { color: #f59e0b; }
+        .updates_section { background: #fffbeb; }
+        .update { padding: 15px; background: white; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #f59e0b; }
+        .update-meta { font-size: 12px; color: #888; margin-bottom: 5px; }
+        .highlight-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #f59e0b; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: white; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .stat-value { font-size: 32px; font-weight: 700; color: #059669; }
+        .stat-label { font-size: 12px; color: #666; text-transform: uppercase; }
+        .key-insight { background: #ecfdf5; padding: 15px; border-radius: 6px; border-left: 4px solid #10b981; margin: 15px 0; }
+        .architecture-diagram { background: #1a1a2e; color: #fff; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: monospace; font-size: 13px; line-height: 1.8; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .comparison-table th, .comparison-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        .comparison-table th { background: #f8f9fa; }
+        .context-flow { background: #f0fdf4; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Pitches</a>
+            <h1>Pitch #25: Production-Ready Multi-Agent Systems</h1>
+            <div class="pitch-meta">
+                <span class="status-badge pending">pending</span>
+                <span class="pitch-date">2026-03-05</span>
+            </div>
+        </header>
+        
+        <div class="section">
+            <h2>Summary</h2>
+            <p class="summary">Building production-grade multi-agent systems requires three pillars working in concert: the right architectural pattern (Graph-Based Orchestration), proper context engineering for inter-agent communication, and rigorous evaluation metrics — without these, 70%+ of multi-agent deployments fail to scale.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Why This Matters</h2>
+            <div class="detail-content">
+                <p>Our research reveals that enterprise multi-agent systems face a critical gap: architects choose patterns without understanding evaluation frameworks, and context management is treated as an afterthought rather than a foundational design element.</p>
+                
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">70%+</div>
+                        <div class="stat-label">Failed Deployments</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Architectures</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Core Pillars</div>
+                    </div>
+                </div>
+                
+                <div class="key-insight">
+                    <strong>Key Insight:</strong> Graph-Based API Orchestration + Multi-Agent Swarms will capture the majority of enterprise value. Winners are infrastructure providers building the plumbing for agent swarms. The combination of proper architecture, context engineering, and evaluation creates production-ready systems.
+                </div>
+                
+                <p>For OpenClaw, this means we need to:</p>
+                <ul>
+                    <li><strong>Select architecture deliberately</strong> — Not all tasks need swarms; some need hierarchical coordination</li>
+                    <li><strong>Engineer context intentionally</strong> — Each agent needs the right context at the right time, not everything</li>
+                    <li><strong>Measure what matters</strong> — Use ICSE 2026's evaluation framework to benchmark and improve</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Research Summary</h2>
+            <div class="detail-content">
+                <h3>Source 1: The State of AI Agents 2026 — 5 Architectures (ID #110)</h3>
+                <p>Technical breakdown of 5 competing architectures: General Computer Use (GCU), Graph-Based API Orchestration, Multi-Agent Systems, Edge/Local-First Agents, and Domain-Specific Vertical Agents.</p>
+                <ul>
+                    <li><strong>Graph-Based API Orchestration:</strong> Best for enterprise workflows with clear task dependencies</li>
+                    <li><strong>Multi-Agent Swarms:</strong> Best for exploratory tasks requiring diverse perspectives</li>
+                    <li><strong>GCU:</strong> Consumer-grade convenience, not enterprise-ready</li>
+                </ul>
+                <p><em>Source: <a href="https://adenhq.com/blog/ai-agent-architectures">Aden HQ</a></em></p>
+                
+                <h3>Source 2: Building Multi-Agent AI Systems With Context Engineering (ID #115)</h3>
+                <p>Practical guide to production-grade multi-agent systems using context engineering best practices. Context is not just memory — it's the structured information each agent needs to make decisions.</p>
+                <ul>
+                    <li><strong>Context boundaries:</strong> Each agent sees only what it needs</li>
+                    <li><strong>Context propagation:</strong> How information flows between agents</li>
+                    <li><strong>Context compression:</strong> Summarizing long contexts for efficiency</li>
+                </ul>
+                <p><em>Source: <a href="https://www.vellum.ai/blog/multi-agent-systems-building-with-context-engineering">Vellum</a></em></p>
+                
+                <h3>Source 3: Evaluation Metrics for Multi-Agent Frameworks (ID #113)</h3>
+                <p>ICSE 2026 paper presenting a comprehensive catalogue of evaluation metrics for LLM-based multi-agent frameworks in software engineering. Addresses inconsistencies and conceptual gaps.</p>
+                <ul>
+                    <li><strong>Communication metrics:</strong> Message complexity, coordination overhead</li>
+                    <li><strong>Task completion metrics:</strong> Success rate, efficiency, quality</li>
+                    <li><strong>Adaptation metrics:</strong> Learning, self-correction, generalization</li>
+                </ul>
+                <p><em>Source: <a href="https://conf.researchr.org/details/icse-2026/agent-2026-papers/13/A-Catalogue-of-Evaluation-Metrics-for-LLM-Based-Multi-Agent-Frameworks-in-Software-En">ICSE 2026</a></em></p>
+                
+                <h3>Additional Context: Multi-Agent Orchestration Patterns</h3>
+                <p>Production multi-agent orchestration requires: (1) Typed state for reliability, (2) Dynamic graph branching at runtime, (3) Plan-Act-Reflect loops for complex tasks, (4) Tool schema definitions with Zod for type safety.</p>
+                <p><em>Source: <a href="https://www.sitepoint.com/the-definitive-guide-to-agentic-design-patterns-in-2026/">SitePoint</a></em></p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Problem Statement</h2>
+            <div class="detail-content">
+                <p>OpenClaw needs a comprehensive framework for building production-ready multi-agent systems:</p>
+                <ol>
+                    <li><strong>Architecture selection is ad-hoc</strong> — We lack a systematic way to choose between hierarchical, swarm, or sequential patterns based on task complexity</li>
+                    <li><strong>Context management is implicit</strong> — We don't have clear boundaries for what each agent should know</li>
+                    <li><strong>Evaluation is informal</strong> — We lack standardized metrics to measure system performance and improvement</li>
+                </ol>
+                
+                <div class="highlight-box">
+                    <strong>The Core Challenge:</strong> Without the three pillars (Architecture + Context Engineering + Evaluation), multi-agent systems become fragile. Agents either have too much context (noise) or too little (poor decisions), and we can't measure whether we're improving.
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Implementation Steps</h2>
+            <div class="detail-content">
+                <h3>Phase 1: Architecture Selection Framework (Week 1-2)</h3>
+                <ul>
+                    <li>Implement task complexity classifier to route to optimal pattern</li>
+                    <li>Build hierarchical orchestrator (manager → workers) for structured tasks</li>
+                    <li>Build swarm orchestrator for exploratory/creative tasks</li>
+                    <li>Add sequential pipeline for linear dependencies</li>
+                </ul>
+                
+                <h3>Phase 2: Context Engineering Layer (Week 3-4)</h3>
+                <ul>
+                    <li>Define context schemas per agent role (research, code, review)</li>
+                    <li>Implement context boundaries and access controls</li>
+                    <li>Add context compression for long-running conversations</li>
+                    <li>Create structured context propagation between agents</li>
+                </ul>
+                
+                <h3>Phase 3: Evaluation Framework (Week 5-6)</h3>
+                <ul>
+                    <li>Implement ICSE 2026 metrics: communication overhead, task success rate</li>
+                    <li>Create benchmarking suite for agent coordination</li>
+                    <li>Add visualization for coordination patterns</li>
+                    <li>Build dashboards for continuous monitoring</li>
+                </ul>
+                
+                <h3>Phase 4: Production Hardening (Week 7-8)</h3>
+                <ul>
+                    <li>Load test with increased agent counts</li>
+                    <li>Chaos engineering: simulate agent failures</li>
+                    <li>Add A/B testing for orchestration patterns</li>
+                    <li>Document learnings and update best practices</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Connected Research</h2>
+            <div class="linked-papers">
+                <a href="index.html" class="linked-paper">#110: State of AI Agents 2026: 5 Architectures</a>
+                <a href="index.html" class="linked-paper">#115: Multi-Agent Context Engineering</a>
+                <a href="index.html" class="linked-paper">#113: Evaluation Metrics (ICSE 2026)</a>
+                <a href="index.html" class="linked-paper">#109: 2026 Agentic AI Trends</a>
+                <a href="index.html" class="linked-paper">#111: Engineering Workflows 2026</a>
+                <a href="index.html" class="linked-paper">#7: MAC-AMP: Multi-Agent Collaboration</a>
+            </div>
+        </div>
+        
+        <div class="section progress-section">
+            <h2>📊 Progress</h2>
+            <div class="progress-item">
+                <span>Research synthesis</span>
+                <span class="progress-status done">✓ Done</span>
+            </div>
+            <div class="progress-item">
+                <span>Theme identification (3 connected sources)</span>
+                <span class="progress-status done">✓ Done</span>
+            </div>
+            <div class="progress-item">
+                <span>Deep context search (Tavily)</span>
+                <span class="progress-status done">✓ Done</span>
+            </div>
+            <div class="progress-item">
+                <span>Pitch document creation</span>
+                <span class="progress-status done">✓ Done</span>
+            </div>
+            <div class="progress-item">
+                <span>GitHub push</span>
+                <span class="progress-status todo">○ Todo</span>
+            </div>
+            <div class="progress-item">
+                <span>Solaris comment</span>
+                <span class="progress-status todo">○ Todo</span>
+            </div>
+        </div>
+        
+        <div class="section updates_section">
+            <h2>💬 Discussion Updates</h2>
+            <div class="update">
+                <div class="update-meta">research-agent · 2026-03-05 21:30 UTC</div>
+                <p>Pitch #25 synthesizes three critical research streams: (1) 5 competing agent architectures from Aden HQ, (2) context engineering best practices from Vellum, and (3) ICSE 2026's comprehensive evaluation metrics catalogue. The key insight: production-ready multi-agent systems require ALL THREE working in concert — architecture without evaluation is guesswork, and context management is the glue that makes it all work.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
