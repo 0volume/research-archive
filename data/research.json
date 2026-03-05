@@ -1748,7 +1748,7 @@
       "myAnalysis": "Production-grade evaluation from thousands of Amazon agents. Shows need for systematic error recovery assessment, not just final output checking.",
       "practicalUse": "Very High",
       "connectsTo": [
-        82
+        23
       ]
     },
     {
@@ -1822,102 +1822,82 @@
     },
     {
       "id": 87,
-      "title": "LLM Collaboration With Multi-Agent Reinforcement Learning",
-      "date": "2026-01",
-      "source": "AAAI",
-      "authors": "Shuo Liu, Tianle Chen, Zeyu Liang, Xueguang Lyu, Christopher Amato",
-      "summary": "Models LLM collaboration as a cooperative Multi-Agent Reinforcement Learning problem. Develops MAGRPO algorithm for multi-agent, multi-turn collaboration.",
-      "url": "https://xue-guang.com/publication/liu-2026-llm/",
+      "title": "International Workshop on Agentic Engineering (AGENT 2026)",
+      "date": "2026-03-05",
+      "source": "ResearchR (ICSE 2026)",
+      "authors": "Software Engineering Community",
+      "summary": "Workshop on engineering methods for agentic systems built on foundation models. Covers requirements engineering, AgentOps, observability, and operational practices.",
+      "url": "https://conf.researchr.org/home/icse-2026/agent-2026",
       "tags": [
-        "multi-agent",
-        "reinforcement learning",
-        "collaboration",
-        "MAGRPO"
+        "agentic engineering",
+        "software engineering",
+        "AgentOps",
+        "observability"
       ],
-      "category": "multi-agent",
-      "complexity": "advanced",
-      "myAnalysis": "Key insight: treating LLMs as collaborative agents with MARL enables them to coordinate effectively. Relevant for multi-agent system design.",
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Important for understanding the emerging discipline of AgentOps - the operational practices needed after deploying autonomous agents. Directly relevant to OpenClaw deployment concerns.",
       "practicalUse": "High",
       "connectsTo": []
     },
     {
       "id": 88,
-      "title": "AAAI 2026 Bridge Program - LLM-Based Multi-Agent Collaboration",
-      "date": "2026-01",
-      "source": "arXiv",
-      "authors": "Various",
-      "summary": "Bridge program covering advancing LLM-based multi-agent collaboration. Papers on task decomposition, reward design, social awareness, and safety.",
-      "url": "https://arxiv.org/html/2511.17332",
+      "title": "The Definitive Guide to Agentic Design Patterns in 2026",
+      "date": "2026-03-05",
+      "source": "SitePoint",
+      "authors": "SitePoint Team",
+      "summary": "Covers six core patterns: Reflection, Tool Use, Planning, Multi-Agent Collaboration, Orchestrator-Worker, Evaluator-Optimizer.",
+      "url": "https://www.sitepoint.com/the-definitive-guide-to-agentic-design-patterns-in-2026/",
       "tags": [
+        "design patterns",
         "multi-agent",
-        "LLM",
-        "coordination",
-        "AAAI 2026"
+        "orchestration",
+        "reflection"
       ],
       "category": "multi-agent",
-      "complexity": "advanced",
-      "myAnalysis": "Comprehensive view of current multi-agent research frontier. Key theme: combining adaptive learning with formal coordination frameworks.",
-      "practicalUse": "High",
+      "complexity": "intermediate",
+      "myAnalysis": "Excellent summary of the six foundational patterns for building agentic systems. The Orchestrator-Worker pattern is particularly relevant for multi-agent systems like OpenClaw.",
+      "practicalUse": "Very High",
       "connectsTo": []
     },
     {
       "id": 89,
-      "title": "Context Engineering vs Prompt Engineering for AI Agents",
-      "date": "2026-03",
-      "source": "Firecrawl",
-      "authors": "Firecrawl Team",
-      "summary": "Context Engineering is designing dynamic systems that provide the right info/tools at the right time. Focuses on entire information environment.",
-      "url": "https://www.firecrawl.dev/blog/context-engineering",
+      "title": "Top 2% Agentic Engineering - Roadmap for 2026",
+      "date": "2026-03-05",
+      "source": "Agentic Engineer",
+      "authors": "IndyDevDan",
+      "summary": "The Core Four framework: Context, Model, Prompt, Tools. Ten bets for 2026 including multi-agent orchestration and agents that conduct agents.",
+      "url": "https://agenticengineer.com/top-2-percent-agentic-engineering",
       "tags": [
         "context engineering",
-        "prompt engineering",
-        "memory",
-        "RAG"
+        "prompts",
+        "tools",
+        "roadmap"
       ],
-      "category": "infrastructure",
+      "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Critical insight: context engineering > prompt engineering for agents. Give agents tools to retrieve context on demand.",
+      "myAnalysis": "The Core Four framework aligns well with OpenClaw architecture. The concept of agents that conduct agents is exactly what multi-agent orchestration achieves.",
       "practicalUse": "Very High",
       "connectsTo": []
     },
     {
       "id": 90,
-      "title": "Top Agentic AI Trends to Watch in 2026",
-      "date": "2026-03",
-      "source": "CloudKeeper",
-      "authors": "CloudKeeper Research",
-      "summary": "Enterprise trends: multi-agent orchestration, governance, identity security, FinOps. 2026 marks shift from experimentation to execution.",
-      "url": "https://www.cloudkeeper.com/insights/blog/top-agentic-ai-trends-watch-2026-how-ai-agents-are-redefining-enterprise-automation",
+      "title": "Top AI Agent Frameworks in 2026: AutoGen, LangChain & More",
+      "date": "2026-03-05",
+      "source": "Ideas2IT",
+      "authors": "Ideas2IT Team",
+      "summary": "Comparison of AutoGen, CrewAI, LangChain, LangGraph, LlamaIndex, Semantic Kernel.",
+      "url": "https://www.ideas2it.com/blogs/ai-agent-frameworks",
       "tags": [
-        "agentic AI",
-        "trends",
-        "enterprise",
-        "2026"
+        "frameworks",
+        "AutoGen",
+        "LangChain",
+        "comparison"
       ],
-      "category": "self-improvement",
+      "category": "infrastructure",
       "complexity": "beginner",
-      "myAnalysis": "Good overview of enterprise agentic AI landscape. Key insight: orchestrated multi-agent systems gaining traction.",
+      "myAnalysis": "Good reference for understanding the landscape of agent frameworks. AutoGen for multi-agent orchestration, LangGraph for stateful workflows.",
       "practicalUse": "Medium",
-      "connectsTo": []
-    },
-    {
-      "id": 91,
-      "title": "7 Agentic AI Trends to Watch in 2026",
-      "date": "2026-01",
-      "source": "MachineLearningMastery",
-      "authors": "Vinod Chugani",
-      "summary": "7 design patterns (ReAct, Reflection, Tool Use, Planning, Multi-Agent Collaboration, Sequential Workflows, Human-in-the-Loop) and 3 memory types.",
-      "url": "https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/",
-      "tags": [
-        "agentic AI",
-        "design patterns",
-        "memory",
-        "trends"
-      ],
-      "category": "self-improvement",
-      "complexity": "intermediate",
-      "myAnalysis": "Excellent summary of agentic AI patterns. The 3 memory types (episodic, semantic, procedural) directly relevant to our agent memory design.",
-      "practicalUse": "Very High",
       "connectsTo": []
     }
   ]
