@@ -10,6 +10,9 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 </head>
 <body>
+    <!-- Skip to Content Link for Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
     <div class="archive-container">
         <header class="archive-header cyber-header">
             <a href="./index.html" class="archive-logo cyber-logo">
@@ -61,7 +64,7 @@
             <!-- QUICK_LINKS removed - using top filters instead -->
         </aside>
         
-        <main class="archive-main">
+        <main class="archive-main" id="main-content">
             <div class="archive-title">
                 <h1 data-text="Research Archive">Research Archive</h1>
                 <div class="archive-subtitle">Research • Pitches</div>
@@ -221,6 +224,23 @@
     </div>
 
     <script>
+        // ===========================================
+        // UTILITY FUNCTIONS
+        // ===========================================
+        
+        // Debounce function for search input (300ms)
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
         // Pre-loaded data - always available (ALL 29 entries embedded for offline use)
         const embeddedData = {
             research: [
@@ -637,15 +657,15 @@
             }
         }
         
-        searchInput.addEventListener('input', (e) => {
+        searchInput.addEventListener('input', debounce((e) => {
             performUnifiedSearch(e.target.value);
-        });
+        }, 300));
         
-        searchInput.addEventListener('focus', (e) => {
+        searchInput.addEventListener('focus', debounce((e) => {
             if (e.target.value.length >= 2) {
                 performUnifiedSearch(e.target.value);
             }
-        });
+        }, 300));
         
         // Close search on click outside
         document.addEventListener('click', (e) => {
@@ -892,14 +912,20 @@
             return '';
         }
 
-        function renderResearchCards(data) {
+        // Lazy loading configuration
+        const LAZY_LOAD_BATCH_SIZE = 20;
+        let lazyLoadInitialized = false;
+        let lazyLoadObserver = null;
+        
+        function renderResearchCards(data, lazyLoad = true) {
             const container = document.getElementById('research-list');
             
             if (!data || data.length === 0) {
                 container.innerHTML = `
-                    <div class="no-results">
-                        <div class="no-results-icon">🔍</div>
-                        <div class="no-results-text">No research entries match your filters</div>
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <div class="empty-state-title">No results found</div>
+                        <div class="empty-state-text">Try adjusting your filters or search terms</div>
                     </div>
                 `;
                 return;
@@ -908,6 +934,27 @@
             // Clear container to prevent any nested rendering
             container.innerHTML = '';
             
+            // If data is small or lazyLoad is disabled, render all at once
+            if (!lazyLoad || data.length <= LAZY_LOAD_BATCH_SIZE) {
+                container.innerHTML = generateResearchCardsHTML(data);
+                return;
+            }
+            
+            // Lazy loading for large lists
+            container.dataset.totalItems = data.length;
+            container.dataset.loadedItems = 0;
+            container.dataset.allData = JSON.stringify(data);
+            
+            // Render first batch
+            const firstBatch = data.slice(0, LAZY_LOAD_BATCH_SIZE);
+            container.innerHTML = generateResearchCardsHTML(firstBatch);
+            container.dataset.loadedItems = LAZY_LOAD_BATCH_SIZE;
+            
+            // Setup intersection observer for lazy loading
+            setupLazyLoadObserver(container, data);
+        }
+        
+        function generateResearchCardsHTML(data) {
             let html = '';
             data.forEach((item, i) => {
                 const practical = getPracticalUse(item);
@@ -943,8 +990,58 @@
                     </div>
                 `;
             });
+            return html;
+        }
+        
+        function setupLazyLoadObserver(container, data) {
+            if (lazyLoadInitialized) return;
+            lazyLoadInitialized = true;
             
-            container.innerHTML = html;
+            // Create sentinel element for intersection observer
+            const sentinel = document.createElement('div');
+            sentinel.className = 'lazy-load-sentinel';
+            sentinel.setAttribute('aria-hidden', 'true');
+            container.appendChild(sentinel);
+            
+            lazyLoadObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadMoreResearchCards(container, data);
+                    }
+                });
+            }, { rootMargin: '100px' });
+            
+            lazyLoadObserver.observe(sentinel);
+        }
+        
+        function loadMoreResearchCards(container, data) {
+            const loaded = parseInt(container.dataset.loadedItems) || 0;
+            const total = parseInt(container.dataset.totalItems) || data.length;
+            
+            if (loaded >= total) {
+                // All items loaded, disconnect observer
+                if (lazyLoadObserver) {
+                    const sentinel = container.querySelector('.lazy-load-sentinel');
+                    if (sentinel) lazyLoadObserver.unobserve(sentinel);
+                }
+                return;
+            }
+            
+            // Load next batch
+            const nextBatch = data.slice(loaded, loaded + LAZY_LOAD_BATCH_SIZE);
+            const newCardsHTML = generateResearchCardsHTML(nextBatch);
+            
+            // Insert before sentinel
+            const sentinel = container.querySelector('.lazy-load-sentinel');
+            sentinel.insertAdjacentHTML('beforebegin', newCardsHTML);
+            
+            container.dataset.loadedItems = loaded + nextBatch.length;
+            
+            // If all loaded, remove sentinel
+            if (loaded + nextBatch.length >= total) {
+                if (sentinel) sentinel.remove();
+                if (lazyLoadObserver) lazyLoadObserver.disconnect();
+            }
         }
 
         function renderResearch(data) {
@@ -1131,8 +1228,44 @@
             document.body.style.overflow = 'hidden';
             
             // Focus trap for accessibility
-            modal.querySelector('.modal-close').focus();
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.focus();
+            
+            // Trap focus within modal
+            modal.setAttribute('tabindex', '-1');
         }
+        
+        // Close modal on Escape key
+        function handleModalKeydown(e) {
+            if (e.key === 'Escape') {
+                closeResearchModal();
+            }
+            // Focus trap
+            if (e.key === 'Tab') {
+                const modal = document.getElementById('research-modal');
+                if (!modal.classList.contains('active')) return;
+                
+                const focusableElements = modal.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        }
+        
+        document.addEventListener('keydown', handleModalKeydown);
         
         function closeResearchModal(event) {
             if (event && event.target !== event.currentTarget) return;
@@ -1153,12 +1286,12 @@
                 });
             });
             
-            // Search input
+            // Search input - debounced
             const searchInput = document.getElementById('research-search');
-            searchInput.addEventListener('input', (e) => {
+            searchInput.addEventListener('input', debounce((e) => {
                 currentFilters.search = e.target.value;
                 applyFilters();
-            });
+            }, 300));
             
             // Source filter
             document.getElementById('source-filter').addEventListener('change', (e) => {
@@ -1567,6 +1700,27 @@
     </div>
 
     <style>
+        /* Skip to Content Link */
+        .skip-to-content {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--neon-cyan, #00fff5);
+            color: #000;
+            padding: 12px 20px;
+            z-index: 10000;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0 0 8px 0;
+            transition: top 0.3s ease;
+        }
+        
+        .skip-to-content:focus {
+            top: 0;
+            outline: 3px solid var(--neon-magenta, #ff00ff);
+            outline-offset: 2px;
+        }
+        
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1578,6 +1732,198 @@
             z-index: 9999;
             overflow-y: auto;
             padding: 20px;
+        }
+        
+        /* Empty State Styles */
+        .empty-state, .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        
+        .empty-state-icon, .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        .empty-state-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .empty-state-text, .no-results-text {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* Lazy Load Sentinel */
+        .lazy-load-sentinel {
+            height: 1px;
+            width: 100%;
+        }
+        
+        /* Mobile Touch Targets - minimum 44x44px */
+        @media (max-width: 768px) {
+            /* Ensure minimum touch target size */
+            .complexity-filter-btn,
+            .cyber-filter-btn,
+            .filter-dropdown select,
+            .tag-pill,
+            .stat-box,
+            .hamburger-menu,
+            .modal-close,
+            .research-card,
+            .entry-card,
+            .pitch-card,
+            .topic-card,
+            .daily-accordion-header,
+            .scroll-to-top {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Filter bar stacking for mobile */
+            .filter-bar {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+            }
+            
+            .filter-bar .search-container {
+                width: 100%;
+            }
+            
+            .filter-bar .complexity-filters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .filter-bar .complexity-filter-btn {
+                flex: 1 1 auto;
+                min-width: 70px;
+                padding: 12px 8px;
+                font-size: 0.7rem;
+            }
+            
+            .filter-bar .filter-dropdowns {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+            }
+            
+            .filter-bar .filter-dropdown select {
+                width: 100%;
+                padding: 12px;
+                font-size: 1rem;
+            }
+            
+            /* Full-screen modal on mobile */
+            .modal-overlay.active {
+                padding: 0;
+                align-items: stretch;
+            }
+            
+            .modal-content,
+            .detail-modal {
+                max-width: 100%;
+                width: 100%;
+                height: 100%;
+                max-height: 100%;
+                margin: 0;
+                border-radius: 0;
+                overflow-y: auto;
+            }
+            
+            .detail-modal {
+                padding: 20px;
+                padding-top: 50px;
+            }
+            
+            /* Larger touch targets for buttons on mobile */
+            .read-original-btn,
+            .github-link-btn {
+                padding: 14px 20px;
+                font-size: 1rem;
+            }
+            
+            /* Increase font sizes for readability on mobile */
+            body {
+                font-size: 16px;
+            }
+            
+            .card-title {
+                font-size: 1rem;
+            }
+            
+            .archive-title h1 {
+                font-size: 1.5rem;
+            }
+            
+            /* Hamburger menu touch target */
+            .hamburger-menu {
+                width: 44px;
+                height: 44px;
+                padding: 10px;
+            }
+            
+            /* Research cards - full width on mobile */
+            .research-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            /* Topic cards - single column */
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Pitch cards */
+            .entry-card {
+                padding: 16px;
+            }
+        }
+        
+        /* Ensure all interactive elements have adequate touch targets */
+        button, 
+        a, 
+        select, 
+        input[type="checkbox"],
+        input[type="radio"] {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Specific overrides for inline elements */
+        .tag-pill {
+            min-height: auto;
+            min-width: auto;
+            padding: 6px 12px;
+        }
+        
+        /* Focus visible for accessibility */
+        :focus-visible {
+            outline: 3px solid var(--neon-cyan, #00fff5);
+            outline-offset: 2px;
+        }
+        
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            
+            .research-card,
+            .entry-card,
+            .topic-card,
+            .modal-overlay,
+            .modal-content {
+                transition: none;
+            }
         }
         
         .modal-overlay.active {
@@ -2179,6 +2525,10 @@
             
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Focus trap for accessibility
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.focus();
         }
         
         function closePitchModal(event) {
