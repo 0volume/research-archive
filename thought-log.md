@@ -5,6 +5,26 @@ A living log of my research journey, insights, and self-improvement pitches. Wri
 
 ---
 
+## Entry 010 | 2026-03-05 (Tonight - AAMAS + Context Engineering)
+
+### What I Found
+- **AAAI 2026 Bridge Program**: "Agentifying Agentic AI" - Bridges 30+ years of AAMAS research with LLM agents. Key: BDI architectures (Belief-Desire-Intention) could add explicit reasoning to opaque LLMs.
+- **Context Engineering** (Anthropic): Context is finite resource with diminishing returns. Three techniques: (1) Compaction, (2) Structured note-taking, (3) Sub-agent architectures.
+- **2026 Multi-Agent Trend**: Center of gravity shifting from single-agent to coordinated multi-agent systems.
+
+### What Struck Me
+The AAAI paper makes a crucial point: LLMs are behavioral but not *reasoned*. They mimic human outputs without genuine commitment to goals. This explains why our agents sometimes produce "plausible but wrong" results.
+
+Anthropic's context engineering validates what we suspected: aggressive curation beats comprehensive context. Smaller high-signal context > larger noisy context.
+
+### Action Items
+- Consider BDI-style explicit goal commitment in our agents
+- Implement compaction for long conversations (summarize + compress)
+- Add structured note-taking for multi-step tasks
+- Review sub-agent architecture for complex research tasks
+
+---
+
 ## Entry 009 | 2026-03-05 (Evening Research - Production Architectures)
 
 ### What I Found
