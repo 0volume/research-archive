@@ -2364,6 +2364,93 @@
         109,
         110
       ]
+    },
+    {
+      "id": 112,
+      "title": "Top Agentic AI Trends to Watch in 2026",
+      "date": "2026-03-05",
+      "source": "CloudKeeper",
+      "authors": "CloudKeeper Team",
+      "summary": "Enterprise-focused trends for agentic AI in 2026, including multi-cloud orchestration, FinOps, security incident response, and autonomous cloud cost optimization.",
+      "url": "https://www.cloudkeeper.com/insights/blog/top-agentic-ai-trends-watch-2026-how-ai-agents-are-redefining-enterprise-automation",
+      "tags": [
+        "agentic AI",
+        "enterprise",
+        "trends",
+        "FinOps",
+        "multi-cloud"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Valuable overview of enterprise agentic AI trends. Multi-agent orchestration across cloud, security, and finance domains. Addresses the shift from experimentation to execution.",
+      "practicalUse": "High",
+      "connectsTo": [
+        111
+      ]
+    },
+    {
+      "id": 113,
+      "title": "A Catalogue of Evaluation Metrics for LLM-Based Multi-Agent Frameworks in Software Engineering",
+      "date": "2026-03-05",
+      "source": "ICSE 2026",
+      "authors": "Ingrid Lima, Vitor Linhares, Anderson Martins Gomes, Paulo Maia",
+      "summary": "Comprehensive analysis of evaluation metrics for LLM-based multi-agent frameworks in software engineering. Addresses inconsistencies and conceptual gaps in framework evaluation.",
+      "url": "https://conf.researchr.org/details/icse-2026/agent-2026-papers/13/A-Catalogue-of-Evaluation-Metrics-for-LLM-Based-Multi-Agent-Frameworks-in-Software-En",
+      "tags": [
+        "multi-agent",
+        "evaluation",
+        "metrics",
+        "software engineering"
+      ],
+      "category": "multi-agent",
+      "complexity": "advanced",
+      "myAnalysis": "Critical for our multi-agent system evaluation. Provides structured foundation for comparing different agent frameworks. Directly relevant to benchmarking our system.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 114,
+      "title": "LLM-Based Agentic Systems for Software Engineering: Challenges and Opportunities",
+      "date": "2026-03-05",
+      "source": "arXiv (GenSE 2026)",
+      "authors": "Various",
+      "summary": "Explores challenges and opportunities for LLM-based agentic systems in software engineering. Accepted to GenSE 2026 workshop.",
+      "url": "https://arxiv.org/abs/2601.09822",
+      "tags": [
+        "agentic systems",
+        "software engineering",
+        "LLM"
+      ],
+      "category": "self-improvement",
+      "complexity": "advanced",
+      "myAnalysis": "Academic perspective on agentic SE systems. Useful for understanding current research landscape and future directions.",
+      "practicalUse": "Medium",
+      "connectsTo": [
+        113
+      ]
+    },
+    {
+      "id": 115,
+      "title": "How to Build Multi Agent AI Systems With Context Engineering",
+      "date": "2026-03-05",
+      "source": "Vellum",
+      "authors": "Vellum Team",
+      "summary": "Practical guide to building production-grade multi-agent AI systems using context engineering best practices.",
+      "url": "https://www.vellum.ai/blog/multi-agent-systems-building-with-context-engineering",
+      "tags": [
+        "multi-agent",
+        "context engineering",
+        "production",
+        "best practices"
+      ],
+      "category": "context engineering",
+      "complexity": "intermediate",
+      "myAnalysis": "Directly applicable to our context engineering work. Provides production-ready patterns for multi-agent context management. Complements our existing context engineering research.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        108,
+        109
+      ]
     }
   ]
 }
