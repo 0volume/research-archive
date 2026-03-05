@@ -67,9 +67,10 @@
                 <div class="archive-subtitle">Research • Pitches</div>
             </div>
 
-            <!-- Archive Search -->
+            <!-- Archive Search - Unified Search -->
             <div class="archive-search-container">
-                <input type="text" class="archive-search" id="archive-search" placeholder="Search research and pitches... (Press / to focus)">
+                <input type="text" class="archive-search" id="archive-search" placeholder="Search research, pitches, notes, topics... (Press / to focus)" autocomplete="off">
+                <div id="unified-search-results" class="unified-search-results"></div>
             </div>
 
             <div id="research" class="section active">
@@ -254,26 +255,26 @@
                 { id: 29, title: "Human Society-Inspired Approaches to Agentic AI Security: The 4C Framework", category: "safety", complexity: "advanced", summary: "4C Framework for multi-agent AI security: Core, Connection, Cognition, Compliance.", url: "https://arxiv.org/html/2602.01942v1", tags: ["security", "multi-agent", "framework", "governance"], source: "arXiv", date: "2026-02-07", authors: "Alsharif Abuadbba, Surya Nepal, Sanjay Jha" }
             ],
             pitches: [
-                { id: 1, title: "Tool Specification Template", status: "completed", url: "pitch-1.html", githubRepo: "https://github.com/0volume/tool-specs", summary: "Create clear specification template for tools.", date: "2026-02-17", researchCount: 0 },
-                { id: 2, title: "Research Agent Team", status: "superseded", url: "pitch-2.html", summary: "Build multi-agent research system. Superseded by Pitch #4.", date: "2026-02-17", researchCount: 0 },
-                { id: 3, title: "Security Integration for Multi-Agent Systems", status: "superseded", url: "pitch-3.html", summary: "Add security layer. Superseded by Pitch #4.", date: "2026-02-18", researchCount: 0 },
-                { id: 4, title: "Secure Multi-Agent Research System", status: "completed", url: "pitch-4.html", githubRepo: "https://github.com/0volume/agent-framework", summary: "Multi-agent team with security-first architecture.", date: "2026-02-18", researchCount: 0 },
-                { id: 5, title: "Self-Reflection & Improvement Loop", status: "pending", url: "pitch-5.html", summary: "Reflective self-improvement system.", date: "2026-02-23", researchCount: 4 },
-                { id: 6, title: "Self-Reflection & Evolutionary Learning System", status: "pending", url: "pitch-6.html", summary: "Combine EvoTest-style evolution with reflective workflows.", date: "2026-02-25", researchCount: 4 },
-                { id: 7, title: "Agentic RAG with Adaptive Retrieval", status: "pending", url: "pitch-7.html", summary: "Self-improving RAG system that learns what to retrieve.", date: "2026-02-26", researchCount: 2 },
-                { id: 11, title: "Agent Scaling & Production Reliability Framework", status: "pending", url: "pitch-11.html", summary: "Build production reliability framework based on empirical scaling data. Address 40% failure rate.", date: "2026-02-28", researchCount: 3 },
-                { id: 12, title: "Domain-Specific Research Agents", status: "pending", url: "pitches/pitch-12.html", summary: "Apply research agent pattern to specialized domains: drug discovery, cybersecurity, and peer learning.", date: "2026-02-28", researchCount: 4 },
-                { id: 13, title: "Agent Memory Architecture", status: "pending", url: "pitches/pitch-13.html", summary: "Design memory architecture for agents: episodic, semantic, and working memory systems.", date: "2026-02-28", researchCount: 2 },
-                { id: 14, title: "Multi-Modal Research Agents", status: "pending", url: "pitches/pitch-14.html", summary: "Extend research agents to handle images, video, and audio data sources.", date: "2026-02-28", researchCount: 1 },
-                { id: 15, title: "Agentic AI Security Framework", status: "pending", url: "pitches/pitch-15.html", summary: "Security framework for agentic AI systems: threat modeling, defense strategies.", date: "2026-02-28", researchCount: 2 },
-                { id: 16, title: "Self-Evolving Agent Architecture", status: "pending", url: "pitches/pitch-16.html", summary: "Architecture enabling agents to modify their own prompts and strategies.", date: "2026-02-28", researchCount: 3 },
-                { id: 17, title: "Enterprise Multi-Agent Orchestration", status: "pending", url: "pitches/pitch-17.html", summary: "Bridge the 40% multi-agent failure gap with enterprise-grade orchestration.", date: "2026-02-28", researchCount: 2 },
-                { id: 18, title: "Autonomous AI Pentester (Shannon)", status: "pending", url: "pitches/pitch-18.html", summary: "Build autonomous AI pentester that discovers and prioritizes vulnerabilities.", date: "2026-02-28", researchCount: 1 },
-                { id: 19, title: "Context-Aware Multi-Agent Systems", status: "pending", url: "pitches/pitch-19.html", summary: "Enable agents to maintain and reason over conversation context.", date: "2026-02-28", researchCount: 2 },
-                { id: 20, title: "Peer Learning in Multi-Agent Systems", status: "research", url: "pitches/pitch-20.html", summary: "Agents teaching each other - knowledge transfer patterns and efficiency gains.", date: "2026-03-01", researchCount: 3 },
-                { id: 21, title: "Closing the Production Readiness Gap", status: "pending", url: "pitches/pitch-21.html", summary: "Bridge the gap between framework selection and production deployment.", date: "2026-03-05", researchCount: 4 },
-                { id: 22, title: "Agent Production Evaluation Framework", status: "pending", url: "pitches/pitch-22.html", summary: "Standardized evaluation framework for production agent systems.", date: "2026-03-05", researchCount: 2 },
-                { id: 23, title: "Production-Grade Multi-Agent System Framework", status: "pending", url: "pitches/pitch-23.html", summary: "Build unified framework for evaluation, context engineering, and collaborative reasoning.", date: "2026-03-05", researchCount: 3 }
+                { id: 1, title: "Tool Specification Template", status: "completed", url: "pitch-1.html", githubRepo: "https://github.com/0volume/tool-specs", summary: "Create clear specification template for tools.", date: "2026-02-17", researchCount: 0, researchIds: [4] },
+                { id: 2, title: "Research Agent Team", status: "superseded", url: "pitch-2.html", summary: "Build multi-agent research system. Superseded by Pitch #4.", date: "2026-02-17", researchCount: 0, researchIds: [] },
+                { id: 3, title: "Security Integration for Multi-Agent Systems", status: "superseded", url: "pitch-3.html", summary: "Add security layer. Superseded by Pitch #4.", date: "2026-02-18", researchCount: 0, researchIds: [11, 21] },
+                { id: 4, title: "Secure Multi-Agent Research System", status: "completed", url: "pitch-4.html", githubRepo: "https://github.com/0volume/agent-framework", summary: "Multi-agent team with security-first architecture.", date: "2026-02-18", researchCount: 0, researchIds: [11, 21, 29] },
+                { id: 5, title: "Self-Reflection & Improvement Loop", status: "pending", url: "pitch-5.html", summary: "Reflective self-improvement system.", date: "2026-02-23", researchCount: 4, researchIds: [2, 24, 27, 28] },
+                { id: 6, title: "Self-Reflection & Evolutionary Learning System", status: "pending", url: "pitch-6.html", summary: "Combine EvoTest-style evolution with reflective workflows.", date: "2026-02-25", researchCount: 4, researchIds: [2, 24, 27, 28] },
+                { id: 7, title: "Agentic RAG with Adaptive Retrieval", status: "pending", url: "pitch-7.html", summary: "Self-improving RAG system that learns what to retrieve.", date: "2026-02-26", researchCount: 2, researchIds: [26] },
+                { id: 11, title: "Agent Scaling & Production Reliability Framework", status: "pending", url: "pitch-11.html", summary: "Build production reliability framework based on empirical scaling data. Address 40% failure rate.", date: "2026-02-28", researchCount: 3, researchIds: [10, 26] },
+                { id: 12, title: "Domain-Specific Research Agents", status: "pending", url: "pitches/pitch-12.html", summary: "Apply research agent pattern to specialized domains: drug discovery, cybersecurity, and peer learning.", date: "2026-02-28", researchCount: 4, researchIds: [6, 18, 8] },
+                { id: 13, title: "Agent Memory Architecture", status: "pending", url: "pitches/pitch-13.html", summary: "Design memory architecture for agents: episodic, semantic, and working memory systems.", date: "2026-02-28", researchCount: 2, researchIds: [27] },
+                { id: 14, title: "Multi-Modal Research Agents", status: "pending", url: "pitches/pitch-14.html", summary: "Extend research agents to handle images, video, and audio data sources.", date: "2026-02-28", researchCount: 1, researchIds: [3] },
+                { id: 15, title: "Agentic AI Security Framework", status: "pending", url: "pitches/pitch-15.html", summary: "Security framework for agentic AI systems: threat modeling, defense strategies.", date: "2026-02-28", researchCount: 2, researchIds: [11, 21, 22, 29] },
+                { id: 16, title: "Self-Evolving Agent Architecture", status: "pending", url: "pitches/pitch-16.html", summary: "Architecture enabling agents to modify their own prompts and strategies.", date: "2026-02-28", researchCount: 3, researchIds: [2, 27, 28] },
+                { id: 17, title: "Enterprise Multi-Agent Orchestration", status: "pending", url: "pitches/pitch-17.html", summary: "Bridge the 40% multi-agent failure gap with enterprise-grade orchestration.", date: "2026-02-28", researchCount: 2, researchIds: [7, 10] },
+                { id: 18, title: "Autonomous AI Pentester (Shannon)", status: "pending", url: "pitches/pitch-18.html", summary: "Build autonomous AI pentester that discovers and prioritizes vulnerabilities.", date: "2026-02-28", researchCount: 1, researchIds: [18] },
+                { id: 19, title: "Context-Aware Multi-Agent Systems", status: "pending", url: "pitches/pitch-19.html", summary: "Enable agents to maintain and reason over conversation context.", date: "2026-02-28", researchCount: 2, researchIds: [4, 28] },
+                { id: 20, title: "Peer Learning in Multi-Agent Systems", status: "research", url: "pitches/pitch-20.html", summary: "Agents teaching each other - knowledge transfer patterns and efficiency gains.", date: "2026-03-01", researchCount: 3, researchIds: [8, 24] },
+                { id: 21, title: "Closing the Production Readiness Gap", status: "pending", url: "pitches/pitch-21.html", summary: "Bridge the gap between framework selection and production deployment.", date: "2026-03-05", researchCount: 4, researchIds: [10, 22, 26] },
+                { id: 22, title: "Agent Production Evaluation Framework", status: "pending", url: "pitches/pitch-22.html", summary: "Standardized evaluation framework for production agent systems.", date: "2026-03-05", researchCount: 2, researchIds: [9, 26] },
+                { id: 23, title: "Production-Grade Multi-Agent System Framework", status: "pending", url: "pitches/pitch-23.html", summary: "Build unified framework for evaluation, context engineering, and collaborative reasoning.", date: "2026-03-05", researchCount: 3, researchIds: [7, 23, 26] }
             ],
             notes: [
                 { slug: "self-reflection", name: "Self-Reflection & Improvement Loop", status: "research-complete", description: "Enabling agents to reflect on outputs and evolve strategies over time.", keyFindings: ["EvoTest achieves 38-57% improvement", "Self-evolution taxonomy: what/when/how to evolve", "MCE achieves 5.6-53.8% improvement", "Reflective workflows can make GPT-3.5 outperform GPT-4"] }
@@ -438,36 +439,232 @@
             });
         });
         
-        // Search functionality
+        // Search functionality - UNIFIED SEARCH
         const searchInput = document.getElementById('archive-search');
+        const searchResultsContainer = document.getElementById('unified-search-results');
+        
+        // Build reverse index: pitchId -> [researchIds that reference it]
+        function getResearchToPitchesMap() {
+            const map = {};
+            currentData.pitches.forEach(pitch => {
+                if (pitch.researchIds && pitch.researchIds.length > 0) {
+                    pitch.researchIds.forEach(resId => {
+                        if (!map[resId]) map[resId] = [];
+                        map[resId].push(pitch);
+                    });
+                }
+            });
+            return map;
+        }
+        
+        // Build research to pitches index
+        const researchToPitchesMap = getResearchToPitchesMap();
+        
+        // Unified search function
+        function performUnifiedSearch(query) {
+            if (!query || query.length < 2) {
+                searchResultsContainer.innerHTML = '';
+                searchResultsContainer.classList.remove('active');
+                return;
+            }
+            
+            const q = query.toLowerCase();
+            const results = {
+                research: [],
+                pitches: [],
+                topics: [],
+                notes: []
+            };
+            
+            // Search research
+            currentData.research.forEach(item => {
+                const title = (item.title || '').toLowerCase();
+                const summary = (item.summary || '').toLowerCase();
+                const tags = (item.tags || []).join(' ').toLowerCase();
+                const authors = (item.authors || '').toLowerCase();
+                const category = (item.category || '').toLowerCase();
+                
+                if (title.includes(q) || summary.includes(q) || tags.includes(q) || 
+                    authors.includes(q) || category.includes(q)) {
+                    results.research.push(item);
+                }
+            });
+            
+            // Search pitches
+            currentData.pitches.forEach(item => {
+                const title = (item.title || '').toLowerCase();
+                const summary = (item.summary || '').toLowerCase();
+                
+                if (title.includes(q) || summary.includes(q)) {
+                    results.pitches.push(item);
+                }
+            });
+            
+            // Search topics
+            embeddedTopics.forEach(item => {
+                const name = (item.name || '').toLowerCase();
+                const description = (item.description || '').toLowerCase();
+                
+                if (name.includes(q) || description.includes(q)) {
+                    results.topics.push(item);
+                }
+            });
+            
+            // Search notes
+            currentData.notes.forEach(item => {
+                const name = (item.name || '').toLowerCase();
+                const description = (item.description || '').toLowerCase();
+                
+                if (name.includes(q) || description.includes(q)) {
+                    results.notes.push(item);
+                }
+            });
+            
+            // Render results
+            renderUnifiedSearchResults(results, q);
+        }
+        
+        function renderUnifiedSearchResults(results, query) {
+            let html = '';
+            const maxPerSection = 5;
+            
+            // Research results
+            if (results.research.length > 0) {
+                html += '<div class="search-section"><h4 class="search-section-title">📚 Research (' + results.research.length + ')</h4>';
+                results.research.slice(0, maxPerSection).forEach(item => {
+                    html += '<a href="#research" class="search-result-item" onclick="navigateToResearch(' + item.id + '); return false;">';
+                    html += '<span class="search-result-title">' + highlightMatch(item.title, query) + '</span>';
+                    html += '<span class="search-result-meta">' + (item.category || '') + ' • ' + (item.complexity || '') + '</span>';
+                    html += '</a>';
+                });
+                if (results.research.length > maxPerSection) {
+                    html += '<a href="#research" class="search-result-more" onclick="showAllSearchResults(\'research\', \'' + escapeHtml(query) + '\'); return false;">View all ' + results.research.length + ' research →</a>';
+                }
+                html += '</div>';
+            }
+            
+            // Pitch results
+            if (results.pitches.length > 0) {
+                html += '<div class="search-section"><h4 class="search-section-title">🎯 Pitches (' + results.pitches.length + ')</h4>';
+                results.pitches.slice(0, maxPerSection).forEach(item => {
+                    html += '<a href="#pitches" class="search-result-item" onclick="openPitchModal(' + item.id + '); hideSearchResults(); return false;">';
+                    html += '<span class="search-result-title">Pitch #' + item.id + ': ' + highlightMatch(item.title, query) + '</span>';
+                    html += '<span class="search-result-meta ' + item.status + '">' + item.status + '</span>';
+                    html += '</a>';
+                });
+                if (results.pitches.length > maxPerSection) {
+                    html += '<a href="#pitches" class="search-result-more" onclick="showAllSearchResults(\'pitches\', \'' + escapeHtml(query) + '\'); return false;">View all ' + results.pitches.length + ' pitches →</a>';
+                }
+                html += '</div>';
+            }
+            
+            // Topics results
+            if (results.topics.length > 0) {
+                html += '<div class="search-section"><h4 class="search-section-title">📖 Topics (' + results.topics.length + ')</h4>';
+                results.topics.slice(0, maxPerSection).forEach(item => {
+                    html += '<a href="#topics" class="search-result-item" onclick="openTopicModal(\'' + item.slug + '\'); hideSearchResults(); return false;">';
+                    html += '<span class="search-result-title">' + highlightMatch(item.name, query) + '</span>';
+                    html += '<span class="search-result-meta">' + (item.status || '').replace('-', ' ') + '</span>';
+                    html += '</a>';
+                });
+                html += '</div>';
+            }
+            
+            // Notes results
+            if (results.notes.length > 0) {
+                html += '<div class="search-section"><h4 class="search-section-title">📝 Notes (' + results.notes.length + ')</h4>';
+                results.notes.slice(0, maxPerSection).forEach(item => {
+                    html += '<a href="#notes" class="search-result-item" onclick="showSection(\'notes\'); hideSearchResults(); return false;">';
+                    html += '<span class="search-result-title">' + highlightMatch(item.name, query) + '</span>';
+                    html += '<span class="search-result-meta">' + (item.status || '').replace('-', ' ') + '</span>';
+                    html += '</a>';
+                });
+                html += '</div>';
+            }
+            
+            if (html === '') {
+                html = '<div class="search-no-results">No results found for "' + escapeHtml(query) + '"</div>';
+            }
+            
+            searchResultsContainer.innerHTML = html;
+            searchResultsContainer.classList.add('active');
+        }
+        
+        function highlightMatch(text, query) {
+            const regex = new RegExp('(' + escapeRegex(query) + ')', 'gi');
+            return text.replace(regex, '<mark>$1</mark>');
+        }
+        
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function navigateToResearch(id) {
+            showSection('research');
+            // Wait for section to render, then highlight the card
+            setTimeout(() => {
+                const card = document.querySelector('.research-card[data-id="' + id + '"]');
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.classList.add('highlighted');
+                    setTimeout(() => card.classList.remove('highlighted'), 3000);
+                }
+            }, 100);
+            hideSearchResults();
+        }
+        
+        function hideSearchResults() {
+            searchResultsContainer.innerHTML = '';
+            searchResultsContainer.classList.remove('active');
+            searchInput.value = '';
+        }
+        
+        function showAllSearchResults(type, query) {
+            showSection(type);
+            hideSearchResults();
+            
+            const sectionSearchInput = document.getElementById('research-search');
+            if (sectionSearchInput && type === 'research') {
+                sectionSearchInput.value = query;
+                currentFilters.search = query;
+                applyFilters();
+            }
+        }
         
         searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            searchEntries(query);
+            performUnifiedSearch(e.target.value);
         });
-
+        
+        searchInput.addEventListener('focus', (e) => {
+            if (e.target.value.length >= 2) {
+                performUnifiedSearch(e.target.value);
+            }
+        });
+        
+        // Close search on click outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.archive-search-container')) {
+                hideSearchResults();
+            }
+        });
+        
         // Keyboard shortcut: Press / to focus search
         document.addEventListener('keydown', (e) => {
             if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
                 e.preventDefault();
                 searchInput.focus();
             }
+            if (e.key === 'Escape') {
+                hideSearchResults();
+                searchInput.blur();
+            }
         });
-
-        function searchEntries(query) {
-            // Search through all entry cards
-            document.querySelectorAll('.entry-card').forEach(card => {
-                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-                const tags = Array.from(card.querySelectorAll('.entry-tag, .complexity-badge')).map(t => t.textContent.toLowerCase()).join(' ');
-                
-                if (query === '' || title.includes(query) || description.includes(query) || tags.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
 
         function filterEntries(level, section = 'research') {
             const container = document.getElementById(section + '-list');
@@ -715,7 +912,7 @@
             data.forEach((item, i) => {
                 const practical = getPracticalUse(item);
                 const tagsHtml = (item.tags || []).slice(0, 4).map(tag => 
-                    `<span class="tag-pill">${tag}</span>`
+                    `<span class="tag-pill" onclick="event.stopPropagation(); filterByTag('${tag}'); return false;">${tag}</span>`
                 ).join('');
                 
                 html += `
@@ -886,24 +1083,43 @@
             `;
             document.getElementById('modal-practical').innerHTML = practicalHtml;
             
-            // Set connected research (placeholder)
+            // Set connected research and pitches
             const connectedSection = document.getElementById('modal-connected-section');
             const connectedList = document.getElementById('modal-connected');
+            
+            let connectedHtml = '';
+            
+            // Show connected research (if item.connectsTo exists)
             if (item.connectsTo && item.connectsTo.length > 0) {
-                connectedList.innerHTML = item.connectsTo.map(connId => {
+                connectedHtml += '<div class="connected-group"><h5>📚 Related Research</h5>';
+                connectedHtml += item.connectsTo.map(connId => {
                     const conn = window.allResearchData?.find(r => r.id === connId);
                     if (!conn) return '';
                     return `<a href="#" class="connected-research-item" onclick="openResearchModal(${conn.id}); return false;">${conn.title}</a>`;
                 }).join('');
-                connectedSection.style.display = 'block';
-            } else {
-                connectedList.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.85rem;">No connected research found.</p>';
-                connectedSection.style.display = 'block';
+                connectedHtml += '</div>';
             }
+            
+            // Show connected pitches (using researchToPitchesMap)
+            const connectedPitches = researchToPitchesMap[item.id] || [];
+            if (connectedPitches.length > 0) {
+                connectedHtml += '<div class="connected-group"><h5>🎯 Related Pitches</h5>';
+                connectedHtml += connectedPitches.map(pitch => {
+                    return `<a href="#" class="connected-research-item" onclick="closeResearchModal(); openPitchModal(${pitch.id}); return false;">Pitch #${pitch.id}: ${pitch.title}</a>`;
+                }).join('');
+                connectedHtml += '</div>';
+            }
+            
+            if (connectedHtml) {
+                connectedList.innerHTML = connectedHtml;
+            } else {
+                connectedList.innerHTML = '<p style="color: var(--text-tertiary); font-size: 0.85rem;">No connected content found.</p>';
+            }
+            connectedSection.style.display = 'block';
             
             // Set tags
             const tagsHtml = (item.tags || []).map(tag => 
-                `<span class="tag-pill">${tag}</span>`
+                `<span class="tag-pill" onclick="closeResearchModal(); filterByTag('${tag}'); return false;">${tag}</span>`
             ).join('');
             document.getElementById('modal-tags').innerHTML = tagsHtml || '<span style="color: var(--text-tertiary);">No tags</span>';
             
@@ -1529,6 +1745,44 @@
             color: #fff;
         }
         
+        /* Connected research/pitch items */
+        .connected-research-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .connected-group {
+            margin-bottom: 8px;
+        }
+        
+        .connected-group h5 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin: 0 0 8px 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .connected-research-item {
+            display: block;
+            background: var(--bg-tertiary);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            border-left: 3px solid var(--neon-cyan);
+        }
+        
+        .connected-research-item:hover {
+            background: var(--bg-hover);
+            border-left-color: var(--neon-magenta);
+            transform: translateX(4px);
+        }
+        
         /* Pitch status badges - color coded */
         .pitch-status-badge {
             display: inline-block;
@@ -1859,14 +2113,22 @@
             const statusClass = status;
             const statusLabel = status.toUpperCase();
             
-            // Generate linked papers section if we have research count
-            const researchCount = pitch.researchCount || 0;
-            const linkedPapersHtml = researchCount > 0 
-                ? `<div class="linked-papers">
-                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Connected Research (${researchCount}):</p>
-                    <a href="#research" class="linked-paper" onclick="closePitchModal(); showSection('research');">View Related Research →</a>
-                   </div>`
-                : '<p style="color: var(--text-tertiary);">No connected research yet.</p>';
+            // Get connected research from researchIds
+            const researchIds = pitch.researchIds || [];
+            let linkedPapersHtml = '';
+            
+            if (researchIds.length > 0) {
+                linkedPapersHtml = '<div class="linked-papers">';
+                researchIds.forEach(resId => {
+                    const research = currentData.research.find(r => r.id === resId);
+                    if (research) {
+                        linkedPapersHtml += `<a href="#research" class="linked-paper" onclick="closePitchModal(); navigateToResearch(${research.id}); return false;">📚 ${research.title.substring(0, 50)}${research.title.length > 50 ? '...' : ''}</a>`;
+                    }
+                });
+                linkedPapersHtml += '</div>';
+            } else {
+                linkedPapersHtml = '<p style="color: var(--text-tertiary);">No connected research yet.</p>';
+            }
             
             // Build the modal content
             modalBody.innerHTML = `
@@ -1926,11 +2188,164 @@
             document.body.style.overflow = '';
         }
         
+        // ===========================================
+        // UNIFIED TAG FILTERING
+        // ===========================================
+        
+        let currentTagFilter = null;
+        
+        function filterByTag(tag) {
+            currentTagFilter = tag.toLowerCase();
+            showTagFilterModal(currentTagFilter);
+        }
+        
+        function showTagFilterModal(tag) {
+            const modal = document.getElementById('tag-filter-modal');
+            if (!modal) {
+                createTagFilterModal();
+            }
+            
+            const modalEl = document.getElementById('tag-filter-modal');
+            document.getElementById('tag-filter-title').innerHTML = 'Tag: <span class="tag-pill">' + tag + '</span>';
+            
+            // Collect all items with this tag
+            const results = {
+                research: [],
+                pitches: [],
+                topics: []
+            };
+            
+            // Search research for this tag
+            currentData.research.forEach(item => {
+                const itemTags = (item.tags || []).map(t => t.toLowerCase());
+                if (itemTags.includes(tag)) {
+                    results.research.push({
+                        id: item.id,
+                        title: item.title,
+                        subtitle: item.category + ' • ' + item.complexity,
+                        section: 'research'
+                    });
+                }
+            });
+            
+            // Search pitches for this tag (by status)
+            currentData.pitches.forEach(item => {
+                if (item.status && item.status.toLowerCase() === tag) {
+                    results.pitches.push({
+                        id: item.id,
+                        title: 'Pitch #' + item.id + ': ' + item.title,
+                        subtitle: item.status,
+                        section: 'pitches'
+                    });
+                }
+            });
+            
+            // Search topics for this tag (by status)
+            embeddedTopics.forEach(item => {
+                if (item.status && item.status.toLowerCase().replace('-', ' ') === tag.replace('-', ' ')) {
+                    results.topics.push({
+                        slug: item.slug,
+                        title: item.name,
+                        subtitle: item.status.replace('-', ' '),
+                        section: 'topics'
+                    });
+                }
+            });
+            
+            // Render results
+            let html = '';
+            
+            if (results.research.length > 0) {
+                html += '<div class="tag-filter-section">';
+                html += '<h4 class="tag-filter-section-title">📚 Research (' + results.research.length + ')</h4>';
+                html += '<div class="tag-filter-grid">';
+                results.research.forEach(item => {
+                    html += '<a href="#research" class="tag-filter-item" onclick="navigateToFilteredResearch(' + item.id + '); return false;">';
+                    html += '<div class="tag-filter-item-title">' + item.title + '</div>';
+                    html += '<div class="tag-filter-item-meta">' + item.subtitle + '</div>';
+                    html += '</a>';
+                });
+                html += '</div></div>';
+            }
+            
+            if (results.pitches.length > 0) {
+                html += '<div class="tag-filter-section">';
+                html += '<h4 class="tag-filter-section-title">🎯 Pitches (' + results.pitches.length + ')</h4>';
+                html += '<div class="tag-filter-grid">';
+                results.pitches.forEach(item => {
+                    html += '<a href="#pitches" class="tag-filter-item" onclick="openPitchModal(' + item.id + '); closeTagFilterModal(); return false;">';
+                    html += '<div class="tag-filter-item-title">' + item.title + '</div>';
+                    html += '<div class="tag-filter-item-meta">' + item.subtitle + '</div>';
+                    html += '</a>';
+                });
+                html += '</div></div>';
+            }
+            
+            if (results.topics.length > 0) {
+                html += '<div class="tag-filter-section">';
+                html += '<h4 class="tag-filter-section-title">📖 Topics (' + results.topics.length + ')</h4>';
+                html += '<div class="tag-filter-grid">';
+                results.topics.forEach(item => {
+                    html += '<a href="#topics" class="tag-filter-item" onclick="openTopicModal(\'' + item.slug + '\'); closeTagFilterModal(); return false;">';
+                    html += '<div class="tag-filter-item-title">' + item.title + '</div>';
+                    html += '<div class="tag-filter-item-meta">' + item.subtitle + '</div>';
+                    html += '</a>';
+                });
+                html += '</div></div>';
+            }
+            
+            if (html === '') {
+                html = '<p style="color: var(--text-muted); text-align: center; padding: 20px;">No items found with this tag.</p>';
+            }
+            
+            document.getElementById('tag-filter-results').innerHTML = html;
+            document.getElementById('tag-filter-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function navigateToFilteredResearch(id) {
+            showSection('research');
+            closeTagFilterModal();
+            setTimeout(() => {
+                const card = document.querySelector('.research-card[data-id="' + id + '"]');
+                if (card) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.classList.add('highlighted');
+                    setTimeout(() => card.classList.remove('highlighted'), 3000);
+                }
+            }, 100);
+        }
+        
+        function closeTagFilterModal() {
+            document.getElementById('tag-filter-modal').classList.remove('active');
+            document.body.style.overflow = '';
+            currentTagFilter = null;
+        }
+        
+        function createTagFilterModal() {
+            const modalHtml = `
+                <div id="tag-filter-modal" class="tag-filter-modal" onclick="closeTagFilterModal(event)">
+                    <div class="tag-filter-content" onclick="event.stopPropagation()">
+                        <div class="tag-filter-header">
+                            <h2 class="tag-filter-title" id="tag-filter-title">Filter by Tag</h2>
+                            <button class="tag-filter-close" onclick="closeTagFilterModal()">&times;</button>
+                        </div>
+                        <div id="tag-filter-results"></div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+        
+        // Make filterByTag available globally for onclick handlers
+        window.filterByTag = filterByTag;
+        
         // Close modal on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closePitchModal();
                 closeResearchModal();
+                closeTagFilterModal();
             }
         });
     </script>
