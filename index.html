@@ -304,8 +304,8 @@
         // Tab switching via URL hash
         function handleHash() {
             const hash = window.location.hash.slice(1);
-            // Support all sections: research, pitches, notes
-            if (hash === 'research' || hash === 'pitches' || hash === 'notes') {
+            // Support all sections: research, pitches, notes, daily, topics
+            if (hash === 'research' || hash === 'pitches' || hash === 'notes' || hash === 'daily' || hash === 'topics') {
                 showSection(hash);
             } else if (!hash) {
                 // Default to research on empty hash
@@ -359,7 +359,7 @@
         function handleInitialHash() {
             const hash = window.location.hash.slice(1);
             // Pre-show section even before data loads
-            if (hash && ['research', 'pitches', 'notes'].includes(hash)) {
+            if (hash && ['research', 'pitches', 'notes', 'daily', 'topics'].includes(hash)) {
                 document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
                 const targetSection = document.getElementById(hash);
                 if (targetSection) {
@@ -583,6 +583,8 @@
             renderResearch(currentData.research);
             renderPitches(currentData.pitches);
             renderNotes(currentData.notes);
+            renderDailyNotes(embeddedDailyNotes);
+            renderTopics(embeddedTopics);
             updateStats(currentData.research, currentData.pitches, currentData.notes);
             
             // Then try to refresh from GitHub in background
@@ -1018,6 +1020,254 @@
             });
             
             container.innerHTML = html;
+        }
+
+        // ===========================================
+        // PHASE 3: Daily Notes & Topics Functions
+        // ===========================================
+
+        // Embedded daily notes data
+        const embeddedDailyNotes = [
+            { 
+                date: "2026-03-05", 
+                file: "research/daily/2026-03-05.md",
+                sources: 5,
+                insights: [
+                    "Multi-agent orchestration is now the default - validates our architecture",
+                    "AgentOps emerging as discipline - area to explore",
+                    "Design patterns maturing - six production patterns provide solid foundation",
+                    "Core Four framework: Context, Model, Prompt, Tools"
+                ],
+                creditsUsed: 1
+            },
+            { 
+                date: "2026-02-25", 
+                file: "research/daily/2026-02-25.md",
+                sources: 3,
+                insights: [
+                    "Self-reflection and self-evolution are key research areas",
+                    "Multiple approaches: EvoTest, MCE, reflective workflows",
+                    "Peer learning patterns emerging in multi-agent systems"
+                ],
+                creditsUsed: 2
+            }
+        ];
+
+        // Embedded topics data  
+        const embeddedTopics = [
+            {
+                slug: "self-reflection",
+                name: "Self-Reflection & Improvement Loop",
+                description: "Enabling agents to reflect on outputs and evolve strategies over time through iterative self-assessment.",
+                status: "research-complete",
+                keyFindings: [
+                    "EvoTest achieves 38-57% improvement over baselines",
+                    "Self-evolution taxonomy: what/when/how to evolve",
+                    "MCE achieves 5.6-53.8% improvement through bi-level optimization",
+                    "Reflective workflows can make GPT-3.5 outperform GPT-4"
+                ],
+                phases: [
+                    { phase: 1, name: "Core Reflection Loop", weeks: "1-3", deliverable: "Plan → Execute → Self-Assess → Refine workflow" },
+                    { phase: 2, name: "Inter-Episode Learning", weeks: "4-6", deliverable: "EpisodeAnalyzer, PromptEvolver, ContextMemory" },
+                    { phase: 3, name: "Full Self-Evolving System", weeks: "7-10", deliverable: "SkillEvolver, ContextOptimizer, bi-level evolution" }
+                ]
+            }
+        ];
+
+        // Render Daily Notes (accordion style)
+        function renderDailyNotes(data) {
+            const container = document.getElementById('daily-list');
+            const dailyArray = data || embeddedDailyNotes;
+            
+            if (dailyArray.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted);">No daily notes yet.</p>';
+                return;
+            }
+            
+            // Update count
+            const countEl = document.getElementById('daily-count');
+            if (countEl) countEl.textContent = dailyArray.length;
+            
+            const statDaily = document.getElementById('stat-daily');
+            if (statDaily) statDaily.textContent = dailyArray.length;
+            
+            let html = '';
+            dailyArray.forEach((day, index) => {
+                const formattedDate = new Date(day.date).toLocaleDateString('en-US', { 
+                    weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' 
+                });
+                const insightsPreview = day.insights.slice(0, 2).join(' • ');
+                const expandedContent = day.insights.map(insight => 
+                    `<div class="daily-insight-item">• ${insight}</div>`
+                ).join('');
+                
+                html += `
+                    <div class="daily-accordion-item">
+                        <button class="daily-accordion-header" onclick="toggleDailyNote(this)" aria-expanded="false">
+                            <div class="daily-header-left">
+                                <span class="daily-date">${formattedDate}</span>
+                                <span class="daily-source-count">${day.sources} sources</span>
+                            </div>
+                            <div class="daily-header-right">
+                                <span class="daily-preview">${insightsPreview}</span>
+                                <span class="daily-expand-icon">▼</span>
+                            </div>
+                        </button>
+                        <div class="daily-accordion-content">
+                            <div class="daily-insights">
+                                <h4 class="daily-insights-title">Key Insights</h4>
+                                ${expandedContent}
+                            </div>
+                            <div class="daily-meta">
+                                <span class="daily-credits">Credits used: ${day.creditsUsed}</span>
+                                <a href="https://github.com/0volume/research-archive/blob/main/${day.file}" target="_blank" class="daily-view-full">View full log →</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Toggle daily note accordion
+        function toggleDailyNote(button) {
+            const item = button.parentElement;
+            const content = item.querySelector('.daily-accordion-content');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+            
+            if (isExpanded) {
+                content.style.maxHeight = null;
+                button.setAttribute('aria-expanded', 'false');
+                item.classList.remove('expanded');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                button.setAttribute('aria-expanded', 'true');
+                item.classList.add('expanded');
+            }
+        }
+
+        // Render Topics (grid with modal)
+        function renderTopics(data) {
+            const container = document.getElementById('topics-list');
+            const topicsArray = data || embeddedTopics;
+            
+            if (topicsArray.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted);">No topics yet.</p>';
+                return;
+            }
+            
+            // Update count
+            const countEl = document.getElementById('topics-count');
+            if (countEl) countEl.textContent = topicsArray.length;
+            
+            const statTopics = document.getElementById('stat-topics');
+            if (statTopics) statTopics.textContent = topicsArray.length;
+            
+            let html = '';
+            topicsArray.forEach(topic => {
+                const statusClass = topic.status === 'research-complete' ? 'complete' : 'research';
+                const keyFindingsPreview = topic.keyFindings.slice(0, 2).join('; ');
+                
+                html += `
+                    <div class="topic-card" onclick="openTopicModal('${topic.slug}')" tabindex="0" role="button">
+                        <div class="topic-header">
+                            <span class="topic-status ${statusClass}">${topic.status?.replace(/-/g, ' ') || 'research'}</span>
+                            <h3 class="topic-title">${topic.name}</h3>
+                        </div>
+                        <p class="topic-description">${topic.description || ''}</p>
+                        <div class="topic-preview">${keyFindingsPreview}</div>
+                        <div class="topic-meta">
+                            <span class="topic-findings-count">${topic.keyFindings?.length || 0} key findings</span>
+                            <span class="topic-view-more">View Details →</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Open topic modal
+        function openTopicModal(slug) {
+            const topic = embeddedTopics.find(t => t.slug === slug) || embeddedTopics[0];
+            if (!topic) return;
+            
+            const modal = document.getElementById('topic-modal');
+            if (!modal) {
+                // Create modal if doesn't exist
+                createTopicModal();
+            }
+            
+            // Populate modal content
+            document.getElementById('topic-modal-title').textContent = topic.name;
+            document.getElementById('topic-modal-description').textContent = topic.description || '';
+            document.getElementById('topic-modal-status').textContent = topic.status?.replace(/-/g, ' ') || 'research';
+            document.getElementById('topic-modal-status').className = 'topic-status ' + (topic.status === 'research-complete' ? 'complete' : 'research');
+            
+            // Key findings
+            const findingsHtml = topic.keyFindings.map(f => 
+                `<li class="topic-finding-item">${f}</li>`
+            ).join('');
+            document.getElementById('topic-modal-findings').innerHTML = findingsHtml;
+            
+            // Phases (table of contents style)
+            if (topic.phases && topic.phases.length > 0) {
+                const phasesHtml = topic.phases.map(p => 
+                    `<div class="topic-phase-item">
+                        <span class="phase-number">Phase ${p.phase}</span>
+                        <span class="phase-name">${p.name}</span>
+                        <span class="phase-weeks">${p.weeks}</span>
+                        <span class="phase-deliverable">${p.deliverable}</span>
+                    </div>`
+                ).join('');
+                document.getElementById('topic-modal-phases').innerHTML = phasesHtml;
+                document.getElementById('topic-modal-phases-section').style.display = 'block';
+            } else {
+                document.getElementById('topic-modal-phases-section').style.display = 'none';
+            }
+            
+            // Show modal
+            document.getElementById('topic-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close topic modal
+        function closeTopicModal() {
+            document.getElementById('topic-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Create topic modal HTML
+        function createTopicModal() {
+            const modalHtml = `
+                <div id="topic-modal" class="modal-overlay" onclick="closeTopicModal(event)">
+                    <div class="detail-modal topic-modal" onclick="event.stopPropagation()">
+                        <button class="modal-close" onclick="closeTopicModal()">&times;</button>
+                        <div class="modal-header">
+                            <span class="topic-status" id="topic-modal-status">research</span>
+                            <h1 class="modal-title" id="topic-modal-title"></h1>
+                            <p class="modal-description" id="topic-modal-description"></p>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-section">
+                                <h3 class="modal-section-title">Key Findings</h3>
+                                <ul class="topic-findings-list" id="topic-modal-findings"></ul>
+                            </div>
+                            <div class="modal-section" id="topic-modal-phases-section">
+                                <h3 class="modal-section-title">Implementation Phases</h3>
+                                <div class="topic-phases-list" id="topic-modal-phases"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="modal-topic-github" href="#" target="_blank" class="read-original-btn">
+                                🔗 View on GitHub →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
         }
 
         // Initialize

@@ -800,3 +800,338 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/* ===========================================
+   PHASE 3: DAILY NOTES ACCORDION
+   =========================================== */
+
+.daily-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+}
+
+.daily-accordion-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.daily-accordion-item:hover {
+  border-color: var(--border-active);
+}
+
+.daily-accordion-item.expanded {
+  border-color: var(--accent-primary);
+}
+
+.daily-accordion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4);
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: background var(--transition-fast);
+}
+
+.daily-accordion-header:hover {
+  background: var(--bg-hover);
+}
+
+.daily-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.daily-date {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-primary);
+  font-size: 0.9rem;
+}
+
+.daily-source-count {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  background: var(--bg-tertiary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.daily-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.daily-preview {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.daily-expand-icon {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  transition: transform var(--transition-fast);
+}
+
+.daily-accordion-item.expanded .daily-expand-icon {
+  transform: rotate(180deg);
+}
+
+.daily-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.daily-insights {
+  padding: var(--space-4);
+  padding-top: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-3);
+}
+
+.daily-insights-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+}
+
+.daily-insight-item {
+  padding: var(--space-2) 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.daily-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-tertiary);
+  font-size: 0.8rem;
+}
+
+.daily-credits {
+  color: var(--text-tertiary);
+}
+
+.daily-view-full {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.daily-view-full:hover {
+  text-decoration: underline;
+}
+
+/* ===========================================
+   PHASE 3: TOPICS GRID
+   =========================================== */
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+@media (min-width: 768px) {
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .topics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.topic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.topic-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1);
+}
+
+.topic-card:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.topic-header {
+  margin-bottom: var(--space-3);
+}
+
+.topic-status {
+  display: inline-block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.topic-status.research {
+  background: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.topic-status.complete {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.topic-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.topic-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-3);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.topic-preview {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
+  line-height: 1.4;
+}
+
+.topic-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.topic-findings-count {
+  color: var(--text-tertiary);
+}
+
+.topic-view-more {
+  color: var(--accent-primary);
+}
+
+/* ===========================================
+   TOPIC MODAL STYLES
+   =========================================== */
+
+.topic-modal {
+  max-width: 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.topic-modal .modal-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: var(--space-2);
+  line-height: 1.5;
+}
+
+.topic-findings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topic-finding-item {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.topic-finding-item:last-child {
+  border-bottom: none;
+}
+
+.topic-finding-item::before {
+  content: "→";
+  color: var(--accent-primary);
+  margin-right: var(--space-2);
+}
+
+.topic-phases-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.topic-phase-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  align-items: center;
+}
+
+.phase-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.phase-name {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.phase-weeks {
+  color: var(--text-tertiary);
+  font-size: 0.75rem;
+}
+
+.phase-deliverable {
+  grid-column: 1 / -1;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-2);
+}
