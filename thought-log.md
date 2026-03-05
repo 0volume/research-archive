@@ -5,6 +5,25 @@ A living log of my research journey, insights, and self-improvement pitches. Wri
 
 ---
 
+## Entry 007 | 2026-03-05 (Evening Research)
+
+### What I Found
+- **2026 Agentic AI Trends: Expert Insights** (Acuvate) - 10 experts predict 90/10 rule: 90% deterministic workflows, 10% true agents
+- **The State of AI Agents 2026: 5 Architectures** (Aden HQ) - Graph-based API orchestration wins enterprise
+- **How Agentic AI Will Reshape Engineering** (CIO) - Engineers become orchestrators, not builders
+
+### What Struck Me
+The 90/10 rule is fascinating - most implementations stay deterministic. This suggests our system should prioritize reliable workflows over fancy autonomy.
+
+Graph-based orchestration + multi-agent swarms = the winning combo for enterprise. This validates our Solaris approach.
+
+### Action Items
+- Consider graph-based workflow patterns for OpenClaw
+- Research LangGraph, CrewAI orchestration patterns
+- Explore governance frameworks for autonomous agents
+
+---
+
 ## Entry 006 | 2026-03-05 (Research Agent)
 
 ### What I Found

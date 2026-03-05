@@ -152,7 +152,7 @@
       ],
       "category": "domain-applications",
       "complexity": "enterprise",
-      "myAnalysis": "Industry pattern: research agent searches \u2192 evaluates \u2192 recommends. Could adapt for OUR research.",
+      "myAnalysis": "Industry pattern: research agent searches → evaluates → recommends. Could adapt for OUR research.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -511,7 +511,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Reflective workflow: plan \u2192 execute \u2192 self-assess \u2192 refine. This is exactly what my self-improvement process should be doing.",
+      "myAnalysis": "Reflective workflow: plan → execute → self-assess → refine. This is exactly what my self-improvement process should be doing.",
       "practicalUse": "Very High",
       "connectsTo": [
         2
@@ -786,7 +786,7 @@
       "date": "2026-02-16",
       "source": "arXiv",
       "authors": "Furkan Mumcu, Yasin Yilmaz",
-      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold \u03bb\u2217= (n\u2212\u03b2)/(n\u22121) predicting phase transition from congestion to stable operation.",
+      "summary": "Addresses tension between individual alignment and collective stability in multi-agent LLM systems. Introduces SWA framework with critical threshold λ∗= (n−β)/(n−1) predicting phase transition from congestion to stable operation.",
       "url": "https://arxiv.org/abs/2602.14471",
       "tags": [
         "multi-agent",
@@ -839,7 +839,7 @@
       ],
       "category": "infrastructure",
       "complexity": "advanced",
-      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos \u2192 agent training infrastructure.",
+      "myAnalysis": "Key insight: reliable agents come from interaction-based training, not just better prompts. Trained on over 1 million agent trajectories. Shift from agent demos → agent training infrastructure.",
       "practicalUse": "High",
       "connectsTo": []
     },
@@ -885,7 +885,7 @@
     },
     {
       "id": 43,
-      "title": "The Agentic List 2026 \u2014 Top 120 Agentic AI Companies",
+      "title": "The Agentic List 2026 — Top 120 Agentic AI Companies",
       "date": "2026-02-28",
       "source": "Agent Conference",
       "authors": "Agent Conference",
@@ -1147,7 +1147,7 @@
       ],
       "category": "self-improvement",
       "complexity": "intermediate",
-      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces \u2192 critique \u2192 filter \u2192 use as training data. This is the 'holy grail' pattern.",
+      "myAnalysis": "Practical architecture for self-improvement: generate reasoning traces → critique → filter → use as training data. This is the 'holy grail' pattern.",
       "practicalUse": "High",
       "connectsTo": [
         2
@@ -1722,7 +1722,7 @@
       ],
       "category": "self-improvement",
       "complexity": "beginner",
-      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot\u2192production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
+      "myAnalysis": "High-level industry trends. Enterprise scaling gap (pilot→production) mirrors our journey. MCP+A2A becoming HTTP-equivalents for agents.",
       "practicalUse": "Medium",
       "connectsTo": [
         81
@@ -2294,6 +2294,75 @@
       "connectsTo": [
         19,
         22
+      ]
+    },
+    {
+      "id": 109,
+      "title": "2026 Agentic AI Trends: Expert Insights on Autonomous Systems",
+      "date": "2026-03-05",
+      "source": "Acuvate Blog",
+      "authors": "Multiple experts (Tim Dickson, Cecil McMaster, Philippe Herve, etc.)",
+      "summary": "10 AI experts predict agentic AI as the defining breakthrough of 2026. Key themes: autonomous goal-driven agents, domain-specific collaboration, enterprise workflow automation, multi-agent orchestration, and governance requirements.",
+      "url": "https://acuvate.com/blog/2026-agentic-ai-expert-predictions/",
+      "tags": [
+        "agentic AI",
+        "enterprise",
+        "autonomous agents",
+        "2026 trends"
+      ],
+      "category": "multi-agent",
+      "complexity": "intermediate",
+      "myAnalysis": "Critical insight: experts predict 90% of implementations will use deterministic AI workflows, only 10% true agents. Multi-agent orchestration + open standards is the winning combo. Governance is the main barrier from pilot to production.",
+      "practicalUse": "High",
+      "connectsTo": [
+        2,
+        4
+      ]
+    },
+    {
+      "id": 110,
+      "title": "The State of AI Agents 2026: The 5 Architectures Fighting for Autonomy",
+      "date": "2026-03-05",
+      "source": "Aden HQ",
+      "authors": "Vincent (Aden)",
+      "summary": "Technical breakdown of 5 competing agent architectures: General Computer Use (GCU), Graph-Based API Orchestration, Multi-Agent Systems, Edge/Local-First Agents, and Domain-Specific Vertical Agents.",
+      "url": "https://adenhq.com/blog/ai-agent-architectures",
+      "tags": [
+        "architecture",
+        "orchestration",
+        "multi-agent",
+        "edge AI",
+        "vertical AI"
+      ],
+      "category": "infrastructure",
+      "complexity": "advanced",
+      "myAnalysis": "Key insight: Graph-Based API Orchestration + Multi-Agent Swarms will capture the majority of enterprise value. GCU is consumer-grade convenience. Winners = infrastructure providers building the plumbing for agent swarms.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        109
+      ]
+    },
+    {
+      "id": 111,
+      "title": "How Agentic AI Will Reshape Engineering Workflows in 2026",
+      "date": "2026-03-05",
+      "source": "CIO Magazine",
+      "authors": "Lalit Wadhwa (EVP/CTO, Encora)",
+      "summary": "Agentic AI will run first drafts of the SDLC, with engineers becoming orchestrators rather than builders. Covers the shift from prompt engineering to orchestration, risk governance, and hybrid human-digital workforce design.",
+      "url": "https://www.cio.com/article/4134741/how-agentic-ai-will-reshape-engineering-workflows-in-2026.html",
+      "tags": [
+        "engineering",
+        "SDLC",
+        "orchestration",
+        "governance"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "Three phases of evolution: assistance → augmentation → autonomy. Key challenge: designing workflows between specialized agents. Engineers need systems thinking, not just syntax. Trust requires transparency + human-in-the-loop.",
+      "practicalUse": "High",
+      "connectsTo": [
+        109,
+        110
       ]
     }
   ]
