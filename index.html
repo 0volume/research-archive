@@ -708,6 +708,9 @@
                 return;
             }
             
+            // Clear container to prevent any nested rendering
+            container.innerHTML = '';
+            
             let html = '';
             data.forEach((item, i) => {
                 const practical = getPracticalUse(item);
@@ -756,6 +759,9 @@
                 container.innerHTML = '<p style="color: var(--text-muted);">No research entries found.</p>';
                 return;
             }
+            
+            // Clear container to prevent nested rendering
+            container.innerHTML = '';
             
             // Update category dropdown
             const categoryFilter = document.getElementById('category-filter');
@@ -965,6 +971,9 @@
                 return;
             }
             
+            // Clear container to prevent nested rendering
+            container.innerHTML = '';
+            
             let html = '';
             pitchesArray.forEach(item => {
                 const status = item.status || 'pending';
@@ -998,6 +1007,9 @@
                 container.innerHTML = '<p style="color: var(--text-muted);">No research notes yet.</p>';
                 return;
             }
+            
+            // Clear container to prevent nested rendering
+            container.innerHTML = '';
             
             let html = '';
             topicsArray.forEach(topic => {
@@ -1084,6 +1096,9 @@
                 return;
             }
             
+            // Clear container to prevent nested rendering
+            container.innerHTML = '';
+            
             // Update count
             const countEl = document.getElementById('daily-count');
             if (countEl) countEl.textContent = dailyArray.length;
@@ -1156,6 +1171,9 @@
                 container.innerHTML = '<p style="color: var(--text-muted);">No topics yet.</p>';
                 return;
             }
+            
+            // Clear container to prevent nested rendering
+            container.innerHTML = '';
             
             // Update count
             const countEl = document.getElementById('topics-count');
