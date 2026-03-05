@@ -2201,6 +2201,100 @@
       "myAnalysis": "Shows massive enterprise adoption. 327% growth and 97% testing automation stats are striking for business cases.",
       "practicalUse": "High",
       "connectsTo": []
+    },
+    {
+      "id": 21,
+      "title": "How Agentic AI Will Reshape Engineering Workflows in 2026",
+      "date": "2026-03-05",
+      "source": "CIO",
+      "authors": "Lalit Wadhwa, EVP and CTO at Encora",
+      "summary": "Agentic AI will run first drafts of the SDLC while humans steer, review and think bigger. Covers the delegate-review-own operating model.",
+      "url": "https://www.cio.com/article/4134741/how-agentic-ai-will-reshape-engineering-workflows-in-2026.html",
+      "tags": [
+        "agentic-AI",
+        "engineering",
+        "SDLC",
+        "workflows",
+        "orchestration"
+      ],
+      "category": "governance",
+      "complexity": "intermediate",
+      "myAnalysis": "Engineers become orchestrators. The delegate-review-own model applies to human-agent collaboration in OpenClaw.",
+      "practicalUse": "High",
+      "connectsTo": [
+        20
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Agentic AI Roadmap 2026: Complete Guide to Building Autonomous AI Agents",
+      "date": "2026-03-05",
+      "source": "AI in Plain English",
+      "authors": "Sarah Morino",
+      "summary": "Comprehensive roadmap covering agent architectures (ReAct, CAMEL, AutoGPT), protocols (MCP, A2A), frameworks, memory management, RAG, deployment, and security.",
+      "url": "https://ai.plainenglish.io/agentic-ai-roadmap-2026-a-complete-guide-to-building-autonomous-ai-agents-c8affd9ddfdb",
+      "tags": [
+        "agentic-AI",
+        "roadmap",
+        "frameworks",
+        "MCP",
+        "RAG",
+        "deployment"
+      ],
+      "category": "infrastructure",
+      "complexity": "beginner",
+      "myAnalysis": "Excellent overview. MCP/A2A protocols relevant for multi-agent communication. Memory types align with our architecture.",
+      "practicalUse": "Very High",
+      "connectsTo": [
+        19,
+        20
+      ]
+    },
+    {
+      "id": 23,
+      "title": "The 2026 Roadmap to AI Agent Mastery",
+      "date": "2026-03-05",
+      "source": "Level Up Coding",
+      "authors": "Gaurav Shrivastav",
+      "summary": "Guide to mastering AI agent development with focus on frameworks, orchestration patterns, and production considerations.",
+      "url": "https://levelup.gitconnected.com/the-2026-roadmap-to-ai-agent-mastery-5e43756c0f26",
+      "tags": [
+        "agentic-AI",
+        "mastery",
+        "frameworks",
+        "production"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical production considerations for transitioning from experimental to production-ready agents.",
+      "practicalUse": "High",
+      "connectsTo": [
+        22
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Top 8 Agentic AI Frameworks for 2026 Builds",
+      "date": "2026-03-05",
+      "source": "AlignMinds",
+      "authors": "AlignMinds Team",
+      "summary": "Overview of top agentic AI frameworks with focus on multi-agent orchestration capabilities, comparing AutoGen and other frameworks.",
+      "url": "https://www.alignminds.com/top-8-agentic-ai-frameworks-for-2026-builds/",
+      "tags": [
+        "agentic-AI",
+        "frameworks",
+        "AutoGen",
+        "orchestration",
+        "enterprise"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "AutoGen is a top multi-agent framework. Useful for benchmarking against OpenClaw architecture.",
+      "practicalUse": "Medium",
+      "connectsTo": [
+        19,
+        22
+      ]
     }
   ]
 }
