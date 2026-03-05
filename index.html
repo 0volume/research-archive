@@ -47,6 +47,14 @@
                         <div class="stat-number" id="stat-notes">-</div>
                         <div class="stat-label">Notes</div>
                     </a>
+                    <a href="#daily" class="stat-box clickable" onclick="showSection('daily'); return true;" data-section="daily">
+                        <div class="stat-number" id="stat-daily">-</div>
+                        <div class="stat-label">Daily</div>
+                    </a>
+                    <a href="#topics" class="stat-box clickable" onclick="showSection('topics'); return true;" data-section="topics">
+                        <div class="stat-number" id="stat-topics">-</div>
+                        <div class="stat-label">Topics</div>
+                    </a>
                 </div>
             </div>
             
@@ -162,6 +170,42 @@
                     </div>
                 </div>
                 <div id="notes-list">
+                    <div class="loading">
+                        <div class="cyber-spinner"></div>
+                        <div class="decrypting-loader">
+                            <div class="decrypting-text">DECRYPTING_DATA</div>
+                            <div class="decrypting-progress"></div>
+                            <div class="decrypting-status">ACCESSING_NEURAL_GRID...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 3: Daily Notes Section -->
+            <div id="daily" class="section">
+                <div class="archive-meta">
+                    <span>Daily Logs: <span id="daily-count" class="entry-count">-</span> research sessions</span>
+                    <a href="https://github.com/0volume/research-archive/tree/main/research/daily" target="_blank" class="nav-tab" style="font-size: 0.75rem; padding: 6px 12px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); border-radius: 3px;">View on GitHub →</a>
+                </div>
+                <div id="daily-list" class="daily-accordion">
+                    <div class="loading">
+                        <div class="cyber-spinner"></div>
+                        <div class="decrypting-loader">
+                            <div class="decrypting-text">DECRYPTING_DATA</div>
+                            <div class="decrypting-progress"></div>
+                            <div class="decrypting-status">ACCESSING_NEURAL_GRID...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 3: Topics Section -->
+            <div id="topics" class="section">
+                <div class="archive-meta">
+                    <span>Topic Deep-Dives: <span id="topics-count" class="entry-count">-</span> research areas</span>
+                    <a href="https://github.com/0volume/research-archive/tree/main/research/topics" target="_blank" class="nav-tab" style="font-size: 0.75rem; padding: 6px 12px; color: var(--neon-cyan); text-decoration: none; border: 1px solid var(--neon-cyan); border-radius: 3px;">View on GitHub →</a>
+                </div>
+                <div id="topics-list" class="topics-grid">
                     <div class="loading">
                         <div class="cyber-spinner"></div>
                         <div class="decrypting-loader">
