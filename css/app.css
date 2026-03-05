@@ -133,6 +133,18 @@
   opacity: 1;
 }
 
+/* Keyboard focus accessibility */
+.research-card:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 4px var(--accent-glow), 0 8px 30px rgba(0, 212, 255, 0.1);
+}
+
+.research-card:focus::before {
+  opacity: 1;
+}
+
 /* Card Header - Title and Source */
 .card-header {
   display: flex;

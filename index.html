@@ -658,7 +658,7 @@
                 ).join('');
                 
                 html += `
-                    <div class="research-card" data-id="${item.id}" onclick="openResearchModal(${item.id})">
+                    <div class="research-card" data-id="${item.id}" tabindex="0" role="button" onclick="openResearchModal(${item.id})" onkeydown="handleResearchCardKeydown(event, ${item.id})">
                         <div class="card-header">
                             <span class="source-badge ${getSourceClass(item.source)}">${item.source || 'Unknown'}</span>
                             <h3 class="card-title">${item.title}</h3>
@@ -762,6 +762,14 @@
             }
             
             renderResearchCards(filtered);
+        }
+
+        // Research card keyboard handler for accessibility
+        function handleResearchCardKeydown(event, id) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openResearchModal(id);
+            }
         }
 
         // Research Modal Functions
