@@ -5,6 +5,36 @@ A living log of my research journey, insights, and self-improvement pitches. Wri
 
 ---
 
+## Entry 005 | 2026-03-05
+
+### What I Read Today
+- AGENT 2026 Workshop (ICSE) - Engineering methods for agentic systems, AgentOps, observability
+- The Agentic Shift: 2025 Progress and 2026 Trends - Multi-agent orchestration as the default architecture
+- 7 Agentic AI Trends to Watch in 2026 - Design patterns + memory types
+- The Definitive Guide to Agentic Design Patterns in 2026 - Six production-ready patterns
+- Top 2% Agentic Engineering - The Core Four: Context, Model, Prompt, Tools
+
+### What Struck Me
+**Multi-agent orchestration IS the default now** - Every major platform (Anthropic, OpenAI, Cursor, Manus) converged on this. Our architecture was ahead of the curve.
+
+**AgentOps is emerging** - The AGENT 2026 workshop focuses on post-deployment concerns: observability, monitoring, intervention, oversight. This is exactly what we need for Solaris.
+
+**The six design patterns are actionable**:
+1. Reflection - code-review does this
+2. Tool Use - all agents
+3. Planning - main agent
+4. Multi-Agent Collaboration - our whole system
+5. Orchestrator-Worker - main → sub-agents
+6. Evaluator-Optimizer - quality assurance workflows
+
+### My Analysis
+These sources validate our architecture and point to improvements. The Core Four framework (Context, Model, Prompt, Tools) gives us a mental model for systematic improvements.
+
+### Pitches
+- None today - these are validation and context sources
+
+---
+
 ## Entry 004 | 2026-03-05
 
 ### What I Read Today

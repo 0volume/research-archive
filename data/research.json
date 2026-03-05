@@ -1996,6 +1996,107 @@
         34,
         52
       ]
+    },
+    {
+      "id": 95,
+      "title": "International Workshop on Agentic Engineering (AGENT 2026)",
+      "date": "2026-03-05",
+      "source": "ResearchR/ICSE",
+      "authors": "Software Engineering Community",
+      "summary": "Workshop on engineering methods for agentic systems built on foundation models. Covers requirements engineering, AgentOps, observability, and operational practices.",
+      "url": "https://conf.researchr.org/home/icse-2026/agent-2026",
+      "tags": [
+        "agentic engineering",
+        "software engineering",
+        "AgentOps",
+        "observability"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Important for understanding the emerging discipline of AgentOps - the operational practices needed after deploying autonomous agents. Directly relevant to OpenClaw deployment concerns.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 96,
+      "title": "The Agentic Shift: 2025 Progress and 2026 Trends in Autonomous AI",
+      "date": "2026-03-05",
+      "source": "Medium",
+      "authors": "Hugo Guo",
+      "summary": "Review of 2025 agentic platform progress (Anthropic, OpenAI, Cursor, Manus) with 2026 trends. Multi-agent orchestration becomes the default architectural primitive.",
+      "url": "https://medium.com/@huguosuo/the-agentic-shift-2025-progress-and-2026-trends-in-autonomous-ai-d8248b57ade9",
+      "tags": [
+        "multi-agent",
+        "orchestration",
+        "trends",
+        "2026"
+      ],
+      "category": "multi-agent",
+      "complexity": "beginner",
+      "myAnalysis": "Multi-agent orchestration as the dominant pattern - validates our system's architecture direction. Good overview of platform landscape.",
+      "practicalUse": "Medium",
+      "connectsTo": []
+    },
+    {
+      "id": 97,
+      "title": "7 Agentic AI Trends to Watch in 2026",
+      "date": "2026-03-05",
+      "source": "MachineLearningMastery",
+      "authors": "Vinod Chugani",
+      "summary": "Seven key trends including design patterns (ReAct, Reflection, Tool Use, Planning, Multi-Agent Collaboration, Sequential Workflows, Human-in-the-Loop) and long-term memory types (episodic, semantic, procedural).",
+      "url": "https://machinelearningmastery.com/7-agentic-ai-trends-to-watch-in-2026/",
+      "tags": [
+        "design patterns",
+        "memory",
+        "trends",
+        "ReAct",
+        "reflection"
+      ],
+      "category": "self-improvement",
+      "complexity": "intermediate",
+      "myAnalysis": "Good synthesis of design patterns - could inform our agent architecture. The memory taxonomy is useful for our system.",
+      "practicalUse": "High",
+      "connectsTo": []
+    },
+    {
+      "id": 98,
+      "title": "The Definitive Guide to Agentic Design Patterns in 2026",
+      "date": "2026-03-05",
+      "source": "SitePoint",
+      "authors": "SitePoint Team",
+      "summary": "Six production-ready patterns: Reflection, Tool Use, Planning, Multi-Agent Collaboration, Orchestrator-Worker, Evaluator-Optimizer. Includes code examples with LangGraph.",
+      "url": "https://www.sitepoint.com/the-definitive-guide-to-agentic-design-patterns-in-2026/",
+      "tags": [
+        "design patterns",
+        "LangGraph",
+        "production",
+        "orchestration"
+      ],
+      "category": "infrastructure",
+      "complexity": "intermediate",
+      "myAnalysis": "Practical implementation patterns with code. The Orchestrator-Worker and Evaluator-Optimizer patterns directly applicable to our system.",
+      "practicalUse": "Very High",
+      "connectsTo": [97]
+    },
+    {
+      "id": 99,
+      "title": "Top 2% Agentic Engineering - Roadmap for 2026",
+      "date": "2026-03-05",
+      "source": "Blog",
+      "authors": "IndyDevDan",
+      "summary": "The Core Four of Agentic Engineering: Context, Model, Prompt, Tools. Framework for thinking about agent engineering decisions.",
+      "url": "https://agenticengineer.com/top-2-percent-agentic-engineering",
+      "tags": [
+        "context engineering",
+        "prompt engineering",
+        "tools",
+        "framework"
+      ],
+      "category": "context engineering",
+      "complexity": "beginner",
+      "myAnalysis": "Validates our context engineering focus. Simple but powerful mental model for agentic system design decisions.",
+      "practicalUse": "High",
+      "connectsTo": []
     }
   ]
 }
