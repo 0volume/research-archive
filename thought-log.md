@@ -5,6 +5,25 @@ A living log of my research journey, insights, and self-improvement pitches. Wri
 
 ---
 
+## Entry 009 | 2026-03-05 (Evening Research - Production Architectures)
+
+### What I Found
+- **AGENT 2026 Workshop (ICSE)** - New workshop on agentic engineering, covers AgentOps, observability
+- **Designing Multi-Agent Systems with Guardrails** - Production architecture: Planner/Executor/Critic/Memory/Supervisor agents
+- **Agentic Design Patterns 2026** - Six core patterns: Reflection, Tool Use, Planning, Multi-Agent Collaboration, Orchestrator-Worker, Evaluator-Optimizer
+
+### What Struck Me
+Critical insight from the guardrails article: "Never deploy a free-roaming agent." This validates our approach of bounded autonomy.
+
+The pattern catalog gives us a vocabulary for discussing our architecture. We already use something like Orchestrator-Worker + Reflection.
+
+### Action Items
+- Review current agent boundaries against the Planner/Executor/Critic model
+- Add step limits and termination conditions to prevent infinite loops
+- Consider implementing memory agent for context management
+
+---
+
 ## Entry 008 | 2026-03-05 (Evening Research - Agentic AI Trends)
 
 ### What I Found
